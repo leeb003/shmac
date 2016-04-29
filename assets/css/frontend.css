@@ -1,0 +1,1448 @@
+.shmac-holder {
+    width: 100%;
+    float:left;
+    display:inline-block;
+}
+.shmac-form,
+.shmac-div {
+	font-size: 14px;
+  	font-weight: 400;
+  	line-height: 1.429;
+  	color: rgba(0, 0, 0, 0.87);
+}
+
+.shmac-form a {
+	outline:0;
+	border: 0;
+}
+.shmac-form a:active,
+.shmac-form a:hover {
+  outline: 0;
+}
+
+.shmac-info {
+	height: 16px;
+	width: 16px;
+	border: 0; /* IE 9 10 fix */
+}
+
+.shmac-form button,
+.shmac-form button:hover,
+.shmac-form button:active {
+	border: 0;
+	background-image:none;
+}
+
+.shmac-symbol {
+    position: absolute;
+    font-size: 18px;
+    font-weight: 400;
+	color: rgba(0, 0, 0, 0.54);
+    left:0px;
+    top: 17px;
+}
+
+.shmac-symbol.right {
+	right:15px;
+	left: auto;
+}
+
+/* Progress Bar */
+.progresso {
+	margin-top: -10px;
+	margin-bottom: 10px;
+	height: 5px;
+}
+
+/* Error Inputs */
+.err-msg {
+	color: red;
+}
+.mui-form-control.error-field {
+	border-bottom: 1px solid red;
+	box-shadow: 0 1px 0 0 red;
+}
+
+/* Modal */
+.shmac-div {
+	background-color: #ffffff;
+	box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+}
+
+.shmac-div .schedule-table,
+.shmac-div .detail-table {
+	background-color: #ffffff;
+}
+
+.shmac-div .schedule-table tr:hover {
+	background-color:#efefef;
+}
+
+.shmac-div .schedule-head {
+}
+
+.shmac-div .border-p {
+	padding-bottom: 15px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.shmac-div .disclaimer {
+	text-align: center;
+	font-size: 12px;
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+
+.schedule-head-fixed {
+	position:absolute;
+	top:0;
+	left:0;
+	width:100%;
+	padding-left:20px;
+	padding-right:20px;
+	padding-top: 5px;
+}
+
+.schedule-head-fixed .schedule-table {
+	background-color:transparent;
+}
+
+.schedule-head-fixed .schedule-head {
+	background-color: #fff;
+}
+
+.schedule-head-fixed tr:not(.schedule-head) {
+	visibility:hidden;
+}
+
+.schedule-head-fixed tr:not(.schedule-head) td {
+	padding-top: 0;
+	padding-bottom: 0;
+	border-top: 0;
+	border-bottom: 0;
+}
+
+.shmac-ul {
+	list-style:none;
+	padding-left:20px;
+	text-indent: -20px;
+}
+
+.shmac-ul li img {
+	width:15px;
+	height:15px;
+	display:inline-block;
+}
+.shmac-div .schedule-table th,
+.shmac-div .schedule-table td{
+	text-align: right;
+	border: 0;
+}
+
+/* Responsive tables */
+@media screen and (max-width: 768px) {
+    .shmac-div .detail-table thead,
+    .shmac-div .schedule-table thead { 
+		display: none; 
+	}
+    .shmac-div .detail-table tbody td,
+    .shmac-div .schedule-table tbody td {
+        display: block;
+        padding: 1em;
+		text-align:left;
+    }
+    .shmac-div .detail-table tbody tr td:first-child,
+    .shmac-div .schedule-table tbody tr td:first-child {
+		background-color:rgba(0,0,0,0.05) !important;
+        color: rgba(0,0,0,0.87);
+    }
+		
+    .shmac-div .schedule-table tbody td:before {
+        content:  attr(data-th);
+        /* font-weight: bold; */
+        color: rgba(0,0,0,0.54);
+        display: inline-block;
+        width: 100px;
+		text-align:left;
+    }
+    .shmac-div .detail-table .header-row,
+    .shmac-div .schedule-table .header-row {
+        display:none;
+    }
+}
+/* End Responsive tables */
+
+/* tooltips */
+.mui-form-group .shmac-tip {
+    display: inline;
+    position: absolute;
+    right: 0px;
+    top: 0px;
+	box-shadow:none;
+}
+
+.mui-select > .shmac-tip {
+	top: -17px;
+}
+
+.shmac-tip:hover:after{
+    background: #333;
+    background: rgba(0,0,0,.8);
+    /*border-radius: 5px;*/
+    bottom: 26px;
+    color: #fff;
+    content: attr(data-title);
+    right: -6px;
+    padding: 5px 15px;
+    position: absolute;
+    z-index: 98;
+    width: 220px;
+}
+.shmac-tip:hover:before{
+    border: solid;
+    border-color: #333 transparent;
+    border-width: 6px 6px 0 6px;
+    bottom: 20px;
+    content: "";
+    left: 3px;
+    position: absolute;
+    z-index: 99;
+}
+
+/* MUI Styles */
+
+/* Forms
+   ========================================================================== */
+/**
+ * Known limitation: by default, Chrome and Safari on OS X allow very limited
+ * styling of `select`, unless a `border` property is set.
+ */
+/**
+ * 1. Correct color not being inherited.
+ *    Known issue: affects color of disabled elements.
+ * 2. Correct font properties not being inherited.
+ * 3. Address margins set differently in Firefox 4+, Safari, and Chrome.
+ */
+.shmac-form button,
+.shmac-form input,
+.shmac-form optgroup,
+.shmac-form select,
+.shmac-form textarea {
+  color: inherit;
+  /* 1 */
+  font: inherit;
+  /* 2 */
+  margin: 0;
+  /* 3 */
+}
+
+/**
+ * Address `overflow` set to `hidden` in IE 8/9/10/11.
+ */
+/*
+.shmac-form button {
+  overflow: visible;
+}
+*/
+/**
+ * Address inconsistent `text-transform` inheritance for `button` and `select`.
+ * All other form control elements do not inherit `text-transform` values.
+ * Correct `button` style inheritance in Firefox, IE 8/9/10/11, and Opera.
+ * Correct `select` style inheritance in Firefox.
+ */
+.shmac-form button,
+.shmac-form select {
+  text-transform: none;
+}
+
+/**
+ * 1. Avoid the WebKit bug in Android 4.0.* where (2) destroys native `audio`
+ *    and `video` controls.
+ * 2. Correct inability to style clickable `input` types in iOS.
+ * 3. Improve usability and consistency of cursor style between image-type
+ *    `input` and others.
+ */
+.shmac-form button,
+.shmac-form input[type="button"], 
+.shmac-form input[type="reset"],
+.shmac-form input[type="submit"] {
+  -webkit-appearance: button;
+  /* 2 */
+  cursor: pointer;
+  /* 3 */
+}
+
+/**
+ * Re-set default cursor for disabled elements.
+ */
+.shmac-form button[disabled],
+.shmac-form input[disabled],
+.shmac-form button[disabled]:hover,
+.shmac-form button[disabled]:focus,
+.shmac-form input[type="button"][disabled]:hover,
+.shmac-form input[type="button"][disabled]:focus,
+.shmac-form input[type="submit"][disabled]:hover,
+.shmac-form input[type="submit"][disabled]:focus {
+  cursor: default;
+  border:0;
+  text-transform: uppercase;
+  font-family: inherit;
+  font-weight: inherit;
+  letter-spacing: inherit;
+  line-height: inherit;
+  height: 36px;
+  font-size: inherit;
+  margin-top: 6px;
+  margin-bottom: 6px;
+}
+
+
+/**
+ * Remove inner padding and border in Firefox 4+.
+ */
+.shmac-form button::-moz-focus-inner,
+.shmac-form input::-moz-focus-inner {
+  border: 0;
+  padding: 0;
+}
+
+/**
+ * Address Firefox 4+ setting `line-height` on `input` using `!important` in
+ * the UA stylesheet.
+ */
+.shmac-form input {
+  line-height: normal;
+}
+
+/**
+ * It's recommended that you don't attempt to style these elements.
+ * Firefox's implementation doesn't respect box-sizing, padding, or width.
+ *
+ * 1. Address box sizing set to `content-box` in IE 8/9/10.
+ * 2. Remove excess padding in IE 8/9/10.
+ */
+/*
+input[type="checkbox"],
+*/
+.shmac-form input[type="radio"] {
+  box-sizing: border-box;
+  /* 1 */
+  padding: 0;
+  /* 2 */
+}
+
+/**
+ * Fix the cursor style for Chrome's increment/decrement buttons. For certain
+ * `font-size` values of the `input`, it causes the cursor style of the
+ * decrement button to change from `default` to `text`.
+ */
+.shmac-form input[type="number"]::-webkit-inner-spin-button,
+.shmac-form input[type="number"]::-webkit-outer-spin-button {
+  height: auto;
+}
+
+/**
+ * 1. Address `appearance` set to `searchfield` in Safari and Chrome.
+ * 2. Address `box-sizing` set to `border-box` in Safari and Chrome
+ *    (include `-moz` to future-proof).
+ */
+.shmac-form input[type="search"] {
+  -webkit-appearance: textfield;
+  /* 1 */
+  /* 2 */
+  box-sizing: content-box;
+}
+
+/**
+ * Remove inner padding and search cancel button in Safari and Chrome on OS X.
+ * Safari (but not Chrome) clips the cancel button when the search input has
+ * padding (and `textfield` appearance).
+ */
+.shmac-form input[type="search"]::-webkit-search-cancel-button,
+.shmac-form input[type="search"]::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+
+/**
+ * Define consistent border, margin, and padding.
+ */
+.shmac-form fieldset {
+  border: 1px solid #c0c0c0;
+  margin: 0 2px;
+  padding: 0.35em 0.625em 0.75em;
+}
+
+/**
+ * 1. Correct `color` not being inherited in IE 8/9/10/11.
+ * 2. Remove padding so people aren't caught out if they zero out fieldsets.
+ */
+.shmac-form legend {
+  border: 0;
+  /* 1 */
+  padding: 0;
+  /* 2 */
+}
+/**
+ * Remove default vertical scrollbar in IE 8/9/10/11.
+ */
+.shmac-form textarea {
+  overflow: auto;
+}
+
+/**
+ * Don't inherit the `font-weight` (applied by a rule above).
+ * NOTE: the default cannot safely be changed in Chrome and Safari on OS X.
+ */
+.shmac-form optgroup {
+  font-weight: bold;
+}
+
+/* Tables
+   ========================================================================== */
+/**
+ * Remove most spacing between table cells.
+ */
+.shmac-div table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+.shmac-div td,
+.shmac-div th {
+  padding: 0;
+}
+
+/**
+ * MUI Scaffolding module
+ */
+.shmac-form *,
+.shmac-div * {
+  box-sizing: border-box;
+}
+
+.shmac-form *:before,
+.shmac-form *:after,
+.shmac-div *:before,
+.shmac-div *:after {
+  box-sizing: border-box;
+}
+.shmac-form input,
+.shmac-form button,
+.shmac-form select,
+.shmac-form textarea {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
+
+.shmac-form a {
+  text-decoration: none;
+}
+
+.shmac-form a:hover,
+.shmac-form a:focus {
+  /* text-decoration: underline; */
+}
+
+.shmac-form a:focus {
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+
+.shmac-form p,
+.shmac-div p {
+  margin: 0 0 10px;
+}
+
+.shmac-div ul,
+.shmac-div ol {
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+.shmac-form img,
+.shmac-div img {
+  vertical-align: middle;
+}
+
+.shmac-form hr,
+.shmac-div hr {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border: 0;
+  height: 1px;
+  background-color: rgba(0, 0, 0, 0.12);
+}
+
+/**
+ * MUI Typography module
+ */
+.mui-text-title, h3 {
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 28px;
+  color: rgba(0, 0, 0, 0.87);
+}
+
+.mui-text-menu {
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 17px;
+  color: rgba(0, 0, 0, 0.87);
+}
+
+/**
+ * MUI Panel module
+ */
+.mui-panel {
+  padding: 15px;
+  margin-bottom: 20px;
+  border-radius: 0;
+  background-color: #FFF;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0px 2px 0 rgba(0, 0, 0, 0.12);
+}
+
+.mui-panel:before,
+.mui-panel:after {
+  content: " ";
+  display: table;
+}
+
+.mui-panel:after {
+  clear: both;
+}
+
+
+/**
+ * MUI Buttons
+ */
+.shmac-form .mui-btn {
+  -webkit-animation-duration: 0.0001s;
+  animation-duration: 0.0001s;
+  -webkit-animation-name: mui-node-inserted;
+  animation-name: mui-node-inserted;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 18px;
+  color: rgba(0, 0, 0, 0.87);
+  text-transform: uppercase;
+  color: rgba(0, 0, 0, 0.87);
+  background-color: #FFF;
+  transition: all 0.2s ease-in-out;
+  display: inline-block;
+  height: 36px;
+  padding: 0 26px;
+  margin-top: 6px;
+  margin-bottom: 6px !important;
+  border: none;
+  border-radius: 2px;
+  cursor: pointer;
+  -ms-touch-action: manipulation;
+  touch-action: manipulation;
+  background-image: none;
+  text-align: center;
+  line-height: 36px;
+  vertical-align: middle;
+  white-space: nowrap;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  font-size: 14px;
+  position: relative;
+  overflow: hidden;
+}
+
+.mui-btn:hover,
+.mui-btn:focus,
+.mui-btn:active {
+  color: rgba(0, 0, 0, 0.87);
+  background-color: white;
+}
+
+.mui-btn[disabled]:hover,
+.mui-btn[disabled]:focus,
+.mui-btn[disabled]:active {
+  color: rgba(0, 0, 0, 0.87);
+  background-color: #FFF;
+}
+
+.mui-btn.mui-btn-flat,
+.mui-btn[data-mui-style="flat"] {
+  color: rgba(0, 0, 0, 0.87);
+  background-color: transparent;
+}
+
+.mui-btn.mui-btn-flat:hover,
+.mui-btn.mui-btn-flat:focus,
+.mui-btn.mui-btn-flat:active,
+.mui-btn[data-mui-style="flat"]:hover,
+.mui-btn[data-mui-style="flat"]:focus,
+.mui-btn[data-mui-style="flat"]:active {
+  color: rgba(0, 0, 0, 0.87);
+  background-color: #f2f2f2;
+}
+
+.mui-btn.mui-btn-flat[disabled]:hover,
+.mui-btn.mui-btn-flat[disabled]:focus,
+.mui-btn.mui-btn-flat[disabled]:active,
+.mui-btn[data-mui-style="flat"][disabled]:hover,
+.mui-btn[data-mui-style="flat"][disabled]:focus,
+.mui-btn[data-mui-style="flat"][disabled]:active {
+  color: rgba(0, 0, 0, 0.87);
+  background-color: transparent;
+}
+
+.mui-btn:hover,
+.mui-btn:focus,
+.mui-btn:active {
+  outline: 0;
+  text-decoration: none;
+  color: rgba(0, 0, 0, 0.87);
+}
+
+.mui-btn:hover,
+.mui-btn:focus {
+  box-shadow: 0 0px 2px rgba(0, 0, 0, 0.12), 0 2px 2px rgba(0, 0, 0, 0.2);
+}
+
+.mui-btn:active {
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+}
+
+.mui-btn:disabled,
+.mui-btn.mui-is-disabled {
+  cursor: not-allowed;
+  pointer-events: none;
+  opacity: 0.60;
+  box-shadow: none;
+}
+
+.mui-btn + .mui-btn {
+  margin-left: 8px;
+}
+
+.mui-btn-flat,
+.mui-btn[data-mui-style="flat"] {
+  background-color: transparent;
+}
+
+.mui-btn-flat:hover,
+.mui-btn-flat:focus,
+.mui-btn-flat:active,
+.mui-btn[data-mui-style="flat"]:hover,
+.mui-btn[data-mui-style="flat"]:focus,
+.mui-btn[data-mui-style="flat"]:active {
+  box-shadow: none;
+  background-color: #f2f2f2;
+}
+
+.mui-btn-raised,
+.mui-btn-floating,
+.mui-btn[data-mui-style="fab"],
+.mui-btn[data-mui-style="raised"] {
+  box-shadow: 0 0px 2px rgba(0, 0, 0, 0.12), 0 2px 2px rgba(0, 0, 0, 0.2);
+}
+
+.mui-btn-raised:active,
+.mui-btn-floating:active,
+.mui-btn[data-mui-style="fab"]:active,
+.mui-btn[data-mui-style="raised"]:active {
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+}
+
+.mui-btn-floating,
+.mui-btn[data-mui-style="fab"] {
+  position: relative;
+  padding: 0;
+  width: 55px;
+  height: 55px;
+  line-height: 55px;
+  border-radius: 50%;
+  z-index: 1;
+}
+
+.mui-btn-primary,
+.mui-btn[data-mui-color="primary"] {
+  color: #FFF;
+  background-color: #2196F3;
+}
+
+.mui-btn-primary:hover,
+.mui-btn-primary:focus,
+.mui-btn-primary:active,
+.mui-btn[data-mui-color="primary"]:hover,
+.mui-btn[data-mui-color="primary"]:focus,
+.mui-btn[data-mui-color="primary"]:active {
+  color: #FFF;
+  background-color: #39a1f4;
+}
+
+.mui-btn-primary[disabled]:hover,
+.mui-btn-primary[disabled]:focus,
+.mui-btn-primary[disabled]:active,
+.mui-btn[data-mui-color="primary"][disabled]:hover,
+.mui-btn[data-mui-color="primary"][disabled]:focus,
+.mui-btn[data-mui-color="primary"][disabled]:active {
+  color: #FFF;
+  background-color: #2196F3;
+}
+
+.mui-btn-primary.mui-btn-flat,
+.mui-btn-primary[data-mui-style="flat"],
+.mui-btn[data-mui-color="primary"].mui-btn-flat,
+.mui-btn[data-mui-color="primary"][data-mui-style="flat"] {
+  color: #2196F3;
+  background-color: transparent;
+}
+
+.mui-btn-primary.mui-btn-flat:hover,
+.mui-btn-primary.mui-btn-flat:focus,
+.mui-btn-primary.mui-btn-flat:active,
+.mui-btn-primary[data-mui-style="flat"]:hover,
+.mui-btn-primary[data-mui-style="flat"]:focus,
+.mui-btn-primary[data-mui-style="flat"]:active,
+.mui-btn[data-mui-color="primary"].mui-btn-flat:hover,
+.mui-btn[data-mui-color="primary"].mui-btn-flat:focus,
+.mui-btn[data-mui-color="primary"].mui-btn-flat:active,
+.mui-btn[data-mui-color="primary"][data-mui-style="flat"]:hover,
+.mui-btn[data-mui-color="primary"][data-mui-style="flat"]:focus,
+.mui-btn[data-mui-color="primary"][data-mui-style="flat"]:active {
+  color: #2196F3;
+  background-color: #f2f2f2;
+}
+
+.mui-btn-primary.mui-btn-flat[disabled]:hover,
+.mui-btn-primary.mui-btn-flat[disabled]:focus,
+.mui-btn-primary.mui-btn-flat[disabled]:active,
+.mui-btn-primary[data-mui-style="flat"][disabled]:hover,
+.mui-btn-primary[data-mui-style="flat"][disabled]:focus,
+.mui-btn-primary[data-mui-style="flat"][disabled]:active,
+.mui-btn[data-mui-color="primary"].mui-btn-flat[disabled]:hover,
+.mui-btn[data-mui-color="primary"].mui-btn-flat[disabled]:focus,
+.mui-btn[data-mui-color="primary"].mui-btn-flat[disabled]:active,
+.mui-btn[data-mui-color="primary"][data-mui-style="flat"][disabled]:hover,
+.mui-btn[data-mui-color="primary"][data-mui-style="flat"][disabled]:focus,
+.mui-btn[data-mui-color="primary"][data-mui-style="flat"][disabled]:active {
+  color: #2196F3;
+  background-color: transparent;
+}
+
+.mui-btn[data-mui-size="small"] {
+  height: 30.6px;
+  line-height: 30.6px;
+  padding: 0 16px;
+  font-size: 13px;
+}
+
+.mui-btn-lg,
+.mui-btn[data-mui-size="large"] {
+  height: 54px;
+  line-height: 54px;
+  padding: 0 26px;
+  font-size: 14px;
+}
+
+.mui-btn-floating-mini,
+.mui-btn[data-mui-size="small"][data-mui-style="fab"] {
+  width: 44px;
+  height: 44px;
+  line-height: 44px;
+}
+.mui-btn[data-mui-size="large"][data-mui-style="fab"] {
+  width: 75px;
+  height: 75px;
+  line-height: 75px;
+}
+/**
+ * MUI Ripple module
+ */
+.mui-ripple-effect {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  opacity: 0;
+  -webkit-animation: mui-ripple-animation 2s;
+  animation: mui-ripple-animation 2s;
+}
+
+@-webkit-keyframes mui-ripple-animation {
+  from {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    opacity: 0.4;
+  }
+  to {
+    -webkit-transform: scale(100);
+    transform: scale(100);
+    opacity: 0;
+  }
+}
+
+@keyframes mui-ripple-animation {
+  from {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    opacity: 0.4;
+  }
+  to {
+    -webkit-transform: scale(100);
+    transform: scale(100);
+    opacity: 0;
+  }
+}
+
+.mui-btn-default > .mui-ripple-effect,
+.mui-btn > .mui-ripple-effect {
+  background-color: #a6a6a6;
+}
+
+.mui-btn-primary > .mui-ripple-effect,
+.mui-btn[data-mui-color="primary"] > .mui-ripple-effect {
+  background-color: #FFF;
+}
+
+.mui-btn[data-mui-color="dark"] > .mui-ripple-effect {
+  background-color: #FFF;
+}
+
+.mui-btn-danger > .mui-ripple-effect,
+.mui-btn[data-mui-color="danger"] > .mui-ripple-effect {
+  background-color: #FFF;
+}
+
+.mui-btn-accent > .mui-ripple-effect,
+.mui-btn[data-mui-color="accent"] > .mui-ripple-effect {
+  background-color: #FFF;
+}
+
+.mui-btn-flat > .mui-ripple-effect,
+.mui-btn[data-mui-style="flat"] > .mui-ripple-effect {
+  background-color: #a6a6a6;
+}
+
+/**
+ * MUI Semantic module
+ */
+strong {
+  font-weight: 700;
+}
+
+.shmac-div h3,
+.shmac-form h3 {
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+/**
+ * MUI Form styles
+ * 
+ */
+.shmac-form legend {
+  display: block;
+  width: 100%;
+  padding: 0;
+  margin-bottom: 10px;
+  font-size: 21px;
+  color: rgba(0, 0, 0, 0.87);
+  line-height: inherit;
+  border: 0;
+}
+
+.shmac-form input[type="search"] {
+  box-sizing: border-box;
+}
+
+.shmac-form input[type="file"]:focus,
+.shmac-form input[type="radio"]:focus,
+.shmac-form input[type="checkbox"]:focus {
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+
+.shmac-form input[type="radio"]:disabled,
+.shmac-form input[type="checkbox"]:disabled {
+  cursor: not-allowed;
+}
+
+.mui-form-group .mui-form-control {
+  -webkit-animation-duration: 0.0001s;
+  animation-duration: 0.0001s;
+  -webkit-animation-name: mui-node-inserted;
+  animation-name: mui-node-inserted;
+  display: block;
+  background-color: transparent;
+  color: rgba(0, 0, 0, 0.87);
+  border: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.26);
+  outline: none;
+  height: 32px;
+  width: 100%;
+  font-size: 16px;
+  padding: 0;
+  box-shadow: none;
+  border-radius: 0px;
+  background-image: none;
+}
+
+.mui-form-group > input.mort-amount,
+.mui-form-group > input.input-symbol {
+    padding-left: 15px;
+}
+.mui-form-group > input.mort-amount.input-no-pad,
+.mui-form-group > input.input-symbol.input-no-pad {
+	padding-left: 0;
+}
+
+
+.mui-form-control:focus {
+  border-color: #2196F3;
+  border-width: 2px;
+}
+
+.mui-form-control:disabled,
+.mui-form-control:read-only {
+  cursor: not-allowed;
+  background-color: transparent;
+  opacity: 1;
+}
+
+.mui-form-control::-webkit-input-placeholder {
+  color: rgba(0, 0, 0, 0.26);
+  opacity: 1;
+}
+
+.mui-form-control::-moz-placeholder {
+  color: rgba(0, 0, 0, 0.26);
+  opacity: 1;
+}
+
+.mui-form-control:-ms-input-placeholder {
+  color: rgba(0, 0, 0, 0.26);
+  opacity: 1;
+}
+
+.mui-form-control::placeholder {
+  color: rgba(0, 0, 0, 0.26);
+  opacity: 1;
+}
+
+textarea.mui-form-control {
+  height: auto;
+}
+
+input.mui-form-control:focus {
+  height: 33px;
+  margin-bottom: -1px;
+}
+
+.shmac-form input[type="search"] {
+  -webkit-appearance: none;
+}
+
+.mui-form-group {
+  display: block;
+  width: 100%;
+  padding-top: 15px;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.mui-form-group > label {
+  position: absolute;
+  top: 0;
+  display: block;
+  width: 100%;
+  color: rgba(0, 0, 0, 0.54);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 15px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.mui-form-group > .mui-form-floating-label {
+  position: absolute;
+  top: 15px;
+  font-size: 16px;
+  line-height: 32px;
+  color: rgba(0, 0, 0, 0.26);
+  text-overflow: clip;
+  cursor: text;
+  pointer-events: none;
+}
+
+.mui-form-group > textarea {
+  padding-top: 5px;
+  min-height: 64px;
+}
+
+.mui-form-group > .mui-form-control {
+  display: block;
+}
+
+.mui-form-group > .mui-form-control:focus ~ label {
+  color: #2196F3;
+}
+
+.mui-form-group[data-mui-wrap-label="true"] {
+  display: table;
+  padding-top: 0px;
+}
+
+.mui-form-group[data-mui-wrap-label="true"] > label:not(.mui-form-floating-label) {
+  display: table-header-group;
+  position: static;
+  white-space: normal;
+  overflow-x: visible;
+}
+
+.mui-form-control:focus ~ .mui-form-floating-label {
+  top: 0px;
+  font-size: 12px;
+  line-height: 15px;
+  text-overflow: ellipsis;
+}
+
+.mui-form-control:not(:focus).mui-not-empty ~ .mui-form-floating-label,
+.mui-form-control:not(:focus)[value]:not([value=""]):not(.mui-empty):not(.mui-not-empty) ~ .mui-form-floating-label,
+.mui-form-control:not(:focus):not(:empty):not(.mui-empty):not(.mui-not-empty) ~ .mui-form-floating-label,
+.shmac-form .info {
+  color: rgba(0, 0, 0, 0.54);
+  font-size: 12px;
+  line-height: 15px;
+  top: 0px;
+  text-overflow: ellipsis;
+}
+.mui-radio,
+.mui-checkbox {
+  position: relative;
+  display: block;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.mui-radio > label,
+.mui-checkbox > label {
+  min-height: 20px;
+  padding-left: 20px;
+  margin-bottom: 0;
+  font-weight: normal;
+  cursor: pointer;
+}
+
+.mui-radio > label > input[type="radio"],
+.mui-radio-inline > label > input[type="radio"],
+.mui-checkbox > label > input[type="checkbox"],
+.mui-checkbox-inline > label > input[type="checkbox"] {
+  position: absolute;
+  margin-left: -20px;
+  margin-top: 4px;
+}
+
+.mui-radio + .mui-radio,
+.mui-checkbox + .mui-checkbox {
+  margin-top: -5px;
+}
+
+.mui-radio-inline,
+.mui-checkbox-inline {
+  display: inline-block;
+  padding-left: 20px;
+  margin-bottom: 0;
+  vertical-align: middle;
+  font-weight: normal;
+  cursor: pointer;
+}
+
+.mui-radio-inline > input[type="radio"],
+.mui-radio-inline > input[type="checkbox"],
+.mui-radio-inline > label > input[type="radio"],
+.mui-radio-inline > label > input[type="checkbox"],
+.mui-checkbox-inline > input[type="radio"],
+.mui-checkbox-inline > input[type="checkbox"],
+.mui-checkbox-inline > label > input[type="radio"],
+.mui-checkbox-inline > label > input[type="checkbox"] {
+  margin: 4px 0 0;
+  line-height: normal;
+}
+.mui-radio-inline + .mui-radio-inline,
+.mui-checkbox-inline + .mui-checkbox-inline {
+  margin-top: 0;
+  margin-left: 10px;
+}
+
+.mui-select {
+  position: relative;
+}
+
+.mui-select:focus {
+  outline: 0;
+}
+
+.mui-select:focus > select {
+  height: 33px;
+  margin-bottom: -1px;
+  border-color: #2196F3;
+  border-width: 2px;
+}
+
+.mui-select > select {
+  -webkit-animation-duration: 0.0001s;
+  animation-duration: 0.0001s;
+  -webkit-animation-name: mui-node-inserted;
+  animation-name: mui-node-inserted;
+  display: block;
+  height: 32px;
+  width: 100%;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  outline: none;
+  border: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.26);
+  border-radius: 0px;
+  box-shadow: none;
+  background-color: transparent;
+  background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGhlaWdodD0iNiIgd2lkdGg9IjEwIj48cG9seWdvbiBwb2ludHM9IjAsMCAxMCwwIDUsNiIgc3R5bGU9ImZpbGw6cmdiYSgwLDAsMCwuMjQpOyIvPjwvc3ZnPg==");
+  background-repeat: no-repeat;
+  background-position: right center;
+  cursor: pointer;
+  color: rgba(0, 0, 0, 0.87);
+  font-size: 16px;
+  padding: 0 25px 0 0;
+}
+
+.mui-select > select::-ms-expand {
+  display: none;
+}
+.mui-select > select:focus {
+  outline: 0;
+  height: 33px;
+  margin-bottom: -1px;
+  border-color: #2196F3;
+  border-width: 2px;
+}
+
+.mui-select > select:disabled {
+  color: rgba(0, 0, 0, 0.26);
+  cursor: not-allowed;
+  background-color: transparent;
+  opacity: 1;
+}
+
+.mui-select-menu {
+  position: absolute;
+  z-index: 1;
+  min-width: 100%;
+  overflow-y: auto;
+  padding: 8px 0;
+  background-color: #FFF;
+  font-size: 16px;
+}
+
+.mui-select-menu > div {
+  padding: 0 22px;
+  height: 42px;
+  line-height: 42px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.mui-select-menu > div:hover {
+  background-color: #E0E0E0;
+}
+
+.mui-select-menu > div[selected] {
+  background-color: #EEEEEE;
+}
+
+@media (min-width: 768px) {
+  .mui-form-inline > * {
+    vertical-align: bottom;
+  }
+  .mui-form-inline > .mui-form-group {
+    display: inline-block;
+    margin-bottom: 0;
+    vertical-align: middle;
+  }
+  .mui-form-inline > .mui-form-control,
+  .mui-form-inline > .mui-form-group > .mui-form-group {
+    display: inline-block;
+    width: auto;
+    vertical-align: middle;
+  }
+  .mui-form-inline > .mui-radio,
+  .mui-form-inline > .mui-checkbox {
+    display: inline-block;
+    margin-top: 0;
+    margin-bottom: 0;
+    vertical-align: middle;
+  }
+  .mui-form-inline > .mui-radio > label,
+  .mui-form-inline > .mui-checkbox > label {
+    padding-left: 0;
+  }
+  .mui-form-inline > .mui-radio > label > input[type="radio"],
+  .mui-form-inline > .mui-checkbox > label > input[type="checkbox"] {
+    position: relative;
+    margin-left: 0;
+  }
+  .mui-form-inline > .mui-select {
+    display: inline-block;
+  }
+  .mui-form-inline > .mui-btn {
+    margin-bottom: 0;
+    margin-top: 0;
+  }
+}
+
+.mui-form-control:invalid:not(:focus):not(:required),
+.mui-form-control:invalid:not(:focus):required.mui-not-empty,
+.mui-form-control:invalid:not(:focus):required.mui-empty.mui-dirty,
+.mui-form-control:invalid:not(:focus):required[value]:not([value=""]):not(.mui-empty):not(.mui-not-empty),
+.mui-form-control:invalid:not(:focus):required:not(:empty):not(.mui-empty):not(.mui-not-empty) {
+  border-color: #F44336;
+  border-width: 2px;
+}
+input.mui-form-control:invalid:not(:focus):not(:required),
+input.mui-form-control:invalid:not(:focus):required.mui-not-empty,
+input.mui-form-control:invalid:not(:focus):required.mui-empty.mui-dirty,
+input.mui-form-control:invalid:not(:focus):required[value]:not([value=""]):not(.mui-empty):not(.mui-not-empty),
+input.mui-form-control:invalid:not(:focus):required:not(:empty):not(.mui-empty):not(.mui-not-empty) {
+  height: 33px;
+  margin-bottom: -1px;
+}
+
+.mui-form-group > .mui-form-control:invalid:not(:focus):not(:required) ~ label,
+.mui-form-group > .mui-form-control:invalid:not(:focus):required.mui-not-empty ~ label,
+.mui-form-group > .mui-form-control:invalid:not(:focus):required[value]:not([value=""]):not(.mui-empty):not(.mui-not-empty) ~ label,
+.mui-form-group > .mui-form-control:invalid:not(:focus):required:not(:empty):not(.mui-empty):not(.mui-not-empty) ~ label {
+  color: #F44336;
+}
+
+.mui-form-group > .mui-form-control:invalid:not(:focus):required.mui-empty.mui-dirty ~ label:not(.mui-form-floating-label) {
+  color: #F44336;
+}
+
+/**
+ * MUI Tables module
+ */
+.mui-table {
+  border: 0;
+  width: 100%;
+  max-width: 100%;
+  margin-bottom: 20px;
+}
+
+.mui-table > thead > tr > th,
+.mui-table > thead > tr > td,
+.mui-table > tbody > tr > th,
+.mui-table > tbody > tr > td,
+.mui-table > tfoot > tr > th,
+.mui-table > tfoot > tr > td {
+  padding: 10px;
+  line-height: 1.429;
+}
+
+.mui-table > thead > tr > th {
+  border: 0;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.12);
+  font-weight: 700;
+}
+
+.mui-table > tbody + tbody {
+  border-top: 2px solid rgba(0, 0, 0, 0.12);
+}
+.mui-table.mui-table-bordered > tbody > tr > td,
+.mui-table[data-mui-borders="true"] > tbody > tr > td {
+  border: 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+}
+/**
+ * MUI Dropdown module
+ */
+.mui-dropdown {
+  display: inline-block;
+  position: relative;
+}
+
+[data-mui-toggle="dropdown"] {
+  -webkit-animation-duration: 0.0001s;
+  animation-duration: 0.0001s;
+  -webkit-animation-name: mui-node-inserted;
+  animation-name: mui-node-inserted;
+  outline: 0;
+}
+
+.mui-dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  display: none;
+  min-width: 160px;
+  padding: 5px 0;
+  margin: 2px 0 0;
+  list-style: none;
+  font-size: 14px;
+  text-align: left;
+  background-color: #FFF;
+  border-radius: 2px;
+  z-index: 1;
+  background-clip: padding-box;
+}
+
+.mui-dropdown-menu.mui-is-open {
+  display: block;
+}
+
+.mui-dropdown-menu > li > a {
+  display: block;
+  padding: 3px 20px;
+  clear: both;
+  font-weight: normal;
+  line-height: 1.429;
+  color: rgba(0, 0, 0, 0.87);
+  white-space: nowrap;
+}
+
+.mui-dropdown-menu > li > a:hover,
+.mui-dropdown-menu > li > a:focus {
+  text-decoration: none;
+  color: rgba(0, 0, 0, 0.87);
+  background-color: #EEEEEE;
+}
+
+.mui-dropdown-menu > .mui-is-disabled > a,
+.mui-dropdown-menu > .mui-is-disabled > a:hover,
+.mui-dropdown-menu > .mui-is-disabled > a:focus {
+  color: #EEEEEE;
+}
+
+.mui-dropdown-menu > .mui-is-disabled > a:hover,
+.mui-dropdown-menu > .mui-is-disabled > a:focus {
+  text-decoration: none;
+  background-color: transparent;
+  background-image: none;
+  cursor: not-allowed;
+}
+
+.mui-dropdown-menu-right,
+.mui-dropdown-menu[data-mui-align="right"] {
+  left: auto;
+  right: 0;
+}
+
+/**
+ * MUI Overlay module
+ */
+.mui-overlay-on {
+  overflow: hidden !important;
+}
+
+#mui-overlay {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 99999999;
+  background-color: rgba(0, 0, 0, 0.2);
+  overflow: auto;
+}
+
+/**
+ * MUI Helpers module
+ */
+.mui-z1, .mui-select-menu, .mui-dropdown-menu {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+}
+
+
+/* End MUI Styles */
+
+
+/* CUSTOM CSS CHECKBOXES */
+
+.shmac-check {
+	margin-bottom: 10px;
+}
+
+.shmac-term-years,
+.shmac-term-months {
+	float: left;
+	margin-right: 20px;
+}
+
+/* Remove default checkbox */
+.shmac-form input[type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+    position: absolute;
+    left: -9999px; 
+}
+
+.shmac-form input[type="checkbox"] + label {
+    position: relative;
+    padding-left: 35px;
+    cursor: pointer;
+    display: inline-block;
+    height: 25px;
+    line-height: 25px;
+    -webkit-user-select: none;
+    /* webkit (safari, chrome) browsers */
+    -moz-user-select: none;
+    /* mozilla browsers */
+    -khtml-user-select: none;
+    /* webkit (konqueror) browsers */
+    -ms-user-select: none;
+    /* IE10+ */
+}
+.shmac-form input[type="checkbox"] + label:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 18px;
+    height: 18px;
+    z-index: 0;
+    border: 2px solid #5a5a5a;
+    border-radius: 1px;
+    margin-top: 2px;
+    -webkit-transition: 0.2s;
+    -moz-transition: 0.2s;
+    -o-transition: 0.2s;
+    -ms-transition: 0.2s;
+    transition: 0.2s;
+}
+.shmac-form input[type="checkbox"]:not(:checked):disabled + label:before {
+    border: none;
+    background-color: rgba(0, 0, 0, 0.26);
+}
+
+.shmac-form input[type="checkbox"]:checked + label:before {
+    top: -4px;
+    left: -3px;
+    width: 12px;
+    height: 22px;
+    border-top: 2px solid transparent;
+    border-left: 2px solid transparent;
+    -webkit-transform: rotate(40deg);
+    -moz-transform: rotate(40deg);
+    -ms-transform: rotate(40deg);
+    -o-transform: rotate(40deg);
+    transform: rotate(40deg);
+    -webkit-backface4-visibility: hidden;
+    -webkit-transform-origin: 100% 100%;
+    -moz-transform-origin: 100% 100%;
+    -ms-transform-origin: 100% 100%;
+    -o-transform-origin: 100% 100%;
+    transform-origin: 100% 100%;
+}
+.shmac-form input[type="checkbox"]:checked:disabled + label:before {
+    border-right: 2px solid rgba(0, 0, 0, 0.26);
+    border-bottom: 2px solid rgba(0, 0, 0, 0.26);
+}
+
+/* End Checkboxes */
