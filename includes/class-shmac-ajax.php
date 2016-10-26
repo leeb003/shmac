@@ -526,7 +526,18 @@ around', 'shmac') . ' ' . $total_payment_display;
             // dejavusans is a UTF-8 Unicode font, if you only need to
             // print standard ASCII chars, you can use core fonts like
             // helvetica or times to reduce file size.
-            $pdf->SetFont('helvetica', '', 8, '', true);
+
+			// Override set text direction RTL
+			if (isset($this->shmac_email['ltr_rtl']) && $this->shmac_email['ltr_rtl'] == 'rtl') {  
+				$pdf->setRTL(true);
+			}
+
+			// Override PDF Font used if set
+            if (isset($this->shmac_email['pdf_font']) ) {
+				$pdf->SetFont($this->shmac_email['pdf_font'], '', 8, '', true);
+            } else {
+            	$pdf->SetFont('helvetica', '', 8, '', true);
+			}
 
             // Add a page
             // This method has several options, check the source code documentation for more information.

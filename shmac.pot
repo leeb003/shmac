@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: shmac version 1.1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-02-25 23:36-0700\n"
+"POT-Creation-Date: 2016-10-24 09:28-0700\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Lee Beck <info@scripthat.com>\n"
 "Language-Team: sh-themes\n"
@@ -58,7 +58,7 @@ msgid "Enable"
 msgstr ""
 
 #: includes/shmac-vc-extend.php:46
-#: includes/class-shmac-api-tabs.php:190
+#: includes/class-shmac-api-tabs.php:192
 msgid "Primary Color"
 msgstr ""
 
@@ -67,7 +67,7 @@ msgid "Set The Primary Color for the form and results."
 msgstr ""
 
 #: includes/shmac-vc-extend.php:58
-#: includes/class-shmac-api-tabs.php:118
+#: includes/class-shmac-api-tabs.php:120
 msgid "Calculator Title"
 msgstr ""
 
@@ -84,7 +84,7 @@ msgid "Text next to the checkbox for sending an email"
 msgstr ""
 
 #: includes/shmac-vc-extend.php:80
-#: includes/class-shmac-api-tabs.php:124
+#: includes/class-shmac-api-tabs.php:126
 msgid "Email Label"
 msgstr ""
 
@@ -93,7 +93,7 @@ msgid "Label for the email field"
 msgstr ""
 
 #: includes/shmac-vc-extend.php:91
-#: includes/class-shmac-api-tabs.php:127
+#: includes/class-shmac-api-tabs.php:129
 msgid "Amount Label"
 msgstr ""
 
@@ -142,7 +142,7 @@ msgid "The default interest value (e.g. 5.2)"
 msgstr ""
 
 #: includes/shmac-vc-extend.php:157
-#: includes/class-shmac-api-tabs.php:145
+#: includes/class-shmac-api-tabs.php:147
 msgid "Down Payment Label"
 msgstr ""
 
@@ -159,7 +159,7 @@ msgid "Text in the info bubble description for the down payment field"
 msgstr ""
 
 #: includes/shmac-vc-extend.php:179
-#: includes/class-shmac-api-tabs.php:151
+#: includes/class-shmac-api-tabs.php:153
 msgid "Down Payment Type"
 msgstr ""
 
@@ -180,20 +180,20 @@ msgstr ""
 
 #: includes/shmac-vc-extend.php:184
 #: includes/shmac-vc-extend.php:259
-#: includes/class-shmac-api-tabs.php:336
-#: includes/class-shmac-api-tabs.php:396
+#: includes/class-shmac-api-tabs.php:342
+#: includes/class-shmac-api-tabs.php:402
 msgid "Percent"
 msgstr ""
 
 #: includes/shmac-vc-extend.php:185
 #: includes/shmac-vc-extend.php:258
-#: includes/class-shmac-api-tabs.php:338
-#: includes/class-shmac-api-tabs.php:394
+#: includes/class-shmac-api-tabs.php:344
+#: includes/class-shmac-api-tabs.php:400
 msgid "Amount"
 msgstr ""
 
 #: includes/shmac-vc-extend.php:194
-#: includes/class-shmac-api-tabs.php:154
+#: includes/class-shmac-api-tabs.php:156
 msgid "Default Down Payment"
 msgstr ""
 
@@ -238,7 +238,7 @@ msgid "Insurance cost or percent"
 msgstr ""
 
 #: includes/shmac-vc-extend.php:255
-#: includes/class-shmac-api-tabs.php:398
+#: includes/class-shmac-api-tabs.php:404
 msgid "This affects the value below as to whether it is a set amount or percent of the loan (divided by 12) per month"
 msgstr ""
 
@@ -291,7 +291,7 @@ msgid "Set the text for your disclaimer that goes at the bottom of the schedule"
 msgstr ""
 
 #: includes/shmac-vc-extend.php:342
-#: includes/class-shmac-api-tabs.php:183
+#: includes/class-shmac-api-tabs.php:185
 msgid "Currency Symbol"
 msgstr ""
 
@@ -300,7 +300,7 @@ msgid "Set the currency symbol for this calculator (e.g. $)"
 msgstr ""
 
 #: includes/shmac-vc-extend.php:353
-#: includes/class-shmac-api-tabs.php:185
+#: includes/class-shmac-api-tabs.php:187
 msgid "Currency Format"
 msgstr ""
 
@@ -309,22 +309,22 @@ msgid "Set the currency format for fields and results"
 msgstr ""
 
 #: includes/shmac-vc-extend.php:358
-#: includes/class-shmac-api-tabs.php:526
+#: includes/class-shmac-api-tabs.php:532
 msgid "Standard Format (e.g. 100,000.00)"
 msgstr ""
 
 #: includes/shmac-vc-extend.php:359
-#: includes/class-shmac-api-tabs.php:528
+#: includes/class-shmac-api-tabs.php:534
 msgid "Switched Format (e.g. 100.000,00)"
 msgstr ""
 
 #: includes/shmac-vc-extend.php:360
-#: includes/class-shmac-api-tabs.php:530
+#: includes/class-shmac-api-tabs.php:536
 msgid "Spaces and Comma Format (e.g. 100 000,00)"
 msgstr ""
 
 #: includes/shmac-vc-extend.php:369
-#: includes/class-shmac-api-tabs.php:187
+#: includes/class-shmac-api-tabs.php:189
 msgid "Currency Symbol Side"
 msgstr ""
 
@@ -333,12 +333,12 @@ msgid "Set the side for the currency symbol"
 msgstr ""
 
 #: includes/shmac-vc-extend.php:374
-#: includes/class-shmac-api-tabs.php:541
+#: includes/class-shmac-api-tabs.php:547
 msgid "Left (e.g. $100,000.00)"
 msgstr ""
 
 #: includes/shmac-vc-extend.php:375
-#: includes/class-shmac-api-tabs.php:543
+#: includes/class-shmac-api-tabs.php:549
 msgid "Right (e.g. 100,000.00 $)"
 msgstr ""
 
@@ -351,18 +351,18 @@ msgid "Choose to enable email results or not"
 msgstr ""
 
 #: includes/shmac-vc-extend.php:389
-#: includes/class-shmac-api-tabs.php:381
-#: includes/class-shmac-api-tabs.php:416
-#: includes/class-shmac-api-tabs.php:437
-#: includes/class-shmac-api-tabs.php:459
+#: includes/class-shmac-api-tabs.php:387
+#: includes/class-shmac-api-tabs.php:422
+#: includes/class-shmac-api-tabs.php:443
+#: includes/class-shmac-api-tabs.php:465
 msgid "Yes"
 msgstr ""
 
 #: includes/shmac-vc-extend.php:390
-#: includes/class-shmac-api-tabs.php:383
-#: includes/class-shmac-api-tabs.php:418
-#: includes/class-shmac-api-tabs.php:439
-#: includes/class-shmac-api-tabs.php:461
+#: includes/class-shmac-api-tabs.php:389
+#: includes/class-shmac-api-tabs.php:424
+#: includes/class-shmac-api-tabs.php:445
+#: includes/class-shmac-api-tabs.php:467
 msgid "No"
 msgstr ""
 
@@ -371,7 +371,7 @@ msgid "BCC Email"
 msgstr ""
 
 #: includes/shmac-vc-extend.php:401
-#: includes/class-shmac-api-tabs.php:471
+#: includes/class-shmac-api-tabs.php:477
 msgid "Set the email to receive a hidden copy (BCC - Blind Carbon Copy) of the user generated report"
 msgstr ""
 
@@ -380,7 +380,7 @@ msgid "From Email"
 msgstr ""
 
 #: includes/shmac-vc-extend.php:412
-#: includes/class-shmac-api-tabs.php:479
+#: includes/class-shmac-api-tabs.php:485
 msgid "Set the 'From Address' for the email sent to the user.  Make sure that your server will allow the email you choose as the from address."
 msgstr ""
 
@@ -421,7 +421,7 @@ msgid "PDF Header"
 msgstr ""
 
 #: includes/shmac-vc-extend.php:466
-#: includes/class-shmac-api-tabs.php:604
+#: includes/class-shmac-api-tabs.php:610
 msgid "Large Text at the top of the PDF"
 msgstr ""
 
@@ -442,7 +442,7 @@ msgid "Override the Reset button text if you want."
 msgstr ""
 
 #: includes/shmac-widget.php:12
-#: includes/class-shmac-api-tabs.php:615
+#: includes/class-shmac-api-tabs.php:661
 msgid "WP Amortization Calculator"
 msgstr ""
 
@@ -614,7 +614,7 @@ msgstr ""
 msgid "Not used at this time."
 msgstr ""
 
-#: includes/class-shmac-ajax.php:576
+#: includes/class-shmac-ajax.php:589
 msgid "Brought to you by"
 msgstr ""
 
@@ -666,265 +666,313 @@ msgstr ""
 msgid "Calculations by this calculator are estimates only. There is no warranty for the accuracy of the results or the relationship to your financial situation."
 msgstr ""
 
-#: includes/class-shmac-api-tabs.php:112
-#: includes/class-shmac-api-tabs.php:115
+#: includes/class-shmac-api-tabs.php:114
+#: includes/class-shmac-api-tabs.php:117
 msgid "Calculator Settings"
 msgstr ""
 
-#: includes/class-shmac-api-tabs.php:121
+#: includes/class-shmac-api-tabs.php:123
 msgid "Email Text"
 msgstr ""
 
-#: includes/class-shmac-api-tabs.php:130
+#: includes/class-shmac-api-tabs.php:132
 msgid "Amount Info Bubble"
 msgstr ""
 
-#: includes/class-shmac-api-tabs.php:133
+#: includes/class-shmac-api-tabs.php:135
 msgid "Default Purchase Price"
 msgstr ""
 
-#: includes/class-shmac-api-tabs.php:136
+#: includes/class-shmac-api-tabs.php:138
 msgid "Interest Label"
 msgstr ""
 
-#: includes/class-shmac-api-tabs.php:139
+#: includes/class-shmac-api-tabs.php:141
 msgid "Interest Info Bubble"
 msgstr ""
 
-#: includes/class-shmac-api-tabs.php:142
+#: includes/class-shmac-api-tabs.php:144
 msgid "Default Interest Rate (Percent)"
 msgstr ""
 
-#: includes/class-shmac-api-tabs.php:148
+#: includes/class-shmac-api-tabs.php:150
 msgid "Down Payment Info Bubble"
 msgstr ""
 
-#: includes/class-shmac-api-tabs.php:157
+#: includes/class-shmac-api-tabs.php:159
 msgid "Loan Term Label"
 msgstr ""
 
-#: includes/class-shmac-api-tabs.php:160
+#: includes/class-shmac-api-tabs.php:162
 msgid "Loan Term Info Bubble"
 msgstr ""
 
-#: includes/class-shmac-api-tabs.php:163
+#: includes/class-shmac-api-tabs.php:165
 msgid "Default Loan Term (Years)"
 msgstr ""
 
-#: includes/class-shmac-api-tabs.php:167
+#: includes/class-shmac-api-tabs.php:169
 msgid "Enable Insurance Cost Estimate"
 msgstr ""
 
-#: includes/class-shmac-api-tabs.php:169
+#: includes/class-shmac-api-tabs.php:171
 msgid "Is insurance a set amount or a percent of loan per month?"
 msgstr ""
 
-#: includes/class-shmac-api-tabs.php:171
+#: includes/class-shmac-api-tabs.php:173
 msgid "Monthly Insurance Cost Estimate"
 msgstr ""
 
-#: includes/class-shmac-api-tabs.php:173
+#: includes/class-shmac-api-tabs.php:175
 msgid "Enable PMI Cost Estimate"
 msgstr ""
 
-#: includes/class-shmac-api-tabs.php:175
+#: includes/class-shmac-api-tabs.php:177
 msgid "Monthly PMI Cost Estimate"
 msgstr ""
 
-#: includes/class-shmac-api-tabs.php:177
+#: includes/class-shmac-api-tabs.php:179
 msgid "Enable Tax Cost Estimate"
 msgstr ""
 
-#: includes/class-shmac-api-tabs.php:179
+#: includes/class-shmac-api-tabs.php:181
 msgid "Taxes Per 1000 Assessed"
 msgstr ""
 
-#: includes/class-shmac-api-tabs.php:181
+#: includes/class-shmac-api-tabs.php:183
 msgid "Disclaimer Notice"
 msgstr ""
 
-#: includes/class-shmac-api-tabs.php:192
+#: includes/class-shmac-api-tabs.php:194
 msgid "Envato Purchase Code"
 msgstr ""
 
-#: includes/class-shmac-api-tabs.php:194
+#: includes/class-shmac-api-tabs.php:196
 msgid "Custom CSS"
 msgstr ""
 
-#: includes/class-shmac-api-tabs.php:203
-#: includes/class-shmac-api-tabs.php:206
+#: includes/class-shmac-api-tabs.php:205
+#: includes/class-shmac-api-tabs.php:208
 msgid "Email & PDF Settings"
 msgstr ""
 
-#: includes/class-shmac-api-tabs.php:209
+#: includes/class-shmac-api-tabs.php:211
 msgid "Allow Email Report"
 msgstr ""
 
-#: includes/class-shmac-api-tabs.php:211
+#: includes/class-shmac-api-tabs.php:213
 msgid "BCC Email Address"
 msgstr ""
 
-#: includes/class-shmac-api-tabs.php:213
+#: includes/class-shmac-api-tabs.php:215
 msgid "From Email Address"
 msgstr ""
 
-#: includes/class-shmac-api-tabs.php:215
+#: includes/class-shmac-api-tabs.php:217
 msgid "Custom Email Subject"
 msgstr ""
 
-#: includes/class-shmac-api-tabs.php:217
+#: includes/class-shmac-api-tabs.php:219
 msgid "Custom Email Text"
 msgstr ""
 
-#: includes/class-shmac-api-tabs.php:220
+#: includes/class-shmac-api-tabs.php:222
 msgid "Primary PDF Color"
 msgstr ""
 
-#: includes/class-shmac-api-tabs.php:223
+#: includes/class-shmac-api-tabs.php:225
 msgid "PDF Logo or Header Image (jpeg or png)"
 msgstr ""
 
-#: includes/class-shmac-api-tabs.php:225
+#: includes/class-shmac-api-tabs.php:227
 msgid "PDF Header Large Text"
 msgstr ""
 
-#: includes/class-shmac-api-tabs.php:235
+#: includes/class-shmac-api-tabs.php:229
+msgid "LTR or RTL"
+msgstr ""
+
+#: includes/class-shmac-api-tabs.php:231
+msgid "PDF Font to use"
+msgstr ""
+
+#: includes/class-shmac-api-tabs.php:241
 msgid "Set up WP Amortization Calculator settings.  In this section you can change field labels, info bubble contents, default values, form color, and report settings.  After set up, you can use the shortcode <b>[shmac_calc_sc]</b> or the widget to insert it into pages or sidebars."
 msgstr ""
 
-#: includes/class-shmac-api-tabs.php:236
+#: includes/class-shmac-api-tabs.php:242
 msgid "In this section you can enable and disable email reports for visitors and send yourself a copy (bcc) of the reports as well.  This is good for lead capture and further contacting the lead.  You can also set your logo and colors used in the PDF report."
 msgstr ""
 
-#: includes/class-shmac-api-tabs.php:248
+#: includes/class-shmac-api-tabs.php:254
 msgid "Set the title to display for the Calculator"
 msgstr ""
 
-#: includes/class-shmac-api-tabs.php:256
+#: includes/class-shmac-api-tabs.php:262
 msgid "Set the description for sending an email with PDF report."
 msgstr ""
 
-#: includes/class-shmac-api-tabs.php:264
+#: includes/class-shmac-api-tabs.php:270
 msgid "Set the placeholder text for the email field."
 msgstr ""
 
-#: includes/class-shmac-api-tabs.php:272
+#: includes/class-shmac-api-tabs.php:278
 msgid "Set the text for the Amount Field."
 msgstr ""
 
-#: includes/class-shmac-api-tabs.php:280
+#: includes/class-shmac-api-tabs.php:286
 msgid "Set the information bubble text for the Amount Field."
 msgstr ""
 
-#: includes/class-shmac-api-tabs.php:288
+#: includes/class-shmac-api-tabs.php:294
 msgid "Set a default purchase price for the calculator"
 msgstr ""
 
-#: includes/class-shmac-api-tabs.php:296
+#: includes/class-shmac-api-tabs.php:302
 msgid "Set the text for the Interest Rate Field."
 msgstr ""
 
-#: includes/class-shmac-api-tabs.php:304
+#: includes/class-shmac-api-tabs.php:310
 msgid "Set the information bubble text for the Interest Rate Field."
 msgstr ""
 
-#: includes/class-shmac-api-tabs.php:311
+#: includes/class-shmac-api-tabs.php:317
 msgid "Set the default interest rate for the calculator"
 msgstr ""
 
-#: includes/class-shmac-api-tabs.php:319
+#: includes/class-shmac-api-tabs.php:325
 msgid "Set the text for the Down Payment Field."
 msgstr ""
 
-#: includes/class-shmac-api-tabs.php:327
+#: includes/class-shmac-api-tabs.php:333
 msgid "Set the information bubble text for the Down Payment Field."
 msgstr ""
 
-#: includes/class-shmac-api-tabs.php:340
+#: includes/class-shmac-api-tabs.php:346
 msgid "Choose whether to use percent or amount input for the down payment"
 msgstr ""
 
-#: includes/class-shmac-api-tabs.php:349
+#: includes/class-shmac-api-tabs.php:355
 msgid "Set the default down payment amount"
 msgstr ""
 
-#: includes/class-shmac-api-tabs.php:357
+#: includes/class-shmac-api-tabs.php:363
 msgid "Set the text for the Loan Term Field."
 msgstr ""
 
-#: includes/class-shmac-api-tabs.php:365
+#: includes/class-shmac-api-tabs.php:371
 msgid "Set the information bubble text for the Loan Term Field."
 msgstr ""
 
-#: includes/class-shmac-api-tabs.php:372
+#: includes/class-shmac-api-tabs.php:378
 msgid "Set the default loan term for the calculator"
 msgstr ""
 
-#: includes/class-shmac-api-tabs.php:385
+#: includes/class-shmac-api-tabs.php:391
 msgid "Choose whether to give a homeowners insurance estimate"
 msgstr ""
 
-#: includes/class-shmac-api-tabs.php:407
+#: includes/class-shmac-api-tabs.php:413
 msgid "Set the monthly insurance cost or the percent (depending on what whas chosen above) for the calculator"
 msgstr ""
 
-#: includes/class-shmac-api-tabs.php:420
+#: includes/class-shmac-api-tabs.php:426
 msgid "Choose whether to give a PMI estimate"
 msgstr ""
 
-#: includes/class-shmac-api-tabs.php:428
+#: includes/class-shmac-api-tabs.php:434
 msgid "Set the monthly PMI cost for the calculator.  If you don't know, leave this as-is.  This is just an average cost per 100,000 dollars borrowed."
 msgstr ""
 
-#: includes/class-shmac-api-tabs.php:441
+#: includes/class-shmac-api-tabs.php:447
 msgid "Choose whether to give a tax estimate or not"
 msgstr ""
 
-#: includes/class-shmac-api-tabs.php:450
+#: includes/class-shmac-api-tabs.php:456
 msgid "Set the tax rate per 1000 dollars assessed.  If you don't know, leave this as-is.  This is just an average cost based on assessed value."
 msgstr ""
 
-#: includes/class-shmac-api-tabs.php:463
+#: includes/class-shmac-api-tabs.php:469
 msgid "Choose whether to allow Email Reports to users or not"
 msgstr ""
 
-#: includes/class-shmac-api-tabs.php:501
+#: includes/class-shmac-api-tabs.php:507
 msgid "Set your custom primary color for the PDF Results"
 msgstr ""
 
-#: includes/class-shmac-api-tabs.php:517
+#: includes/class-shmac-api-tabs.php:523
 msgid "Set the currency symbol used in the Calculator (default $)"
 msgstr ""
 
-#: includes/class-shmac-api-tabs.php:532
+#: includes/class-shmac-api-tabs.php:538
 msgid "Choose the currency format you would like to use."
 msgstr ""
 
-#: includes/class-shmac-api-tabs.php:545
+#: includes/class-shmac-api-tabs.php:551
 msgid "Choose the side for the currency symbol."
 msgstr ""
 
-#: includes/class-shmac-api-tabs.php:556
+#: includes/class-shmac-api-tabs.php:562
 msgid "Enter your Envato purchase code for automatic updates."
 msgstr ""
 
-#: includes/class-shmac-api-tabs.php:566
+#: includes/class-shmac-api-tabs.php:572
 msgid "Add your own custom css to further control styling of the calculator"
 msgstr ""
 
-#: includes/class-shmac-api-tabs.php:578
+#: includes/class-shmac-api-tabs.php:584
 msgid "This sets the primary color for the Calculator"
 msgstr ""
 
-#: includes/class-shmac-api-tabs.php:589
+#: includes/class-shmac-api-tabs.php:595
 msgid "Upload"
 msgstr ""
 
-#: includes/class-shmac-api-tabs.php:590
+#: includes/class-shmac-api-tabs.php:596
 msgid "Clear Image"
 msgstr ""
 
-#: includes/class-shmac-api-tabs.php:615
+#: includes/class-shmac-api-tabs.php:623
+msgid "LTR - Default"
+msgstr ""
+
+#: includes/class-shmac-api-tabs.php:625
+msgid "RTL - Right To Left Languages"
+msgstr ""
+
+#: includes/class-shmac-api-tabs.php:627
+msgid "Choose LTR (Left To Right) or RTL (Right To Left) language.  If you don't know what this means, keep it LTR."
+msgstr ""
+
+#: includes/class-shmac-api-tabs.php:638
+msgid "Helvetica - Default, smaller generated PDF file"
+msgstr ""
+
+#: includes/class-shmac-api-tabs.php:640
+msgid "Dejavu sans - Persian / English"
+msgstr ""
+
+#: includes/class-shmac-api-tabs.php:642
+msgid "Aefurat - Arabic / English"
+msgstr ""
+
+#: includes/class-shmac-api-tabs.php:644
+msgid "Aealarabiya - Arabic / English"
+msgstr ""
+
+#: includes/class-shmac-api-tabs.php:646
+msgid "Courier"
+msgstr ""
+
+#: includes/class-shmac-api-tabs.php:648
+msgid "Times"
+msgstr ""
+
+#: includes/class-shmac-api-tabs.php:650
+msgid "Choose the font to use.  Helvetica is going to be the smallest but does not support many RTL languages."
+msgstr ""
+
+#: includes/class-shmac-api-tabs.php:661
 msgid "SHMAC"
 msgstr ""
 

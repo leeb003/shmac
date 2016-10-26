@@ -90,10 +90,12 @@ jQuery(function ($) {  // use $ for jQuery
 				$('input').closest('tr').hide();
 				$('textarea').closest('tr').hide();
 				$('.custom_media_url').closest('tr').hide();
+				$('.shmac-pdf-font').closest('tr').hide();
 			} else {
 				$('input').closest('tr').show();
             	$('textarea').closest('tr').show();
             	$('.custom_media_url').closest('tr').show();
+				$('.shmac-pdf-font').closest('tr').show();
 			}
 		}
 	}

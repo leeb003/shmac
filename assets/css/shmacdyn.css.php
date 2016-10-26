@@ -12,6 +12,35 @@ class shmac_dynamc_css {
 		$primary_color_light = $shmac_utils->hex2rgba($primary_color, $opacity = 0.4);
 		$custom_css = trim($shmac_settings['custom_css']);
 
+		// Need to check the rtl setting for some style changes on rtl languages
+		$shmac_email = get_option('shmac_email');
+		$rtl_css = '';
+		if (isset($shmac_email['ltr_rtl']) && $shmac_email['ltr_rtl'] == 'rtl') {
+            	$rtl_css = <<<EOT
+/* RTL CSS */
+.mui-form-group .shmac-tip {
+   left:0px;
+   right:auto;
+}
+.shmac-term-years, .shmac-term-months {
+    float: right;
+    margin-left: 20px;
+}
+.shmac-tip:hover:after{
+    bottom: 26px;
+    left: -6px;
+	right: auto;
+    width: 220px;
+}
+.shmac-tip:hover:before{
+    bottom: 20px;
+	right: 3px;
+	left: auto;
+}
+EOT;
+
+            }
+
 		header('Content-type: text/css');
 		?>
 /* Dynamic Styles For WP Mortgage Calculator */
@@ -62,6 +91,8 @@ class shmac_dynamc_css {
 .ui-mprogress .buffer-bg {
   background: <?php echo $primary_color_light; ?>;
 }
+
+<?php echo $rtl_css; ?>
 
 /* Custom CSS Below */
 <?php echo $custom_css;?>

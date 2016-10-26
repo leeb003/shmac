@@ -100,6 +100,8 @@ class SHMAC_API_Tabs {
             'logo_attachment_id' => '',
 			'pdf_color' => '#00bfa5',
 			'pdf_header' => 'Amortization Calculator Results',
+			'ltr_rtl' => 'ltr',
+			'pdf_font' => 'helvetica',
 		), $this->second_tab );
 
 	}
@@ -224,6 +226,10 @@ class SHMAC_API_Tabs {
         	$this->second_tab_key, 'section_email' );
 		add_settings_field( 'pdf_header', __('PDF Header Large Text', 'shmac'), array( &$this, 'field_pdf_header' ),
             $this->second_tab_key, 'section_email' );
+		add_settings_field( 'ltr_rtl', __('LTR or RTL', 'shmac'), array( &$this, 'field_ltr_rtl' ),
+				             $this->second_tab_key, 'section_email' );
+		add_settings_field( 'pdf_font', __('PDF Font to use', 'shmac'), array( &$this, 'field_pdf_font' ),
+				             $this->second_tab_key, 'section_email' );
 	}
 
 	
@@ -606,6 +612,46 @@ class SHMAC_API_Tabs {
 
         <?php
     }
+
+	/*
+	 * LTR or RTL PDF and styling
+     */
+    function field_ltr_rtl() {
+        ?>
+        <select class="shmac-ltr-rtl" name="<?php echo $this->second_tab_key; ?>[ltr_rtl]">
+            <option value="ltr" <?php selected( $this->second_tab['ltr_rtl'], "ltr");?>
+                    ><?php echo __("LTR - Default", "shmac");?></option>
+            <option value="rtl" <?php selected( $this->second_tab['ltr_rtl'], "rtl");?>
+                    ><?php echo __("RTL - Right To Left Languages", "shmac");?></option>
+        </select>
+        <p><?php echo __("Choose LTR (Left To Right) or RTL (Right To Left) language.  If you don't know what this means, keep it LTR.", "shmac"); ?></p>
+        <?php
+    }
+
+	/*
+     * PDF Font Selection
+     */
+    function field_pdf_font() {
+        ?>
+        <select class="shmac-pdf-font" name="<?php echo $this->second_tab_key; ?>[pdf_font]">
+            <option value="helvetica" <?php selected( $this->second_tab['pdf_font'], "helvetica");?>
+                    ><?php echo __("Helvetica - Default, smaller generated PDF file", "shmac");?></option>
+            <option value="dejavusans" <?php selected( $this->second_tab['pdf_font'], "dejavusans");?>
+                    ><?php echo __("Dejavu sans - Persian / English", "shmac");?></option>
+			<option value="aefurat" <?php selected( $this->second_tab['pdf_font'], "aefurat");?>
+                    ><?php echo __("Aefurat - Arabic / English", "shmac");?></option>
+			<option value="aealarabiya" <?php selected( $this->second_tab['pdf_font'], "aealarabiya");?>
+                    ><?php echo __("Aealarabiya - Arabic / English", "shmac");?></option>
+			<option value="courier" <?php selected( $this->second_tab['pdf_font'], "courier");?>
+                    ><?php echo __("Courier", "shmac");?></option>	
+			<option value="times" <?php selected( $this->second_tab['pdf_font'], "times");?>
+                    ><?php echo __("Times", "shmac");?></option>
+        </select>
+        <p><?php echo __("Choose the font to use.  Helvetica is going to be the smallest but does not support many RTL languages.", "shmac"); 
+?></p>
+        <?php
+    }
+
 	/*
 	 * Called during admin_menu, adds an options
 	 * page under Settings called My Settings, rendered
