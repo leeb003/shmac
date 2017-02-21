@@ -37,7 +37,8 @@
             add_action( 'wp_ajax_nopriv_ajax-shmacfrontend', array($shmac_ajax, 'myajax_shmacfrontend_callback'));
 			// Load frontend JS & CSS
             add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_styles' ), 700 );
-            add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ), 700 );
+            add_action( 'wp_enqueue_scripts', array( $this, 'register_scripts' ), 700 );
+            add_action( 'shmac_enqueue_scripts', array( $this, 'enqueue_scripts' ), 700 );
             // Dynamic CSS
             add_action('wp_ajax_shmac_dynamic_css', array($this, 'shmac_dynamic_css'));
             add_action('wp_ajax_nopriv_shmac_dynamic_css', array($this, 'shmac_dynamic_css'));
@@ -96,30 +97,59 @@
          * @since 1.0.0
          * @return void
          */
-        public function enqueue_scripts () {
+         
+        public function register_scripts () {
 			// autoNumeric
 			wp_register_script('autoNumeric', SHMAC_ROOT_URL . '/assets/js/autoNumeric.js', array('jquery'), '1.9.26', true);
-			wp_enqueue_script('autoNumeric');
 			// Mui
 			wp_register_script( 'mui', SHMAC_ROOT_URL . '/assets/js/mui.js', array(), '0.1.22-rc1', true );
-            wp_enqueue_script('mui');
 			// Scrollbar
 			wp_register_script( 'shmac-custom-scrollbar', SHMAC_ROOT_URL 
 				. '/assets/js/jquery.mCustomScrollbar.concat.min.js', array('jquery'), '3.0.9', true);
-			wp_enqueue_script( 'shmac-custom-scrollbar' );
 			// mprogress
 			wp_register_script( 'mprogress', SHMAC_ROOT_URL . '/assets/js/mprogress.min.js', array('jquery'), '1.0', true);
-			wp_enqueue_script( 'mprogress' );
 			// Plugin js    
             wp_register_script( 'shmac-frontend-ajax',
                 SHMAC_ROOT_URL . '/assets/js/frontend-ajax.js',
                 array('jquery'), SHMAC_PLUGIN_VERSION, true );
-			wp_enqueue_script( 'shmac-frontend-ajax' );
-            wp_localize_script(  'shmac-frontend-ajax', 'SHMAC_Ajax', array(
+			wp_localize_script(  'shmac-frontend-ajax', 'SHMAC_Ajax', array(
                 'ajaxurl' => admin_url('admin-ajax.php'),
                 'nextNonce' => wp_create_nonce( 'myajax-next-nonce' ),
 				'shmacColor' => isset($this->first_tab['page_color'])?$this->first_tab['page_color']:'#03a9f4'
             ));
+		}
+        public function enqueue_scripts () {
+			$list = 'enqueued';
+			// autoNumeric			
+			if (wp_script_is( 'autoNumeric', $list )) {
+				return;
+			} else {
+				wp_enqueue_script( 'autoNumeric' );
+			}
+			// Mui
+			if (wp_script_is( 'mui', $list )) {
+				return;
+			} else {
+				wp_enqueue_script( 'mui' );
+			}
+			// Scrollbar
+			if (wp_script_is( 'shmac-custom-scrollbar', $list )) {
+				return;
+			} else {
+				wp_enqueue_script( 'shmac-custom-scrollbar' );
+			}
+			// mprogress
+			if (wp_script_is( 'mprogress', $list )) {
+				return;
+			} else {
+				wp_enqueue_script( 'mprogress' );
+			}
+			// Plugin js    
+            if (wp_script_is( 'shmac-frontend-ajax', $list )) {
+				return;
+			} else {
+				wp_enqueue_script( 'shmac-frontend-ajax' );
+			}
 
         } // End enqueue_scripts 
 
@@ -133,6 +163,7 @@
         public function shmac_calc($atts, $content=NULL) {
 			global $calc_inc; // tracking multiple calculators
 			$calc_inc++;
+			do_action('shmac_enqueue_scripts');
             extract(shortcode_atts(array( 
 				'extraclass'       => '',
 				// Base Settings Overrides
