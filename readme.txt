@@ -31,6 +31,10 @@ Users can choose to receive a pdf copy of the amortization schedule which you
 can also be bcc'd on as a lead generator.
 
 == Changelog ==
+= 1.1.7 =
+* 2017-2-22
+* Fix for loading scripts only when shortcode is in use
+
 = 1.1.6 = 
 * 2016-10-24
 * Added RTL support and added some different font types for PDF generation
