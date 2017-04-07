@@ -64,19 +64,33 @@ class SHMAC_API_Tabs {
 			'calc_title' => __('Amortization Calculator', 'shmac'),
 			'send_email_text' => __('Send A PDF report to your email?', 'shmac'),
 			'email_placeholder' => __('Your Email', 'shmac'),
+			'enable_slider'=>'no',
+			'enable_input_readonly'=>'no',
 			'purchase_price_label' => __('Mortgage Amount', 'shmac'),
 			'purchase_price_info' => __('The total purchase price of the home you wish to buy.', 'shmac'),
 			'purchase_price' => '224,000.00',
+			'amount_min_value'=>'0',
+			'amount_max_value'=>'224000',
+			'amount_slider_step'=>'500',
 			'interest_rate_label' => __('Interest Rate (%)', 'shmac'),
 			'interest_rate_info' => __('The expected percent interest rate you will get on your mortgage.', 'shmac'),
 			'interest_rate' => '5.5',
+			'interest_min_value'=>'0',
+			'interest_max_value'=>'30',
+			'interest_slider_step'=>'0.1',
 			'down_payment_label' => __('Down Payment (%)', 'shmac'),
 			'down_payment_info' => __('The percent down payment you wish to put towards the home.', 'shmac'),
 			'down_payment_type' => 'percent',
 			'down_payment' => '10',
+			'dwnpay_min_value'=>'0',
+			'dwnpay_max_value'=>'99',
+			'dwnpay_slider_step'=>'1',
 			'loan_term_label' => __('Term', 'shmac'),
 			'loan_term_info' => __('The length of time it will take to repay the loan amount (30 years is common).', 'shmac'),
 			'loan_term' => '30',
+			'term_min_value'=>'1',
+			'term_max_value'=>'90',
+			'term_slider_step'=>'1',
 			'enable_insurance' => 'yes',
 			'insurance_amount_percent' => 'amount',
 			'insurance' => '56.00',
@@ -87,7 +101,12 @@ class SHMAC_API_Tabs {
 			'disclaimer' => __('Calculations by this calculator are estimates only. There is no warranty for the accuracy of the results or the relationship to your financial situation.', 'shmac'),
 			'currency' => '$',
 			'currency_format' => '1',
-			'currency_side' => 'left'
+			'currency_side' => 'left'			
+			//~ 'amount_slider_start'=>'12000',			
+			//~ 'interest_slider_start'=>'5',			
+			//~ 'dwnpay_slider_start'=>'10',			
+			//~ 'term_slider_start'=>'5',
+			
 		), $this->first_tab );
 
 		$this->second_tab = array_merge( array(
@@ -125,25 +144,44 @@ class SHMAC_API_Tabs {
 
 		add_settings_field( 'email_placeholder', __('Email Label', 'shmac'), array( &$this, 'field_email_placeholder'),
                 $this->first_tab_key, 'section_general' );
-
+		//Slider Settings
+		add_settings_field( 'enable_slider', __('Enable Slider', 'shmac'), array( &$this, 'field_enable_slider' ),			$this->first_tab_key, 'section_general' );
+		
+		add_settings_field( 'enable_input_readonly', __('Enable Input Readonly', 'shmac'), array( &$this, 'field_enable_input_readonly' ),	$this->first_tab_key, 'section_general' );
+		
+		//Amount 
 		add_settings_field( 'purchase_price_label', __('Amount Label', 'shmac'), array( &$this, 'field_purchase_price_label'),
                 $this->first_tab_key, 'section_general' );
 
-		add_settings_field( 'purchase_price_info', __('Amount Info Bubble', 'shmac'), array( &$this, 'field_purchase_price_info'),
-                $this->first_tab_key, 'section_general' );
+		add_settings_field( 'purchase_price_info', __('Amount Info Bubble', 'shmac'), array( &$this, 'field_purchase_price_info'), $this->first_tab_key, 'section_general' );
 
 		add_settings_field( 'purchase_price', __('Default Purchase Price', 'shmac'), array( &$this, 'field_purchase_price'),
-                $this->first_tab_key, 'section_general' );
+                $this->first_tab_key, 'section_general' );		
 
+		add_settings_field( 'amount_min_value', __('Minimum Purchase Price', 'shmac'), array( &$this, 'field_amount_min_value' ),	$this->first_tab_key, 'section_general' );
+
+		add_settings_field( 'amount_max_value', __('Maximum Purchase Price', 'shmac'), array( &$this, 'field_amount_max_value' ),	$this->first_tab_key, 'section_general' );
+
+		add_settings_field( 'amount_slider_step', __('Steps in Purchase Slider', 'shmac'), array( &$this, 'field_amount_slider_step' ),	$this->first_tab_key, 'section_general' );
+		//~ add_settings_field( 'amount_slider_start', __('Start Purchase Price in Slider', 'shmac'), array( &$this, 'field_amount_slider_start' ),	$this->first_tab_key, 'section_general' );
+
+		//Interest Rate		
 		add_settings_field( 'interest_rate_label', __('Interest Label', 'shmac'), array( &$this, 'field_interest_rate_label'),
                 $this->first_tab_key, 'section_general' );
 
 		add_settings_field( 'interest_rate_info', __('Interest Info Bubble', 'shmac'), array( &$this, 'field_interest_rate_info'),
                 $this->first_tab_key, 'section_general' );
 
-		add_settings_field( 'interest_rate', __('Default Interest Rate (Percent)', 'shmac'), array( &$this, 'field_interest_rate'),
-                $this->first_tab_key, 'section_general' );
+		add_settings_field( 'interest_rate', __('Default Interest Rate (Percent)', 'shmac'), array( &$this, 'field_interest_rate'), $this->first_tab_key, 'section_general' );
+		add_settings_field( 'interest_min_value', __('Minimum Interest Rate', 'shmac'), array( &$this, 'field_interest_min_value' ),	$this->first_tab_key, 'section_general' );
 
+		add_settings_field( 'interest_max_value', __('Maximum Interest Rate', 'shmac'), array( &$this, 'field_interest_max_value' ),	$this->first_tab_key, 'section_general' );
+
+		add_settings_field( 'interest_slider_step', __('Steps in Interest Rate', 'shmac'), array( &$this, 'field_interest_slider_step' ),	$this->first_tab_key, 'section_general' );
+
+		//~ add_settings_field( 'interest_slider_start', __('Start Interest Rate in Slider', 'shmac'), array( &$this, 'field_interest_slider_start' ),	$this->first_tab_key, 'section_general' );
+
+		//Down Payment 
 		add_settings_field( 'down_payment_label', __('Down Payment Label', 'shmac'), array( &$this, 'field_down_payment_label'),
                 $this->first_tab_key, 'section_general' );
 
@@ -155,7 +193,16 @@ class SHMAC_API_Tabs {
 	
 		add_settings_field( 'down_payment', __('Default Down Payment', 'shmac'), array( &$this, 'field_down_payment'),
                 $this->first_tab_key, 'section_general' );
+		
+		add_settings_field( 'dwnpay_min_value', __('Minimum Down Payment', 'shmac'), array( &$this, 'field_dwnpay_min_value' ),	$this->first_tab_key, 'section_general' );
 
+		add_settings_field( 'dwnpay_max_value', __('Maximum Down Payment', 'shmac'), array( &$this, 'field_dwnpay_max_value' ),	$this->first_tab_key, 'section_general' );
+
+		add_settings_field( 'dwnpay_slider_step', __('Steps in Down Payment', 'shmac'), array( &$this, 'field_dwnpay_slider_step' ),	$this->first_tab_key, 'section_general' );
+
+		//~ add_settings_field( 'dwnpay_slider_start', __('Start Down Payment in Slider', 'shmac'), array( &$this, 'field_dwnpay_slider_start' ),	$this->first_tab_key, 'section_general' );
+
+		//Term
 		add_settings_field( 'loan_term_label', __('Loan Term Label', 'shmac'), array( &$this, 'field_loan_term_label'),
                 $this->first_tab_key, 'section_general' );
 
@@ -163,8 +210,15 @@ class SHMAC_API_Tabs {
                 $this->first_tab_key, 'section_general' );
 
 		add_settings_field( 'loan_term', __('Default Loan Term (Years)', 'shmac'), array( &$this, 'field_loan_term'),
-                $this->first_tab_key, 'section_general' );
+                $this->first_tab_key, 'section_general' );	
+		
+		add_settings_field( 'term_min_value', __('Minimum Term', 'shmac'), array( &$this, 'field_term_min_value' ),	$this->first_tab_key, 'section_general' );
 
+		add_settings_field( 'term_max_value', __('Maximum Term', 'shmac'), array( &$this, 'field_term_max_value' ),	$this->first_tab_key, 'section_general' );
+
+		add_settings_field( 'term_slider_step', __('Steps in Term', 'shmac'), array( &$this, 'field_term_slider_step' ),	$this->first_tab_key, 'section_general' );
+
+		//~ add_settings_field( 'term_slider_start', __('Start Term in Slider', 'shmac'), array( &$this, 'field_term_slider_start' ),	$this->first_tab_key, 'section_general' );
 
 		add_settings_field( 'enable_insurance', __('Enable Insurance Cost Estimate', 'shmac'), 
 				array( &$this, 'field_enable_insurance'), $this->first_tab_key, 'section_general' );
@@ -195,6 +249,7 @@ class SHMAC_API_Tabs {
                 $this->first_tab_key, 'section_general' );
 		add_settings_field( 'custom_css', __('Custom CSS', 'shmac'), array( &$this, 'field_custom_css' ),
 				$this->first_tab_key, 'section_general' );
+		
 	}
 	
 	/*
@@ -391,7 +446,7 @@ class SHMAC_API_Tabs {
         <p><?php echo __("Choose whether to give a homeowners insurance estimate", "shmac"); ?></p>
         <?php
     }
-
+	
 	// Insurance monthly price or percent
 	function field_insurance_amount_percent() {
 		?>
@@ -652,6 +707,131 @@ class SHMAC_API_Tabs {
         <?php
     }
 
+	//Slider Fields Body
+	function field_enable_slider() {
+		?>
+		<select class="shmac-enable-slider" name="<?php echo $this->first_tab_key; ?>[enable_slider]">
+            <option value="yes" <?php selected( $this->first_tab['enable_slider'], "yes");?>
+                    ><?php echo __("Yes", "shmac");?></option>
+            <option value="no" <?php selected( $this->first_tab['enable_slider'], "no");?>
+                    ><?php echo __("No", "shmac");?></option>
+        </select>
+        <p><?php echo __("Choose whether to show Slider in input or not", "shmac"); ?></p>
+        <?php
+    }
+
+	function field_enable_input_readonly() {
+		?>
+		<select class="shmac-enable-input-readonly" name="<?php echo $this->first_tab_key; ?>[enable_input_readonly]">
+            <option value="yes" <?php selected( $this->first_tab['enable_input_readonly'], "yes");?>
+                    ><?php echo __("Yes", "shmac");?></option>
+            <option value="no" <?php selected( $this->first_tab['enable_input_readonly'], "no");?>
+                    ><?php echo __("No", "shmac");?></option>
+        </select>
+        <p><?php echo __("Choose whether to use input or not", "shmac"); ?></p>
+        <?php
+    }
+	//Amount
+	function field_amount_min_value() {
+		?>
+		<input class="shmac-purchase-min-price" name="<?php echo $this->first_tab_key; ?>[amount_min_value]" value="<?php echo esc_attr( $this->first_tab['amount_min_value'] ); ?>" />
+		<p><?php echo __("Set a minimum purchase price for the calculator", "shmac"); ?></p>
+		<?php
+	}
+	function field_amount_max_value() {
+		?>
+		<input class="shmac-purchase-max-price" name="<?php echo $this->first_tab_key; ?>[amount_max_value]" value="<?php echo esc_attr( $this->first_tab['amount_max_value'] ); ?>" />
+		<p><?php echo __("Set a maximum purchase price for the calculator", "shmac"); ?></p>
+		<?php
+	}
+	function field_amount_slider_step() {
+		?>
+		<input class="shmac-purchase-slider-step" name="<?php echo $this->first_tab_key; ?>[amount_slider_step]" value="<?php echo esc_attr( $this->first_tab['amount_slider_step'] ); ?>" />
+		<p><?php echo __("Set a slider step of purchase price for the calculator", "shmac"); ?></p>
+		<?php
+	}
+	function field_amount_slider_start() {
+		?>
+		<input class="shmac-purchase-slider-start" name="<?php echo $this->first_tab_key; ?>[amount_slider_start]" value="<?php echo esc_attr( $this->first_tab['amount_slider_start'] ); ?>" />
+		<p><?php echo __("Set a slider start value of purchase price for the calculator", "shmac"); ?></p>
+		<?php
+	}
+	//Interest Rate
+	function field_interest_min_value() {
+		?>
+		<input class="shmac-interest-min-rate" name="<?php echo $this->first_tab_key; ?>[interest_min_value]" value="<?php echo esc_attr( $this->first_tab['interest_min_value'] ); ?>" />
+		<p><?php echo __("Set a minimum interest rate for the calculator", "shmac"); ?></p>
+		<?php
+	}
+	function field_interest_max_value() {
+		?>
+		<input class="shmac-interest-max-rate" name="<?php echo $this->first_tab_key; ?>[interest_max_value]" value="<?php echo esc_attr( $this->first_tab['interest_max_value'] ); ?>" />
+		<p><?php echo __("Set a maximum interest rate for the calculator", "shmac"); ?></p>
+		<?php
+	}
+	function field_interest_slider_step() {
+		?>
+		<input class="shmac-interest-slider-step" name="<?php echo $this->first_tab_key; ?>[interest_slider_step]" value="<?php echo esc_attr( $this->first_tab['interest_slider_step'] ); ?>" />
+		<p><?php echo __("Set a slider step of interest rate for the calculator", "shmac"); ?></p>
+		<?php
+	}
+	function field_interest_slider_start() {
+		?>
+		<input class="shmac-interest-slider-start" name="<?php echo $this->first_tab_key; ?>[interest_slider_start]" value="<?php echo esc_attr( $this->first_tab['interest_slider_start'] ); ?>" />
+		<p><?php echo __("Set a slider start value of interest rate for the calculator", "shmac"); ?></p>
+		<?php
+	}
+	//Down Payment
+	function field_dwnpay_min_value() {
+		?>
+		<input class="shmac-dwnpay-min-rate" name="<?php echo $this->first_tab_key; ?>[dwnpay_min_value]" value="<?php echo esc_attr( $this->first_tab['dwnpay_min_value'] ); ?>" />
+		<p><?php echo __("Set a minimum down payment for the calculator", "shmac"); ?></p>
+		<?php
+	}
+	function field_dwnpay_max_value() {
+		?>
+		<input class="shmac-dwnpay-max-rate" name="<?php echo $this->first_tab_key; ?>[dwnpay_max_value]" value="<?php echo esc_attr( $this->first_tab['dwnpay_max_value'] ); ?>" />
+		<p><?php echo __("Set a maximum down payment for the calculator", "shmac"); ?></p>
+		<?php
+	}
+	function field_dwnpay_slider_step() {
+		?>
+		<input class="shmac-dwnpay-slider-step" name="<?php echo $this->first_tab_key; ?>[dwnpay_slider_step]" value="<?php echo esc_attr( $this->first_tab['dwnpay_slider_step'] ); ?>" />
+		<p><?php echo __("Set a slider step of down payment for the calculator", "shmac"); ?></p>
+		<?php
+	}
+	function field_dwnpay_slider_start() {
+		?>
+		<input class="shmac-dwnpay-slider-start" name="<?php echo $this->first_tab_key; ?>[dwnpay_slider_start]" value="<?php echo esc_attr( $this->first_tab['dwnpay_slider_start'] ); ?>" />
+		<p><?php echo __("Set a slider start value of down payment for the calculator", "shmac"); ?></p>
+		<?php
+	}
+	
+	//Term
+	function field_term_min_value() {
+		?>
+		<input class="shmac-term-min-value" name="<?php echo $this->first_tab_key; ?>[term_min_value]" value="<?php echo esc_attr( $this->first_tab['term_min_value'] ); ?>" />
+		<p><?php echo __("Set a minimum term for the calculator", "shmac"); ?></p>
+		<?php
+	}
+	function field_term_max_value() {
+		?>
+		<input class="shmac-term-max-value" name="<?php echo $this->first_tab_key; ?>[term_max_value]" value="<?php echo esc_attr( $this->first_tab['term_max_value'] ); ?>" />
+		<p><?php echo __("Set a maximum term for the calculator", "shmac"); ?></p>
+		<?php
+	}
+	function field_term_slider_step() {
+		?>
+		<input class="shmac-term-slider-step" name="<?php echo $this->first_tab_key; ?>[term_slider_step]" value="<?php echo esc_attr( $this->first_tab['term_slider_step'] ); ?>" />
+		<p><?php echo __("Set a slider step of term for the calculator", "shmac"); ?></p>
+		<?php
+	}
+	function field_term_slider_start() {
+		?>
+		<input class="shmac-term-slider-start" name="<?php echo $this->first_tab_key; ?>[term_slider_start]" value="<?php echo esc_attr( $this->first_tab['term_slider_start'] ); ?>" />
+		<p><?php echo __("Set a slider start value of term for the calculator", "shmac"); ?></p>
+		<?php
+	}
 	/*
 	 * Called during admin_menu, adds an options
 	 * page under Settings called My Settings, rendered

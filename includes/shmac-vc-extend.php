@@ -41,6 +41,46 @@ class shmacVC {
                         __("Enable", "shmac") => "enable",
                     )
                 ),
+                array(
+                    "type" => "dropdown",
+                    "heading" => __("Override Slider Settings", "shmac"),
+					"description" => __('Enable if you want to override any of the slider settings set in the main calculator slider settings for this specific calculator.  Any fields left blank will inherit the main settings applied to the calculator.', 'shmac'),
+                    "param_name" => "slideroverrides",
+                    "value" => array(
+						__("Disable", "shmac") => "disable",
+                        __("Enable", "shmac") => "enable",
+                    )
+                ),
+                array(
+                    "type" => "dropdown",
+                    "heading" => __("Enable Slider", "shmac"),
+					"description" => __('Enable if you want to make input fields in calculator to readonly. In it user will not able to edit fields, value can only changed by slider.', 'shmac'),
+                    "param_name" => "enable_slideroverride",
+                    "value" => array(
+						__('Settings Default', 'shmac') => '',
+						__("Disable", "shmac") => "disable",
+                        __("Enable", "shmac") => "enable",
+                    ),
+                    "dependency" => array (
+                        "element" => "slideroverrides",
+                        "value" => array("enable"),
+                    ),
+                ),
+                array(
+                    "type" => "dropdown",
+                    "heading" => __("Input Readonly Mode", "shmac"),
+					"description" => __('Enable if you want to make input fields in calculator to readonly. In it user will not able to edit fields, value can only changed by slider.', 'shmac'),
+                    "param_name" => "inputreadonly",
+                    "value" => array(
+						__('Settings Default', 'shmac') => '',
+						__("Disable", "shmac") => "disable",
+                        __("Enable", "shmac") => "enable",
+                    ),
+                    "dependency" => array (
+                        "element" => "slideroverrides",
+                        "value" => array("enable"),
+                    ),
+                ),
 				array(
                     "type" => "colorpicker",
                     "heading" => __("Primary Color", "shmac"),
@@ -121,6 +161,39 @@ class shmacVC {
                 ),
 				array(
                     "type" => "textfield",
+                    "heading"  => __("Minimum Amount", "shmac"),
+                    "param_name" => "sliderminamount",
+                    "description" => __("The minimum purchase price (e.g. 0.00) for the field.", "shmac"),
+                    "value" => '',
+                    "dependency" => array (
+                        "element" => "slideroverrides",
+                        "value" => array("enable"),
+                    ),
+                ),
+				array(
+                    "type" => "textfield",
+                    "heading"  => __("Maximum Amount", "shmac"),
+                    "param_name" => "slidermaxamount",
+                    "description" => __("The maximum purchase price (e.g. 224,000.00) for the field.", "shmac"),
+                    "value" => '',
+                    "dependency" => array (
+                        "element" => "slideroverrides",
+                        "value" => array("enable"),
+                    ),
+                ),
+				array(
+                    "type" => "textfield",
+                    "heading"  => __("Amount Slider Steps", "shmac"),
+                    "param_name" => "sliderstepsamount",
+                    "description" => __("The slider steps of purchase price (e.g. 500) for the field.", "shmac"),
+                    "value" => '',
+                    "dependency" => array (
+                        "element" => "slideroverrides",
+                        "value" => array("enable"),
+                    ),
+                ),
+				array(
+                    "type" => "textfield",
                     "heading"  => __("Interest Field Label", "shmac"),
                     "param_name" => "interestlabel",
                     "description" => __("Label text for the interest field", "shmac"),
@@ -149,6 +222,39 @@ class shmacVC {
                     "value" => '',
                     "dependency" => array (
                         "element" => "allowoverrides",
+                        "value" => array("enable"),
+                    ),
+                ),
+				array(
+                    "type" => "textfield",
+                    "heading"  => __("Minimum Interest", "shmac"),
+                    "param_name" => "slidermininterest",
+                    "description" => __("The minimum interest value (e.g. 0.1)", "shmac"),
+                    "value" => '',
+                    "dependency" => array (
+                        "element" => "slideroverrides",
+                        "value" => array("enable"),
+                    ),
+                ),
+				array(
+                    "type" => "textfield",
+                    "heading"  => __("Maximum Interest", "shmac"),
+                    "param_name" => "slidermaxinterest",
+                    "description" => __("The maximum interest value (e.g. 25.0)", "shmac"),
+                    "value" => '',
+                    "dependency" => array (
+                        "element" => "slideroverrides",
+                        "value" => array("enable"),
+                    ),
+                ),
+				array(
+                    "type" => "textfield",
+                    "heading"  => __("Interest Slider Steps", "shmac"),
+                    "param_name" => "sliderstepsinterest",
+                    "description" => __("The interest slider steps value (e.g. 0.01)", "shmac"),
+                    "value" => '',
+                    "dependency" => array (
+                        "element" => "slideroverrides",
                         "value" => array("enable"),
                     ),
                 ),
@@ -202,6 +308,39 @@ class shmacVC {
                 ),
 				array(
                     "type" => "textfield",
+                    "heading"  => __("Minimum Down Payment", "shmac"),
+                    "param_name" => "slidermindown",
+                    "description" => __("Minimum percent down payment (e.g. 10 for percent or 10000.00 for amount)", "shmac"),
+                    "value" => '',
+                    "dependency" => array (
+                        "element" => "slideroverrides",
+                        "value" => array("enable"),
+                    ),
+                ),
+				array(
+                    "type" => "textfield",
+                    "heading"  => __("Maximum Down Payment", "shmac"),
+                    "param_name" => "slidermaxdown",
+                    "description" => __("Maximum percent down payment (e.g. 10 for percent or 10000.00 for amount)", "shmac"),
+                    "value" => '',
+                    "dependency" => array (
+                        "element" => "slideroverrides",
+                        "value" => array("enable"),
+                    ),
+                ),
+				array(
+                    "type" => "textfield",
+                    "heading"  => __("Down Payment Slider Steps", "shmac"),
+                    "param_name" => "sliderstepsdown",
+                    "description" => __("Down payment slider steps (e.g. 1)", "shmac"),
+                    "value" => '',
+                    "dependency" => array (
+                        "element" => "slideroverrides",
+                        "value" => array("enable"),
+                    ),
+                ),
+				array(
+                    "type" => "textfield",
                     "heading"  => __("Term Label", "shmac"),
                     "param_name" => "termlabel",
                     "description" => __("Label text for the term field", "shmac"),
@@ -230,6 +369,39 @@ class shmacVC {
                     "value" => '',
                     "dependency" => array (
                         "element" => "allowoverrides",
+                        "value" => array("enable"),
+                    ),
+                ),
+				array(
+                    "type" => "textfield",
+                    "heading"  => __("Minimum Term", "shmac"),
+                    "param_name" => "sliderminterm",
+                    "description" => __("The minimum term in years (e.g. 1)", "shmac"),
+                    "value" => '',
+                    "dependency" => array (
+                        "element" => "slideroverrides",
+                        "value" => array("enable"),
+                    ),
+                ),
+				array(
+                    "type" => "textfield",
+                    "heading"  => __("Maximum Term", "shmac"),
+                    "param_name" => "slidermaxterm",
+                    "description" => __("The maximum term in years (e.g. 30)", "shmac"),
+                    "value" => '',
+                    "dependency" => array (
+                        "element" => "slideroverrides",
+                        "value" => array("enable"),
+                    ),
+                ),
+				array(
+                    "type" => "textfield",
+                    "heading"  => __("Term Slider Steps", "shmac"),
+                    "param_name" => "sliderstepsterm",
+                    "description" => __("The term slider steps in years (e.g. 1)", "shmac"),
+                    "value" => '',
+                    "dependency" => array (
+                        "element" => "slideroverrides",
                         "value" => array("enable"),
                     ),
                 ),

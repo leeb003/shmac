@@ -31,8 +31,12 @@ Users can choose to receive a pdf copy of the amortization schedule which you
 can also be bcc'd on as a lead generator.
 
 == Changelog ==
-= 1.1.7 =
-* 2017-2-22
+= 1.1.8 =
+* 2017-04-7
+* Added Sliders to calculator as a choice for input options
+
+= 1.1.7 = 
+* 2017-02-22
 * Fix for loading scripts only when shortcode is in use
 
 = 1.1.6 = 

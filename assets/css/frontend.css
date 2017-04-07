@@ -1446,3 +1446,8 @@ input.mui-form-control:invalid:not(:focus):required:not(:empty):not(.mui-empty):
 }
 
 /* End Checkboxes */
+
+/*Slider*/
+.sliders {
+    margin-top: 10px;
+}

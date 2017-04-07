@@ -71,6 +71,10 @@
 			wp_register_style( 'mprogress', SHMAC_ROOT_URL .  '/assets/css/mprogress.min.css',
             array('shmac-frontend'), '1.0');
             wp_enqueue_style( 'mprogress' );
+            //nouislider
+			wp_register_style( 'nouislider', SHMAC_ROOT_URL .  '/assets/css/nouislider.min.css',
+            array('shmac-frontend'), '920');
+            wp_enqueue_style( 'nouislider' );
 
 			// ie9
 			/*
@@ -108,6 +112,10 @@
 				. '/assets/js/jquery.mCustomScrollbar.concat.min.js', array('jquery'), '3.0.9', true);
 			// mprogress
 			wp_register_script( 'mprogress', SHMAC_ROOT_URL . '/assets/js/mprogress.min.js', array('jquery'), '1.0', true);
+			//nouislider
+			wp_register_script( 'nouislider', SHMAC_ROOT_URL . '/assets/js/nouislider.min.js', array('jquery'), '920', true);
+			//wNumb
+			wp_register_script( 'wNumb', SHMAC_ROOT_URL . '/assets/js/wNumb.js', array('jquery'), '110', true);
 			// Plugin js    
             wp_register_script( 'shmac-frontend-ajax',
                 SHMAC_ROOT_URL . '/assets/js/frontend-ajax.js',
@@ -120,37 +128,14 @@
 		}
         public function enqueue_scripts () {
 			$list = 'enqueued';
-			// autoNumeric			
-			if (wp_script_is( 'autoNumeric', $list )) {
-				return;
-			} else {
-				wp_enqueue_script( 'autoNumeric' );
-			}
-			// Mui
-			if (wp_script_is( 'mui', $list )) {
-				return;
-			} else {
-				wp_enqueue_script( 'mui' );
-			}
-			// Scrollbar
-			if (wp_script_is( 'shmac-custom-scrollbar', $list )) {
-				return;
-			} else {
-				wp_enqueue_script( 'shmac-custom-scrollbar' );
-			}
-			// mprogress
-			if (wp_script_is( 'mprogress', $list )) {
-				return;
-			} else {
-				wp_enqueue_script( 'mprogress' );
-			}
-			// Plugin js    
-            if (wp_script_is( 'shmac-frontend-ajax', $list )) {
-				return;
-			} else {
-				wp_enqueue_script( 'shmac-frontend-ajax' );
-			}
-
+			$enqueueJsList = array("autoNumeric","mui","shmac-custom-scrollbar","mprogress","shmac-frontend-ajax","nouislider","wNumb");
+			foreach($enqueueJsList as $js){
+				if (wp_script_is( $js, $list )) {
+					return;
+				} else {
+					wp_enqueue_script( $js );
+				}
+			}			
         } // End enqueue_scripts 
 
 		
@@ -208,7 +193,21 @@
 				// Extras
 				'calcsubmit'       => '',
 				'calcreset'        => '',
-
+				//Slider Settings 
+				'enable_slideroverride'        => '',
+				'inputreadonly'  => '',
+				'sliderminamount'       => '',
+				'slidermaxamount'       => '',
+				'sliderstepsamount'     => '',
+				'slidermininterest'     => '',
+				'slidermaxinterest'     => '',
+				'sliderstepsinterest'     => '',
+				'slidermindown'     => '',
+				'slidermaxdown'     => '',
+				'sliderstepsdown'     => '',
+				'sliderminterm'     => '',
+				'slidermaxterm'     => '',
+				'sliderstepsterm'     => '',
             ), $atts));
 
 			// Messages
@@ -246,6 +245,7 @@
 			}
 
             $form_style = '';
+            
             if ($primarycolor != '') {
                 // color overrides
                 require_once( SHMAC_ROOT_PATH . '/includes/shmac-utils.php' );
@@ -290,6 +290,10 @@
 .form-$calc_inc .ui-mprogress .buffer-bg {
   background: $primarycolor_light;
 }
+.noUi-handle:focus {
+	box-shadow: 0 0 5px $primarycolor;
+}
+
 </style>
 EOT;
 
@@ -320,17 +324,11 @@ EOT;
             if ($amountinfo == '') {
                 $amountinfo = $this->shmac_settings['purchase_price_info'];
             }
-            if ($defaultpurchase == '') {
-                $defaultpurchase = $this->shmac_settings['purchase_price'];
-            }
             if ($interestlabel == '') {
                 $interestlabel = $this->shmac_settings['interest_rate_label'];
             }
             if ($interestinfo == '') {
                 $interestinfo = $this->shmac_settings['interest_rate_info'];
-            }
-            if ($defaultinterest == '') {
-                $defaultinterest = $this->shmac_settings['interest_rate'];
             }
             if ($downpaylabel == '') {
                 $downpaylabel = $this->shmac_settings['down_payment_label'];
@@ -342,18 +340,33 @@ EOT;
 				$downpaytype = isset($this->shmac_settings['down_payment_type']) 
 					? $this->shmac_settings['down_payment_type'] : 'percent';
 			}
-            if ($defaultdown == '') {
-                $defaultdown = $this->shmac_settings['down_payment'];
-            }
             if ($termlabel == '') {
                 $termlabel = $this->shmac_settings['loan_term_label'];
             }
             if ($terminfo == '') {
                 $terminfo = $this->shmac_settings['loan_term_info'];
             }
-            if ($defaultterm == '') {
-                $defaultterm =$this->shmac_settings['loan_term'];
-            }
+            //Slider Settings Values
+			$page_color =$this->shmac_settings['page_color'];
+			if($enable_slideroverride=='') $enable_slideroverride              = $this->shmac_settings['enable_slider'];
+			if($inputreadonly=='') $inputreadonly            = $this->shmac_settings['enable_input_readonly'];
+			if($sliderminamount=='')$sliderminamount         = $this->shmac_settings['amount_min_value'];
+			if($slidermaxamount=='')$slidermaxamount         = $this->shmac_settings['amount_max_value'];
+			if($defaultpurchase=='')$defaultpurchase         = $this->shmac_settings['purchase_price'];
+			if($sliderstepsamount=='')$sliderstepsamount     = $this->shmac_settings['amount_slider_step'];
+			if($slidermininterest=='')$slidermininterest     = $this->shmac_settings['interest_min_value'];
+			$slidermininterest = number_format($slidermininterest, 3); // for autoNumeric to allow decimals
+			if($slidermaxinterest=='')$slidermaxinterest     = $this->shmac_settings['interest_max_value'];
+			if($defaultinterest=='')$defaultinterest         = $this->shmac_settings['interest_rate'];
+			if($sliderstepsinterest=='')$sliderstepsinterest = $this->shmac_settings['interest_slider_step'];
+			if($slidermindown=='')$slidermindown             = $this->shmac_settings['dwnpay_min_value'];
+			if($slidermaxdown=='')$slidermaxdown             = $this->shmac_settings['dwnpay_max_value'];
+			if($defaultdown=='')$defaultdown                 = $this->shmac_settings['down_payment'];
+			if($sliderstepsdown=='')$sliderstepsdown         = $this->shmac_settings['dwnpay_slider_step'];
+			if($sliderminterm=='')$sliderminterm             = $this->shmac_settings['term_min_value'];
+			if($slidermaxterm=='')$slidermaxterm             = $this->shmac_settings['term_max_value'];
+			if($defaultterm=='')$defaultterm                 = $this->shmac_settings['loan_term'];
+			if($sliderstepsterm=='')$sliderstepsterm         = $this->shmac_settings['term_slider_step'];          
 
 
 			// Individual Form Overrides set initial empty
@@ -461,7 +474,13 @@ EOT;
      		} 
 
 			//Down Payment format (percent or amount)
-			$downpay_format = 'data-v-min="0.00" data-v-max="100.000" data-a-pad="false"';
+			if ($enable_slideroverride == 'yes') {
+				$downpay_format = 'data-v-min="'. $slidermindown . '" data-v-max="' . $slidermaxdown . '" data-a-pad="false"';
+			} elseif ($downpaytype == 'percent') {
+				$downpay_format = 'data-v-min="0.000" data-v-max="100.000" data-a-pad="false"';
+			} else {
+				$downpay_format = 'data-a-pad="false"';
+			}
 			$downpay_symbol = '';
 			$symbol_class = '';
 			if ($downpaytype == 'amount') {
@@ -469,7 +488,27 @@ EOT;
 				$downpay_symbol = '<div class="shmac-symbol ' . $symbol_side . '">' . $currencysymbol . '</div>';
 				$symbol_class = 'input-symbol';
 			}
+			//Slider
+			$amtSlider = '';
+			$intSlider = '';
+			$dwnpaySlider = '';
+			$termSlider = '';
+			$readonlyHTML='';
+			$minmax = '';
+			$minmax_int = 'data-v-min="0.000" data-v-max="100.000"';
+			$minmax_term = '';
+			if($enable_slideroverride=="yes"|| $enable_slideroverride=="enable"){
+				$amtSlider = '<div class="sliders" id="amount_slider_'.$calc_inc.'"></div>';
+				$intSlider = '<div class="sliders" id="interest_slider_'.$calc_inc.'"></div>';
+				$dwnpaySlider = '<div class="sliders" id="downpay_slider_'.$calc_inc.'"></div>';
+				$termSlider = '<div class="sliders" id="term_slider_'.$calc_inc.'"></div>';
+				$minmax = 'data-v-min="' . $sliderminamount . '" data-v-max="' . $slidermaxamount . '"';
+				$minmax_int = 'data-v-min="' . $slidermininterest . '" data-v-max="' . $slidermaxinterest . '"';
+				$minmax_term = 'data-v-min="' . $sliderminterm . '" data-v-max="' . $slidermaxterm . '"';
 
+				if($inputreadonly=="yes"|| $inputreadonly=="enable") $readonlyHTML = "readonly='readonly'";			
+			}
+			
 			$output .= <<<EOT
 			<div class="mui-form-group shmac-amount">
 				<a href="#" class="shmac-tip" title=" " data-title="$amountinfo">
@@ -478,9 +517,9 @@ EOT;
                 	</span>
             	</a>
 				<div class="shmac-symbol $symbol_side">$currencysymbol</div>
-          		<input type="text" class="mort-amount mui-form-control $input_no_pad" value="$defaultpurchase" 
-					$money_format /> 
+          		<input type="text" class="mort-amount mui-form-control $input_no_pad amountinput_$calc_inc" value="$defaultpurchase" $money_format  $minmax $readonlyHTML /> 
 				<label class="mui-form-floating-label">$amountlabel</label>
+				$amtSlider
 				<div class="err-msg"></div>
 			</div>
 
@@ -490,9 +529,10 @@ EOT;
                         <img src="$info_src" class="shmac-info" />
                     </span>
                 </a>
-				<input type="text" class="interest mui-form-control" value="$defaultinterest" 
-					data-v-min="0.00" data-v-max="100.000" data-a-pad="false" />
+				<input type="text" class="interest mui-form-control interestinput_$calc_inc" value="$defaultinterest" 
+					$minmax_int data-a-pad="false" $readonlyHTML  />
 				<label class="mui-form-floating-label">$interestlabel</label>
+				$intSlider
 				<div class="err-msg"></div>
 			</div>
 
@@ -503,9 +543,10 @@ EOT;
                     </span>
                 </a>
 				$downpay_symbol
-				<input type="text" class="downpay $symbol_class mui-form-control $input_no_pad" value="$defaultdown"
-					$downpay_format />
+				<input type="text" class="downpay $symbol_class mui-form-control $input_no_pad downpayinput_$calc_inc" value="$defaultdown"
+					$downpay_format $readonlyHTML />
 				<label class="mui-form-floating-label">$downpaylabel</label>
+				$dwnpaySlider
 				<div class="err-msg"></div>
 			</div>
 
@@ -524,22 +565,241 @@ EOT;
                         <img src="$info_src" class="shmac-info" />
                     </span>
                 </a>
-                <input type="text" class="term mui-form-control" value="$defaultterm"
-                    data-v-min="0" data-v-max="600" data-a-pad="false" />
+                <input type="text" class="term mui-form-control terminput_$calc_inc" value="$defaultterm"
+                    $minmax_term data-a-pad="false" $readonlyHTML />
                 <label class="mui-form-floating-label">$termlabel</label>
+                $termSlider
 				<div class="err-msg"></div>
             </div>
 			<div class="progresso"> &nbsp;</div>
         	<div class="buttonRow">
          		<button class="mui-btn submit-shmac" data-mui-color="{$this->shmac_settings['page_color']}">$btn_calc</button>
-        	 	<button class="mui-btn shmac-reset" type="reset">$btn_reset</button>
+        	 	<button class="mui-btn shmac-reset_{$calc_inc}" type="reset">$btn_reset</button>
 			</div>
 				
     </form>
   </div>
 </div><!-- End shmac-holder -->
 EOT;
-
+			if($enable_slideroverride=="yes" || $enable_slideroverride=="enable"){
+				ob_start();
+				if($primarycolor!='') $pColor = $primarycolor;
+				else if ($page_color != '') $pColor = $page_color;
+				?>
+				<style>
+					.shmac-sc.form-<?php echo $calc_inc ?> .noUi-handle:hover { box-shadow: 0 0 5px <?php echo $pColor ?>; }
+					.shmac-sc.form-<?php echo $calc_inc ?> .sliders { background-color: <?php echo $pColor ?>; }
+				</style>
+				<script type='text/javascript'>
+				jQuery(document).ready(function(){
+					//Amount Slider- Input Script
+					var amtStart= '<?php echo $defaultpurchase; ?>';
+					amtStart = Number(amtStart.replace(/,/g , ''));
+					var amtMin= '<?php echo $sliderminamount; ?>';
+					amtMin = Number(amtMin.replace(/,/g , ''));
+					var amtStep = Number('<?php echo $sliderstepsamount; ?>');
+					//~ amtStep = Number(amtStep.replace(/,/g , ''));
+					var amtMax = '<?php echo $slidermaxamount; ?>';
+					amtMax = Number(amtMax.replace(/,/g , ''));
+					var amount_slider_<?php echo $calc_inc ?> = document.getElementById("amount_slider_<?php echo $calc_inc ?>");
+					var amount_slider_value = jQuery(".amountinput_<?php echo $calc_inc ?>");
+					noUiSlider.create(amount_slider_<?php echo $calc_inc ?>, {
+						start: amtStart,
+						step: amtStep,
+						range: {
+							'min': amtMin,
+							'max': amtMax
+						},
+						format: wNumb({
+							decimals: 2,							
+							<?php   if($currencyformat==2){ ?>
+								mark: ',',
+								thousand: '.',
+							<?php } else if($currencyformat==3){ ?>
+								mark: ',',
+								thousand: ' ',
+							<?php }else{ ?>
+								mark: '.',
+								thousand: ',',
+							<?php } ?>
+						})
+					});
+					amount_slider_<?php echo $calc_inc ?>.noUiSlider.on('update', function( values, handle ){
+						if ( handle == 0 ) {
+							amount_slider_value.val(values[handle]);
+						}
+					});
+					amount_slider_value.on('change', function(){
+						var amtVal = Number(this.value.replace(/,/g , ''));						
+						amount_slider_<?php echo $calc_inc ?>.noUiSlider.set(amtVal);
+					});
+					amount_slider_value.on('keyup', function(e){
+						var amtVal = Number(this.value.replace(/,/g , ''));						
+						switch ( e.which ) {
+							case 13:
+								amount_slider_<?php echo $calc_inc ?>.noUiSlider.set(amtVal);
+								return false;							
+							break;
+							case 38:
+								amount_slider_<?php echo $calc_inc ?>.noUiSlider.set(amtVal);
+							break;
+							case 40:
+								amount_slider_<?php echo $calc_inc ?>.noUiSlider.set(amtVal);
+							break;
+						}
+						
+					});
+					//Interest Slider- Input Script
+					var intMin= parseInt('<?php echo $slidermininterest; ?>');
+					var intStep = parseInt('<?php echo $sliderstepsinterest; ?>');
+					var intMax = parseInt('<?php echo $slidermaxinterest; ?>');
+					var intStart = parseFloat('<?php echo $defaultinterest; ?>');
+					var interest_slider_<?php echo $calc_inc ?> = document.getElementById("interest_slider_<?php echo $calc_inc ?>");
+					var interest_slider_value = jQuery(".interestinput_<?php echo $calc_inc ?>");
+					noUiSlider.create(interest_slider_<?php echo $calc_inc ?>, {
+						start: intStart,
+						step: intStep,
+						range: {
+							'min': intMin,
+							'max': intMax
+						}
+					});				
+					interest_slider_<?php echo $calc_inc ?>.noUiSlider.on('update', function( values, handle ){
+						if ( handle == 0 ) {
+							interest_slider_value.val(values[handle]);
+						}
+					});					
+					//~ interest_slider.on('change', function(){
+						//~ var intVal = Number(this.value.replace(/,/g , ''));						
+						//~ interest_slider.noUiSlider.set(intVal);
+					//~ });
+					interest_slider_value.on('keyup', function(e){
+						var intVal = Number(this.value.replace(/,/g , ''));						
+						switch ( e.which ) {
+							case 13:
+								interest_slider_<?php echo $calc_inc ?>.noUiSlider.set(intVal);
+								return false;							
+							break;
+							case 38:
+								interest_slider_<?php echo $calc_inc ?>.noUiSlider.set(intVal);
+							break;
+							case 40:
+								interest_slider_<?php echo $calc_inc ?>.noUiSlider.set(intVal);
+							break;
+						}						
+					});
+					//DownPayment Slider- Input Script
+					var dwnpayMin= parseInt('<?php echo $slidermindown; ?>');
+					var dwnpayStep = parseInt('<?php echo $sliderstepsdown; ?>');
+					var dwnpayMax = parseInt('<?php echo $slidermaxdown; ?>');
+					var dwnpayStart = parseFloat('<?php echo $defaultdown; ?>');
+					var downpay_slider_<?php echo $calc_inc ?> = document.getElementById("downpay_slider_<?php echo $calc_inc ?>");
+					var downpay_slider_value = jQuery(".downpayinput_<?php echo $calc_inc ?>");
+					noUiSlider.create(downpay_slider_<?php echo $calc_inc ?>, {
+						start: dwnpayStart,
+						step: dwnpayStep,
+						range: {
+							'min': dwnpayMin,
+							'max': dwnpayMax
+						},
+						format: wNumb({
+							decimals: 2,							
+							<?php   if($downpaytype=="amount"){ ?>
+								<?php   if($currencyformat==2){ ?>
+									mark: ',',
+									thousand: '.',
+								<?php } else if($currencyformat==3){ ?>
+									mark: ',',
+									thousand: ' ',
+								<?php }else{ ?>
+									mark: '.',
+									thousand: ',',
+								<?php } ?>
+							<?php } ?>
+						})
+						
+					});				
+					downpay_slider_<?php echo $calc_inc ?>.noUiSlider.on('update', function( values, handle ){
+						if(handle==0){
+							downpay_slider_value.val(values[handle]);
+						}
+					});
+					
+					downpay_slider_value.on('change', function(){
+						var downpayVal = Number(this.value.replace(/,/g , ''));						
+						downpay_slider_<?php echo $calc_inc ?>.noUiSlider.set(downpayVal);
+					});
+					downpay_slider_value.on('keyup', function(e){
+						var downpayVal = Number(this.value.replace(/,/g , ''));						
+						switch ( e.which ) {
+							case 13:
+								downpay_slider_<?php echo $calc_inc ?>.noUiSlider.set(downpayVal);
+								return false;							
+							break;
+							case 38:
+								downpay_slider_<?php echo $calc_inc ?>.noUiSlider.set(downpayVal);
+							break;
+							case 40:
+								downpay_slider_<?php echo $calc_inc ?>.noUiSlider.set(downpayVal);
+							break;
+						}
+						
+					});
+					//Term Slider- Input Script
+					var termMin= parseInt('<?php echo $sliderminterm; ?>');
+					var termStep = parseInt('<?php echo $sliderstepsterm; ?>');
+					var termMax = parseInt('<?php echo $slidermaxterm; ?>');
+					var termStart = parseInt('<?php echo $defaultterm; ?>');
+					var term_slider_<?php echo $calc_inc ?> = document.getElementById("term_slider_<?php echo $calc_inc ?>");
+					var term_slider_value = jQuery(".terminput_<?php echo $calc_inc ?>");					
+					noUiSlider.create(term_slider_<?php echo $calc_inc ?>, {
+						start: termStart,
+						step: termStep,
+						range: {
+							'min': termMin,
+							'max': termMax
+						},
+						format: wNumb({decimals: 0})
+					});				
+					term_slider_<?php echo $calc_inc ?>.noUiSlider.on('update', function( values, handle ){
+						var value = values[handle];
+						if(handle==0){
+							term_slider_value.val(value);
+						}
+					});				
+					term_slider_value.on('change', function(){
+						var termVal = Number(this.value.replace(/,/g , ''));						
+						term_slider_<?php echo $calc_inc ?>.noUiSlider.set(termVal);
+					});
+					term_slider_value.on('keyup', function(e){
+						var termVal = Number(this.value.replace(/,/g , ''));						
+						switch ( e.which ) {
+							case 13:
+								term_slider_<?php echo $calc_inc ?>.noUiSlider.set(termVal);
+								return false;							
+							break;
+							case 38:
+								term_slider_<?php echo $calc_inc ?>.noUiSlider.set(termVal);
+							break;
+							case 40:
+								term_slider_<?php echo $calc_inc ?>.noUiSlider.set(termVal);
+							break;
+						}						
+					});
+					jQuery(".shmac-reset_<?php echo $calc_inc ?>").on("click",function(){
+						amount_slider_<?php echo $calc_inc ?>.noUiSlider.reset();
+						term_slider_<?php echo $calc_inc ?>.noUiSlider.reset();
+						downpay_slider_<?php echo $calc_inc ?>.noUiSlider.reset();
+						interest_slider_<?php echo $calc_inc ?>.noUiSlider.reset();						
+					});
+					
+				});
+				</script>
+				<?php
+				
+				$sliderScript = ob_get_clean();
+				$output = $output. $sliderScript;
+			}
             return $output;
         }
 
