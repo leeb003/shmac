@@ -101,7 +101,8 @@ class SHMAC_API_Tabs {
 			'disclaimer' => __('Calculations by this calculator are estimates only. There is no warranty for the accuracy of the results or the relationship to your financial situation.', 'shmac'),
 			'currency' => '$',
 			'currency_format' => '1',
-			'currency_side' => 'left'			
+			'currency_side' => 'left',			
+			'minify_css_js' => 'no'			
 			//~ 'amount_slider_start'=>'12000',			
 			//~ 'interest_slider_start'=>'5',			
 			//~ 'dwnpay_slider_start'=>'10',			
@@ -248,6 +249,9 @@ class SHMAC_API_Tabs {
 		add_settings_field( 'license_key', __('Envato Purchase Code', 'shmac'), array( &$this, 'field_license_key' ),
                 $this->first_tab_key, 'section_general' );
 		add_settings_field( 'custom_css', __('Custom CSS', 'shmac'), array( &$this, 'field_custom_css' ),
+				$this->first_tab_key, 'section_general' );
+				
+		add_settings_field( 'minify_css_js', __('Minify CSS and JS', 'shmac'), array( &$this, 'field_minify_css_js' ),
 				$this->first_tab_key, 'section_general' );
 		
 	}
@@ -731,6 +735,7 @@ class SHMAC_API_Tabs {
         <p><?php echo __("Choose whether to use input or not", "shmac"); ?></p>
         <?php
     }
+	
 	//Amount
 	function field_amount_min_value() {
 		?>
@@ -832,6 +837,18 @@ class SHMAC_API_Tabs {
 		<p><?php echo __("Set a slider start value of term for the calculator", "shmac"); ?></p>
 		<?php
 	}
+	//Minified CSS and JS
+	function field_minify_css_js() {
+		?>
+		<select class="shmac-minify-css-js" name="<?php echo $this->first_tab_key; ?>[minify_css_js]">
+            <option value="yes" <?php selected( $this->first_tab['minify_css_js'], "yes");?>
+                    ><?php echo __("Yes", "shmac");?></option>
+            <option value="no" <?php selected( $this->first_tab['minify_css_js'], "no");?>
+                    ><?php echo __("No", "shmac");?></option>
+        </select>
+        <p><?php echo __("Choose whether to use minified css and js files", "shmac"); ?></p>
+        <?php
+    }
 	/*
 	 * Called during admin_menu, adds an options
 	 * page under Settings called My Settings, rendered

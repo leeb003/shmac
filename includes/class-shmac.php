@@ -39,6 +39,7 @@
             add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_styles' ), 700 );
             add_action( 'wp_enqueue_scripts', array( $this, 'register_scripts' ), 700 );
             add_action( 'shmac_enqueue_scripts', array( $this, 'enqueue_scripts' ), 700 );
+            add_action( 'shmac_enqueue_minified_scripts', array( $this, 'enqueue_minified_scripts' ), 700 );
             // Dynamic CSS
             add_action('wp_ajax_shmac_dynamic_css', array($this, 'shmac_dynamic_css'));
             add_action('wp_ajax_nopriv_shmac_dynamic_css', array($this, 'shmac_dynamic_css'));
@@ -60,22 +61,22 @@
 			// main css
             wp_register_style( 'shmac-frontend', SHMAC_ROOT_URL . '/assets/css/frontend.css',
             array(), SHMAC_PLUGIN_VERSION );
-            wp_enqueue_style( 'shmac-frontend' );
-
+            
 			// Scrollbar
 			wp_register_style( 'shmac-custom-scrollbar', SHMAC_ROOT_URL .  '/assets/css/jquery.mCustomScrollbar.min.css',
-			array('shmac-frontend'), '3.0.9');
-			wp_enqueue_style( 'shmac-custom-scrollbar' );
+			array('shmac-frontend'), '3.0.9');			
 
 			// mprogress
 			wp_register_style( 'mprogress', SHMAC_ROOT_URL .  '/assets/css/mprogress.min.css',
             array('shmac-frontend'), '1.0');
-            wp_enqueue_style( 'mprogress' );
+           
             //nouislider
 			wp_register_style( 'nouislider', SHMAC_ROOT_URL .  '/assets/css/nouislider.min.css',
             array('shmac-frontend'), '920');
-            wp_enqueue_style( 'nouislider' );
-
+            
+            //Minified Css
+			wp_register_style( 'mCustomScroll-mprogress-nouislider', SHMAC_ROOT_URL .  '/assets/css/mCustomScroll.mprogress.nouislider.min.css', array('shmac-frontend'), '920');
+           
 			// ie9
 			/*
 			wp_register_style('shmac-ie9', SHMAC_ROOT_URL . '/assets/css/ie9.css');
@@ -116,10 +117,13 @@
 			wp_register_script( 'nouislider', SHMAC_ROOT_URL . '/assets/js/nouislider.min.js', array('jquery'), '920', true);
 			//wNumb
 			wp_register_script( 'wNumb', SHMAC_ROOT_URL . '/assets/js/wNumb.js', array('jquery'), '110', true);
+
+			//Minified JS
+			wp_register_script( 'autoNumeric-mCustomScroll-mprogress-nouislider-wNumb-mui', SHMAC_ROOT_URL . '/assets/js/autoNumeric.mCustomScroll.mprogress.nouislider.wNumb.mui.min.js', array('jquery'), '1.0', true);
+
 			// Plugin js    
-            wp_register_script( 'shmac-frontend-ajax',
-                SHMAC_ROOT_URL . '/assets/js/frontend-ajax.js',
-                array('jquery'), SHMAC_PLUGIN_VERSION, true );
+            wp_register_script( 'shmac-frontend-ajax', SHMAC_ROOT_URL . '/assets/js/frontend-ajax.js', array('jquery'), SHMAC_PLUGIN_VERSION, true );
+
 			wp_localize_script(  'shmac-frontend-ajax', 'SHMAC_Ajax', array(
                 'ajaxurl' => admin_url('admin-ajax.php'),
                 'nextNonce' => wp_create_nonce( 'myajax-next-nonce' ),
@@ -128,6 +132,14 @@
 		}
         public function enqueue_scripts () {
 			$list = 'enqueued';
+			$enqueueCssList = array("shmac-frontend","mprogress","shmac-custom-scrollbar","nouislider");
+			foreach($enqueueCssList as $css){
+				if (wp_script_is( $css, $list )) {
+					return;
+				} else {
+					wp_enqueue_style( $css );
+				}
+			}
 			$enqueueJsList = array("autoNumeric","mui","shmac-custom-scrollbar","mprogress","shmac-frontend-ajax","nouislider","wNumb");
 			foreach($enqueueJsList as $js){
 				if (wp_script_is( $js, $list )) {
@@ -135,8 +147,31 @@
 				} else {
 					wp_enqueue_script( $js );
 				}
-			}			
-        } // End enqueue_scripts 
+			}
+			
+		} // End enqueue_scripts 
+
+		
+        public function enqueue_minified_scripts () {
+			$list = 'enqueued';
+			$enqueueCssList = array("shmac-frontend","mCustomScroll-mprogress-nouislider");
+			foreach($enqueueCssList as $css){
+				if (wp_script_is( $css, $list )) {
+					return;
+				} else {
+					wp_enqueue_style( $css );
+				}
+			}
+			$enqueueJsList = array("autoNumeric-mCustomScroll-mprogress-nouislider-wNumb-mui","shmac-frontend-ajax");
+			foreach($enqueueJsList as $js){
+				if (wp_script_is( $js, $list )) {
+					return;
+				} else {
+					wp_enqueue_script( $js );
+				}
+			}
+			
+        } // End enqueue_minified_scripts 
 
 		
 		/**
@@ -148,7 +183,10 @@
         public function shmac_calc($atts, $content=NULL) {
 			global $calc_inc; // tracking multiple calculators
 			$calc_inc++;
-			do_action('shmac_enqueue_scripts');
+			if($this->shmac_email['minify_css_js']=="yes")
+				do_action('shmac_enqueue_minified_scripts');
+			else
+				do_action('shmac_enqueue_scripts');
             extract(shortcode_atts(array( 
 				'extraclass'       => '',
 				// Base Settings Overrides
@@ -301,7 +339,7 @@ EOT;
 
 			// Form display items
 			if ($allowemail == '') {
-				$allowemail = $this->shmac_email['allow_email'];
+				$allowemail = $this->shmac_email['allow_email'];				
 			}
 			if ($currencyside == '') {
 				$currencyside = $this->shmac_settings['currency_side'];
@@ -649,6 +687,12 @@ EOT;
 						}
 						
 					});
+					//~ amount_slider_<?php echo $calc_inc ?>.noUiSlider.on('change', function() {
+						//~ jQuery('.amountinput_<?php echo $calc_inc; ?>').autoNumeric('update');
+					//~ });
+					//~ amount_slider_<?php echo $calc_inc ?>.noUiSlider.on('end', function() {
+                        //~ jQuery('.amountinput_<?php echo $calc_inc; ?>').autoNumeric('update');
+                    //~ });
 					//Interest Slider- Input Script
 					var intMin= parseInt('<?php echo $slidermininterest; ?>');
 					var intStep = parseInt('<?php echo $sliderstepsinterest; ?>');
@@ -792,6 +836,7 @@ EOT;
 						downpay_slider_<?php echo $calc_inc ?>.noUiSlider.reset();
 						interest_slider_<?php echo $calc_inc ?>.noUiSlider.reset();						
 					});
+					
 					
 				});
 				</script>

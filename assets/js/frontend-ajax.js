@@ -267,4 +267,14 @@ jQuery(function ($) {  // use $ for jQuery
     	return result;
 	}
 
+	/*Adding Class for Non-empty Inputs */
+	jQuery("input.mui-form-control").blur(function(){
+		if(jQuery.trim(jQuery(this).val())!=''){
+			if(!jQuery(this).next(".mui-form-floating-label").hasClass('non-empty-ipt'))
+				jQuery(this).next(".mui-form-floating-label").addClass('non-empty-ipt');
+		}else{
+			if(jQuery(this).next(".mui-form-floating-label").hasClass('non-empty-ipt'))
+				jQuery(this).next(".mui-form-floating-label").removeClass('non-empty-ipt');
+		}
+	});
 });
