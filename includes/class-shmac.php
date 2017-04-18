@@ -148,6 +148,12 @@
 					wp_enqueue_script( $js );
 				}
 			}
+			if (wp_script_is( "autoNumeric-mCustomScroll-mprogress-nouislider-wNumb-mui", "registered" )) {
+				wp_deregister_script( "autoNumeric-mCustomScroll-mprogress-nouislider-wNumb-mui" ); 
+			}
+			if (wp_script_is( "mCustomScroll-mprogress-nouislider", "registered" )) {
+				wp_deregister_style( "mCustomScroll-mprogress-nouislider" ); 
+			}
 			
 		} // End enqueue_scripts 
 
@@ -170,6 +176,18 @@
 					wp_enqueue_script( $js );
 				}
 			}
+			$deenqueueJsList = array("autoNumeric","mui","shmac-custom-scrollbar","mprogress","nouislider","wNumb");
+			foreach($deenqueueJsList as $js){
+				if (wp_script_is( $js, "registered" )) {
+					wp_deregister_script( $js ); 
+				}       
+			}
+			$deenqueueCssList = array("mprogress","shmac-custom-scrollbar","nouislider");
+			foreach($deenqueueCssList as $css){
+				if (wp_script_is( $css, "registered" )) {
+					wp_deregister_style( $css ); 
+				}
+			}			
 			
         } // End enqueue_minified_scripts 
 
