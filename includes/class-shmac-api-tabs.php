@@ -66,6 +66,7 @@ class SHMAC_API_Tabs {
 			'email_placeholder' => __('Your Email', 'shmac'),
 			'enable_slider'=>'no',
 			'enable_input_readonly'=>'no',
+			'slider_theme'=>'broad',
 			'purchase_price_label' => __('Mortgage Amount', 'shmac'),
 			'purchase_price_info' => __('The total purchase price of the home you wish to buy.', 'shmac'),
 			'purchase_price' => '224,000.00',
@@ -102,7 +103,7 @@ class SHMAC_API_Tabs {
 			'currency' => '$',
 			'currency_format' => '1',
 			'currency_side' => 'left',			
-			'minify_css_js' => 'no'			
+			'minify_css_js' => 'no'	
 			//~ 'amount_slider_start'=>'12000',			
 			//~ 'interest_slider_start'=>'5',			
 			//~ 'dwnpay_slider_start'=>'10',			
@@ -149,6 +150,8 @@ class SHMAC_API_Tabs {
 		add_settings_field( 'enable_slider', __('Enable Slider', 'shmac'), array( &$this, 'field_enable_slider' ),			$this->first_tab_key, 'section_general' );
 		
 		add_settings_field( 'enable_input_readonly', __('Enable Input Readonly', 'shmac'), array( &$this, 'field_enable_input_readonly' ),	$this->first_tab_key, 'section_general' );
+
+		add_settings_field( 'slider_theme', __('Choose Slider Theme', 'shmac'), array( &$this, 'field_slider_theme' ),	$this->first_tab_key, 'section_general' );
 		
 		//Amount 
 		add_settings_field( 'purchase_price_label', __('Amount Label', 'shmac'), array( &$this, 'field_purchase_price_label'),
@@ -405,6 +408,7 @@ class SHMAC_API_Tabs {
         <p><?php echo __("Choose whether to use percent or amount input for the down payment", "shmac"); ?></p>
         <?php
     }
+	
 
 
 	// Down Payment
@@ -593,7 +597,7 @@ class SHMAC_API_Tabs {
                     ><?php echo __("Switched Format (e.g. 100.000,00)", "shmac");?></option>
 			<option value="3" <?php selected( $this->first_tab['currency_format'], "3");?>
                     ><?php echo __("Spaces and Comma Format (e.g. 100 000,00)", "shmac");?></option>
-        </select>
+	    </select>
         <p><?php echo __("Choose the currency format you would like to use.", "shmac"); ?></p>
         <?php
     }
@@ -733,6 +737,18 @@ class SHMAC_API_Tabs {
                     ><?php echo __("No", "shmac");?></option>
         </select>
         <p><?php echo __("Choose whether to use input or not", "shmac"); ?></p>
+        <?php
+    }
+    
+    function field_slider_theme() {
+		?>
+		 <select class="shmac-slider-theme" name="<?php echo $this->first_tab_key; ?>[slider_theme]">
+            <option value="broad" <?php selected( $this->first_tab['slider_theme'], "broad");?>
+                    ><?php echo __("Broad", "shmac");?></option>
+            <option value="narrow" <?php selected( $this->first_tab['slider_theme'], "narrow");?>
+                    ><?php echo __("Narrow", "shmac");?></option>
+        </select>
+        <p><?php echo __("Choose slider theme", "shmac"); ?></p>
         <?php
     }
 	

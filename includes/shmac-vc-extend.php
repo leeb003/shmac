@@ -81,6 +81,21 @@ class shmacVC {
                         "value" => array("enable"),
                     ),
                 ),
+                array(
+                    "type" => "dropdown",
+                    "heading" => __("Choose Slider Theme", "shmac"),
+					"description" => __('Choose from the two themes of slider.', 'shmac'),
+                    "param_name" => "slider_theme",
+                    "value" => array(
+						__('Settings Default', 'shmac') => '',
+						__("Broad", "shmac") => "broad",
+                        __("Narrow", "shmac") => "narrow",
+                    ),
+                    "dependency" => array (
+                        "element" => "slideroverrides",
+                        "value" => array("enable"),
+                    ),
+                ),
 				array(
                     "type" => "colorpicker",
                     "heading" => __("Primary Color", "shmac"),
@@ -530,7 +545,7 @@ class shmacVC {
                         __("Standard Format (e.g. 100,000.00)", "shmac") => "1",
 						__("Switched Format (e.g. 100.000,00)", "shmac") => "2",
 						__("Spaces and Comma Format (e.g. 100 000,00)", "shmac") => "3",
-                    ),
+					),
                     "dependency" => array (
                         "element" => "allowoverrides",
                         "value" => array("enable"),

@@ -201,7 +201,7 @@
         public function shmac_calc($atts, $content=NULL) {
 			global $calc_inc; // tracking multiple calculators
 			$calc_inc++;
-			if($this->shmac_email['minify_css_js']=="yes")
+			if($this->shmac_settings['minify_css_js']=="yes")
 				do_action('shmac_enqueue_minified_scripts');
 			else
 				do_action('shmac_enqueue_scripts');
@@ -252,6 +252,7 @@
 				//Slider Settings 
 				'enable_slideroverride'        => '',
 				'inputreadonly'  => '',
+				'slider_theme'  => '',
 				'sliderminamount'       => '',
 				'slidermaxamount'       => '',
 				'sliderstepsamount'     => '',
@@ -402,6 +403,7 @@ EOT;
             if ($terminfo == '') {
                 $terminfo = $this->shmac_settings['loan_term_info'];
             }
+           
             //Slider Settings Values
 			$page_color =$this->shmac_settings['page_color'];
 			if($enable_slideroverride=='') $enable_slideroverride              = $this->shmac_settings['enable_slider'];
@@ -423,8 +425,25 @@ EOT;
 			if($slidermaxterm=='')$slidermaxterm             = $this->shmac_settings['term_max_value'];
 			if($defaultterm=='')$defaultterm                 = $this->shmac_settings['loan_term'];
 			if($sliderstepsterm=='')$sliderstepsterm         = $this->shmac_settings['term_slider_step'];          
-
-
+			//SLider Theme
+			if ($slider_theme == '') {
+                $slider_theme = $this->shmac_settings['slider_theme'];
+            }
+            if($slider_theme=='narrow'){
+				 $form_style .= <<<EOT
+<style>
+.form-$calc_inc .sliders {margin-top: 15px;}
+.form-$calc_inc .noUi-target{box-shadow:none;}
+.form-$calc_inc .noUi-handle::after, .form-$calc_inc .noUi-handle::before{background:none;}
+.form-$calc_inc .noUi-horizontal .noUi-handle {
+    height: 24px;
+    top: -9px;
+    width: 24px;
+}
+.form-$calc_inc .noUi-horizontal {height: 6px;}
+</style>
+EOT;
+			}
 			// Individual Form Overrides set initial empty
 			$o_enableinsurance = $o_insuranceamountpercent = $o_monthlyinsurance = $o_enablepmi = $o_monthlypmi = $o_enabletaxes 
 			= $o_taxesperthou = $o_disclaimer = $o_currencysymbol = $o_currencyformat = $o_currencyside  = $o_downpaytype
@@ -638,7 +657,7 @@ EOT;
 </div><!-- End shmac-holder -->
 EOT;
 			if($enable_slideroverride=="yes" || $enable_slideroverride=="enable"){
-				ob_start();
+				ob_start();				
 				if($primarycolor!='') $pColor = $primarycolor;
 				else if ($page_color != '') $pColor = $page_color;
 				?>
@@ -654,7 +673,6 @@ EOT;
 					var amtMin= '<?php echo $sliderminamount; ?>';
 					amtMin = Number(amtMin.replace(/,/g , ''));
 					var amtStep = Number('<?php echo $sliderstepsamount; ?>');
-					//~ amtStep = Number(amtStep.replace(/,/g , ''));
 					var amtMax = '<?php echo $slidermaxamount; ?>';
 					amtMax = Number(amtMax.replace(/,/g , ''));
 					var amount_slider_<?php echo $calc_inc ?> = document.getElementById("amount_slider_<?php echo $calc_inc ?>");
@@ -666,7 +684,7 @@ EOT;
 							'min': amtMin,
 							'max': amtMax
 						},
-						format: wNumb({
+						format:wNumb({
 							decimals: 2,							
 							<?php   if($currencyformat==2){ ?>
 								mark: ',',
@@ -674,7 +692,7 @@ EOT;
 							<?php } else if($currencyformat==3){ ?>
 								mark: ',',
 								thousand: ' ',
-							<?php }else{ ?>
+							<?php }else if($currencyformat==1){ ?>
 								mark: '.',
 								thousand: ',',
 							<?php } ?>
