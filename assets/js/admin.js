@@ -20,6 +20,7 @@ jQuery(function ($) {  // use $ for jQuery
 		checkInsurance();
 		checkPmi();
 		checkTaxes();
+		checkSlider();
 	});
 	$(document).on('change', '.shmac-enable-insurance', function() {
 		checkInsurance();
@@ -29,6 +30,9 @@ jQuery(function ($) {  // use $ for jQuery
 	});
 	$(document).on('change', '.shmac-enable-taxes', function() {
 		checkTaxes();
+	});
+	$(document).on('change', '.shmac-enable-slider', function() {
+		checkSlider();
 	});
 
 	function checkInsurance() {
@@ -60,6 +64,42 @@ jQuery(function ($) {  // use $ for jQuery
             $('.shmac-tax-rate').closest('tr').hide();
         }
     }
+
+	function checkSlider() {
+		var slider = $('.shmac-enable-slider :selected').val();
+		if (slider == 'yes') {
+			$('.shmac-enable-input-readonly').closest('tr').show();
+			$('.shmac-slider-theme').closest('tr').show();
+			$('.shmac-purchase-min-price').closest('tr').show();
+			$('.shmac-purchase-max-price').closest('tr').show();
+			$('.shmac-purchase-slider-step').closest('tr').show();
+			$('.shmac-interest-min-rate').closest('tr').show();
+			$('.shmac-interest-max-rate').closest('tr').show();
+			$('.shmac-interest-slider-step').closest('tr').show();
+			$('.shmac-dwnpay-min-rate').closest('tr').show();
+			$('.shmac-dwnpay-max-rate').closest('tr').show();
+			$('.shmac-dwnpay-slider-step').closest('tr').show();
+			$('.shmac-term-min-value').closest('tr').show();
+			$('.shmac-term-max-value').closest('tr').show();
+			$('.shmac-term-slider-step').closest('tr').show();
+		} else {
+			$('.shmac-enable-input-readonly').closest('tr').hide();
+            $('.shmac-slider-theme').closest('tr').hide();
+            $('.shmac-purchase-min-price').closest('tr').hide();
+            $('.shmac-purchase-max-price').closest('tr').hide();
+            $('.shmac-purchase-slider-step').closest('tr').hide();
+            $('.shmac-interest-min-rate').closest('tr').hide();
+            $('.shmac-interest-max-rate').closest('tr').hide();
+            $('.shmac-interest-slider-step').closest('tr').hide();
+            $('.shmac-dwnpay-min-rate').closest('tr').hide();
+            $('.shmac-dwnpay-max-rate').closest('tr').hide();
+            $('.shmac-dwnpay-slider-step').closest('tr').hide();
+            $('.shmac-term-min-value').closest('tr').hide();
+            $('.shmac-term-max-value').closest('tr').hide();
+            $('.shmac-term-slider-step').closest('tr').hide();
+		}
+	}
+			
 
 	// Show / Hide the Entry Image Upload fields on Entry Image Change
 	$(document).on('change', '.wcp-contact-image', function() {
