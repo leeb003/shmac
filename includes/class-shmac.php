@@ -730,9 +730,9 @@ EOT;
                         //~ jQuery('.amountinput_<?php echo $calc_inc; ?>').autoNumeric('update');
                     //~ });
 					//Interest Slider- Input Script
-					var intMin= parseInt('<?php echo $slidermininterest; ?>');
-					var intStep = parseInt('<?php echo $sliderstepsinterest; ?>');
-					var intMax = parseInt('<?php echo $slidermaxinterest; ?>');
+					var intMin= parseFloat('<?php echo $slidermininterest; ?>');
+					var intStep = parseFloat('<?php echo $sliderstepsinterest; ?>');
+					var intMax = parseFloat('<?php echo $slidermaxinterest; ?>');
 					var intStart = parseFloat('<?php echo $defaultinterest; ?>');
 					var interest_slider_<?php echo $calc_inc ?> = document.getElementById("interest_slider_<?php echo $calc_inc ?>");
 					var interest_slider_value = jQuery(".interestinput_<?php echo $calc_inc ?>");
@@ -769,9 +769,9 @@ EOT;
 						}						
 					});
 					//DownPayment Slider- Input Script
-					var dwnpayMin= parseInt('<?php echo $slidermindown; ?>');
-					var dwnpayStep = parseInt('<?php echo $sliderstepsdown; ?>');
-					var dwnpayMax = parseInt('<?php echo $slidermaxdown; ?>');
+					var dwnpayMin= parseFloat('<?php echo $slidermindown; ?>');
+					var dwnpayStep = parseFloat('<?php echo $sliderstepsdown; ?>');
+					var dwnpayMax = parseFloat('<?php echo $slidermaxdown; ?>');
 					var dwnpayStart = parseFloat('<?php echo $defaultdown; ?>');
 					var downpay_slider_<?php echo $calc_inc ?> = document.getElementById("downpay_slider_<?php echo $calc_inc ?>");
 					var downpay_slider_value = jQuery(".downpayinput_<?php echo $calc_inc ?>");
@@ -826,10 +826,10 @@ EOT;
 						
 					});
 					//Term Slider- Input Script
-					var termMin= parseInt('<?php echo $sliderminterm; ?>');
-					var termStep = parseInt('<?php echo $sliderstepsterm; ?>');
-					var termMax = parseInt('<?php echo $slidermaxterm; ?>');
-					var termStart = parseInt('<?php echo $defaultterm; ?>');
+					var termMin= parseFloat('<?php echo $sliderminterm; ?>');
+					var termStep = parseFloat('<?php echo $sliderstepsterm; ?>');
+					var termMax = parseFloat('<?php echo $slidermaxterm; ?>');
+					var termStart = parseFloat('<?php echo $defaultterm; ?>');
 					var term_slider_<?php echo $calc_inc ?> = document.getElementById("term_slider_<?php echo $calc_inc ?>");
 					var term_slider_value = jQuery(".terminput_<?php echo $calc_inc ?>");					
 					noUiSlider.create(term_slider_<?php echo $calc_inc ?>, {
