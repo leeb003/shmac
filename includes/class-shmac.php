@@ -609,7 +609,7 @@ EOT;
 			else if ($termtype=="month") {
 				$term_output =<<<EOT
 				<div class="shmac-term-months">
-                <input type="checkbox" id="term-months-$calc_inc" class="term-months term-group" />
+                <input type="checkbox" id="term-months-$calc_inc" class="term-months term-group" checked="checked" />
                 <label for="term-months-$calc_inc">$months</label>
                 </div>
 EOT;
