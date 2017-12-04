@@ -201,70 +201,72 @@
         public function shmac_calc($atts, $content=NULL) {
 			global $calc_inc; // tracking multiple calculators
 			$calc_inc++;
-			if($this->shmac_settings['minify_css_js']=="yes")
+			if($this->shmac_settings['minify_css_js']=="yes") {
 				do_action('shmac_enqueue_minified_scripts');
-			else
+			} else {
 				do_action('shmac_enqueue_scripts');
+			}
             extract(shortcode_atts(array( 
-				'extraclass'       => '',
+				'extraclass'       		=> '',
 				// Base Settings Overrides
-				'primarycolor'     => '',
-				'color'            => '',
-				'calctitle'        => '',
-				'emailtext'        => '',
-				'emaillabel'       => '',
-				'amountlabel'      => '',
-				'amountinfo'       => '',
-				'defaultpurchase'  => '',
-				'interestlabel'    => '',
-				'interestinfo'     => '',
-				'defaultinterest'  => '',
-				'downpaylabel'     => '',
-				'downpayinfo'      => '',
-				'downpaytype'      => '',
-				'defaultdown'      => '',
-				'termlabel'        => '',
-				'terminfo'         => '',
-				'defaultterm'      => '',
-				'enableinsurance'  => '',
+				'primarycolor'    		 => '',
+				'color'           		 => '',
+				'calctitle'       		 => '',
+				'emailtext'       		 => '',
+				'emaillabel'      		 => '',
+				'amountlabel'     		 => '',
+				'amountinfo'      		 => '',
+				'defaultpurchase' 		 => '',
+				'interestlabel'   		 => '',
+				'interestinfo'    		 => '',
+				'defaultinterest' 		 => '',
+				'downpaylabel'    		 => '',
+				'downpayinfo'     		 => '',
+				'downpaytype'     		 => '',
+				'defaultdown'     		 => '',
+				'termlabel'       		 => '',
+				'terminfo'       		 => '',
+				'defaultterm'     		 => '',
+				'enableinsurance' 		 => '',
 				'insuranceamountpercent' => '',
-				'monthlyinsurance' => '',
-				'enablepmi'        => '',
-				'monthlypmi'       => '',
-				'enabletaxes'      => '',
-				'taxesperthou'     => '',
-				'disclaimer'       => '',
-				'currencysymbol'   => '',
-				'currencyformat'   => '',
-				'currencyside'     => '',
+				'monthlyinsurance'		 => '',
+				'enablepmi'       		 => '',
+				'monthlypmi'     		 => '',
+				'enabletaxes'    		 => '',
+				'taxesperthou'   		 => '',
+				'disclaimer'      		 => '',
+				'currencysymbol'  		 => '',
+				'currencyformat'  		 => '',
+				'currencyside'    		 => '',
 				// Email Settings Overrides
-				'allowemail'       => '',
-				'bccemail'         => '',
-				'fromemail'        => '',
-				'emailsubject'     => '',
-				'emailcontent'     => '',
-				'pdfcolor'         => '',
-				'pdflogo'          => '',
-				'pdfheader'        => '',
+				'allowemail'     		 => '',
+				'bccemail'        		 => '',
+				'fromemail'       		 => '',
+				'emailsubject'   		 => '',
+				'emailcontent'    		 => '',
+				'pdfcolor'        		 => '',
+				'pdflogo'        		 => '',
+				'pdfheader'      		 => '',
 				// Extras
-				'calcsubmit'       => '',
-				'calcreset'        => '',
+				'calcsubmit'       		 => '',
+				'calcreset'       		 => '',
 				//Slider Settings 
-				'enable_slideroverride'        => '',
-				'inputreadonly'  => '',
-				'slider_theme'  => '',
-				'sliderminamount'       => '',
-				'slidermaxamount'       => '',
-				'sliderstepsamount'     => '',
-				'slidermininterest'     => '',
-				'slidermaxinterest'     => '',
-				'sliderstepsinterest'     => '',
-				'slidermindown'     => '',
-				'slidermaxdown'     => '',
-				'sliderstepsdown'     => '',
-				'sliderminterm'     => '',
-				'slidermaxterm'     => '',
-				'sliderstepsterm'     => '',
+				'enable_slideroverride'  => '',
+				'inputreadonly'  	 	 => '',
+				'slider_theme'  		 => '',
+				'sliderminamount'   	 => '',
+				'slidermaxamount'        => '',
+				'sliderstepsamount'  	 => '',
+				'slidermininterest' 	 => '',
+				'slidermaxinterest' 	 => '',
+				'sliderstepsinterest'	 => '',
+				'slidermindown'    		 => '',
+				'slidermaxdown'    		 => '',
+				'sliderstepsdown'  		 => '',
+				'sliderminterm'    		 => '',
+				'slidermaxterm'    		 => '',
+				'sliderstepsterm'   	 => '',
+				'termtype'    			 => '',
             ), $atts));
 
 			// Messages
@@ -425,6 +427,7 @@ EOT;
 			if($slidermaxterm=='')$slidermaxterm             = $this->shmac_settings['term_max_value'];
 			if($defaultterm=='')$defaultterm                 = $this->shmac_settings['loan_term'];
 			if($sliderstepsterm=='')$sliderstepsterm         = $this->shmac_settings['term_slider_step'];          
+			if($termtype=='') $termtype 					 = $this->shmac_settings['term_type'];         
 			//SLider Theme
 			if ($slider_theme == '') {
                 $slider_theme = $this->shmac_settings['slider_theme'];
@@ -583,6 +586,46 @@ EOT;
 
 				if($inputreadonly=="yes"|| $inputreadonly=="enable") $readonlyHTML = "readonly='readonly'";			
 			}
+			if ($termtype=="both") {
+				$term_output =<<<EOT
+				<div class="shmac-term-years">
+                <input type="checkbox" id="term-years-$calc_inc" class="term-years term-group" checked="checked" />
+                <label for="term-years-$calc_inc">$years</label>
+            	</div>
+				<div class="shmac-term-months">
+                <input type="checkbox" id="term-months-$calc_inc" class="term-months term-group" />
+                <label for="term-months-$calc_inc">$months</label>
+                </div>
+EOT;
+			}
+			else if ($termtype=="year") {
+				$term_output =<<<EOT
+				<div class="shmac-term-years">
+                <input type="checkbox" id="term-years-$calc_inc" class="term-years term-group" checked="checked" />
+                <label for="term-years-$calc_inc">$years</label>
+            	</div>
+EOT;
+			}
+			else if ($termtype=="month") {
+				$term_output =<<<EOT
+				<div class="shmac-term-months">
+                <input type="checkbox" id="term-months-$calc_inc" class="term-months term-group" />
+                <label for="term-months-$calc_inc">$months</label>
+                </div>
+EOT;
+			}
+			else {
+				$term_output =<<<EOT
+				<div class="shmac-term-years">
+                <input type="checkbox" id="term-years-$calc_inc" class="term-years term-group" checked="checked" />
+                <label for="term-years-$calc_inc">$years</label>
+            	</div>
+				<div class="shmac-term-months">
+                <input type="checkbox" id="term-months-$calc_inc" class="term-months term-group" />
+                <label for="term-months-$calc_inc">$months</label>
+                </div>
+EOT;
+			}
 			
 			$output .= <<<EOT
 			<div class="mui-form-group shmac-amount">
@@ -626,14 +669,7 @@ EOT;
 			</div>
 
 			<div class="mui-form-group shmac-term">
-				<div class="shmac-term-years">
-                <input type="checkbox" id="term-years-$calc_inc" class="term-years term-group" checked="checked" />
-                <label for="term-years-$calc_inc">$years</label>
-            	</div>
-				<div class="shmac-term-months">
-                <input type="checkbox" id="term-months-$calc_inc" class="term-months term-group" />
-                <label for="term-months-$calc_inc">$months</label>
-                </div>
+				$term_output
 
                  <a href="#" class="shmac-tip" title=" " data-title="$terminfo">
                     <span>

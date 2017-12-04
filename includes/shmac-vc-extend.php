@@ -422,6 +422,22 @@ class shmacVC {
                 ),
 				array(
                     "type" => "dropdown",
+                    "heading"  => __("Term Type", "shmac"),
+                    "param_name" => "termtype",
+                    "description" => __("Choose whether to show year or month or both", "shmac"),
+                    "value" => array(
+						__('Settings Default', 'shmac') => '',
+                        __("Both", "shmac") => "both",
+                        __("Year Only", "shmac") => "year",
+                        __("Month Only", "shmac") => "month",
+                    ),
+                    "dependency" => array (
+                        "element" => "allowoverrides",
+                        "value" => array("enable"),
+                    ),
+                ),
+				array(
+                    "type" => "dropdown",
                     "heading"  => __("Enable Insurance", "shmac"),
                     "param_name" => "enableinsurance",
                     "description" => __("Enable Homeowners insurance information in results?", "shmac"),

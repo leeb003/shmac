@@ -92,6 +92,7 @@ class SHMAC_API_Tabs {
 			'term_min_value'=>'1',
 			'term_max_value'=>'90',
 			'term_slider_step'=>'1',
+			'term_type'=>'1',
 			'enable_insurance' => 'yes',
 			'insurance_amount_percent' => 'amount',
 			'insurance' => '56.00',
@@ -221,6 +222,8 @@ class SHMAC_API_Tabs {
 		add_settings_field( 'term_max_value', __('Maximum Term', 'shmac'), array( &$this, 'field_term_max_value' ),	$this->first_tab_key, 'section_general' );
 
 		add_settings_field( 'term_slider_step', __('Steps in Term', 'shmac'), array( &$this, 'field_term_slider_step' ),	$this->first_tab_key, 'section_general' );
+		
+		add_settings_field( 'term_type', __('Term Type', 'shmac'), array( &$this, 'field_term_type' ),	$this->first_tab_key, 'section_general' );
 
 		//~ add_settings_field( 'term_slider_start', __('Start Term in Slider', 'shmac'), array( &$this, 'field_term_slider_start' ),	$this->first_tab_key, 'section_general' );
 
@@ -511,6 +514,7 @@ class SHMAC_API_Tabs {
         <?php
     }
 
+    
 	// PMI
     function field_tax_rate() {
         ?>
@@ -853,6 +857,20 @@ class SHMAC_API_Tabs {
 		<p><?php echo __("Set a slider start value of term for the calculator", "shmac"); ?></p>
 		<?php
 	}
+	// Term Type - Month/ Year / Both
+    function field_term_type() {
+        ?>
+        <select class="shmac-term-type" name="<?php echo $this->first_tab_key; ?>[term_type]">
+            <option value="yes" <?php selected( $this->first_tab['term_type'], "both");?>
+                    ><?php echo __("Both", "shmac");?></option>
+            <option value="no" <?php selected( $this->first_tab['term_type'], "year");?>
+                    ><?php echo __("Year Only", "shmac");?></option>
+            <option value="no" <?php selected( $this->first_tab['term_type'], "month");?>
+                    ><?php echo __("Month Only", "shmac");?></option>
+        </select>
+        <p><?php echo __("Choose whether to show year or month or both", "shmac"); ?></p>
+        <?php
+    }
 	//Minified CSS and JS
 	function field_minify_css_js() {
 		?>

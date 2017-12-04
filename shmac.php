@@ -3,7 +3,7 @@
  * Plugin Name: WP Amortization Calculator
  * Plugin URI: http://www.sh-themes.com
  * Description: Mortgage & Amortization Calculator WordPress Plugin
- * Version: 1.1.11
+ * Version: 1.2
  * Author: SH-Themes
  * Author URI: http://www.sh-themes.com
  */
@@ -16,7 +16,7 @@ if(defined('SHMAC_PLUGIN_VERSION')) {
     define('SHMAC_ROOT_FILE', __FILE__);
     define('SHMAC_ROOT_PATH', dirname(__FILE__));
     define('SHMAC_ROOT_URL', plugins_url('', __FILE__));
-    define('SHMAC_PLUGIN_VERSION', '1.1.11');
+    define('SHMAC_PLUGIN_VERSION', '1.2');
     define('SHMAC_PLUGIN_SLUG', basename(dirname(__FILE__)));
     define('SHMAC_PLUGIN_BASE', plugin_basename(__FILE__));
 	define('SHMAC_MARKET', 'envato');
