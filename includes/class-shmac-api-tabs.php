@@ -861,11 +861,11 @@ class SHMAC_API_Tabs {
     function field_term_type() {
         ?>
         <select class="shmac-term-type" name="<?php echo $this->first_tab_key; ?>[term_type]">
-            <option value="yes" <?php selected( $this->first_tab['term_type'], "both");?>
+            <option value="both" <?php selected( $this->first_tab['term_type'], "both");?>
                     ><?php echo __("Both", "shmac");?></option>
-            <option value="no" <?php selected( $this->first_tab['term_type'], "year");?>
+            <option value="year" <?php selected( $this->first_tab['term_type'], "year");?>
                     ><?php echo __("Year Only", "shmac");?></option>
-            <option value="no" <?php selected( $this->first_tab['term_type'], "month");?>
+            <option value="month" <?php selected( $this->first_tab['term_type'], "month");?>
                     ><?php echo __("Month Only", "shmac");?></option>
         </select>
         <p><?php echo __("Choose whether to show year or month or both", "shmac"); ?></p>

@@ -125,8 +125,12 @@ jQuery(function ($) {  // use $ for jQuery
 
 	/* Term selection Years & Months */
 	$(document).ready(function() {
-		$('.term-years').prop('checked', true);
-		$('.term-months').prop('checked', false);
+		if ($('.term-years').length) {
+			$('.term-years').prop('checked', true);
+			$('.term-months').prop('checked', false);
+		} else {
+			$('.term-months').prop('checked', true);
+		}
 	});
 
 	$(".term-group").each(function() {
