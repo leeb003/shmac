@@ -857,15 +857,18 @@ EOT;
                     downpay_slider_<?php echo $calc_inc ?>.noUiSlider.on('update', function( values, handle ){
                         if(handle==0){
                             downpay_slider_value.val(values[handle]);
+                            downpay_slider_value.autoNumeric('init');
                         }
                     });
                     
                     downpay_slider_value.on('change', function(){
-                        var downpayVal = Number(this.value.replace(/,/g , ''));                     
+                        downpay_slider_value.autoNumeric('init');
+                        var downpayVal = this.value ;                  
                         downpay_slider_<?php echo $calc_inc ?>.noUiSlider.set(downpayVal);
                     });
                     downpay_slider_value.on('keyup', function(e){
-                        var downpayVal = Number(this.value.replace(/,/g , ''));                     
+                        downpay_slider_value.autoNumeric('init');
+                        var downpayVal = this.value ;                    
                         switch ( e.which ) {
                             case 13:
                                 downpay_slider_<?php echo $calc_inc ?>.noUiSlider.set(downpayVal);
@@ -928,36 +931,7 @@ EOT;
                         interest_slider_<?php echo $calc_inc ?>.noUiSlider.reset();                     
                     });
 
-                    function formatNumber(number) {
-                        thousand_separator = ',',
-                        decimal_separator = '.';
-                        var number_string = number.toString(),
-                        split     = number_string.split(decimal_separator),
-                        rest      = split[0].length % 3,
-                        result    = split[0].substr(0, rest),
-                        thousands = split[0].substr(rest).match(/\d{3}/g);
-                            
-                        if (thousands) {
-                            separator = rest ? thousand_separator : '';
-                            result += separator + thousands.join(separator);
-                        }
-                        return result = split[1] != undefined ? result + decimal_separator + split[1] : result;
-                    }
-                    function getInputVal_<?php echo $calc_inc ?>(number, $currencyformat ){
-                        if($currencyformat==2){ 
-                            var amt = (number.replace(/./g , ''));
-                            //~ alert("amt1"+amt);
-                            amt = (amt.replace(/,/g , '.'));
-                            //~ alert("amt"+amt);
-                            return amt;
-                        } else if($currencyformat==3){
-                            var amt = (number.replace(/ /g , ''));
-                            return amt = (amt.replace(/,/g , '.'));
-                        }else if($currencyformat==1){
-                            return (number.replace(/,/g , ''));
-                        } 
-                        
-                    }
+                    
                     
                 });
                 </script>
