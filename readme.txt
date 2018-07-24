@@ -2,8 +2,8 @@
 Contributors: sh-themes
 Tags: wordpress, plugin, leads, contacts, calculator
 Requires at least: 4.0
-Tested up to: 4.9.6
-Stable tag: 4.9.6
+Tested up to: 4.9.7
+Stable tag: 4.9.7
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Mortgage and Amortization Calculator - WordPress plugin
@@ -31,6 +31,11 @@ Users can choose to receive a pdf copy of the amortization schedule which you
 can also be bcc'd on as a lead generator.
 
 == Changelog ==
+
+
+= 1.4 =
+* 2017-07-24
+* Added option to hide/show Down Payment from Form and results.
 
 = 1.3 =
 * 2017-06-24

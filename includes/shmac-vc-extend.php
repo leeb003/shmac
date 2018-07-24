@@ -12,10 +12,10 @@ class shmacVC {
 
         if (function_exists('vc_map')) {  // test for visual composer first
             add_action('vc_before_init', array(&$this, 'shmac_sc') );
-		}
-	}
+        }
+    }
 
-	// Alert Message Boxes
+    // Alert Message Boxes
     public function shmac_sc() {
         vc_map( array(
             "name" => __("Amortization Calculator", "shmac"),
@@ -28,37 +28,37 @@ class shmacVC {
                     "holder" => "p",
                     "heading"  => __("Extra Class", "shmac"),
                     "param_name" => "extraclass",
-					"description" => __("Add an extra css class to this calculator for customizing styles", "shmac"),
+                    "description" => __("Add an extra css class to this calculator for customizing styles", "shmac"),
                     "value" => '',
                 ),
                 array(
                     "type" => "dropdown",
                     "heading" => __("Override Calculator Settings", "shmac"),
-					"description" => __('Enable if you want to override any of the settings set in the main calculator settings for this specific calculator.  Any fields left blank will inherit the main settings applied to the calculator.', 'shmac'),
+                    "description" => __('Enable if you want to override any of the settings set in the main calculator settings for this specific calculator.  Any fields left blank will inherit the main settings applied to the calculator.', 'shmac'),
                     "param_name" => "allowoverrides",
                     "value" => array(
-						__("Disable", "shmac") => "disable",
+                        __("Disable", "shmac") => "disable",
                         __("Enable", "shmac") => "enable",
                     )
                 ),
                 array(
                     "type" => "dropdown",
                     "heading" => __("Override Slider Settings", "shmac"),
-					"description" => __('Enable if you want to override any of the slider settings set in the main calculator slider settings for this specific calculator.  Any fields left blank will inherit the main settings applied to the calculator.', 'shmac'),
+                    "description" => __('Enable if you want to override any of the slider settings set in the main calculator slider settings for this specific calculator.  Any fields left blank will inherit the main settings applied to the calculator.', 'shmac'),
                     "param_name" => "slideroverrides",
                     "value" => array(
-						__("Disable", "shmac") => "disable",
+                        __("Disable", "shmac") => "disable",
                         __("Enable", "shmac") => "enable",
                     )
                 ),
                 array(
                     "type" => "dropdown",
                     "heading" => __("Enable Slider", "shmac"),
-					"description" => __('Enable if you want to make input fields in calculator to readonly. In it user will not able to edit fields, value can only changed by slider.', 'shmac'),
+                    "description" => __('Enable if you want to make input fields in calculator to readonly. In it user will not able to edit fields, value can only changed by slider.', 'shmac'),
                     "param_name" => "enable_slideroverride",
                     "value" => array(
-						__('Settings Default', 'shmac') => '',
-						__("Disable", "shmac") => "disable",
+                        __('Settings Default', 'shmac') => '',
+                        __("Disable", "shmac") => "disable",
                         __("Enable", "shmac") => "enable",
                     ),
                     "dependency" => array (
@@ -69,11 +69,11 @@ class shmacVC {
                 array(
                     "type" => "dropdown",
                     "heading" => __("Input Readonly Mode", "shmac"),
-					"description" => __('Enable if you want to make input fields in calculator to readonly. In it user will not able to edit fields, value can only changed by slider.', 'shmac'),
+                    "description" => __('Enable if you want to make input fields in calculator to readonly. In it user will not able to edit fields, value can only changed by slider.', 'shmac'),
                     "param_name" => "inputreadonly",
                     "value" => array(
-						__('Settings Default', 'shmac') => '',
-						__("Disable", "shmac") => "disable",
+                        __('Settings Default', 'shmac') => '',
+                        __("Disable", "shmac") => "disable",
                         __("Enable", "shmac") => "enable",
                     ),
                     "dependency" => array (
@@ -84,11 +84,11 @@ class shmacVC {
                 array(
                     "type" => "dropdown",
                     "heading" => __("Choose Slider Theme", "shmac"),
-					"description" => __('Choose from the two themes of slider.', 'shmac'),
+                    "description" => __('Choose from the two themes of slider.', 'shmac'),
                     "param_name" => "slider_theme",
                     "value" => array(
-						__('Settings Default', 'shmac') => '',
-						__("Broad", "shmac") => "broad",
+                        __('Settings Default', 'shmac') => '',
+                        __("Broad", "shmac") => "broad",
                         __("Narrow", "shmac") => "narrow",
                     ),
                     "dependency" => array (
@@ -96,30 +96,30 @@ class shmacVC {
                         "value" => array("enable"),
                     ),
                 ),
-				array(
+                array(
                     "type" => "colorpicker",
                     "heading" => __("Primary Color", "shmac"),
                     "param_name" => "primarycolor",
                     "value" => '#828282',
                     "description" => __("Set The Primary Color for the form and results.", "shmac"),
-					"dependency" => array (
-                    	"element" => "allowoverrides",
-                    	"value" => array("enable"),
-					),
+                    "dependency" => array (
+                        "element" => "allowoverrides",
+                        "value" => array("enable"),
+                    ),
                 ),
-				array(
+                array(
                     "type" => "textfield",
                     "holder" => "p",
                     "heading"  => __("Calculator Title", "shmac"),
                     "param_name" => "calctitle",
                     "description" => __("The Title", "shmac"),
                     "value" => '',
-					"dependency" => array (
+                    "dependency" => array (
                         "element" => "allowoverrides",
                         "value" => array("enable"),
                     ),
                 ),
-				array(
+                array(
                     "type" => "textfield",
                     "heading"  => __("Send PDF Text", "shmac"),
                     "param_name" => "emailtext",
@@ -130,7 +130,7 @@ class shmacVC {
                         "value" => array("enable"),
                     ),
                 ),
-				array(
+                array(
                     "type" => "textfield",
                     "heading"  => __("Email Label", "shmac"),
                     "param_name" => "emaillabel",
@@ -141,7 +141,7 @@ class shmacVC {
                         "value" => array("enable"),
                     ),
                 ),
-				array(
+                array(
                     "type" => "textfield",
                     "heading"  => __("Amount Label", "shmac"),
                     "param_name" => "amountlabel",
@@ -152,7 +152,7 @@ class shmacVC {
                         "value" => array("enable"),
                     ),
                 ),
-				array(
+                array(
                     "type" => "textarea",
                     "heading"  => __("Amount Info", "shmac"),
                     "param_name" => "amountinfo",
@@ -163,7 +163,7 @@ class shmacVC {
                         "value" => array("enable"),
                     ),
                 ),
-				array(
+                array(
                     "type" => "textfield",
                     "heading"  => __("Default Amount", "shmac"),
                     "param_name" => "defaultpurchase",
@@ -174,7 +174,7 @@ class shmacVC {
                         "value" => array("enable"),
                     ),
                 ),
-				array(
+                array(
                     "type" => "textfield",
                     "heading"  => __("Minimum Amount", "shmac"),
                     "param_name" => "sliderminamount",
@@ -185,7 +185,7 @@ class shmacVC {
                         "value" => array("enable"),
                     ),
                 ),
-				array(
+                array(
                     "type" => "textfield",
                     "heading"  => __("Maximum Amount", "shmac"),
                     "param_name" => "slidermaxamount",
@@ -196,7 +196,7 @@ class shmacVC {
                         "value" => array("enable"),
                     ),
                 ),
-				array(
+                array(
                     "type" => "textfield",
                     "heading"  => __("Amount Slider Steps", "shmac"),
                     "param_name" => "sliderstepsamount",
@@ -207,7 +207,7 @@ class shmacVC {
                         "value" => array("enable"),
                     ),
                 ),
-				array(
+                array(
                     "type" => "textfield",
                     "heading"  => __("Interest Field Label", "shmac"),
                     "param_name" => "interestlabel",
@@ -218,7 +218,7 @@ class shmacVC {
                         "value" => array("enable"),
                     ),
                 ),
-				array(
+                array(
                     "type" => "textarea",
                     "heading"  => __("Interest Info", "shmac"),
                     "param_name" => "interestinfo",
@@ -229,7 +229,7 @@ class shmacVC {
                         "value" => array("enable"),
                     ),
                 ),
-				array(
+                array(
                     "type" => "textfield",
                     "heading"  => __("Default Interest", "shmac"),
                     "param_name" => "defaultinterest",
@@ -240,7 +240,7 @@ class shmacVC {
                         "value" => array("enable"),
                     ),
                 ),
-				array(
+                array(
                     "type" => "textfield",
                     "heading"  => __("Minimum Interest", "shmac"),
                     "param_name" => "slidermininterest",
@@ -251,7 +251,7 @@ class shmacVC {
                         "value" => array("enable"),
                     ),
                 ),
-				array(
+                array(
                     "type" => "textfield",
                     "heading"  => __("Maximum Interest", "shmac"),
                     "param_name" => "slidermaxinterest",
@@ -262,7 +262,7 @@ class shmacVC {
                         "value" => array("enable"),
                     ),
                 ),
-				array(
+                array(
                     "type" => "textfield",
                     "heading"  => __("Interest Slider Steps", "shmac"),
                     "param_name" => "sliderstepsinterest",
@@ -273,29 +273,44 @@ class shmacVC {
                         "value" => array("enable"),
                     ),
                 ),
-				array(
+                array(
+                    "type" => "dropdown",
+                    "heading" => __("Show Down Payment", "shmac"),
+                    "description" => __('Show Down Payment or not', 'shmac'),
+                    "param_name" => "downpayshow",
+                    "value" => array(
+                        __('Settings Default', 'shmac') => '',
+                        __("Yes", "shmac") => "yes",
+                        __("No", "shmac") => "no",
+                    ),
+                    "dependency" => array (
+                        "element" => "slideroverrides",
+                        "value" => array("enable"),
+                    ),
+                ),
+                array(
                     "type" => "textfield",
                     "heading"  => __("Down Payment Label", "shmac"),
                     "param_name" => "downpaylabel",
                     "description" => __("Label text for the down payment field", "shmac"),
                     "value" => '',
                     "dependency" => array (
-                        "element" => "allowoverrides",
-                        "value" => array("enable"),
+                        "element" => "downpayshow",
+                        "value" => array("yes"),
                     ),
                 ),
-				array(
+                array(
                     "type" => "textarea",
                     "heading"  => __("Down Payment Info", "shmac"),
                     "param_name" => "downpayinfo",
                     "description" => __("Text in the info bubble description for the down payment field", "shmac"),
                     "value" => '',
                     "dependency" => array (
-                        "element" => "allowoverrides",
-                        "value" => array("enable"),
+                        "element" => "downpayshow",
+                        "value" => array("yes"),
                     ),
                 ),
-				array(
+                array(
                     "type" => "dropdown",
                     "heading"  => __("Down Payment Type", "shmac"),
                     "param_name" => "downpaytype",
@@ -306,55 +321,55 @@ class shmacVC {
                         __("Amount", "shmac") => "amount",
                     ),
                     "dependency" => array (
-                        "element" => "allowoverrides",
-                        "value" => array("enable"),
+                        "element" => "downpayshow",
+                        "value" => array("yes"),
                     ),
                 ),
-				array(
+                array(
                     "type" => "textfield",
                     "heading"  => __("Default Down Payment", "shmac"),
                     "param_name" => "defaultdown",
                     "description" => __("Default percent down payment (e.g. 10 for percent or 10000.00 for amount)", "shmac"),
                     "value" => '',
                     "dependency" => array (
-                        "element" => "allowoverrides",
-                        "value" => array("enable"),
+                        "element" => "downpayshow",
+                        "value" => array("yes"),
                     ),
                 ),
-				array(
+                array(
                     "type" => "textfield",
                     "heading"  => __("Minimum Down Payment", "shmac"),
                     "param_name" => "slidermindown",
                     "description" => __("Minimum percent down payment (e.g. 10 for percent or 10000.00 for amount)", "shmac"),
                     "value" => '',
                     "dependency" => array (
-                        "element" => "slideroverrides",
-                        "value" => array("enable"),
+                        "element" => "downpayshow",
+                        "value" => array("yes"),
                     ),
                 ),
-				array(
+                array(
                     "type" => "textfield",
                     "heading"  => __("Maximum Down Payment", "shmac"),
                     "param_name" => "slidermaxdown",
                     "description" => __("Maximum percent down payment (e.g. 10 for percent or 10000.00 for amount)", "shmac"),
                     "value" => '',
                     "dependency" => array (
-                        "element" => "slideroverrides",
-                        "value" => array("enable"),
+                        "element" => "downpayshow",
+                        "value" => array("yes"),
                     ),
                 ),
-				array(
+                array(
                     "type" => "textfield",
                     "heading"  => __("Down Payment Slider Steps", "shmac"),
                     "param_name" => "sliderstepsdown",
                     "description" => __("Down payment slider steps (e.g. 1)", "shmac"),
                     "value" => '',
                     "dependency" => array (
-                        "element" => "slideroverrides",
-                        "value" => array("enable"),
+                        "element" => "downpayshow",
+                        "value" => array("yes"),
                     ),
                 ),
-				array(
+                array(
                     "type" => "textfield",
                     "heading"  => __("Term Label", "shmac"),
                     "param_name" => "termlabel",
@@ -365,7 +380,7 @@ class shmacVC {
                         "value" => array("enable"),
                     ),
                 ),
-				array(
+                array(
                     "type" => "textarea",
                     "heading"  => __("Term Info", "shmac"),
                     "param_name" => "terminfo",
@@ -376,7 +391,7 @@ class shmacVC {
                         "value" => array("enable"),
                     ),
                 ),
-				array(
+                array(
                     "type" => "textfield",
                     "heading"  => __("Default Term", "shmac"),
                     "param_name" => "defaultterm",
@@ -387,7 +402,7 @@ class shmacVC {
                         "value" => array("enable"),
                     ),
                 ),
-				array(
+                array(
                     "type" => "textfield",
                     "heading"  => __("Minimum Term", "shmac"),
                     "param_name" => "sliderminterm",
@@ -398,7 +413,7 @@ class shmacVC {
                         "value" => array("enable"),
                     ),
                 ),
-				array(
+                array(
                     "type" => "textfield",
                     "heading"  => __("Maximum Term", "shmac"),
                     "param_name" => "slidermaxterm",
@@ -409,7 +424,7 @@ class shmacVC {
                         "value" => array("enable"),
                     ),
                 ),
-				array(
+                array(
                     "type" => "textfield",
                     "heading"  => __("Term Slider Steps", "shmac"),
                     "param_name" => "sliderstepsterm",
@@ -420,13 +435,13 @@ class shmacVC {
                         "value" => array("enable"),
                     ),
                 ),
-				array(
+                array(
                     "type" => "dropdown",
                     "heading"  => __("Term Type", "shmac"),
                     "param_name" => "termtype",
                     "description" => __("Choose whether to show year or month or both", "shmac"),
                     "value" => array(
-						__('Settings Default', 'shmac') => '',
+                        __('Settings Default', 'shmac') => '',
                         __("Both", "shmac") => "both",
                         __("Year Only", "shmac") => "year",
                         __("Month Only", "shmac") => "month",
@@ -436,13 +451,13 @@ class shmacVC {
                         "value" => array("enable"),
                     ),
                 ),
-				array(
+                array(
                     "type" => "dropdown",
                     "heading"  => __("Enable Insurance", "shmac"),
                     "param_name" => "enableinsurance",
                     "description" => __("Enable Homeowners insurance information in results?", "shmac"),
                     "value" => array(
-						__('Settings Default', 'shmac') => '',
+                        __('Settings Default', 'shmac') => '',
                         __("Disable", "shmac") => "no",
                         __("Enable", "shmac") => "yes",
                     ),
@@ -451,22 +466,22 @@ class shmacVC {
                         "value" => array("enable"),
                     ),
                 ),
-				array(
-					"type" => "dropdown",
-					"heading" => __("Insurance cost or percent", "shmac"),
-					"param_name" => "insuranceamountpercent",
-					"description" => __("This affects the value below as to whether it is a set amount or percent of the loan (divided by 12) per month", "shmac"),
-					"value" => array (
-						__('Settings Default', 'shmac') => '',
-						__("Amount", "shmac") => "amount",
-						__("Percent", "shmac") => "percent"
-					),
-					"dependency" => array (
-						"element" => "enableinsurance",
-						"value" => array("yes"),
-					),
-				),
-				array(
+                array(
+                    "type" => "dropdown",
+                    "heading" => __("Insurance cost or percent", "shmac"),
+                    "param_name" => "insuranceamountpercent",
+                    "description" => __("This affects the value below as to whether it is a set amount or percent of the loan (divided by 12) per month", "shmac"),
+                    "value" => array (
+                        __('Settings Default', 'shmac') => '',
+                        __("Amount", "shmac") => "amount",
+                        __("Percent", "shmac") => "percent"
+                    ),
+                    "dependency" => array (
+                        "element" => "enableinsurance",
+                        "value" => array("yes"),
+                    ),
+                ),
+                array(
                     "type" => "textfield",
                     "heading"  => __("Monthly Insurance", "shmac"),
                     "param_name" => "monthlyinsurance",
@@ -477,7 +492,7 @@ class shmacVC {
                         "value" => array("yes"),
                     ),
                 ),
-				array(
+                array(
                     "type" => "dropdown",
                     "heading"  => __("Enable PMI", "shmac"),
                     "param_name" => "enablepmi",
@@ -503,7 +518,7 @@ class shmacVC {
                         "value" => array("yes"),
                     ),
                 ),
-				array(
+                array(
                     "type" => "dropdown",
                     "heading"  => __("Enable Taxes", "shmac"),
                     "param_name" => "enabletaxes",
@@ -529,7 +544,7 @@ class shmacVC {
                         "value" => array("yes"),
                     ),
                 ),
-				array(
+                array(
                     "type" => "textarea",
                     "heading"  => __("Disclaimer", "shmac"),
                     "param_name" => "disclaimer",
@@ -540,7 +555,7 @@ class shmacVC {
                         "value" => array("enable"),
                     ),
                 ),
-				array(
+                array(
                     "type" => "textfield",
                     "heading"  => __("Currency Symbol", "shmac"),
                     "param_name" => "currencysymbol",
@@ -551,7 +566,7 @@ class shmacVC {
                         "value" => array("enable"),
                     ),
                 ),
-				array(
+                array(
                     "type" => "dropdown",
                     "heading"  => __("Currency Format", "shmac"),
                     "param_name" => "currencyformat",
@@ -559,15 +574,15 @@ class shmacVC {
                     "value" => array(
                         __('Settings Default', 'shmac') => '',
                         __("Standard Format (e.g. 100,000.00)", "shmac") => "1",
-						__("Switched Format (e.g. 100.000,00)", "shmac") => "2",
-						__("Spaces and Comma Format (e.g. 100 000,00)", "shmac") => "3",
-					),
+                        __("Switched Format (e.g. 100.000,00)", "shmac") => "2",
+                        __("Spaces and Comma Format (e.g. 100 000,00)", "shmac") => "3",
+                    ),
                     "dependency" => array (
                         "element" => "allowoverrides",
                         "value" => array("enable"),
                     ),
                 ),
-				array(
+                array(
                     "type" => "dropdown",
                     "heading"  => __("Currency Symbol Side", "shmac"),
                     "param_name" => "currencyside",
@@ -581,8 +596,8 @@ class shmacVC {
                         "element" => "allowoverrides",
                         "value" => array("enable"),
                     ),
-                ),				
-				array(
+                ),              
+                array(
                     "type" => "dropdown",
                     "heading"  => __("Allow Email", "shmac"),
                     "param_name" => "allowemail",
@@ -597,7 +612,7 @@ class shmacVC {
                         "value" => array("enable"),
                     ),
                 ),
-			 	array(
+                array(
                     "type" => "textfield",
                     "heading"  => __("BCC Email", "shmac"),
                     "param_name" => "bccemail",
@@ -607,8 +622,8 @@ class shmacVC {
                         "element" => "allowemail",
                         "value" => array("yes"),
                     ),
-                ),	
-				array(
+                ),  
+                array(
                     "type" => "textfield",
                     "heading"  => __("From Email", "shmac"),
                     "param_name" => "fromemail",
@@ -619,7 +634,7 @@ class shmacVC {
                         "value" => array("yes"),
                     ),
                 ),  
-				array(
+                array(
                     "type" => "textarea",
                     "heading"  => __("Email Subject", "shmac"),
                     "param_name" => "emailsubject",
@@ -630,7 +645,7 @@ class shmacVC {
                         "value" => array("yes"),
                     ),
                 ),  
-				array(
+                array(
                     "type" => "textarea",
                     "heading"  => __("Email Message Content", "shmac"),
                     "param_name" => "emailcontent",
@@ -641,7 +656,7 @@ class shmacVC {
                         "value" => array("yes"),
                     ),
                 ),  
-				array(
+                array(
                     "type" => "colorpicker",
                     "heading"  => __("PDF Color", "shmac"),
                     "param_name" => "pdfcolor",
@@ -652,7 +667,7 @@ class shmacVC {
                         "value" => array("yes"),
                     ),
                 ),  
-				array(
+                array(
                     "type" => "attach_image",
                     "heading" => __("PDF Logo", "shmac"),
                     "param_name" => "pdflogo",
@@ -662,7 +677,7 @@ class shmacVC {
                         "value" => array("yes"),
                     ),
                 ),
-				array(
+                array(
                     "type" => "textarea",
                     "heading"  => __("PDF Header", "shmac"),
                     "param_name" => "pdfheader",
@@ -673,19 +688,19 @@ class shmacVC {
                         "value" => array("yes"),
                     ),
                 ),
-				// Extras
-			    array(
+                // Extras
+                array(
                     "type" => "textfield",
                     "heading"  => __("Submit button text", "shmac"),
                     "param_name" => "calcsubmit",
                     "description" => __("Override the Calculate button text if you want.", "shmac"),
                     "value" => "",
-					"dependency" => array (
+                    "dependency" => array (
                         "element" => "allowoverrides",
                         "value" => array("enable"),
                     ),
                 ),
-				array(
+                array(
                     "type" => "textfield",
                     "heading"  => __("Reset button text", "shmac"),
                     "param_name" => "calcreset",
@@ -696,8 +711,8 @@ class shmacVC {
                         "value" => array("enable"),
                     ),
                 ),
-			),
-		) );
+            ),
+        ) );
     }
 }  // End Class
 

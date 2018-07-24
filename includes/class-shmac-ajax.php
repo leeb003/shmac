@@ -102,6 +102,10 @@
                 if (isset($_POST['override']['pdfheader'])) {
                     $this->shmac_email['pdf_header'] = wp_kses_post($_POST['override']['pdfheader']);
                 }
+                
+                if (isset($_POST['override']['downpayshow'])) {
+                    $downpayshow = wp_kses_post($_POST['override']['downpayshow']);
+                }
                     
                 
 
@@ -137,12 +141,20 @@
                 /* down payment percent or amount */
                 if (isset($this->shmac_settings['down_payment_type']) 
                     && $this->shmac_settings['down_payment_type'] == 'amount') { // dollar amount
-                        $moneydown  = $this->getAmount($_POST['downpay']);
+                        if($downpayshow=='yes'){
+                            $moneydown  = $this->getAmount($_POST['downpay']);
+                        }else{
+                            $moneydown  = 0;
+                        }
                         $down = floatval( ($moneydown / $price) * 100);
                         $down = round($down, 2);
-                } else {                                                         // percent
+                } else {// percent
+                    if($downpayshow=='yes'){
                         $down  = $_POST['downpay'];
-                        $moneydown = $price * ($down / 100);
+                    }else{
+                        $down  = 0;
+                    }                           
+                    $moneydown = $price * ($down / 100);
                 }
 
                 $term             = intval($_POST['term']);
@@ -359,6 +371,7 @@ around', 'shmac') . ' ' . $total_payment_display;
                     }
                     $month_range2 = range (1, $month_range);
                     $response['vals']['total_payments'] = $month_range;
+                    $response['vals']['downpayshow'] = $downpayshow;
 
                     foreach ($month_range2 as $value)  {
                         $int_amt         = $month_interest * $new_mortgage;
@@ -594,21 +607,26 @@ around', 'shmac') . ' ' . $total_payment_display;
                    . '</div>';
 
             $html .= '<br />';
-
+            if($downpayshow=='yes'){
+                $dpshow1 =  '<td>' . $response['details']['down_payment'] . ': <br /><b>' . $response['vals']['down'] . ' %</b></td>';
+                $dpshow2 = '<td>' . $response['details']['down_payment_amount'] . ': <br /><b>' . $response['vals']['moneydown2'] 
+                   . '</b></td>';
+            }else{
+                $dpshow1= $dpshow2='';
+            }
             // Details
             $html .= '<p></p>';
             $html .= '<h3>' . $response['headers']['loan_text'] . '</h3>'
                    . '<table class="details" cellpadding="5">'
                    . '<tr><td>' . $response['details']['original'] . ': <br /><b>' . $response['vals']['price2'] . '</b></td>'
-                   . '<td>' . $response['details']['down_payment'] . ': <br /><b>' . $response['vals']['down'] . ' %</b></td>'
+                   . $dpshow1
                    . '<td>' . $response['details']['interest'] . ': <br /><b>' . $response['vals']['interest'] . ' %</b></td>'
                    . '<td>' . $response['details']['term'] . ': <br /><b>' . $response['vals']['term'] . ' ' 
                    . $response['vals']['cycle_text'] . '</b></td>'
                    . '</tr>'
                    . '<tr><td>' . $response['details']['loan_after_down'] . ': <br /><b>' . $response['vals']['mortgage2'] 
                    . '</b></td>'
-                   . '<td>' . $response['details']['down_payment_amount'] . ': <br /><b>' . $response['vals']['moneydown2'] 
-                   . '</b></td>'
+                   . $dpshow2
                    . '<td>' . $response['details']['monthly_payment'] . ': <br /><b>' . $response['vals']['monthly_payment2'] 
                    . '</b></td>'
                    . '<td>' . $response['details']['total_payments'] . ': <br /><b>' . $response['vals']['total_payments'] 

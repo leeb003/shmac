@@ -220,6 +220,7 @@
                 'interestlabel'          => '',
                 'interestinfo'           => '',
                 'defaultinterest'        => '',
+                'downpayshow'            => '',
                 'downpaylabel'           => '',
                 'downpayinfo'            => '',
                 'downpaytype'            => '',
@@ -285,23 +286,14 @@
             }
 
             // Money Formats
-            if ($currencyformat != '') {  // Overrides
-                if ($currencyformat == '2') {
-                    $money_format = ' data-a-dec="," data-a-sep="." ';
-                } elseif ($currencyformat == '3') {
-                    $money_format = ' data-a-dec="," data-a-sep=" " ';
-                } else { // Standard Format
-                    $money_format = ' data-a-dec="." data-a-sep="," ';
-                }
-            } else {
-                if ($this->shmac_settings['currency_format'] == '2') {
-                    $money_format = ' data-a-dec="," data-a-sep="." ';
-                } elseif ($this->shmac_settings['currency_format'] == '3') {
-                    $money_format = ' data-a-dec="," data-a-sep=" " ';
-                } else { // Standard Format
-                    $money_format = ' data-a-dec="." data-a-sep="," ';
-                }
+            if ($this->shmac_settings['currency_format'] == '2' || $currencyformat == '2') {
+                $money_format = ' data-a-dec="," data-a-sep="." ';
+            } elseif ($this->shmac_settings['currency_format'] == '3' || $currencyformat == '3') {
+                $money_format = ' data-a-dec="," data-a-sep=" " ';
+            } else { // Standard Format
+                $money_format = ' data-a-dec="." data-a-sep="," ';
             }
+        
 
             $form_style = '';
             
@@ -388,6 +380,9 @@ EOT;
             }
             if ($interestinfo == '') {
                 $interestinfo = $this->shmac_settings['interest_rate_info'];
+            }
+            if ($downpayshow == '') {
+                $downpayshow = $this->shmac_settings['down_payment_show'];
             }
             if ($downpaylabel == '') {
                 $downpaylabel = $this->shmac_settings['down_payment_label'];
@@ -511,6 +506,11 @@ EOT;
             if ($pdflogo != '') {
                 $o_pdflogo = 'data-pdflogo="' . $pdflogo . '" ';
             }
+            if ($downpayshow == ''||$downpayshow == 'no') {
+                $o_downpay = 'data-downpayshow="no" ';
+            }else{
+                $o_downpay = 'data-downpayshow="yes" ';
+            }
             if ($pdfheader != '') {
                 $o_pdfheader = 'data-pdfheader="' . $pdfheader . '" ';
             }
@@ -519,7 +519,7 @@ EOT;
             $data_atts = $o_enableinsurance . $o_insuranceamountpercent . $o_monthlyinsurance . $o_enablepmi . $o_monthlypmi 
                 . $o_enabletaxes . $o_taxesperthou . $o_disclaimer . $o_currencysymbol . $o_currencyformat . $o_currencyside 
                 . $o_downpaytype . $o_bccemail . $o_fromemail . $o_emailsubject . $o_emailcontent . $o_pdfcolor . $o_pdflogo 
-                . $o_pdfheader;
+                . $o_pdfheader . $o_downpay;
 
             $info_src = SHMAC_ROOT_URL . '/assets/img/info.png'; 
             $symbol_side = '';
@@ -626,7 +626,23 @@ EOT;
                 </div>
 EOT;
             }
-            
+            $downpay_output='';
+            if ($downpayshow=="yes") {
+                $downpay_output =<<<EOT
+                    <div class="mui-form-group shmac-down">
+                         <a href="#" class="shmac-tip" title=" " data-title="$downpayinfo">
+                            <span>
+                                <img src="$info_src" class="shmac-info" />
+                            </span>
+                        </a>
+                        $downpay_symbol
+                        <input type="text" class="downpay $symbol_class mui-form-control $input_no_pad downpayinput_$calc_inc" value="$defaultdown" $downpay_format $readonlyHTML />
+                        <label class="mui-form-floating-label">$downpaylabel</label>
+                        $dwnpaySlider
+                        <div class="err-msg"></div>
+                    </div>
+EOT;
+            }
             $output .= <<<EOT
             <div class="mui-form-group shmac-amount">
                 <a href="#" class="shmac-tip" title=" " data-title="$amountinfo">
@@ -654,18 +670,7 @@ EOT;
                 <div class="err-msg"></div>
             </div>
 
-            <div class="mui-form-group shmac-down">
-                 <a href="#" class="shmac-tip" title=" " data-title="$downpayinfo">
-                    <span>
-                        <img src="$info_src" class="shmac-info" />
-                    </span>
-                </a>
-                $downpay_symbol
-                <input type="text" class="downpay $symbol_class mui-form-control $input_no_pad downpayinput_$calc_inc" value="$defaultdown" $downpay_format $readonlyHTML />
-                <label class="mui-form-floating-label">$downpaylabel</label>
-                $dwnpaySlider
-                <div class="err-msg"></div>
-            </div>
+            $downpay_output
 
             <div class="mui-form-group shmac-term">
                 $term_output
@@ -818,6 +823,7 @@ EOT;
                         }                       
                     });
                     //DownPayment Slider- Input Script
+                    <?php if ($downpayshow=="yes") { ?>
                     var dwnpayMin= parseFloat('<?php echo $slidermindown; ?>');
                     var dwnpayStep = parseFloat('<?php echo $sliderstepsdown; ?>');
                     var dwnpayMax = parseFloat('<?php echo $slidermaxdown; ?>');
@@ -883,6 +889,7 @@ EOT;
                         }
                         
                     });
+                    <?php } ?>
                     //Term Slider- Input Script
                     var termMin= parseFloat('<?php echo $sliderminterm; ?>');
                     var termStep = parseFloat('<?php echo $sliderstepsterm; ?>');
