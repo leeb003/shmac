@@ -412,6 +412,7 @@ EOT;
             if($slidermininterest=='')$slidermininterest     = $this->shmac_settings['interest_min_value'];
             $slidermininterest = number_format($slidermininterest, 3); // for autoNumeric to allow decimals
             if($slidermaxinterest=='')$slidermaxinterest     = $this->shmac_settings['interest_max_value'];
+            $slidermaxinterest = number_format($slidermaxinterest, 3);
             if($defaultinterest=='')$defaultinterest         = $this->shmac_settings['interest_rate'];
             if($sliderstepsinterest=='')$sliderstepsinterest = $this->shmac_settings['interest_slider_step'];
             if($slidermindown=='')$slidermindown             = $this->shmac_settings['dwnpay_min_value'];
@@ -573,7 +574,7 @@ EOT;
             $termSlider = '';
             $readonlyHTML='';
             $minmax = '';
-            $minmax_int = 'data-v-min="0.000" data-v-max="100.000"';
+            $minmax_int = 'data-v-min="' . $slidermininterest . '" data-v-max="' . $slidermaxinterest . '"';
             $minmax_term = '';
             if($enable_slideroverride=="yes"|| $enable_slideroverride=="enable"){
                 $amtSlider = '<div class="sliders" id="amount_slider_'.$calc_inc.'"></div>';
