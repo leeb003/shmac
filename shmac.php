@@ -3,7 +3,7 @@
  * Plugin Name: WP Amortization Calculator
  * Plugin URI: http://www.sh-themes.com
  * Description: Mortgage & Amortization Calculator WordPress Plugin
- * Version: 1.4
+ * Version: 1.4.1
  * Author: SH-Themes
  * Author URI: http://www.sh-themes.com
  */

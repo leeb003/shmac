@@ -253,6 +253,7 @@
                 'calcreset'              => '',
                 //Slider Settings 
                 'enable_slideroverride'  => '',
+                'enable_emailoverride'   => '',
                 'inputreadonly'          => '',
                 'slider_theme'           => '',
                 'sliderminamount'        => '',
@@ -404,6 +405,7 @@ EOT;
             //Slider Settings Values
             $page_color =$this->shmac_settings['page_color'];
             if($enable_slideroverride=='') $enable_slideroverride  = $this->shmac_settings['enable_slider'];
+            if($enable_emailoverride=='') $enable_emailoverride  = $this->shmac_settings['enable_email'];
             if($inputreadonly=='') $inputreadonly            = $this->shmac_settings['enable_input_readonly'];
             if($sliderminamount=='')$sliderminamount         = $this->shmac_settings['amount_min_value'];
             if($slidermaxamount=='')$slidermaxamount         = $this->shmac_settings['amount_max_value'];
@@ -538,18 +540,32 @@ $form_style
         <legend>$calctitle</legend>
 EOT;
             
-            if ($allowemail == 'yes') { 
-                $output .= <<<EOT
-            <div class="shmac-check">
-                <input type="checkbox" id="checkflip-$calc_inc" class="checkflip send-email" />
-                <label for="checkflip-$calc_inc">$emailtext</label>
-            </div>
-            <div class="mui-form-group shmac-email" style="display:none;">
-                <input type="text" class="shmac-email-input mui-form-control" />
-                <label class="mui-form-floating-label">$emaillabel</label>
-                <div class="err-msg"></div>
-            </div>
+            if ($allowemail == 'yes') {
+                if($enable_emailoverride=="yes"|| $enable_emailoverride=="enable"){
+                    $output .= <<<EOT
+                    <div class="shmac-check" style="display:none;">
+                        <input type="checkbox" id="checkflip-$calc_inc" class="checkflip send-email" checked="checked" />
+                    </div>
+                    <div class="mui-form-group shmac-email" >
+                        <input type="email" class="shmac-email-input mui-form-control" />
+                        <label class="mui-form-floating-label">$emaillabel</label>
+                        <div class="err-msg"></div>
+                    </div>
 EOT;
+                }
+                else{
+                    $output .= <<<EOT
+                    <div class="shmac-check">
+                        <input type="checkbox" id="checkflip-$calc_inc" class="checkflip send-email" />
+                        <label for="checkflip-$calc_inc">$emailtext</label>
+                    </div>
+                    <div class="mui-form-group shmac-email" style="display:none;">
+                        <input type="text" class="shmac-email-input mui-form-control" />
+                        <label class="mui-form-floating-label">$emaillabel</label>
+                        <div class="err-msg"></div>
+                    </div>
+EOT;
+                }
             } 
 
             //Down Payment format (percent or amount)

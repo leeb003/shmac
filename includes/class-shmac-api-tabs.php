@@ -64,6 +64,7 @@ class SHMAC_API_Tabs {
             'calc_title' => __('Amortization Calculator', 'shmac'),
             'send_email_text' => __('Send A PDF report to your email?', 'shmac'),
             'email_placeholder' => __('Your Email', 'shmac'),
+            'enable_email'=>'no',
             'enable_slider'=>'no',
             'enable_input_readonly'=>'no',
             'slider_theme'=>'broad',
@@ -148,6 +149,8 @@ class SHMAC_API_Tabs {
 
         add_settings_field( 'email_placeholder', __('Email Label', 'shmac'), array( &$this, 'field_email_placeholder'),
                 $this->first_tab_key, 'section_general' );
+        
+        add_settings_field( 'enable_email', __('Email Always Show', 'shmac'), array( &$this, 'field_enable_email' ),          $this->first_tab_key, 'section_general' );
         //Slider Settings
         add_settings_field( 'enable_slider', __('Enable Slider', 'shmac'), array( &$this, 'field_enable_slider' ),          $this->first_tab_key, 'section_general' );
         
@@ -731,6 +734,18 @@ class SHMAC_API_Tabs {
         <?php
     }
 
+    //Slider Fields Body
+    function field_enable_email() {
+        ?>
+        <select class="shmac-enable-email" name="<?php echo $this->first_tab_key; ?>[enable_email]">
+            <option value="yes" <?php selected( $this->first_tab['enable_email'], "yes");?>
+                    ><?php echo __("Yes", "shmac");?></option>
+            <option value="no" <?php selected( $this->first_tab['enable_email'], "no");?>
+                    ><?php echo __("No", "shmac");?></option>
+        </select>
+        <p><?php echo __("Choose whether to show Email input always or not. It will only work if Allow Email Report option is selected Yes.", "shmac"); ?></p>
+        <?php
+    }
     //Slider Fields Body
     function field_enable_slider() {
         ?>

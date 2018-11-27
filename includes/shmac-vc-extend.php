@@ -68,6 +68,18 @@ class shmacVC {
                 ),
                 array(
                     "type" => "dropdown",
+                    "heading" => __("Email Always Show", "shmac"),
+                    "description" => __('Enable if you want to show email input field always not by checking in calculator. It will only work if Allow Email Report option is selected Yes. ', 'shmac'),
+                    "param_name" => "enable_emailoverride",
+                    "value" => array(
+                        __('Settings Default', 'shmac') => '',
+                        __("Disable", "shmac") => "disable",
+                        __("Enable", "shmac") => "enable",
+                    ),
+                    
+                ),
+                array(
+                    "type" => "dropdown",
                     "heading" => __("Input Readonly Mode", "shmac"),
                     "description" => __('Enable if you want to make input fields in calculator to readonly. In it user will not able to edit fields, value can only changed by slider.', 'shmac'),
                     "param_name" => "inputreadonly",
