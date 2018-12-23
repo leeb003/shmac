@@ -33,6 +33,10 @@ can also be bcc'd on as a lead generator.
 == Changelog ==
 
 
+= 1.4.2 = 
+* 2018-12-22
+* Updated TCPDF to latest version 6.2.25 to fix some warnings in php 7.3
+
 = 1.4.1 =
 * 2018-11-27
 * Added option to use checkbox or always show email input. It will only work if Allow Email Report Option is selected yes.
