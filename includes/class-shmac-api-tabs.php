@@ -720,6 +720,8 @@ class SHMAC_API_Tabs {
                     ><?php echo __("Helvetica - Default, smaller generated PDF file", "shmac");?></option>
             <option value="dejavusans" <?php selected( $this->second_tab['pdf_font'], "dejavusans");?>
                     ><?php echo __("Dejavu sans - Persian / English", "shmac");?></option>
+            <option value="DroidSansFallback" <?php selected( $this->second_tab['pdf_font'], "DroidSansFallback");?>
+                    ><?php echo __("Droid Sans Fallback - Chinese / English", "shmac");?></option>
             <option value="aefurat" <?php selected( $this->second_tab['pdf_font'], "aefurat");?>
                     ><?php echo __("Aefurat - Arabic / English", "shmac");?></option>
             <option value="aealarabiya" <?php selected( $this->second_tab['pdf_font'], "aealarabiya");?>

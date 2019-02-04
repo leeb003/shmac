@@ -32,6 +32,9 @@ can also be bcc'd on as a lead generator.
 
 == Changelog ==
 
+= 1.4.3 = 
+* 2019-02-04
+* Added Chinese font compatability for PDF Generation.
 
 = 1.4.2 = 
 * 2018-12-22
