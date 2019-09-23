@@ -1010,4 +1010,4 @@ class SHMAC_API_Tabs {
 };
 
 // Initialize the plugin
-add_action( 'plugins_loaded', create_function( '', '$settings_api_tabs_shmac = new SHMAC_API_Tabs;' ) );
+add_action( 'plugins_loaded', function() {$settings_api_tabs_shmac = new SHMAC_API_Tabs;} );
