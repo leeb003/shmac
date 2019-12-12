@@ -58,7 +58,6 @@ class SHMAC_API_Tabs {
         
         // Merge with defaults
         $this->first_tab = array_merge( array(
-            'license_key' => '',
             'custom_css' => '',
             'page_color' => '#00bfa5',
             'calc_title' => __('Amortization Calculator', 'shmac'),
@@ -255,8 +254,6 @@ class SHMAC_API_Tabs {
                 $this->first_tab_key, 'section_general' );
 
         add_settings_field( 'page_color', __('Primary Color', 'shmac'), array( &$this, 'field_color_option' ), 
-                $this->first_tab_key, 'section_general' );
-        add_settings_field( 'license_key', __('Envato Purchase Code', 'shmac'), array( &$this, 'field_license_key' ),
                 $this->first_tab_key, 'section_general' );
         add_settings_field( 'custom_css', __('Custom CSS', 'shmac'), array( &$this, 'field_custom_css' ),
                 $this->first_tab_key, 'section_general' );
@@ -633,17 +630,6 @@ class SHMAC_API_Tabs {
         <p><?php echo __("Choose the side for the currency symbol.", "shmac"); ?></p>
         <?php
     }   
-
-    /*
-     * Envato Purchase License Key
-     */
-    function field_license_key() {
-        ?>
-        <input class="shmac-license" name="<?php echo $this->first_tab_key; ?>[license_key]" 
-            value="<?php echo esc_attr( $this->first_tab['license_key'] ); ?>" />
-        <p><?php echo __("Enter your Envato purchase code for automatic updates.", 'shmac'); ?></p>
-        <?php
-    }
 
     /*
      * Custom CSS Overrides

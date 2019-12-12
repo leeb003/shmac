@@ -20,8 +20,8 @@ class shmacVC {
         vc_map( array(
             "name" => __("Amortization Calculator", "shmac"),
             "base" => "shmac_calc_sc",
-            "description" => __("Mortgage & Amortization Calculator", "shmac"),
-            "category" => __('SH-Themes', 'shmac'),
+            "description" => __("Mortgage Amortization Calculator", "shmac"),
+            "category" => __('ScriptHat', 'shmac'),
             "params" => array(
                 array(
                     "type" => "textfield",

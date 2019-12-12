@@ -4,7 +4,7 @@
  *
  * Uninstalling WP Mortgage Calculator deletes options set for the plugin.
  *
- * @author      sh-themes
+ * @author      ScriptHat
  * @category    Core
  * @package     shmac/Uninstaller
  * @version     1.1.0
