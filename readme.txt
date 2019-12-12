@@ -32,6 +32,10 @@ can also be bcc'd on as a lead generator.
 
 == Changelog ==
 
+= 1.4.5 = 
+* 2019-12-12
+* Updated automatic updates to use Envato Market plugin
+
 = 1.4.4 =
 * 2019-04-30
 * Updated translation files for string locations
