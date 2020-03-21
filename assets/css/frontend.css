@@ -186,27 +186,27 @@
 }
 
 .shmac-tip:hover:after{
-    background: #333;
-    background: rgba(0,0,0,.8);
-    /*border-radius: 5px;*/
+    background: #777;
+    background: rgba(119,119,119,.9);
+    border-radius: 3px;
     bottom: 26px;
     color: #fff;
     content: attr(data-title);
-    right: -6px;
+    right: 0px;
     padding: 5px 15px;
     position: absolute;
     z-index: 98;
     width: 220px;
+	opacity: 1;
 }
+
 .shmac-tip:hover:before{
-    border: solid;
-    border-color: #333 transparent;
-    border-width: 6px 6px 0 6px;
-    bottom: 20px;
+    bottom: 26px;
     content: "";
-    left: 3px;
+    right: 0px;
     position: absolute;
     z-index: 99;
+	display: inline-block;
 }
 
 /* MUI Styles */
@@ -234,6 +234,10 @@
   /* 2 */
   margin: 0;
   /* 3 */
+}
+
+.shmac-form input:focus {
+	outline: none;
 }
 
 /**
@@ -1452,7 +1456,7 @@ input.mui-form-control:invalid:not(:focus):required:not(:empty):not(.mui-empty):
     margin-top: 10px;
 }
 .noUi-handle {
-    border-radius: 15px !important;
+    border-radius: 5px !important;
 }
 
 .non-empty-ipt.mui-form-floating-label  {						
@@ -1460,4 +1464,7 @@ input.mui-form-control:invalid:not(:focus):required:not(:empty):not(.mui-empty):
 	line-height: 15px;
 	text-overflow: ellipsis;
 	top: 0;
+}
+.noUi-target {
+	border:none !important;
 }

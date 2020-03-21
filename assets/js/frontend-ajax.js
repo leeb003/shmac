@@ -185,15 +185,15 @@ jQuery(function ($) {  // use $ for jQuery
                 + '<ul class="shmac-ul">';
             // check for pmi enabled
             if (vals.enable_pmi == 'yes') {
-                tip += '<li><img src="' + vals.shmac_root + '/assets/img/info.png" /> ' + vals.pmi_text + '</li>';
+                tip += '<li><img src="' + vals.shmac_root + '/assets/img/info_outline.png" /> ' + vals.pmi_text + '</li>';
             }
             // check for taxes enabled
             if (vals.enable_taxes == 'yes') {
-                tip += '<li><img src="' + vals.shmac_root + '/assets/img/info.png" /> ' + vals.tax_text + '</li>';
+                tip += '<li><img src="' + vals.shmac_root + '/assets/img/info_outline.png" /> ' + vals.tax_text + '</li>';
             }
             // check for insurance enabled
             if (vals.enable_insurance == 'yes') {
-                tip += '<li><img src="' + vals.shmac_root + '/assets/img/info.png" /> ' + vals.insurance_text + '</li>';
+                tip += '<li><img src="' + vals.shmac_root + '/assets/img/info_outline.png" /> ' + vals.insurance_text + '</li>';
             }
             tip += '</ul>'
                  + '<p class="border-p">' + vals.total_monthlies + '</p>'

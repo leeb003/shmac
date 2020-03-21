@@ -640,7 +640,7 @@ around', 'shmac') . ' ' . $total_payment_display;
                 || $this->shmac_settings['enable_taxes'] == 'yes' 
             ) {
                 $html .= '<p>' . $response['vals']['otherfactors'] . '</p>';
-                $html .= '<ul style="font-size:8pt;list-style-type:img|svg|3|3|' . SHMAC_ROOT_URL . '/assets/img/info.svg">';
+                $html .= '<ul style="font-size:8pt;list-style-type:img|svg|3|3|' . SHMAC_ROOT_URL . '/assets/img/info_outline.png">';
                 // check for pmi enabled
                 if ($this->shmac_settings['enable_pmi'] == 'yes') {
                     $html .= '<li>' . $response['vals']['pmi_text'] . '</li>';
