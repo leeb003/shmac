@@ -98,7 +98,7 @@
          
         public function register_scripts () {
             // autoNumeric
-            wp_register_script('autoNumeric', SHMAC_ROOT_URL . '/assets/js/autoNumeric.js', array('jquery'), '4.2', true);
+            wp_register_script('autoNumeric', SHMAC_ROOT_URL . '/assets/js/autoNumeric.min.js', array('jquery'), '2.0.13', true);
             // Mui
             wp_register_script( 'mui', SHMAC_ROOT_URL . '/assets/js/mui.js', array(), '0.1.22-rc1', true );
             // Scrollbar
@@ -108,8 +108,6 @@
             wp_register_script( 'mprogress', SHMAC_ROOT_URL . '/assets/js/mprogress.min.js', array('jquery'), '1.0', true);
             //nouislider
             wp_register_script( 'nouislider', SHMAC_ROOT_URL . '/assets/js/nouislider.min.js', array('jquery'), '920', true);
-            //wNumb
-            wp_register_script( 'wNumb', SHMAC_ROOT_URL . '/assets/js/wNumb.js', array('jquery'), '110', true);
 
             //Minified JS
             wp_register_script( 'autoNumeric-mCustomScroll-mprogress-nouislider-wNumb-mui', SHMAC_ROOT_URL . '/assets/js/autoNumeric.mCustomScroll.mprogress.nouislider.wNumb.mui.min.js', array('jquery'), '1.0', true);
@@ -326,17 +324,26 @@
 			$sliderstepsterm        = ($settings['sliderstepsterm'] != '' ? $settings['sliderstepsterm'] : $this->shmac_settings['term_slider_step']);
 			$termtype               = ($settings['termtype'] != '' ? $settings['termtype'] : $this->shmac_settings['term_type']);
 
+			// format strings for autoNumeric min max values
+			//$sliderminamount = str_replace(',', '', $sliderminamount);
+			//$slidermaxamount = str_replace(',', '', $slidermaxamount);
+
             // Messages
             $years =     __('Years', 'shmac');
             $months =    __('Months', 'shmac');
 
             // Money Formats
-            if ($$currencyformat == '2') {
-                $money_format = ' data-a-dec="," data-a-sep="." ';
-            } elseif ($currencyformat == '3') {
-                $money_format = ' data-a-dec="," data-a-sep=" " ';
+            if ($currencyformat == '2') {  // French, Spanish 
+                $money_format = ' data-decimal-character="," data-digit-group-separator="." ';
+            } elseif ($currencyformat == '3') {  // Euro
+                $money_format = ' data-decimal-character="," data-digit-group-separator=" " ';
+			} elseif ($currencyformat == '4') { // Indian
+				$money_format = 'data-digital-group-spacing="2" data-decimal-character="." data-digit-group-separator="," ';
+			} elseif ($currencyformat == '5') { // Swiss
+				$money_format = 'data-decimal-character="." data-digit-group-separator="\'" ';
+
             } else { // Standard Format
-                $money_format = ' data-a-dec="." data-a-sep="," ';
+                $money_format = ' data-decimal-character="." data-digit-group-separator="," ';
             }
         
 
@@ -388,7 +395,8 @@
   background: $primarycolor_light;
 }
 .noUi-handle:focus {
-    box-shadow: 0 0 5px $primarycolor;
+    box-shadow: 0 0 7px #888;
+    border: 8px solid $primarycolor;
 }
 </style>
 EOT;
@@ -405,21 +413,27 @@ EOT;
                 $pColor = $page_color;
             }
 
+			$narrow = '';
+			$broad = '';
             if($slider_theme=='narrow'){
 				$narrow = ".form-$calc_inc .sliders {margin-top: 15px;}\n"
 						. ".form-$calc_inc .noUi-target{box-shadow:none;}\n"
 						. ".form-$calc_inc .noUi-handle::after, .form-$calc_inc .noUi-handle::before{background:none;}\n"
 						. ".form-$calc_inc .noUi-horizontal .noUi-handle {\n"
-						. "	height: 24px;\n"
-						. "	top: -9px;\n"
-						. "	width: 24px;\n"
+						. "	height: 20px;\n"
+						. "	top: -7px;\n"
+						. "	width: 20px;\n"
+						. " border: 5px solid $pColor;\n"
 						. "}\n"
-						. ".form-$calc_inc .noUi-horizontal {height: 6px;}\n";
+						. ".form-$calc_inc .noUi-horizontal {height: 6px;}\n"
+						. ".form-$calc_inc .noUi-handle {left: -8 !important; $top: -8px !important;}\n";
+			} else {
+				$broad = ".form-$calc_inc .sliders .noUi-handle {top: -8px; width: 35px; height: 35px; border: 8px solid $pColor;}\n";
 			}
             $form_style .= <<<EOT
 <style>
 $narrow
-.shmac-sc.form-$calc_inc .noUi-handle:hover { box-shadow: 0 0 5px $pColor; }
+$broad
 .shmac-sc.form-$calc_inc .sliders { background-color: $pColor; }
 </style>
 EOT;
@@ -548,11 +562,11 @@ EOT;
 
             //Down Payment format (percent or amount)
             if ($enable_slideroverride == 'yes') {
-                $downpay_format = 'data-v-min="'. $slidermindown . '" data-v-max="' . $slidermaxdown . '" data-a-pad="false"';
+                $downpay_format = 'data-minimum-value="'. $slidermindown . '" data-maximum-value="' . $slidermaxdown . '"';
             } elseif ($downpaytype == 'percent') {
-                $downpay_format = 'data-v-min="0.000" data-v-max="100.000" data-a-pad="false"';
+                $downpay_format = 'data-minimum-value="0.00" data-maximum-value="100.00"';
             } else {
-                $downpay_format = 'data-a-pad="false"';
+                $downpay_format = '';
             }
             $downpay_symbol = '';
             $symbol_class = '';
@@ -567,17 +581,11 @@ EOT;
             $dwnpaySlider = '';
             $termSlider = '';
             $readonlyHTML='';
-            $minmax = '';
-            $minmax_int = 'data-v-min="' . $slidermininterest . '" data-v-max="' . $slidermaxinterest . '"';
-            $minmax_term = '';
             if ($enable_slideroverride == "yes" || $enable_slideroverride == "enable"){
                 $amtSlider    = '<div class="sliders" id="amount_slider_'.$calc_inc.'"></div>';
                 $intSlider    = '<div class="sliders" id="interest_slider_'.$calc_inc.'"></div>';
                 $dwnpaySlider = '<div class="sliders" id="downpay_slider_'.$calc_inc.'"></div>';
                 $termSlider   = '<div class="sliders" id="term_slider_'.$calc_inc.'"></div>';
-                $minmax       = 'data-v-min="' . $sliderminamount . '" data-v-max="' . $slidermaxamount . '"';
-                $minmax_int   = 'data-v-min="' . $slidermininterest . '" data-v-max="' . $slidermaxinterest . '"';
-                $minmax_term  = 'data-v-min="' . $sliderminterm . '" data-v-max="' . $slidermaxterm . '"';
 
                 if ($inputreadonly == "yes" || $inputreadonly == "enable") $readonlyHTML = "readonly='readonly'";         
             }
@@ -646,7 +654,7 @@ EOT;
                     </span>
                 </a>
                 <div class="shmac-symbol $symbol_side">$currencysymbol</div>
-                <input type="text" class="mort-amount mui-form-control $input_no_pad amountinput_$calc_inc" value="$defaultpurchase" $money_format  $minmax $readonlyHTML /> 
+                <input type="text" class="mort-amount mui-form-control $input_no_pad amountinput_$calc_inc" value="$defaultpurchase" $money_format $readonlyHTML /> 
                 <label class="mui-form-floating-label">$amountlabel</label>
                 $amtSlider
                 <div class="err-msg"></div>
@@ -658,8 +666,7 @@ EOT;
                         <img src="$info_src" class="shmac-info" />
                     </span>
                 </a>
-                <input type="text" class="interest mui-form-control interestinput_$calc_inc" value="$defaultinterest" 
-                   $money_format $minmax_int data-a-pad="false" $readonlyHTML  />
+                <input type="text" class="interest mui-form-control interestinput_$calc_inc" value="$defaultinterest" $readonlyHTML  />
                 <label class="mui-form-floating-label">$interestlabel</label>
                 $intSlider
                 <div class="err-msg"></div>
@@ -675,8 +682,7 @@ EOT;
                         <img src="$info_src" class="shmac-info" />
                     </span>
                 </a>
-                <input type="text" class="term mui-form-control terminput_$calc_inc" value="$defaultterm"
-                    $minmax_term data-a-pad="false" $readonlyHTML />
+                <input type="text" class="term mui-form-control terminput_$calc_inc" value="$defaultterm" data-decimal-places-override="0" $readonlyHTML />
                 <label class="mui-form-floating-label">$termlabel</label>
                 $termSlider
                 <div class="err-msg"></div>
@@ -691,6 +697,7 @@ EOT;
   </div>
 </div><!-- End shmac-holder -->
 EOT;
+			// Set up variables that go to frontend-slider.js
             if($enable_slideroverride=="yes" || $enable_slideroverride=="enable"){
 				$slider_vars[$calc_inc]['calc_inc'] = $calc_inc;
 				$slider_vars[$calc_inc]['defaultpurchase'] = $defaultpurchase;

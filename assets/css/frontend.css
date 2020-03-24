@@ -1453,10 +1453,10 @@ input.mui-form-control:invalid:not(:focus):required:not(:empty):not(.mui-empty):
 
 /*Slider*/
 .sliders {
-    margin-top: 10px;
+    margin-top: 14px;
 }
 .noUi-handle {
-    border-radius: 5px !important;
+/*    border-radius: 5px !important; */
 }
 
 .non-empty-ipt.mui-form-floating-label  {						
@@ -1467,4 +1467,19 @@ input.mui-form-control:invalid:not(:focus):required:not(:empty):not(.mui-empty):
 }
 .noUi-target {
 	border:none !important;
+}
+.sliders .noUi-handle {
+    border: 8px solid #97d66b;
+    border-radius: 5px;
+    background: #fff;
+    cursor: default;
+    box-shadow: none;
+    border-radius: 50%;
+    cursor: pointer;
+}
+.sliders .noUi-handle:after, .sliders .noUi-handle:before {
+    display: none;
+}
+.sliders .noUi-handle {
+	box-shadow: 0 0 2px #333;
 }

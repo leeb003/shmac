@@ -640,7 +640,7 @@ around', 'shmac') . ' ' . $total_payment_display;
                 || $this->shmac_settings['enable_taxes'] == 'yes' 
             ) {
                 $html .= '<p>' . $response['vals']['otherfactors'] . '</p>';
-                $html .= '<ul style="font-size:8pt;list-style-type:img|svg|3|3|' . SHMAC_ROOT_URL . '/assets/img/info_outline.png">';
+                $html .= '<ul style="font-size:8pt;list-style-type:img|png|3|3|' . SHMAC_ROOT_URL . '/assets/img/info_outline.png">';
                 // check for pmi enabled
                 if ($this->shmac_settings['enable_pmi'] == 'yes') {
                     $html .= '<li>' . $response['vals']['pmi_text'] . '</li>';
@@ -741,6 +741,8 @@ around', 'shmac') . ' ' . $total_payment_display;
          * Format 1 - standard (100,000.00)
          * Format 2 - flipped (100.000,00)
          * Format 3 - Spaced (100 000,00)
+		 * Format 4 - Indian Rupee
+		 * Format 5 - Swiss
          */
         public function format_amount($amount) {
             $format = isset($this->shmac_settings['currency_format']) ? $this->shmac_settings['currency_format'] : '1';
@@ -750,8 +752,22 @@ around', 'shmac') . ' ' . $total_payment_display;
                 $formatted = number_format($amount, 2, ',', '.');
             } elseif ($format == '3') {
                 $formatted = number_format($amount, 2, ',', ' ');
-            }
+            } elseif ($format == '4') {
+				$formatted = $this->moneyFormatIndia($amount);
+			} elseif ($format == '5') {
+				$formatted = number_format($amount, 2, ",", "'");
+			}
             return $formatted;
         }
+
+		/* 
+		 * Money Format for Indian currency
+		 */
+		public function moneyFormatIndia($amount) {
+			$amount = number_format((float)$amount, 2, '.', '');
+			$amount = preg_replace("/(\d+?)(?=(\d\d)+(\d)(?!\d))(\.\d+)?/i", "$1,", $amount);
+    		return $amount; 
+		}	
+
 
     } // end class

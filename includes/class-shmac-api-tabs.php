@@ -613,6 +613,10 @@ class SHMAC_API_Tabs {
                     ><?php echo __("Switched Format (e.g. 100.000,00)", "shmac");?></option>
             <option value="3" <?php selected( $this->first_tab['currency_format'], "3");?>
                     ><?php echo __("Spaces and Comma Format (e.g. 100 000,00)", "shmac");?></option>
+			<option value="4" <?php selected( $this->first_tab['currency_format'], "4");?>
+                    ><?php echo __("Indian Rupee (e.g. 10,00,00,000.00)", "shmac");?></option>
+			<option value="5" <?php selected( $this->first_tab['currency_format'], "5");?>
+                    ><?php echo __("Swiss (e.g. 10'345'567.00)", "shmac");?></option>
         </select>
         <p><?php echo __("Choose the currency format you would like to use.", "shmac"); ?></p>
         <?php
@@ -907,7 +911,7 @@ class SHMAC_API_Tabs {
     function add_admin_menus() {
         $plugin_options = add_menu_page( __('SHMAC', 'shmac'), __('WP Amortization Calculator', 'shmac'), 
                 'manage_options', $this->plugin_options_key, array($this, 'plugin_options_page'), 
-                SHMAC_ROOT_URL . '/assets/img/green-checkbox.png', '27.338');
+                SHMAC_ROOT_URL . '/assets/img/shmac-logo16x16.png', '27.338');
 
         // loaded only in our Contacts menu
         add_action( 'load-' . $plugin_options, array($this, 'load_admin_scripts') );

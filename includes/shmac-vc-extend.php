@@ -20,6 +20,9 @@ class shmacVC {
         vc_map( array(
             "name" => __("Amortization Calculator", "shmac"),
             "base" => "shmac_calc_sc",
+			"icon" => "shmac-vc-icon",
+			"admin_enqueue_css" => SHMAC_ROOT_URL . "/assets/css/shmac-vc.css",
+			//"category" => __("Content", "shmac"),
             "description" => __("Mortgage Amortization Calculator", "shmac"),
             "category" => __('ScriptHat', 'shmac'),
             "params" => array(
@@ -588,6 +591,8 @@ class shmacVC {
                         __("Standard Format (e.g. 100,000.00)", "shmac") => "1",
                         __("Switched Format (e.g. 100.000,00)", "shmac") => "2",
                         __("Spaces and Comma Format (e.g. 100 000,00)", "shmac") => "3",
+						__("Indian Rupee (e.g. 10,00,00,000.00)", "shmac") => "4",
+						__("Swiss (e.g. 10'345'567.00)", "shmac", "shmac") => "5"
                     ),
                     "dependency" => array (
                         "element" => "allowoverrides",
