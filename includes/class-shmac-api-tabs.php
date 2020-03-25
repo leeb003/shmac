@@ -59,6 +59,7 @@ class SHMAC_API_Tabs {
         // Merge with defaults
         $this->first_tab = array_merge( array(
             'custom_css' => '',
+			'custom_js'  => '',
             'page_color' => '#00bfa5',
             'calc_title' => __('Amortization Calculator', 'shmac'),
             'send_email_text' => __('Send A PDF report to your email?', 'shmac'),
@@ -105,7 +106,6 @@ class SHMAC_API_Tabs {
             'currency' => '$',
             'currency_format' => '1',
             'currency_side' => 'left',          
-            'minify_css_js' => 'no' 
             //~ 'amount_slider_start'=>'12000',         
             //~ 'interest_slider_start'=>'5',           
             //~ 'dwnpay_slider_start'=>'10',            
@@ -257,10 +257,9 @@ class SHMAC_API_Tabs {
                 $this->first_tab_key, 'section_general' );
         add_settings_field( 'custom_css', __('Custom CSS', 'shmac'), array( &$this, 'field_custom_css' ),
                 $this->first_tab_key, 'section_general' );
-                
-        add_settings_field( 'minify_css_js', __('Minify CSS and JS', 'shmac'), array( &$this, 'field_minify_css_js' ),
+		add_settings_field( 'custom_js', __('Custom JS', 'shmac'), array( &$this, 'field_custom_js' ),
                 $this->first_tab_key, 'section_general' );
-        
+                
     }
     
     /*
@@ -640,8 +639,18 @@ class SHMAC_API_Tabs {
      */
     function field_custom_css() {
         ?>
-        <textarea class="custom-css" name="<?php echo $this->first_tab_key; ?>[custom_css]"><?php echo esc_attr( $this->first_tab['custom_css'] ); ?></textarea>
+        <textarea class="custom-css" id="code_editor_page_css" name="<?php echo $this->first_tab_key; ?>[custom_css]"><?php echo esc_attr( $this->first_tab['custom_css'] ); ?></textarea>
         <p><?php echo __("Add your own custom css to further control styling of the calculator", "shmac"); ?></p>
+        <?php
+    }
+
+	/*
+	 * Custom JS Overrides
+	 */
+	function field_custom_js() {
+    	?>
+        <textarea class="custom-js" id="code_editor_page_js" name="<?php echo $this->first_tab_key; ?>[custom_js]"><?php echo esc_attr( $this->first_tab['custom_js'] ); ?></textarea>
+        <p><?php echo __("Add your own custom javascript to further control functionality of the calculator", "shmac"); ?></p>
         <?php
     }
 
@@ -891,18 +900,6 @@ class SHMAC_API_Tabs {
         <?php
     }
     
-    //Minified CSS and JS
-    function field_minify_css_js() {
-        ?>
-        <select class="shmac-minify-css-js" name="<?php echo $this->first_tab_key; ?>[minify_css_js]">
-            <option value="yes" <?php selected( $this->first_tab['minify_css_js'], "yes");?>
-                    ><?php echo __("Yes", "shmac");?></option>
-            <option value="no" <?php selected( $this->first_tab['minify_css_js'], "no");?>
-                    ><?php echo __("No", "shmac");?></option>
-        </select>
-        <p><?php echo __("Choose whether to use minified css and js files", "shmac"); ?></p>
-        <?php
-    }
     /*
      * Called during admin_menu, adds an options
      * page under Settings called My Settings, rendered
@@ -940,6 +937,7 @@ class SHMAC_API_Tabs {
             'ajaxurl' => admin_url('admin-ajax.php'),
             'nextNonce' => wp_create_nonce( 'myajax-next-nonce' )
         ));
+		wp_enqueue_code_editor( array( 'type' => 'text/html' ) );
     } // End admin_enqueue_scripts
 
     

@@ -90,11 +90,6 @@ jQuery(function ($) {  // use $ for jQuery
 				eval('downpay_slider_' + calc_inc).noUiSlider.on('update', function( values, handle ){
 					downpay_slider_value.autoNumeric('set', values[handle]);
 				});
-                    
-				downpay_slider_value.on('change', function(){
-					var downpayVal = this.value ;                  
-					eval('downpay_slider_' + calc_inc).noUiSlider.set(downpayVal);
-				});
 			}  // end if downpayshow is yes
 
 			//Term Slider- Input Script

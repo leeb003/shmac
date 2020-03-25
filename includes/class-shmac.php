@@ -100,7 +100,7 @@
             // autoNumeric
             wp_register_script('autoNumeric', SHMAC_ROOT_URL . '/assets/js/autoNumeric.min.js', array('jquery'), '2.0.13', true);
             // Mui
-            wp_register_script( 'mui', SHMAC_ROOT_URL . '/assets/js/mui.js', array(), '0.1.22-rc1', true );
+            wp_register_script( 'mui', SHMAC_ROOT_URL . '/assets/js/mui.min.js', array(), '0.1.22-rc1', true );
             // Scrollbar
             wp_register_script( 'shmac-custom-scrollbar', SHMAC_ROOT_URL 
                 . '/assets/js/jquery.mCustomScrollbar.concat.min.js', array('jquery'), '3.0.9', true);
@@ -108,9 +108,6 @@
             wp_register_script( 'mprogress', SHMAC_ROOT_URL . '/assets/js/mprogress.min.js', array('jquery'), '1.0', true);
             //nouislider
             wp_register_script( 'nouislider', SHMAC_ROOT_URL . '/assets/js/nouislider.min.js', array('jquery'), '920', true);
-
-            //Minified JS
-            wp_register_script( 'autoNumeric-mCustomScroll-mprogress-nouislider-wNumb-mui', SHMAC_ROOT_URL . '/assets/js/autoNumeric.mCustomScroll.mprogress.nouislider.wNumb.mui.min.js', array('jquery'), '1.0', true);
 
             // Plugin js    
             wp_register_script( 'shmac-frontend-ajax', SHMAC_ROOT_URL . '/assets/js/frontend-ajax.js', array('jquery'), SHMAC_PLUGIN_VERSION, true );
@@ -121,6 +118,7 @@
                 'shmacColor' => isset($this->first_tab['page_color'])?$this->first_tab['page_color']:'#03a9f4'
             ));
         }
+
         public function enqueue_scripts () {
             $list = 'enqueued';
             $enqueueCssList = array("shmac-frontend","mprogress","shmac-custom-scrollbar","nouislider");
@@ -131,7 +129,7 @@
                     wp_enqueue_style( $css );
                 }
             }
-            $enqueueJsList = array("autoNumeric","mui","shmac-custom-scrollbar","mprogress","shmac-frontend-ajax","nouislider","wNumb");
+            $enqueueJsList = array("autoNumeric","mui","shmac-custom-scrollbar","mprogress","shmac-frontend-ajax","nouislider");
             foreach($enqueueJsList as $js){
                 if (wp_script_is( $js, $list )) {
                     return;
@@ -139,50 +137,18 @@
                     wp_enqueue_script( $js );
                 }
             }
-            if (wp_script_is( "autoNumeric-mCustomScroll-mprogress-nouislider-wNumb-mui", "registered" )) {
-                wp_deregister_script( "autoNumeric-mCustomScroll-mprogress-nouislider-wNumb-mui" ); 
-            }
-            if (wp_script_is( "mCustomScroll-mprogress-nouislider", "registered" )) {
-                wp_deregister_style( "mCustomScroll-mprogress-nouislider" ); 
-            }
+		
+			// have to require in this function for options since it's called by add_action
+			// there seem to be be other ways but this works as well	
+			require_once( SHMAC_ROOT_PATH . '/includes/class-shmac-options.php' );
+            $options = new shmac_options();
+            $shmac_options = $options->shmac_settings;	
+			$custom_js = isset($shmac_options['custom_js']) ? $shmac_options['custom_js'] : '';
+			$inline_script = "<script>\n" . $custom_js . "</script>\n";
+            wp_add_inline_script('shmac-frontend-ajax', $inline_script);
             
         } // End enqueue_scripts 
 
-        
-        public function enqueue_minified_scripts () {
-            $list = 'enqueued';
-            $enqueueCssList = array("shmac-frontend","mCustomScroll-mprogress-nouislider");
-            foreach($enqueueCssList as $css){
-                if (wp_script_is( $css, $list )) {
-                    return;
-                } else {
-                    wp_enqueue_style( $css );
-                }
-            }
-            $enqueueJsList = array("autoNumeric-mCustomScroll-mprogress-nouislider-wNumb-mui","shmac-frontend-ajax");
-            foreach($enqueueJsList as $js){
-                if (wp_script_is( $js, $list )) {
-                    return;
-                } else {
-                    wp_enqueue_script( $js );
-                }
-            }
-            $deenqueueJsList = array("autoNumeric","mui","shmac-custom-scrollbar","mprogress","nouislider","wNumb");
-            foreach($deenqueueJsList as $js){
-                if (wp_script_is( $js, "registered" )) {
-                    wp_deregister_script( $js ); 
-                }       
-            }
-            $deenqueueCssList = array("mprogress","shmac-custom-scrollbar","nouislider");
-            foreach($deenqueueCssList as $css){
-                if (wp_script_is( $css, "registered" )) {
-                    wp_deregister_style( $css ); 
-                }
-            }           
-            
-        } // End enqueue_minified_scripts 
-
-        
         /**
          * Shortcode generation
          * @since 1.0.0
@@ -194,11 +160,8 @@
 			global $slider_vars; // multiple sliders array for localized slider js
 
             $calc_inc++;
-            if($this->shmac_settings['minify_css_js']=="yes") {
-                do_action('shmac_enqueue_minified_scripts');
-            } else {
-                do_action('shmac_enqueue_scripts');
-            }
+            do_action('shmac_enqueue_scripts');
+
             $settings = (shortcode_atts(array( 
                 'extraclass'            => '',
                 // Base Settings Overrides

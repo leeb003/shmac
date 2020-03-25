@@ -35,11 +35,11 @@
 
 .shmac-symbol {
     position: absolute;
-    font-size: 18px;
+    font-size: 24px;
     font-weight: 400;
 	color: rgba(0, 0, 0, 0.54);
     left:0px;
-    top: 17px;
+    top: 14px;
 }
 
 .shmac-symbol.right {
@@ -88,7 +88,7 @@
 
 .shmac-div .disclaimer {
 	text-align: center;
-	font-size: 12px;
+	font-size: 14px;
 	padding-top: 20px;
 	padding-bottom: 20px;
 }
@@ -484,7 +484,7 @@ input[type="checkbox"],
  */
 .mui-text-title, .shmac-div h3 {
   font-weight: 400;
-  font-size: 20px;
+  font-size: 24px;
   line-height: 28px;
   color: rgba(0, 0, 0, 0.87);
 }
@@ -501,6 +501,7 @@ input[type="checkbox"],
  */
 .mui-panel {
   padding: 15px;
+  padding-top: 0;
   margin-bottom: 20px;
   border-radius: 0;
   background-color: #FFF;
@@ -838,6 +839,10 @@ strong {
   margin-top: 20px;
   margin-bottom: 10px;
 }
+h3.shmac-header {
+  background-color: rgba(0,0,0, 0.05);
+  padding: 10px 15px;
+}
 
 /**
  * MUI Form styles
@@ -845,11 +850,15 @@ strong {
  */
 .shmac-form legend {
   display: block;
-  width: 100%;
+  position: relative;
+  max-width: initial;
   padding: 0;
   margin-bottom: 10px;
-  font-size: 21px;
-  color: rgba(0, 0, 0, 0.87);
+  margin: 0 -15px 10px -15px;
+  padding: 5px 15px;
+  font-size: 24px;
+  color: rgba(0, 0, 0, 0.54);
+  background-color: rgba(0,0,0, 0.05);
   line-height: inherit;
   border: 0;
 }
@@ -884,7 +893,7 @@ strong {
   outline: none;
   height: 32px;
   width: 100%;
-  font-size: 16px;
+  font-size: 24px;
   padding: 0;
   box-shadow: none;
   border-radius: 0px;

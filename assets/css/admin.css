@@ -26,8 +26,8 @@ textarea {
 .disclaimer {
 	min-height: 150px;
 }
-.custom-css {
-	min-height: 300px;
+.custom-css, .custom-js {
+	min-height: 150px;
 }
 
 .contact-upload.hide-contact {
