@@ -61,6 +61,7 @@ class SHMAC_API_Tabs {
             'custom_css' => '',
 			'custom_js'  => '',
             'page_color' => '#00bfa5',
+			'location'   => 'modal',
             'calc_title' => __('Amortization Calculator', 'shmac'),
             'send_email_text' => __('Send A PDF report to your email?', 'shmac'),
             'email_placeholder' => __('Your Email', 'shmac'),
@@ -254,6 +255,8 @@ class SHMAC_API_Tabs {
                 $this->first_tab_key, 'section_general' );
 
         add_settings_field( 'page_color', __('Primary Color', 'shmac'), array( &$this, 'field_color_option' ), 
+                $this->first_tab_key, 'section_general' );
+		add_settings_field( 'location', __('Output Location', 'shmac'), array( &$this, 'field_location' ),
                 $this->first_tab_key, 'section_general' );
         add_settings_field( 'custom_css', __('Custom CSS', 'shmac'), array( &$this, 'field_custom_css' ),
                 $this->first_tab_key, 'section_general' );
@@ -666,6 +669,23 @@ class SHMAC_API_Tabs {
         </p>
 
         <?php
+    }
+
+	/*
+	 * Output location choices are below calculator or in popup window
+	 */
+	function field_location() {
+        ?>
+		<select class="shmac-location" name="<?php echo $this->first_tab_key; ?>[location]">
+            <option value="inline" <?php selected( $this->first_tab['location'], "inline");?>
+                    ><?php echo __("Below Calculator", "shmac");?></option>
+            <option value="modal" <?php selected( $this->first_tab['location'], "modal");?>
+                    ><?php echo __("In popup (modal)", "shmac");?></option>
+        </select>
+		<p>
+			<?php echo __('Sets the output location desired, it can be below the calculator or in a popup window (modal)', 'shmac'); ?>
+		</p>
+		<?php
     }
 
     /*

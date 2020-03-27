@@ -101,7 +101,7 @@ jQuery(function ($) {  // use $ for jQuery
 
 
             } else { 
-                activateModal(response.payment, response.headers, response.vals, response.details, currentForm);
+                activateModalorDiv(response.payment, response.headers, response.vals, response.details, currentForm, response.location);
             }
         });
         return false;
@@ -147,7 +147,7 @@ jQuery(function ($) {  // use $ for jQuery
     });
 
     /* Results Modal function */
-    function activateModal(payment, headers, vals, details, currentForm) {
+    function activateModalorDiv(payment, headers, vals, details, currentForm, location) {
         // initialize modal element
         // Details
 
@@ -224,49 +224,106 @@ jQuery(function ($) {  // use $ for jQuery
         // Disclaimer
         var disclaimerDiv = '<div class="disclaimer">' + details.disclaimer + '</div>';
 
-        var modalE1 = document.createElement('div');
-        $(detailsTable).appendTo(modalE1);
-        $(tip).appendTo(modalE1);
-        $(schedule).appendTo(modalE1);
-        $(disclaimerDiv).appendTo(modalE1);
-        $(modalE1).css('padding', '20px').css('width', '75%').css('height', '75%').css('margin', '100px auto');
-        $(modalE1).css('overflow', 'hidden').addClass('shmac-div').addClass('divfrom-' + currentForm);
 
-        // show modal
-        mui.overlay('on', modalE1);
+		if (location == 'inline') {
+			var inlineDiv = $('#shmac-inline-' + currentForm);
+			inlineDiv.html(''); //clear it out first
+
+        	$(detailsTable).appendTo(inlineDiv);
+        	$(tip).appendTo(inlineDiv);
+        	$(schedule).appendTo(inlineDiv);
+        	$(disclaimerDiv).appendTo(inlineDiv);
+        	$(inlineDiv).css('padding', '0px').css('max-height', '500px');
+        	$(inlineDiv).addClass('shmac-div').addClass('divfrom-' + currentForm);
+			divScroll(currentForm);
+
+		} else { // modal popup
+			var modalE1 = document.createElement('div');
+	        $(detailsTable).appendTo(modalE1);
+        	$(tip).appendTo(modalE1);
+        	$(schedule).appendTo(modalE1);
+        	$(disclaimerDiv).appendTo(modalE1);
+        	$(modalE1).css('padding', '20px').css('width', '75%').css('height', '75%').css('margin', '100px auto');
+        	$(modalE1).css('overflow', 'hidden').addClass('shmac-div').addClass('divfrom-' + currentForm);
+
+        	// show modal
+        	mui.overlay('on', modalE1);
+			modalScroll();
+		}
     }
 
-    /* load scrollbar on modal div */
-    $('.shmac-div').mCustomScrollbar({
-        live: "on",
-        theme: 'minimal-dark',
-        callbacks: {
-            onInit: function() {
-                $('.shmac-div').css('overflow','auto'); // set overflow auto after init to avoid normal scroll from appearing
-                var firstRow = $('.schedule-table tr').eq(1).clone();
-                var lastRow = $('.schedule-table tr:last').clone();
-                $('<div class="schedule-head-fixed"><table class="mui-table schedule-table"></table></div>')
-                    .appendTo('.shmac-div').hide();
-                $('.schedule-head').clone().appendTo('.schedule-head-fixed .schedule-table');
-                $('.schedule-head-fixed .schedule-table').append(firstRow).append(lastRow);
-            },
-            whileScrolling: function() {
-                var $window = $(window);
-                var windowsize = $window.width();
-                if (windowsize > 768 && $('.schedule-head').length ) {
-                    var schedulePos = $('.schedule-head').offset().top - $('.shmac-div').offset().top;
-                    if (schedulePos < 0) {
-                        $('.schedule-head-fixed').show();
+	/* load scrollbar inline */
+	function divScroll(currentForm) {
+		$('.shmac-div.divfrom-' + currentForm).mCustomScrollbar({
+            live: "on",
+            theme: 'minimal-dark',
+			advanced: {
+				updateOnContentResize: true,
+			},
+			callbacks: {
+                onInit: function() {
+                    $('.shmac-div.divfrom-' + currentForm).css('overflow','auto'); // set overflow auto after init to avoid normal scroll from appearing
+					$('.shmac-div.divfrom-' + currentForm + ' .disclaimer').css('margin-bottom', '0px');
+					$('.shmac-div.divfrom-' + currentForm + ' .disclaimer').css('margin-bottom', '20px');
+					
+                    var firstRow = $('.shmac-div-' + currentForm + ' .schedule-table tr').eq(1).clone();
+                    var lastRow = $('.shmac-div-' + currentForm + ' .schedule-table tr:last').clone();
+                    $('<div class="schedule-head-fixed"><table class="mui-table schedule-table"></table></div>')
+                        .appendTo('.shmac-div.divfrom-' + currentForm).hide();
+                    $('.divfrom-' + currentForm + ' .schedule-head').clone().appendTo('.divfrom-' + currentForm + ' .schedule-head-fixed .schedule-table');
+                    $('.divfrom-' + currentForm + ' .schedule-head-fixed .schedule-table').append(firstRow).append(lastRow);
+                },
+                whileScrolling: function() {
+                    var $window = $(window);
+                    var windowsize = $window.width();
+                    if (windowsize > 768 && $('.divfrom-' + currentForm + ' .schedule-head').length ) {
+                        var schedulePos = $('.divfrom-' + currentForm + ' .schedule-head').offset().top - $('.shmac-div.divfrom-' + currentForm).offset().top;
+                        if (schedulePos < 0) {
+                            $('.divfrom-' + currentForm + ' .schedule-head-fixed').show();
+                        } else {
+                            $('.divfrom-' + currentForm + ' .schedule-head-fixed').hide();
+                        }
                     } else {
-                        $('.schedule-head-fixed').hide();
+                        $('.divfrom-' + currentForm + ' .schedule-head-fixed').hide();
                     }
-                } else {
-                    $('.schedule-head-fixed').hide();
                 }
             }
-        }
-    });
+        });
+	}
 
+
+    /* load scrollbar on modal div */
+	function modalScroll() {
+    	$('.shmac-div').mCustomScrollbar({
+        	live: "on",
+        	theme: 'minimal-dark',
+        	callbacks: {
+            	onInit: function() {
+                	$('.shmac-div').css('overflow','auto'); // set overflow auto after init to avoid normal scroll from appearing
+                	var firstRow = $('.schedule-table tr').eq(1).clone();
+                	var lastRow = $('.schedule-table tr:last').clone();
+                	$('<div class="schedule-head-fixed"><table class="mui-table schedule-table"></table></div>')
+                    	.appendTo('.shmac-div').hide();
+                	$('.schedule-head').clone().appendTo('.schedule-head-fixed .schedule-table');
+                	$('.schedule-head-fixed .schedule-table').append(firstRow).append(lastRow);
+            	},
+            	whileScrolling: function() {
+                	var $window = $(window);
+                	var windowsize = $window.width();
+                	if (windowsize > 768 && $('.schedule-head').length ) {
+                    	var schedulePos = $('.schedule-head').offset().top - $('.shmac-div').offset().top;
+                    	if (schedulePos < 0) {
+                        	$('.schedule-head-fixed').show();
+                    	} else {
+                        	$('.schedule-head-fixed').hide();
+                    	}
+                	} else {
+                    	$('.schedule-head-fixed').hide();
+                	}
+            	}
+        	}
+    	});
+	}
     /* Number & Char limiting for field inputs */
     $('.shmac-form .mort-amount').autoNumeric('init');
     $('.shmac-form .interest').autoNumeric('init');

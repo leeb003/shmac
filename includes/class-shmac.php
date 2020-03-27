@@ -74,9 +74,6 @@
             wp_register_style( 'nouislider', SHMAC_ROOT_URL .  '/assets/css/nouislider.min.css',
             array('shmac-frontend'), '920');
             
-            //Minified Css
-            wp_register_style( 'mCustomScroll-mprogress-nouislider', SHMAC_ROOT_URL .  '/assets/css/mCustomScroll.mprogress.nouislider.min.css', array('shmac-frontend'), '920');
-           
             // dynamic css
             wp_register_style('shmac-dynamic-css', 
                 admin_url('admin-ajax.php').'?action=shmac_dynamic_css', 'shmac-frontend', SHMAC_PLUGIN_VERSION );
@@ -659,6 +656,7 @@ EOT;
     </form>
   </div>
 </div><!-- End shmac-holder -->
+<div class="shmac-inline-form" id="shmac-inline-form-$calc_inc"></div>
 EOT;
 			// Set up variables that go to frontend-slider.js
             if($enable_slideroverride=="yes" || $enable_slideroverride=="enable"){

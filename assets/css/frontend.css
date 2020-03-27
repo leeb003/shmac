@@ -122,6 +122,24 @@
 	border-bottom: 0;
 }
 
+.shmac-inline-form .schedule-head-fixed {
+	padding-top: 0;
+}
+.shmac-inline-form p {
+	padding-left: 20px;
+	padding-right: 20px;
+}
+.shmac-inline-form .shmac-ul {
+	padding-right: 20px;
+	padding-left: 20px;
+	text-indent: 0;
+}
+
+.shmac-inline-form .detail-table {
+	margin-left: 20px;
+	margin-right: 20px;
+}
+
 .shmac-ul {
 	list-style:none;
 	padding-left:20px;
@@ -1459,6 +1477,11 @@ input.mui-form-control:invalid:not(:focus):required:not(:empty):not(.mui-empty):
 }
 
 /* End Checkboxes */
+
+/*Inline Div*/
+.shmac-inline-form {
+	overflow: hidden !important;
+}
 
 /*Slider*/
 .sliders {
