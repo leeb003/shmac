@@ -61,7 +61,8 @@ jQuery(function ($) {  // use $ for jQuery
         override.pdfcolor               = $(this).closest('.shmac-form').data('pdfcolor');
         override.pdflogo                = $(this).closest('.shmac-form').data('pdflogo');
         override.pdfheader              = $(this).closest('.shmac-form').data('pdfheader');
-        override.downpayshow              = $(this).closest('.shmac-form').data('downpayshow');
+        override.downpayshow            = $(this).closest('.shmac-form').data('downpayshow');
+		override.location               = $(this).closest('.shmac-form').data('location');
 
         $.post(SHMAC_Ajax.ajaxurl, {
             action: 'ajax-shmacfrontend',

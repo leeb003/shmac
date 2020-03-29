@@ -728,6 +728,21 @@ class shmacVC {
                         "value" => array("enable"),
                     ),
                 ),
+				array(
+					"type" => "dropdown",
+                    "heading"  => __("Output Location", "shmac"),
+                    "param_name" => "location",
+                    "description" => __("Choose to enable email results or not", "shmac"),
+                    "value" => array(
+                        __('Settings Default', 'shmac') => '',
+                        __("In popup (modal)", "shmac") => "modal",
+                        __("Below Calculator", "shmac") => "inline",
+                    ),
+                    "dependency" => array (
+                        "element" => "allowoverrides",
+                        "value" => array("enable"),
+                    ),
+                ),	
             ),
         ) );
     }

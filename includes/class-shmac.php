@@ -192,6 +192,7 @@
                 'currencysymbol'         => '',
                 'currencyformat'         => '',
                 'currencyside'           => '',
+				'location'               => '',
                 // Email Settings Overrides
                 'allowemail'             => '',
                 'bccemail'               => '',
@@ -283,6 +284,7 @@
 			$slidermaxterm          = ($settings['slidermaxterm'] != '' ? $settings['slidermaxterm'] : $this->shmac_settings['term_max_value']);
 			$sliderstepsterm        = ($settings['sliderstepsterm'] != '' ? $settings['sliderstepsterm'] : $this->shmac_settings['term_slider_step']);
 			$termtype               = ($settings['termtype'] != '' ? $settings['termtype'] : $this->shmac_settings['term_type']);
+			$location               = ($settings['location'] != '' ? $settings['location'] : $this->shmac_settings['location']);
 
 			// format strings for autoNumeric min max values
 			//$sliderminamount = str_replace(',', '', $sliderminamount);
@@ -400,7 +402,7 @@ EOT;
             // Individual Form Overrides set initial empty
             $o_enableinsurance = $o_insuranceamountpercent = $o_monthlyinsurance = $o_enablepmi = $o_monthlypmi = $o_enabletaxes 
             = $o_taxesperthou = $o_disclaimer = $o_currencysymbol = $o_currencyformat = $o_currencyside  = $o_downpaytype
-            = $o_bccemail = $o_fromemail = $o_emailsubject = $o_emailcontent = $o_pdfcolor = $o_pdflogo = $o_pdfheader = '';
+            = $o_bccemail = $o_fromemail = $o_emailsubject = $o_emailcontent = $o_pdfcolor = $o_pdflogo = $o_pdfheader = $o_location = '';
 
             // Individual Form Overrides
             if ($enableinsurance != '') {
@@ -469,12 +471,15 @@ EOT;
             if ($pdfheader != '') {
                 $o_pdfheader = 'data-pdfheader="' . $pdfheader . '" ';
             }
+			if ($location != '') {
+				$o_location = 'data-location="' . $location . '" ';
+			}
 
             // Form data attributes
             $data_atts = $o_enableinsurance . $o_insuranceamountpercent . $o_monthlyinsurance . $o_enablepmi . $o_monthlypmi 
                 . $o_enabletaxes . $o_taxesperthou . $o_disclaimer . $o_currencysymbol . $o_currencyformat . $o_currencyside 
                 . $o_downpaytype . $o_bccemail . $o_fromemail . $o_emailsubject . $o_emailcontent . $o_pdfcolor . $o_pdflogo 
-                . $o_pdfheader . $o_downpay;
+                . $o_pdfheader . $o_downpay . $o_location;
 
             $info_src = SHMAC_ROOT_URL . '/assets/img/info_outline.png'; 
             $symbol_side = '';

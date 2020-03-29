@@ -106,7 +106,12 @@
                 if (isset($_POST['override']['downpayshow'])) {
                     $downpayshow = wp_kses_post($_POST['override']['downpayshow']);
                 }
-                    
+
+				if (isset($_POST['override']['location'])) {
+					$location = esc_html($_POST['override']['location']);
+				} else {
+                    $location = isset($this->shmac_settings['location']) ? $this->shmac_settings['location'] : 'modal';
+				}
                 
 
                 $response['headers']['payment'] = __('Payment', 'shmac');
@@ -127,7 +132,8 @@
                 $response['details']['monthly_payment'] = __('Monthly Payment (P & I)', 'shmac');
                 $response['details']['total_payments'] = __('Total Payments', 'shmac');
                 $response['details']['disclaimer'] = $this->shmac_settings['disclaimer'];
-				$response['location'] = $this->shmac_settings['location']; 
+
+				$response['location'] = $location;
 
                 $response['vals']['shmac_root'] = SHMAC_ROOT_URL;
                 $post_interest = $_POST['interest'];
