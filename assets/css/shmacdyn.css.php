@@ -12,37 +12,30 @@ class shmac_dynamc_css {
 		$primary_color_light = $shmac_utils->hex2rgba($primary_color, $opacity = 0.4);
 		$custom_css = trim($shmac_settings['custom_css']);
 
-		// Need to check the rtl setting for some style changes on rtl languages
-		$shmac_email = get_option('shmac_email');
-		$rtl_css = '';
-		if (isset($shmac_email['ltr_rtl']) && $shmac_email['ltr_rtl'] == 'rtl') {
-            	$rtl_css = <<<EOT
-/* RTL CSS */
-.mui-form-group .shmac-tip {
-   left:0px;
-   right:auto;
-}
-.shmac-term-years, .shmac-term-months {
-    float: right;
-    margin-left: 20px;
-}
-.shmac-tip:hover:after{
-    bottom: 26px;
-    left: -6px;
-	right: auto;
-    width: 220px;
-}
-.shmac-tip:hover:before{
-    bottom: 20px;
-	right: 3px;
-	left: auto;
-}
-EOT;
-
-            }
-
 		header('Content-type: text/css');
+
+		/* Include all other css into one output */
+		$css_files = array(
+			SHMAC_ROOT_PATH . "/assets/css/frontend.css",
+			SHMAC_ROOT_PATH . "/assets/css/jquery.mCustomScrollbar.min.css",
+			SHMAC_ROOT_PATH .  '/assets/css/mprogress.min.css',
+			SHMAC_ROOT_PATH .  '/assets/css/nouislider.min.css',
+		);
+		$buffer = "";
+		foreach ($css_files as $css_file) {
+			$buffer .= file_get_contents($css_file);
+		}
+		/* minify files */
+		$buffer = preg_replace('!/\*[^*]*\*+([^/][^*]*\*+)*/!', '', $buffer);
+    	$buffer = str_replace(': ', ':', $buffer);
+    	$buffer = str_replace(array("\r\n", "\r", "\n", "\t", '  ', '    ', '    '), '', $buffer);
+
+		/* Output CSS files first before adding dynamic and custom styles */
+		echo $buffer; 
 		?>
+
+
+
 /* Dynamic Styles For WP Mortgage Calculator */
 .shmac-form .mui-form-group > .mui-form-control:focus ~ label {
 	color: <?php echo $primary_color; ?>;
@@ -61,7 +54,17 @@ EOT;
     background-image:none;
     background-color: transparent;
 }
+
+/* for read only fields fallback color */
+.shmac-form input[type=text]:focus,
+.shmac-form input[type=email]:focus,
+.shmac-form input[type=password]:focus {
+	border-bottom: 1px solid rgba(0, 0, 0, 0.26);
+}
+
+
 .shmac-form input[type=text]:focus:not([readonly]),
+.shmac-form input[type=email]:focus:not([readonly]),
 .shmac-form input[type=password]:focus:not([readonly]) {
 	border:none;
     border-bottom: 1px solid <?php echo $primary_color; ?>;
@@ -91,8 +94,6 @@ EOT;
 .ui-mprogress .buffer-bg {
   background: <?php echo $primary_color_light; ?>;
 }
-
-<?php echo $rtl_css; ?>
 
 /* Custom CSS Below */
 <?php echo $custom_css;?>

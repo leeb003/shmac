@@ -1,0 +1,33 @@
+/* SHMAC RTL STYLES */
+.mui-form-group .shmac-tip {
+	left: 0;
+	right: auto;
+}
+
+.shmac-tip:hover:after{
+    right: auto;
+	left: 0px;
+}
+
+.shmac-tip:hover:before{
+    right: auto;
+	left: 0px;
+}
+.shmac-term-years, .shmac-term-months {
+	float: right;
+}
+.shmac-form input[type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+	right: -9999px;
+	left: auto;
+}
+.mui-form-group > input.mort-amount, .mui-form-group > input.input-symbol {
+	padding-right: 15px;
+}
+.shmac-symbol.right {
+	right: 0;
+	left: auto;
+}
+.shmac-holder input {
+	direction: RTL;
+}
+

@@ -26,6 +26,7 @@ jQuery(function ($) {  // use $ for jQuery
 			var sliderstepsterm     = slider_vars[calc_inc].sliderstepsterm;
 			var slidermaxterm       = slider_vars[calc_inc].slidermaxterm;
 			var defaultterm         = slider_vars[calc_inc].defaultterm;
+			var sliderDir			= slider_vars[calc_inc].sliderdir;
 
 			//Amount Slider- Input Script
 			var amtStart= defaultpurchase;
@@ -45,6 +46,7 @@ jQuery(function ($) {  // use $ for jQuery
 					'min': amtMin,
 					'max': amtMax
 				},
+				direction: sliderDir,
 			});
 			eval('amount_slider_' + calc_inc).noUiSlider.on('update', function( values, handle ){
 				amount_slider_value.autoNumeric('set', values[handle]);
@@ -65,6 +67,7 @@ jQuery(function ($) {  // use $ for jQuery
 					'min': intMin,
 					'max': intMax
 				},
+				direction: sliderDir,	
 			});             
 			eval('interest_slider_' + calc_inc).noUiSlider.on('update', function( values, handle ){
 				interest_slider_value.autoNumeric('set', values[handle]);
@@ -86,6 +89,7 @@ jQuery(function ($) {  // use $ for jQuery
 						'min': dwnpayMin,
 						'max': dwnpayMax
 					},
+					direction: sliderDir,
 				});             
 				eval('downpay_slider_' + calc_inc).noUiSlider.on('update', function( values, handle ){
 					downpay_slider_value.autoNumeric('set', values[handle]);
@@ -106,6 +110,7 @@ jQuery(function ($) {  // use $ for jQuery
 					'min': termMin,
 					'max': termMax
 				},
+				direction: sliderDir,
 			});             
 			eval('term_slider_' + calc_inc).noUiSlider.on('update', function( values, handle ){
 				var value = values[handle];

@@ -39,7 +39,7 @@
     font-weight: 400;
 	color: rgba(0, 0, 0, 0.54);
     left:0px;
-    top: 14px;
+    top: 13px;
 }
 
 .shmac-symbol.right {
@@ -122,24 +122,6 @@
 	border-bottom: 0;
 }
 
-.shmac-inline-form .schedule-head-fixed {
-	padding-top: 0;
-}
-.shmac-inline-form p {
-	padding-left: 20px;
-	padding-right: 20px;
-}
-.shmac-inline-form .shmac-ul {
-	padding-right: 20px;
-	padding-left: 20px;
-	text-indent: 0;
-}
-
-.shmac-inline-form .detail-table {
-	margin-left: 20px;
-	margin-right: 20px;
-}
-
 .shmac-ul {
 	list-style:none;
 	padding-left:20px;
@@ -206,7 +188,6 @@
 .shmac-tip:hover:after{
     background: #777;
     background: rgba(119,119,119,.9);
-    border-radius: 3px;
     bottom: 26px;
     color: #fff;
     content: attr(data-title);
@@ -216,6 +197,7 @@
     z-index: 98;
     width: 220px;
 	opacity: 1;
+	box-shadow: 0 8px 6px -6px #333;
 }
 
 .shmac-tip:hover:before{
@@ -520,7 +502,6 @@ input[type="checkbox"],
 .mui-panel {
   padding: 15px;
   padding-top: 0;
-  margin-bottom: 20px;
   border-radius: 0;
   background-color: #FFF;
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0px 2px 0 rgba(0, 0, 0, 0.12);
@@ -873,7 +854,7 @@ h3.shmac-header {
   padding: 0;
   margin-bottom: 10px;
   margin: 0 -15px 10px -15px;
-  padding: 5px 15px;
+  padding: 10px 15px;
   font-size: 24px;
   color: rgba(0, 0, 0, 0.54);
   background-color: rgba(0,0,0, 0.05);
@@ -962,11 +943,6 @@ h3.shmac-header {
 
 textarea.mui-form-control {
   height: auto;
-}
-
-input.mui-form-control:focus {
-  height: 33px;
-  margin-bottom: -1px;
 }
 
 .shmac-form input[type="search"] {
@@ -1480,7 +1456,26 @@ input.mui-form-control:invalid:not(:focus):required:not(:empty):not(.mui-empty):
 
 /*Inline Div*/
 .shmac-inline-form {
-	overflow: hidden !important;
+    overflow: hidden !important;
+    clear:both;
+}
+
+.shmac-inline-form .schedule-head-fixed {
+    padding-top: 0;
+}
+.shmac-inline-form p {
+    padding-left: 20px;
+    padding-right: 20px;
+}
+.shmac-inline-form .shmac-ul {
+    padding-right: 20px;
+    padding-left: 20px;
+    text-indent: 0;
+}
+
+.shmac-inline-form .detail-table {
+    margin-left: 20px;
+    margin-right: 20px;
 }
 
 /*Slider*/
@@ -1499,6 +1494,7 @@ input.mui-form-control:invalid:not(:focus):required:not(:empty):not(.mui-empty):
 }
 .noUi-target {
 	border:none !important;
+	box-shadow: none !important;
 }
 .sliders .noUi-handle {
     border: 8px solid #97d66b;

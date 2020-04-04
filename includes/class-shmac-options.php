@@ -1,6 +1,6 @@
 <?php
 /**
- * SHMAC Class options getter
+ * SHMAC Class options
  */
 
     class shmac_options {

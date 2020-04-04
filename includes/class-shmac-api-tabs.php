@@ -32,18 +32,6 @@ class SHMAC_API_Tabs {
         require_once(SHMAC_ROOT_PATH . '/includes/class-shmac-ajax.php');
         $shmac_ajax = new shmac_ajax();
         add_action( 'wp_ajax_ajax-shmacbackend', array($shmac_ajax, 'myajax_shmacbackend_callback'));
-
-        // get folder info in backup directory - repeat of main class for now since this class doesn't extend
-        $upload_dir = wp_upload_dir();
-        // backup directory & url
-        $this->shmac_backup = $upload_dir['basedir'] . '/shmac_backups';
-        $this->shmac_backup_url = $upload_dir['baseurl'] . '/shmac_backups';
-        if ( !file_exists($this->shmac_backup) ) {
-            wp_mkdir_p( $this->shmac_backup );
-        }
-        // list of backups
-        require_once ABSPATH . '/wp-includes/ms-functions.php'; // needed for get_dirsize function
-        $this->backup_files = preg_grep('/^([^.])/', scandir($this->shmac_backup));
     }
     
     /*
@@ -107,10 +95,9 @@ class SHMAC_API_Tabs {
             'currency' => '$',
             'currency_format' => '1',
             'currency_side' => 'left',          
-            //~ 'amount_slider_start'=>'12000',         
-            //~ 'interest_slider_start'=>'5',           
-            //~ 'dwnpay_slider_start'=>'10',            
-            //~ 'term_slider_start'=>'5',
+			'bg_attachment_url' => SHMAC_ROOT_URL . '/assets/img/wpcontacts.png',
+            'bg_attachment_id' => '',
+			'bg_color' => '#fff',
             
         ), $this->first_tab );
 
@@ -150,11 +137,11 @@ class SHMAC_API_Tabs {
         add_settings_field( 'email_placeholder', __('Email Label', 'shmac'), array( &$this, 'field_email_placeholder'),
                 $this->first_tab_key, 'section_general' );
         
-        add_settings_field( 'enable_email', __('Email Always Show', 'shmac'), array( &$this, 'field_enable_email' ),          $this->first_tab_key, 'section_general' );
+        add_settings_field( 'enable_email', __('Require Email', 'shmac'), array( &$this, 'field_enable_email' ),          $this->first_tab_key, 'section_general' );
         //Slider Settings
         add_settings_field( 'enable_slider', __('Enable Slider', 'shmac'), array( &$this, 'field_enable_slider' ),          $this->first_tab_key, 'section_general' );
         
-        add_settings_field( 'enable_input_readonly', __('Enable Input Readonly', 'shmac'), array( &$this, 'field_enable_input_readonly' ),  $this->first_tab_key, 'section_general' );
+        add_settings_field( 'enable_input_readonly', __('Slider Inputs Readonly', 'shmac'), array( &$this, 'field_enable_input_readonly' ),  $this->first_tab_key, 'section_general' );
 
         add_settings_field( 'slider_theme', __('Choose Slider Theme', 'shmac'), array( &$this, 'field_slider_theme' ),  $this->first_tab_key, 'section_general' );
         
@@ -172,7 +159,6 @@ class SHMAC_API_Tabs {
         add_settings_field( 'amount_max_value', __('Maximum Purchase Price', 'shmac'), array( &$this, 'field_amount_max_value' ),   $this->first_tab_key, 'section_general' );
 
         add_settings_field( 'amount_slider_step', __('Steps in Purchase Slider', 'shmac'), array( &$this, 'field_amount_slider_step' ), $this->first_tab_key, 'section_general' );
-        //~ add_settings_field( 'amount_slider_start', __('Start Purchase Price in Slider', 'shmac'), array( &$this, 'field_amount_slider_start' ), $this->first_tab_key, 'section_general' );
 
         //Interest Rate     
         add_settings_field( 'interest_rate_label', __('Interest Label', 'shmac'), array( &$this, 'field_interest_rate_label'),
@@ -229,9 +215,7 @@ class SHMAC_API_Tabs {
         
         add_settings_field( 'term_type', __('Term Type', 'shmac'), array( &$this, 'field_term_type' ),  $this->first_tab_key, 'section_general' );
 
-        //~ add_settings_field( 'term_slider_start', __('Start Term in Slider', 'shmac'), array( &$this, 'field_term_slider_start' ),   $this->first_tab_key, 'section_general' );
-
-        add_settings_field( 'enable_insurance', __('Enable Insurance Cost Estimate', 'shmac'), 
+        add_settings_field( 'enable_insurance', __('Insurance Cost Estimate', 'shmac'), 
                 array( &$this, 'field_enable_insurance'), $this->first_tab_key, 'section_general' );
         add_settings_field( 'insurance_amount_percent', __('Is insurance a set amount or a percent of loan per month?', 'shmac'),
                 array( &$this, 'field_insurance_amount_percent'), $this->first_tab_key, 'section_general' );
@@ -256,11 +240,13 @@ class SHMAC_API_Tabs {
 
         add_settings_field( 'page_color', __('Primary Color', 'shmac'), array( &$this, 'field_color_option' ), 
                 $this->first_tab_key, 'section_general' );
+		add_settings_field( 'bg_color', __('Background Color', 'shmac'), array( &$this, 'field_bg_option' ),
+				$this->first_tab_key, 'section_general' );
+		add_settings_field( 'background_img_url', __('Calculator Background Image', 'shmac'), array( &$this, 'field_bg_image' ),
+            	$this->first_tab_key, 'section_general' );
 		add_settings_field( 'location', __('Output Location', 'shmac'), array( &$this, 'field_location' ),
                 $this->first_tab_key, 'section_general' );
-        add_settings_field( 'custom_css', __('Custom CSS', 'shmac'), array( &$this, 'field_custom_css' ),
-                $this->first_tab_key, 'section_general' );
-		add_settings_field( 'custom_js', __('Custom JS', 'shmac'), array( &$this, 'field_custom_js' ),
+        add_settings_field( 'custom_code', __('Custom Code', 'shmac'), array( &$this, 'field_custom_code' ),
                 $this->first_tab_key, 'section_general' );
                 
     }
@@ -294,9 +280,9 @@ class SHMAC_API_Tabs {
             $this->second_tab_key, 'section_email' );
         add_settings_field( 'pdf_header', __('PDF Header Large Text', 'shmac'), array( &$this, 'field_pdf_header' ),
             $this->second_tab_key, 'section_email' );
-        add_settings_field( 'ltr_rtl', __('LTR or RTL', 'shmac'), array( &$this, 'field_ltr_rtl' ),
-                             $this->second_tab_key, 'section_email' );
         add_settings_field( 'pdf_font', __('PDF Font to use', 'shmac'), array( &$this, 'field_pdf_font' ),
+                             $this->second_tab_key, 'section_email' );
+		add_settings_field( 'ltr_rtl', __('Enable RTL', 'shmac'), array( &$this, 'field_ltr_rtl' ),
                              $this->second_tab_key, 'section_email' );
     }
 
@@ -418,12 +404,14 @@ class SHMAC_API_Tabs {
     // Show Down Payment
     function field_down_payment_show() {
         ?>
-        <select class="shmac-down-show" name="<?php echo $this->first_tab_key; ?>[down_payment_show]">
-            <option value="yes" <?php selected( $this->first_tab['down_payment_show'], "yes");?>
-                    ><?php echo __("Yes", "shmac");?></option>
-            <option value="no" <?php selected( $this->first_tab['down_payment_show'], "no");?>
-                    ><?php echo __("No", "shmac");?></option>
-        </select>
+		<hr />
+		<!-- Rounded switch -->
+        <input type="hidden" class="shmac-down-alt" name="<?php echo $this->first_tab_key; ?>[down_payment_show]" value="no">
+        <label class="switch">
+        <input type="checkbox" class="shmac-down-show" name="<?php echo $this->first_tab_key; ?>[down_payment_show]" value="yes"
+            <?php checked($this->first_tab['down_payment_show'], 'yes');?>>
+        <span class="slider round"></span>
+        </label>
         <p><?php echo __("Choose whether to show down payment or not", "shmac"); ?>.</p>
         <?php
     }
@@ -439,7 +427,8 @@ class SHMAC_API_Tabs {
     // Loan Term Label
     function field_loan_term_label() {
         ?>
-         <input class="shmac-term-label" name="<?php echo $this->first_tab_key; ?>[loan_term_label]" value="<?php echo esc_attr( $this->first_tab['loan_term_label'] ); ?>" />
+		<hr />
+        <input class="shmac-term-label" name="<?php echo $this->first_tab_key; ?>[loan_term_label]" value="<?php echo esc_attr( $this->first_tab['loan_term_label'] ); ?>" />
         <p><?php echo __("Set the text for the Loan Term Field.", "shmac"); ?></p>
         <?php
     }
@@ -462,13 +451,15 @@ class SHMAC_API_Tabs {
     // Enable Insurance
     function field_enable_insurance() {
         ?>
-        <select class="shmac-enable-insurance" name="<?php echo $this->first_tab_key; ?>[enable_insurance]">
-            <option value="yes" <?php selected( $this->first_tab['enable_insurance'], "yes");?>
-                    ><?php echo __("Yes", "shmac");?></option>
-            <option value="no" <?php selected( $this->first_tab['enable_insurance'], "no");?>
-                    ><?php echo __("No", "shmac");?></option>
-        </select>
-        <p><?php echo __("Choose whether to give a homeowners insurance estimate", "shmac"); ?></p>
+		<hr />
+		<!-- Rounded switch -->
+        <input type="hidden" class="shmac-insurance-alt" name="<?php echo $this->first_tab_key; ?>[enable_insurance]" value="no">
+        <label class="switch">
+        <input type="checkbox" class="shmac-enable-insurance" name="<?php echo $this->first_tab_key; ?>[enable_insurance]" value="yes"
+            <?php checked($this->first_tab['enable_insurance'], 'yes');?>>
+        <span class="slider round"></span>
+        </label>	
+        <p><?php echo __("Enables homeowners insurance estimate", "shmac"); ?></p>
         <?php
     }
     
@@ -497,12 +488,14 @@ class SHMAC_API_Tabs {
     // Enable PMI
     function field_enable_pmi() {
         ?>
-        <select class="shmac-enable-pmi" name="<?php echo $this->first_tab_key; ?>[enable_pmi]">
-            <option value="yes" <?php selected( $this->first_tab['enable_pmi'], "yes");?>
-                    ><?php echo __("Yes", "shmac");?></option>
-            <option value="no" <?php selected( $this->first_tab['enable_pmi'], "no");?>
-                    ><?php echo __("No", "shmac");?></option>
-        </select>
+		<hr />
+		<!-- Rounded switch -->
+        <input type="hidden" class="shmac-pmi-alt" name="<?php echo $this->first_tab_key; ?>[enable_pmi]" value="no">
+        <label class="switch">
+        <input type="checkbox" class="shmac-enable-pmi" name="<?php echo $this->first_tab_key; ?>[enable_pmi]" value="yes"
+            <?php checked($this->first_tab['enable_pmi'], 'yes');?>>
+        <span class="slider round"></span>
+        </label>
         <p><?php echo __("Choose whether to give a PMI estimate", "shmac"); ?></p>
         <?php
     }
@@ -518,12 +511,22 @@ class SHMAC_API_Tabs {
     // Enable Taxes
     function field_enable_taxes() {
         ?>
+		<hr />
+		<!-- Rounded switch -->
+        <input type="hidden" class="shmac-taxes-alt" name="<?php echo $this->first_tab_key; ?>[enable_taxes]" value="no">
+        <label class="switch">
+        <input type="checkbox" class="shmac-enable-taxes" name="<?php echo $this->first_tab_key; ?>[enable_taxes]" value="yes"
+            <?php checked($this->first_tab['enable_taxes'], 'yes');?>>
+        <span class="slider round"></span>
+        </label>
+<!--
         <select class="shmac-enable-taxes" name="<?php echo $this->first_tab_key; ?>[enable_taxes]">
             <option value="yes" <?php selected( $this->first_tab['enable_taxes'], "yes");?>
                     ><?php echo __("Yes", "shmac");?></option>
             <option value="no" <?php selected( $this->first_tab['enable_taxes'], "no");?>
                     ><?php echo __("No", "shmac");?></option>
         </select>
+-->
         <p><?php echo __("Choose whether to give a tax estimate or not", "shmac"); ?></p>
         <?php
     }
@@ -541,13 +544,15 @@ class SHMAC_API_Tabs {
     // Allow Emails
     function field_allow_email() {
         ?>
-        <select class="shmac-allow-email" name="<?php echo $this->second_tab_key; ?>[allow_email]">
-            <option value="yes" <?php selected( $this->second_tab['allow_email'], "yes");?>
-                    ><?php echo __("Yes", "shmac");?></option>
-            <option value="no" <?php selected( $this->second_tab['allow_email'], "no");?>
-                    ><?php echo __("No", "shmac");?></option>
-        </select>
-        <p><?php echo __("Choose whether to allow Email Reports to users or not", "shmac"); ?></p>
+		<!-- Rounded switch -->
+        <input type="hidden" class="shmac-allow-email-alt" name="<?php echo $this->second_tab_key; ?>[allow_email]" value="no">
+        <label class="switch">
+        <input type="checkbox" class="shmac-allow-email" name="<?php echo $this->second_tab_key; ?>[allow_email]" value="yes"
+            <?php checked($this->second_tab['allow_email'], 'yes');?>>
+        <span class="slider round"></span>
+        </label>
+        <!-- End switch -->	
+        <p><?php echo __("Choose to allow Email Reports to users", "shmac"); ?></p>
         <?php
     }
 
@@ -640,20 +645,26 @@ class SHMAC_API_Tabs {
     /*
      * Custom CSS Overrides
      */
-    function field_custom_css() {
+    function field_custom_code() {
         ?>
+		<hr />
+		<table class="shmac_custom">
+		<tr>
+		<th><?php echo __('Custom CSS', 'shmac');?></th><th><?php echo __('Custom JS', 'shmac');?></th>
+		</tr>
+		<tr>
+		<td>
         <textarea class="custom-css" id="code_editor_page_css" name="<?php echo $this->first_tab_key; ?>[custom_css]"><?php echo esc_attr( $this->first_tab['custom_css'] ); ?></textarea>
         <p><?php echo __("Add your own custom css to further control styling of the calculator", "shmac"); ?></p>
-        <?php
-    }
+		</td>
 
-	/*
-	 * Custom JS Overrides
-	 */
-	function field_custom_js() {
-    	?>
-        <textarea class="custom-js" id="code_editor_page_js" name="<?php echo $this->first_tab_key; ?>[custom_js]"><?php echo esc_attr( $this->first_tab['custom_js'] ); ?></textarea>
+		<td>
+	
+		 <textarea class="custom-js" id="code_editor_page_js" name="<?php echo $this->first_tab_key; ?>[custom_js]"><?php echo esc_attr( $this->first_tab['custom_js'] ); ?></textarea>
         <p><?php echo __("Add your own custom javascript to further control functionality of the calculator", "shmac"); ?></p>
+		</td>
+		</tr>
+		</table>
         <?php
     }
 
@@ -663,11 +674,39 @@ class SHMAC_API_Tabs {
      */
     function field_color_option() {
         ?>
-        <input type="text" name="<?php echo $this->first_tab_key; ?>[page_color]" class="color-field" value="<?php echo esc_attr( $this->first_tab['page_color'] ); ?>" />
+        <input type="text" name="<?php echo $this->first_tab_key; ?>[page_color]" data-alpha="true" class="color-picker color-field" value="<?php echo esc_attr( $this->first_tab['page_color'] ); ?>" />
         <p>
             <?php echo __('This sets the primary color for the Calculator', 'shmac');?>
         </p>
 
+        <?php
+    }
+
+    /* 
+     * Color picker field callback, renders a 
+     * color picker
+     */
+    function field_bg_option() {
+        ?>
+        <input type="text" name="<?php echo $this->first_tab_key; ?>[bg_color]" data-alpha="true" class="color-picker color-field" value="<?php echo esc_attr( $this->first_tab['bg_color'] ); ?>" />
+        <p>
+            <?php echo __('Sets the background color for the Calculator', 'shmac');?>
+        </p>
+
+        <?php
+    }
+
+
+	/*
+     * Background image upload
+     */
+    function field_bg_image() {
+        ?>
+        <button id="upload_now" class="button button-primary custom_bg_upload"><?php echo __("Upload", "shmac");?></button>
+        <button class="button button-primary bg_clear"><?php echo __("Clear Image", "shmac");?></button>
+        <img class="shmac_bg_image" style="display:none;" src="<?php echo esc_attr( $this->first_tab['bg_attachment_url']);?>" />
+        <input class="custom_bg_url" type="text" style="display:none;" name="<?php echo $this->first_tab_key;?>[bg_attachment_url]" value="<?php echo esc_attr( $this->first_tab['bg_attachment_url']);?>">
+        <input class="custom_bg_id" type="text" style="display:none;" name="<?php echo $this->first_tab_key;?>[bg_attachment_id]" value="<?php echo esc_attr($this->first_tab['bg_attachment_id']);?>">
         <?php
     }
 
@@ -719,13 +758,15 @@ class SHMAC_API_Tabs {
      */
     function field_ltr_rtl() {
         ?>
-        <select class="shmac-ltr-rtl" name="<?php echo $this->second_tab_key; ?>[ltr_rtl]">
-            <option value="ltr" <?php selected( $this->second_tab['ltr_rtl'], "ltr");?>
-                    ><?php echo __("LTR - Default", "shmac");?></option>
-            <option value="rtl" <?php selected( $this->second_tab['ltr_rtl'], "rtl");?>
-                    ><?php echo __("RTL - Right To Left Languages", "shmac");?></option>
-        </select>
-        <p><?php echo __("Choose LTR (Left To Right) or RTL (Right To Left) language.  If you don't know what this means, keep it LTR.", "shmac"); ?></p>
+		<!-- Rounded switch -->
+		<input type="hidden" class="shmac-ltr-rtl-alt" name="<?php echo $this->second_tab_key; ?>[ltr_rtl]" value="ltr">
+		<label class="switch">
+		<input type="checkbox" class="shmac-ltr-rtl" name="<?php echo $this->second_tab_key; ?>[ltr_rtl]" value="rtl"
+			<?php checked($this->second_tab['ltr_rtl'], 'rtl');?>>
+		<span class="slider round"></span>
+		</label>
+		<!-- End switch -->
+        <p><?php echo __("Enables the Right to Left PDF format for Right to Left languages (Hebrew, Arabic etc.).", "shmac"); ?></p>
         <?php
     }
 
@@ -758,37 +799,42 @@ class SHMAC_API_Tabs {
     //Slider Fields Body
     function field_enable_email() {
         ?>
-        <select class="shmac-enable-email" name="<?php echo $this->first_tab_key; ?>[enable_email]">
-            <option value="yes" <?php selected( $this->first_tab['enable_email'], "yes");?>
-                    ><?php echo __("Yes", "shmac");?></option>
-            <option value="no" <?php selected( $this->first_tab['enable_email'], "no");?>
-                    ><?php echo __("No", "shmac");?></option>
-        </select>
-        <p><?php echo __("Choose whether to show Email input always or not. It will only work if Allow Email Report option is selected Yes.", "shmac"); ?></p>
+		<!-- Rounded switch -->
+        <input type="hidden" class="enable-email-alt" name="<?php echo $this->first_tab_key; ?>[enable_email]" value="no">
+        <label class="switch">
+        <input type="checkbox" class="shmac-enable-email" name="<?php echo $this->first_tab_key; ?>[enable_email]" value="yes"
+            <?php checked($this->first_tab['enable_email'], 'yes');?>>
+        <span class="slider round"></span>
+        </label>
+
+        <p><?php echo __("Enabling requires user to add email address. It will only work if Allow Email Report option is selected.", "shmac"); ?></p>
         <?php
     }
     //Slider Fields Body
     function field_enable_slider() {
         ?>
-        <select class="shmac-enable-slider" name="<?php echo $this->first_tab_key; ?>[enable_slider]">
-            <option value="yes" <?php selected( $this->first_tab['enable_slider'], "yes");?>
-                    ><?php echo __("Yes", "shmac");?></option>
-            <option value="no" <?php selected( $this->first_tab['enable_slider'], "no");?>
-                    ><?php echo __("No", "shmac");?></option>
-        </select>
-        <p><?php echo __("Choose whether to show Slider in input or not", "shmac"); ?></p>
+		<!-- Rounded switch -->
+        <input type="hidden" class="enable-slider-alt" name="<?php echo $this->first_tab_key; ?>[enable_slider]" value="no">
+        <label class="switch">
+        <input type="checkbox" class="shmac-enable-slider" name="<?php echo $this->first_tab_key; ?>[enable_slider]" value="yes"
+            <?php checked($this->first_tab['enable_slider'], 'yes');?>>
+        <span class="slider round"></span>
+        </label>	
+
+        <p><?php echo __("Choose to show a slider with input", "shmac"); ?></p>
         <?php
     }
 
     function field_enable_input_readonly() {
         ?>
-        <select class="shmac-enable-input-readonly" name="<?php echo $this->first_tab_key; ?>[enable_input_readonly]">
-            <option value="yes" <?php selected( $this->first_tab['enable_input_readonly'], "yes");?>
-                    ><?php echo __("Yes", "shmac");?></option>
-            <option value="no" <?php selected( $this->first_tab['enable_input_readonly'], "no");?>
-                    ><?php echo __("No", "shmac");?></option>
-        </select>
-        <p><?php echo __("Choose whether to use input or not", "shmac"); ?></p>
+		<!-- Rounded switch -->
+        <input type="hidden" class="enable-readonly-alt" name="<?php echo $this->first_tab_key; ?>[enable_input_readonly]" value="no">
+        <label class="switch">
+        <input type="checkbox" class="shmac-enable-input-readonly" name="<?php echo $this->first_tab_key; ?>[enable_input_readonly]" value="yes"
+            <?php checked($this->first_tab['enable_input_readonly'], 'yes');?>>
+        <span class="slider round"></span>
+        </label>
+        <p><?php echo __("Slider input fields disabled if this is on.", "shmac"); ?></p>
         <?php
     }
     
@@ -958,6 +1004,10 @@ class SHMAC_API_Tabs {
             'nextNonce' => wp_create_nonce( 'myajax-next-nonce' )
         ));
 		wp_enqueue_code_editor( array( 'type' => 'text/html' ) );
+
+		wp_register_script( 'wp-color-picker-alpha', SHMAC_ROOT_URL . '/assets/js/wp-color-picker-alpha.min.js', array( 'wp-color-picker'), '2.1.4', true);
+		wp_enqueue_script('wp-color-picker-alpha');
+
     } // End admin_enqueue_scripts
 
     
@@ -989,7 +1039,7 @@ class SHMAC_API_Tabs {
         ?>
         <div class="wrap">
             <?php $this->plugin_options_tabs(); ?>
-            <form method="post" action="options.php" class="shmac-form">
+            <form method="post" action="options.php" class="shmac-form <?php echo $tab; ?>">
                 <?php wp_nonce_field( 'update-options' ); ?>
                 <?php settings_fields( $tab ); ?>
                 <?php do_settings_sections( $tab ); ?>

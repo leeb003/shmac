@@ -54,14 +54,15 @@
         public function enqueue_styles () {
             global $wp_styles;
 
-            // mui
-            //wp_register_style( 'mui', SHMAC_ROOT_URL . '/assets/css/mui.css', array(), '0.1.22-rc1' );
-            //wp_enqueue_style('mui');
+			/* Dynamic CSS file loads all other files, minifies and outputs them in one request
+			 * We'll keep this method unless users have some unforseen issues
+			 */
 
+			/*
             // main css
             wp_register_style( 'shmac-frontend', SHMAC_ROOT_URL . '/assets/css/frontend.css',
             array(), SHMAC_PLUGIN_VERSION );
-            
+
             // Scrollbar
             wp_register_style( 'shmac-custom-scrollbar', SHMAC_ROOT_URL .  '/assets/css/jquery.mCustomScrollbar.min.css',
             array('shmac-frontend'), '3.0.9');          
@@ -73,11 +74,19 @@
             //nouislider
             wp_register_style( 'nouislider', SHMAC_ROOT_URL .  '/assets/css/nouislider.min.css',
             array('shmac-frontend'), '920');
-            
-            // dynamic css
-            wp_register_style('shmac-dynamic-css', 
-                admin_url('admin-ajax.php').'?action=shmac_dynamic_css', 'shmac-frontend', SHMAC_PLUGIN_VERSION );
-            wp_enqueue_style('shmac-dynamic-css');
+
+			// rtl css
+			if (is_rtl() ) {
+				wp_register_style('shmac-rtl', SHMAC_ROOT_URL . '/assets/css/shmac-rtl.css', array('shmac-frontend'), SHMAC_PLUGIN_VERSION);
+				wp_enqueue_style('shmac-rtl');
+			}
+            */
+
+			// dynamic css
+            wp_register_style('shmac-frontend',
+                admin_url('admin-ajax.php').'?action=shmac_dynamic_css', array(), SHMAC_PLUGIN_VERSION );
+            wp_enqueue_style('shmac-frontend');
+
         } // End enqueue_styles ()
 
         // Load our dynamic php stylesheet
@@ -104,10 +113,10 @@
             // mprogress
             wp_register_script( 'mprogress', SHMAC_ROOT_URL . '/assets/js/mprogress.min.js', array('jquery'), '1.0', true);
             //nouislider
-            wp_register_script( 'nouislider', SHMAC_ROOT_URL . '/assets/js/nouislider.min.js', array('jquery'), '920', true);
+            wp_register_script( 'nouislider', SHMAC_ROOT_URL . '/assets/js/nouislider.min.js', array('jquery'), '9.20', true);
 
             // Plugin js    
-            wp_register_script( 'shmac-frontend-ajax', SHMAC_ROOT_URL . '/assets/js/frontend-ajax.js', array('jquery'), SHMAC_PLUGIN_VERSION, true );
+            wp_register_script( 'shmac-frontend-ajax', SHMAC_ROOT_URL . '/assets/js/frontend-ajax.js', array('nouislider'), SHMAC_PLUGIN_VERSION, true );
 
             wp_localize_script(  'shmac-frontend-ajax', 'SHMAC_Ajax', array(
                 'ajaxurl' => admin_url('admin-ajax.php'),
@@ -135,8 +144,7 @@
                 }
             }
 		
-			// have to require in this function for options since it's called by add_action
-			// there seem to be be other ways but this works as well	
+			// have to require options in this function for options since it's called by add_action
 			require_once( SHMAC_ROOT_PATH . '/includes/class-shmac-options.php' );
             $options = new shmac_options();
             $shmac_options = $options->shmac_settings;	
@@ -193,6 +201,8 @@
                 'currencyformat'         => '',
                 'currencyside'           => '',
 				'location'               => '',
+				'bg_attachment_url'      => '',
+				'bg_color'               => '',
                 // Email Settings Overrides
                 'allowemail'             => '',
                 'bccemail'               => '',
@@ -285,10 +295,18 @@
 			$sliderstepsterm        = ($settings['sliderstepsterm'] != '' ? $settings['sliderstepsterm'] : $this->shmac_settings['term_slider_step']);
 			$termtype               = ($settings['termtype'] != '' ? $settings['termtype'] : $this->shmac_settings['term_type']);
 			$location               = ($settings['location'] != '' ? $settings['location'] : $this->shmac_settings['location']);
+			$bg_attachment_url      = ($settings['bg_attachment_url'] != '' ? $settings['bg_attachment_url'] : $this->shmac_settings['bg_attachment_url']);
+			$bg_color               = ($settings['bg_color'] != '' ? $settings['bg_color'] : $this->shmac_settings['bg_color']);
 
 			// format strings for autoNumeric min max values
 			//$sliderminamount = str_replace(',', '', $sliderminamount);
 			//$slidermaxamount = str_replace(',', '', $slidermaxamount);
+
+			// change postid integer to url for VC background image
+			if (is_numeric($bg_attachment_url)) {
+				$image_array = wp_get_attachment_image_src($bg_attachment_url, 'full');
+				$bg_attachment_url = $image_array[0];
+			}
 
             // Messages
             $years =     __('Years', 'shmac');
@@ -310,7 +328,6 @@
         
 
             $form_style = '';
-            
             if ($primarycolor != '') {
                 // color overrides
                 require_once( SHMAC_ROOT_PATH . '/includes/shmac-utils.php' );
@@ -318,6 +335,7 @@
                 $primarycolor_light = $shmac_utils->hex2rgba($primarycolor, $opacity = 0.4);
 
                 $form_style = <<<EOT
+
 <style>
 .form-$calc_inc .shmac-form .mui-form-group > .mui-form-control:focus ~ label {
     color: $primarycolor;
@@ -330,7 +348,9 @@
     background-color: $primarycolor;
 }
 .form-$calc_inc .shmac-form input[type=text]:focus:not([readonly]),
+.form-$calc_inc .shmac-form input[type=email]:focus:not([readonly]),
 .form-$calc_inc .shmac-form input[type=password]:focus:not([readonly]) {
+	border: none;
     border-bottom: 1px solid $primarycolor;
     box-shadow: 0 1px 0 0 $primarycolor;
 }
@@ -392,8 +412,17 @@ EOT;
 			} else {
 				$broad = ".form-$calc_inc .sliders .noUi-handle {top: -8px; width: 35px; height: 35px; border: 8px solid $pColor;}\n";
 			}
+            /* Background Image and color */
+            $bg = ".shmac-holder-$calc_inc {\n"
+				. "  background: url($bg_attachment_url);\n"
+   				. "  background-size: cover;\n"
+				. "}"
+				. ".mui-panel.form-$calc_inc {background-color: $bg_color;}\n";
+
             $form_style .= <<<EOT
+
 <style>
+$bg
 $narrow
 $broad
 .shmac-sc.form-$calc_inc .sliders { background-color: $pColor; }
@@ -491,7 +520,7 @@ EOT;
 
             $output = <<<EOT
 $form_style
-<div class="shmac-holder $extraclass">
+<div class="shmac-holder shmac-holder-$calc_inc $extraclass">
   <div class="mui-panel shmac-sc form-$calc_inc">
     <form class="shmac-form" $data_atts >
         <legend>$calctitle</legend>
@@ -655,7 +684,7 @@ EOT;
             <div class="progresso"> &nbsp;</div>
             <div class="buttonRow">
                 <button class="mui-btn submit-shmac" data-mui-color="{$this->shmac_settings['page_color']}">$calcsubmit</button>
-                <button class="mui-btn shmac-reset_{$calc_inc}" type="reset">$calcreset</button>
+                <button class="mui-btn shmac-reset shmac-reset_{$calc_inc}" type="reset">$calcreset</button>
             </div>
                 
     </form>
@@ -664,6 +693,11 @@ EOT;
 <div class="shmac-inline-form" id="shmac-inline-form-$calc_inc"></div>
 EOT;
 			// Set up variables that go to frontend-slider.js
+			if (is_rtl()) {
+				$sliderdir = 'rtl';
+			} else {
+				$sliderdir = 'ltr';
+			}
             if($enable_slideroverride=="yes" || $enable_slideroverride=="enable"){
 				$slider_vars[$calc_inc]['calc_inc'] = $calc_inc;
 				$slider_vars[$calc_inc]['defaultpurchase'] = $defaultpurchase;
@@ -685,6 +719,7 @@ EOT;
 				$slider_vars[$calc_inc]['sliderstepsterm'] = $sliderstepsterm;
 				$slider_vars[$calc_inc]['slidermaxterm'] = $slidermaxterm;
 				$slider_vars[$calc_inc]['defaultterm'] = $defaultterm;
+				$slider_vars[$calc_inc]['sliderdir'] = $sliderdir;
 
 				// enqueue the slider script and styles
 				wp_register_script( 'shmac-frontend-slider', SHMAC_ROOT_URL . '/assets/js/frontend-slider.js', array('jquery'), SHMAC_PLUGIN_VERSION, true );

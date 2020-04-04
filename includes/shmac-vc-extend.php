@@ -122,6 +122,29 @@ class shmacVC {
                         "value" => array("enable"),
                     ),
                 ),
+				array(
+                    "type" => "colorpicker",
+                    "heading" => __("Background Color", "shmac"),
+                    "param_name" => "bg_color",
+                    "value" => '#fff',
+                    "description" => __("Set The Calculator Background Color (use alpha if using a background image as well.", "shmac"),
+                    "dependency" => array (
+                        "element" => "allowoverrides",
+                        "value" => array("enable"),
+                    ),
+                ),
+				array(
+                    "type" => "attach_image",
+                    "heading" => __("Background Image", "shmac"),
+                    "param_name" => "bg_attachment_url",
+                    "value" => '',
+                    "description" => __("Set The Calculator Background image.", "shmac"),
+                    "dependency" => array (
+                        "element" => "allowoverrides",
+                        "value" => array("enable"),
+                    ),
+                ),
+				
                 array(
                     "type" => "textfield",
                     "holder" => "p",

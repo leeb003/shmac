@@ -116,13 +116,19 @@ jQuery(function ($) {  // use $ for jQuery
 
     /* Hide email field if open on reset along with clearing fields */
     $(document).on('click', '.shmac-reset', function() {
-        $(this).closest('.shmac-form').find('.shmac-email').slideUp('fast');
+		if ($(this).closest('.shmac-form').find('.shmac-check').is(":visible")) {  // only if optional send pdf shown
+        	$(this).closest('.shmac-form').find('.shmac-email').slideUp('fast');
+		}
         $(this).closest('.shmac-form').find('.term-years').prop('checked', true);
         $(this).closest('.shmac-form').find('.term-months').prop('checked', false);
         $(this).closest('.shmac-form').find('input').each( function() {
             $(this).removeClass('error-field');
             $(this).closest('.mui-form-group').find('.err-msg').text('');
         });
+		var currentForm = $(this).closest('.shmac-sc').attr('class').split(' ')[2]; // get the current form
+		var inlineDiv = $('#shmac-inline-' + currentForm);
+		$('.shmac-div.divfrom-' + currentForm).mCustomScrollbar("destroy");
+		inlineDiv.empty().removeClass().addClass('shmac-inline-form'); //clear it out and reset display form
     });
 
     /* Term selection Years & Months */
@@ -228,7 +234,8 @@ jQuery(function ($) {  // use $ for jQuery
 
 		if (location == 'inline') {
 			var inlineDiv = $('#shmac-inline-' + currentForm);
-			inlineDiv.html(''); //clear it out first
+			$('.shmac-div.divfrom-' + currentForm).mCustomScrollbar("destroy");
+			inlineDiv.empty(); //clear it out first
 
         	$(detailsTable).appendTo(inlineDiv);
         	$(tip).appendTo(inlineDiv);
