@@ -210,12 +210,8 @@ jQuery(function ($) {  // use $ for jQuery
 
 	/* Second Tab (Fields) Settings */
 
-	// show / hide all fields based on email report allowed or not
+	// show / hide all related fields based on email report allowed or not
 	$(document).ready( function() {
-		$('.shmac_email input:not(.shmac-allow-email,.shmac-allow-email-alt)').closest('tr').hide();
-        $('.shmac_email textarea').closest('tr').hide();
-        $('.shmac_email .custom_media_url').closest('tr').hide();
-        $('.smac_email .shmac-pdf-font').closest('tr').hide();
 		showHideFields('quick');
 	});
 	$(document).on('change', '.shmac-allow-email', function() {
@@ -225,14 +221,26 @@ jQuery(function ($) {  // use $ for jQuery
 	function showHideFields(method) {
 		if ($('.shmac_email .shmac-allow-email').prop("checked") == false) {   // make sure we are on the right tab
 			if (method == 'quick') {
-				$('.shmac_email input:not(.shmac-allow-email,.shmac-allow-email-alt)').closest('tr').hide();
-            	$('.shmac_email textarea').closest('tr').hide();
+				$('.shmac_email .shmac-email-bcc').closest('tr').hide();
+        		$('.shmac_email .shmac-email-from').closest('tr').hide();
+        		$('.shmac_email .email-subject').closest('tr').hide();
+        		$('.shmac_email .email-text').closest('tr').hide();
+            	$('.shmac_email textarea:not(.disclaimer)').closest('tr').hide();
             	$('.shmac_email .custom_media_url').closest('tr').hide();
+				$('.shmac_email .wp-color-result').closest('tr').hide();
+				$('.shmac_email .pdf-header').closest('tr').hide();
+				$('.shmac_email .shmac-ltr-rtl').closest('tr').hide();
             	$('.shmac_email .shmac-pdf-font').closest('tr').hide();
 			} else {
-				$('.shmac_email input:not(.shmac-allow-email,.shmac-allow-email-alt)').closest('tr').fadeOut();
-				$('.shmac_email textarea').closest('tr').fadeOut();
+				$('.shmac_email .shmac-email-bcc').closest('tr').fadeOut();
+                $('.shmac_email .shmac-email-from').closest('tr').fadeOut();
+                $('.shmac_email .email-subject').closest('tr').fadeOut();
+                $('.shmac_email .email-text').closest('tr').fadeOut();
+				$('.shmac_email textarea:not(.disclaimer)').closest('tr').fadeOut();
 				$('.shmac_email .custom_media_url').closest('tr').fadeOut();
+				$('.shmac_email .wp-color-result').closest('tr').fadeOut();
+                $('.shmac_email .pdf-header').closest('tr').fadeOut();
+                $('.shmac_email .shmac-ltr-rtl').closest('tr').fadeOut();
 				$('.shmac_email .shmac-pdf-font').closest('tr').fadeOut();
 			}
 		} else {

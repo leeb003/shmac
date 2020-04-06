@@ -113,7 +113,7 @@
                     $location = isset($this->shmac_settings['location']) ? $this->shmac_settings['location'] : 'modal';
 				}
                 
-
+/*
                 $response['headers']['payment'] = __('Payment', 'shmac');
                 $response['headers']['payment_amount'] = __('Payment Amt', 'shmac');
                 $response['headers']['interest'] = __('Interest', 'shmac');
@@ -122,7 +122,16 @@
                 $response['headers']['balance'] = __('Balance', 'shmac');
                 $response['headers']['loan_text'] = __('Loan Details', 'shmac');
                 $response['headers']['schedule_text'] = __('Amortization Schedule (P & I)', 'shmac');
-
+*/
+				$response['headers']['payment'] = $this->shmac_email['header_payment'];
+                $response['headers']['payment_amount'] = $this->shmac_email['header_payment_amount'];
+                $response['headers']['interest'] = $this->shmac_email['header_interest'];
+                $response['headers']['total_interest'] = $this->shmac_email['header_total_interest'];
+                $response['headers']['principal'] = $this->shmac_email['header_principal'];
+                $response['headers']['balance'] = $this->shmac_email['header_balance'];
+                $response['headers']['loan_text'] = $this->shmac_email['header_loan_text'];
+                $response['headers']['schedule_text'] = $this->shmac_email['header_schedule_text'];
+/*
                 $response['details']['original'] = __('Original Loan Amount', 'shmac');
                 $response['details']['down_payment'] = __('Down Payment', 'shmac');
                 $response['details']['interest'] = __('Interest', 'shmac');
@@ -131,7 +140,17 @@
                 $response['details']['down_payment_amount'] = __('Down Payment Amount', 'shmac');
                 $response['details']['monthly_payment'] = __('Monthly Payment (P & I)', 'shmac');
                 $response['details']['total_payments'] = __('Total Payments', 'shmac');
-                $response['details']['disclaimer'] = $this->shmac_settings['disclaimer'];
+*/
+				$response['details']['original'] = $this->shmac_email['detail_original'];
+                $response['details']['down_payment'] = $this->shmac_email['detail_down_payment'];
+                $response['details']['interest'] = $this->shmac_email['detail_interest'];
+                $response['details']['term'] = $this->shmac_email['detail_term'];
+                $response['details']['loan_after_down'] = $this->shmac_email['detail_loan_after_down'];
+                $response['details']['down_payment_amount'] = $this->shmac_email['detail_down_payment_amount'];
+                $response['details']['monthly_payment'] = $this->shmac_email['detail_monthly_payment'];
+                $response['details']['total_payments'] = $this->shmac_email['detail_total_payments'];
+
+                $response['details']['disclaimer'] = $this->shmac_email['disclaimer'];
 
 				$response['location'] = $location;
 
@@ -166,8 +185,8 @@
 
                 $term             = intval($_POST['term']);
                 $termcycle        = $_POST['termcycle'];
-                $years_text       = __('Years', 'shmac');
-                $months_text      = __('Months', 'shmac');
+                $years_text       = $this->shmac_settings['year_label'];
+                $months_text      = $this->shmac_settings['month_label'];
                 if ($termcycle == 'months') {
                     $cycle_text = $months_text;
                 } else {

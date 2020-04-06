@@ -1,0 +1,62 @@
+<wpml-config>
+  <admin-texts>
+    <key name="shmac_email">
+      <key name="detail_original"/>
+      <key name="detail_down_payment"/>
+      <key name="detail_interest"/>
+      <key name="detail_term"/>
+      <key name="detail_loan_after_down"/>
+      <key name="detail_down_payment_amount"/>
+      <key name="detail_monthly_payment"/>
+      <key name="detail_total_payments"/>
+      <key name="header_payment"/>
+      <key name="header_payment_amount"/>
+      <key name="header_interest"/>
+      <key name="header_total_interest"/>
+      <key name="header_principal"/>
+      <key name="header_balance"/>
+      <key name="header_loan_text"/>
+      <key name="header_schedule_text"/>
+      <key name="disclaimer"/>
+      <key name="allow_email"/>
+      <key name="email_subject"/>
+      <key name="email_text"/>
+      <key name="pdf_header"/>
+      <key name="pdf_font"/>
+    </key>
+    <key name="shmac_settings">
+      <key name="calc_title"/>
+      <key name="send_email_text"/>
+      <key name="email_placeholder"/>
+      <key name="enable_email"/>
+      <key name="enable_slider"/>
+      <key name="enable_input_readonly"/>
+      <key name="slider_theme"/>
+      <key name="purchase_price_label"/>
+      <key name="purchase_price_info"/>
+      <key name="interest_rate_label"/>
+      <key name="interest_rate_info"/>
+      <key name="down_payment_show"/>
+      <key name="down_payment_label"/>
+      <key name="down_payment_info"/>
+      <key name="down_payment_type"/>
+      <key name="loan_term_label"/>
+      <key name="loan_term_info"/>
+      <key name="month_label"/>
+      <key name="year_label"/>
+      <key name="enable_insurance"/>
+      <key name="insurance_amount_percent"/>
+      <key name="enable_pmi"/>
+      <key name="enable_taxes"/>
+      <key name="currency"/>
+      <key name="currency_side"/>
+      <key name="page_color"/>
+      <key name="bg_color"/>
+      <key name="bg_attachment_url"/>
+      <key name="bg_attachment_id"/>
+      <key name="location"/>
+      <key name="calcsubmit"/>
+      <key name="calcreset"/>
+    </key>
+  </admin-texts>
+</wpml-config>

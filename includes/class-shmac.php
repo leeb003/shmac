@@ -263,7 +263,7 @@
 			$monthlypmi             = $settings['monthlypmi'];
 			$enabletaxes            = $settings['enabletaxes'];
 			$taxesperthou           = $settings['taxesperthou'];
-			$disclaimer             = $settings['disclaimer'];
+			$disclaimer             = ($settings['disclaimer'] != '' ? $settings['disclaimer'] : $this->shmac_email['disclaimer']);
 			$currencysymbol         = ($settings['currencysymbol'] != '' ? $settings['currencysymbol'] : $this->shmac_settings['currency']);
 			$currencyformat         = ($settings['currencyformat'] != '' ? $settings['currencyformat'] : $this->shmac_settings['currency_format']);
 			$currencyside           = ($settings['currencyside'] != '' ? $settings['currencyside'] : $this->shmac_settings['currency_side']);
@@ -275,8 +275,8 @@
 			$pdfcolor               = $settings['pdfcolor'];
 			$pdflogo                = $settings['pdflogo'];
 			$pdfheader              = $settings['pdfheader'];
-			$calcsubmit             = ($settings['calcsubmit'] != '' ? $settings['calcsubmit'] : __('Calculate', 'shmac') );
-			$calcreset              = ($settings['calcreset'] != '' ? $settings['calcreset'] : __('Reset', 'shmac') );;
+			$calcsubmit             = ($settings['calcsubmit'] != '' ? $settings['calcsubmit'] : $this->shmac_settings['calcsubmit']);
+			$calcreset              = ($settings['calcreset'] != '' ? $settings['calcreset'] : $this->shmac_settings['calcreset']);
 			$enable_slideroverride  = ($settings['enable_slideroverride'] != '' ? $settings['enable_slideroverride'] : $this->shmac_settings['enable_slider']);
 			$enable_emailoverride   = ($settings['enable_emailoverride'] != '' ? $settings['enable_emailloverride'] : $this->shmac_settings['enable_email']);
 			$inputreadonly          = ($settings['inputreadonly'] != '' ? $settings['inputreadonly'] : $this->shmac_settings['enable_input_readonly']);
@@ -294,9 +294,12 @@
 			$slidermaxterm          = ($settings['slidermaxterm'] != '' ? $settings['slidermaxterm'] : $this->shmac_settings['term_max_value']);
 			$sliderstepsterm        = ($settings['sliderstepsterm'] != '' ? $settings['sliderstepsterm'] : $this->shmac_settings['term_slider_step']);
 			$termtype               = ($settings['termtype'] != '' ? $settings['termtype'] : $this->shmac_settings['term_type']);
+			$year_label             = ($settings['year_label'] != '' ? $settings['year_label'] : $this->shmac_settings['year_label']);
+			$month_label            = ($settings['month_label'] != '' ? $settings['month_label'] : $this->shmac_settings['month_label']);
 			$location               = ($settings['location'] != '' ? $settings['location'] : $this->shmac_settings['location']);
 			$bg_attachment_url      = ($settings['bg_attachment_url'] != '' ? $settings['bg_attachment_url'] : $this->shmac_settings['bg_attachment_url']);
 			$bg_color               = ($settings['bg_color'] != '' ? $settings['bg_color'] : $this->shmac_settings['bg_color']);
+
 
 			// format strings for autoNumeric min max values
 			//$sliderminamount = str_replace(',', '', $sliderminamount);
@@ -307,10 +310,6 @@
 				$image_array = wp_get_attachment_image_src($bg_attachment_url, 'full');
 				$bg_attachment_url = $image_array[0];
 			}
-
-            // Messages
-            $years =     __('Years', 'shmac');
-            $months =    __('Months', 'shmac');
 
             // Money Formats
             if ($currencyformat == '2') {  // French, Spanish 
@@ -587,11 +586,11 @@ EOT;
                 $term_output =<<<EOT
                 <div class="shmac-term-years">
                 <input type="checkbox" id="term-years-$calc_inc" class="term-years term-group" checked="checked" />
-                <label for="term-years-$calc_inc">$years</label>
+                <label for="term-years-$calc_inc">$year_label</label>
                 </div>
                 <div class="shmac-term-months">
                 <input type="checkbox" id="term-months-$calc_inc" class="term-months term-group" />
-                <label for="term-months-$calc_inc">$months</label>
+                <label for="term-months-$calc_inc">$month_label</label>
                 </div>
 EOT;
             }
@@ -599,7 +598,7 @@ EOT;
                 $term_output =<<<EOT
                 <div class="shmac-term-years">
                 <input type="checkbox" id="term-years-$calc_inc" class="term-years term-group" checked="checked" />
-                <label for="term-years-$calc_inc">$years</label>
+                <label for="term-years-$calc_inc">$year_label</label>
                 </div>
 EOT;
             }
@@ -607,7 +606,7 @@ EOT;
                 $term_output =<<<EOT
                 <div class="shmac-term-months">
                 <input type="checkbox" id="term-months-$calc_inc" class="term-months term-group" checked="checked" />
-                <label for="term-months-$calc_inc">$months</label>
+                <label for="term-months-$calc_inc">$month_label</label>
                 </div>
 EOT;
             }
@@ -615,11 +614,11 @@ EOT;
                 $term_output =<<<EOT
                 <div class="shmac-term-years">
                 <input type="checkbox" id="term-years-$calc_inc" class="term-years term-group" checked="checked" />
-                <label for="term-years-$calc_inc">$years</label>
+                <label for="term-years-$calc_inc">$year_label</label>
                 </div>
                 <div class="shmac-term-months">
                 <input type="checkbox" id="term-months-$calc_inc" class="term-months term-group" />
-                <label for="term-months-$calc_inc">$months</label>
+                <label for="term-months-$calc_inc">$month_label</label>
                 </div>
 EOT;
             }

@@ -166,3 +166,7 @@ input:checked + .slider:before {
 .shmac_bg_image {
   max-width: 500px;
 }
+.section-schedule-header td,
+.section-loan-details td {
+  padding: 10px 0px;
+}
