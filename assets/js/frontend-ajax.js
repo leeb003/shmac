@@ -24,7 +24,7 @@ jQuery(function ($) {  // use $ for jQuery
         });
         mprogresso.start();
 
-        var mailaddress = 'noone@nowhere.com';
+        var mailaddress = '';
         if ( $(this).closest('.shmac-form').find('.send-email').is(':checked')) {
             var sendemail = 'true';
             mailaddress = $(this).closest('.shmac-form').find('.shmac-email-input').val();

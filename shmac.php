@@ -46,3 +46,5 @@ if(defined('SHMAC_PLUGIN_VERSION')) {
     if(function_exists('vc_set_as_theme')) {
         require_once SHMAC_ROOT_PATH . '/includes/shmac-vc-extend.php';
     }
+	// Elementor
+	require_once SHMAC_ROOT_PATH . '/includes/shmac-elementor-load.php';

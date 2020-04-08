@@ -24,7 +24,7 @@
             $options = new shmac_options();
             $this->shmac_settings = $options->shmac_settings;
             $this->shmac_email = $options->shmac_email;
-            if ( !shortcode_exists( 'shmac_calc' ) ) {
+            if ( !shortcode_exists( 'shmac_calc_sc' ) ) {
                 add_shortcode('shmac_calc_sc', array($this, 'shmac_calc'));
             }
             // Widget instance
@@ -237,7 +237,7 @@
 
 			// Convert back to variables and check for overrides with fallbacks to main settings
 			$extraclass             = $settings['extraclass'];
-			$primarycolor           = $settings['primarycolor'];
+			$primarycolor           = ($settings['primarycolor'] != '' ? $settings['primarycolor'] : $this->shmac_settings['page_color']);
 			$color                  = $settings['color'];
 			$calctitle              = ($settings['calctitle'] != '' ? $settings['calctitle'] : $this->shmac_settings['calc_title']);
 			$emailtext              = ($settings['emailtext'] != '' ? $settings['emailtext'] : $this->shmac_settings['send_email_text']);
@@ -328,11 +328,6 @@
 
             $form_style = '';
             if ($primarycolor != '') {
-                // color overrides
-                require_once( SHMAC_ROOT_PATH . '/includes/shmac-utils.php' );
-                $shmac_utils = new shmac_utils();
-                $primarycolor_light = $shmac_utils->hex2rgba($primarycolor, $opacity = 0.4);
-
                 $form_style = <<<EOT
 
 <style>
@@ -366,14 +361,8 @@
 .form-$calc_inc .ui-mprogress .deter-bar,
 .form-$calc_inc .ui-mprogress .indeter-bar,
 .form-$calc_inc .ui-mprogress .query-bar,
-.form-$calc_inc .ui-mprogress .bar-bg,
-.form-$calc_inc .ui-mprogress .buffer-bg,
 .form-$calc_inc .ui-mprogress .mp-ui-dashed {
   background: $primarycolor;
-}
-.form-$calc_inc .ui-mprogress .bar-bg,
-.form-$calc_inc .ui-mprogress .buffer-bg {
-  background: $primarycolor_light;
 }
 .noUi-handle:focus {
     box-shadow: 0 0 7px #888;
@@ -522,7 +511,7 @@ $form_style
 <div class="shmac-holder shmac-holder-$calc_inc $extraclass">
   <div class="mui-panel shmac-sc form-$calc_inc">
     <form class="shmac-form" $data_atts >
-        <legend>$calctitle</legend>
+        <div class="shmac-title">$calctitle</div>
 EOT;
             
             if ($allowemail == 'yes') {
@@ -682,7 +671,7 @@ EOT;
             </div>
             <div class="progresso"> &nbsp;</div>
             <div class="buttonRow">
-                <button class="mui-btn submit-shmac" data-mui-color="{$this->shmac_settings['page_color']}">$calcsubmit</button>
+                <button class="mui-btn submit-shmac" data-mui-color="$page_color">$calcsubmit</button>
                 <button class="mui-btn shmac-reset shmac-reset_{$calc_inc}" type="reset">$calcreset</button>
             </div>
                 

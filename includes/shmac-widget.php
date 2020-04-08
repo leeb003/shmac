@@ -19,13 +19,14 @@ class shmac_widget extends WP_Widget {
 	public function widget( $args, $instance ) {
 		extract( $args );
 		$title       = apply_filters('widget_title', $instance['title'] );
-		$shmac_class = $instance['shmac_class'];
+		$shmac_override = $instance['shmac_override'];
 		// before and after widget arguments are defined by themes
 		echo $args['before_widget'];
 		if ( $title ) {
             echo $before_title . $title . $after_title;
         }
-		$calculator = '[shmac_calc_sc extraclass="' . $shmac_class . '"]';
+		$calculator = '[shmac_calc_sc ' . $shmac_override . ']';
+		print_r($calculator);
 		echo do_shortcode($calculator);
 		echo $args['after_widget'];
 	}
@@ -34,7 +35,8 @@ class shmac_widget extends WP_Widget {
 	public function form( $instance ) {
 		$defaults = array(
 			'title' => ' ',
-            'shmac_class' => 'calc'
+			'shmac_override' => '',
+            'shmac_class' => ''
         );
         $instance = wp_parse_args( (array) $instance, $defaults );
 	?>
@@ -44,8 +46,8 @@ class shmac_widget extends WP_Widget {
     <input id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" value="<?php echo esc_attr( $instance['title'] ); ?>" class="widefat" type="text" />
 	</p>
 	<p>
-	<label for="<?php echo $this->get_field_id( 'shmac_class' ); ?>"><?php _e( 'Extra class if wanted:', 'shmac' ); ?></label>
-    <input class="widefat" id="<?php echo $this->get_field_id( 'shmac_class' ); ?>" name="<?php echo $this->get_field_name( 'shmac_class' ); ?>" type="text" value="<?php echo esc_attr( $instance['shmac_class'] ); ?>" />
+    <label for="<?php echo $this->get_field_id( 'shmac_override' ); ?>"><?php _e( 'Calculator Overrides:', 'shmac' ); ?></label>
+    <input class="widefat" id="<?php echo $this->get_field_id( 'shmac_override' ); ?>" name="<?php echo $this->get_field_name( 'shmac_override' ); ?>" type="text" value="<?php echo esc_attr( $instance['shmac_override'] ); ?>" />
     </p>
 	<?php
 	}
@@ -54,8 +56,7 @@ class shmac_widget extends WP_Widget {
 	public function update( $new_instance, $old_instance ) {
 		$instance = $old_instance;
 		$instance['title']       = ( ! empty( $new_instance['title'] ) ) ? sanitize_text_field( $new_instance['title'] ) : '';
-		$instance['shmac_class'] = ( ! empty( $new_instance['shmac_class'] ) ) 
-			? sanitize_text_field( $new_instance['shmac_class'] ) : '';
+		$instance['shmac_override'] = ( ! empty( $new_instance['shmac_override'] ) ) ? sanitize_text_field( $new_instance['shmac_override'] ) : '';
 		return $instance;
 	}
 }

@@ -7,9 +7,6 @@ class shmac_dynamc_css {
 	public function __construct() {
 		$shmac_settings = get_option('shmac_settings');
 		$primary_color = $shmac_settings['page_color'];
-		require_once( SHMAC_ROOT_PATH . '/includes/shmac-utils.php' );
-		$shmac_utils = new shmac_utils();
-		$primary_color_light = $shmac_utils->hex2rgba($primary_color, $opacity = 0.4);
 		$custom_css = trim($shmac_settings['custom_css']);
 
 		header('Content-type: text/css');
@@ -92,7 +89,7 @@ class shmac_dynamc_css {
 }
 .ui-mprogress .bar-bg,
 .ui-mprogress .buffer-bg {
-  background: <?php echo $primary_color_light; ?>;
+  background: rgba(0, 0, 0, 0.34);
 }
 
 /* Custom CSS Below */

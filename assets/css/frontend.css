@@ -377,16 +377,6 @@ input[type="checkbox"],
 }
 
 /**
- * 1. Correct `color` not being inherited in IE 8/9/10/11.
- * 2. Remove padding so people aren't caught out if they zero out fieldsets.
- */
-.shmac-form legend {
-  border: 0;
-  /* 1 */
-  padding: 0;
-  /* 2 */
-}
-/**
  * Remove default vertical scrollbar in IE 8/9/10/11.
  */
 .shmac-form textarea {
@@ -847,7 +837,7 @@ h3.shmac-header {
  * MUI Form styles
  * 
  */
-.shmac-form legend {
+.shmac-form .shmac-title {
   display: block;
   position: relative;
   max-width: initial;
