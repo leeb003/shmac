@@ -37,9 +37,7 @@
             add_action( 'wp_ajax_nopriv_ajax-shmacfrontend', array($shmac_ajax, 'myajax_shmacfrontend_callback'));
             // Load frontend JS & CSS
             add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_styles' ), 700 );
-            add_action( 'wp_enqueue_scripts', array( $this, 'register_scripts' ), 700 );
-            add_action( 'shmac_enqueue_scripts', array( $this, 'enqueue_scripts' ), 700 );
-            add_action( 'shmac_enqueue_minified_scripts', array( $this, 'enqueue_minified_scripts' ), 700 );
+            add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ), 700 );
             // Dynamic CSS
             add_action('wp_ajax_shmac_dynamic_css', array($this, 'shmac_dynamic_css'));
             add_action('wp_ajax_nopriv_shmac_dynamic_css', array($this, 'shmac_dynamic_css'));
@@ -102,18 +100,23 @@
          * @return void
          */
          
-        public function register_scripts () {
+        public function enqueue_scripts () {
             // autoNumeric
             wp_register_script('autoNumeric', SHMAC_ROOT_URL . '/assets/js/autoNumeric.min.js', array('jquery'), '2.0.13', true);
+			wp_enqueue_script('autoNumeric');
             // Mui
             wp_register_script( 'mui', SHMAC_ROOT_URL . '/assets/js/mui.min.js', array(), '0.1.22-rc1', true );
+			wp_enqueue_script('mui');
             // Scrollbar
             wp_register_script( 'shmac-custom-scrollbar', SHMAC_ROOT_URL 
                 . '/assets/js/jquery.mCustomScrollbar.concat.min.js', array('jquery'), '3.0.9', true);
+			wp_enqueue_script('shmac-custom-scrollbar');
             // mprogress
             wp_register_script( 'mprogress', SHMAC_ROOT_URL . '/assets/js/mprogress.min.js', array('jquery'), '1.0', true);
+			wp_enqueue_script('mprogress');
             //nouislider
             wp_register_script( 'nouislider', SHMAC_ROOT_URL . '/assets/js/nouislider.min.js', array('jquery'), '9.20', true);
+			wp_enqueue_script('nouislider');
 
             // Plugin js    
             wp_register_script( 'shmac-frontend-ajax', SHMAC_ROOT_URL . '/assets/js/frontend-ajax.js', array('nouislider'), SHMAC_PLUGIN_VERSION, true );
@@ -123,36 +126,13 @@
                 'nextNonce' => wp_create_nonce( 'myajax-next-nonce' ),
                 'shmacColor' => isset($this->first_tab['page_color'])?$this->first_tab['page_color']:'#03a9f4'
             ));
-        }
+			wp_enqueue_script('shmac-frontend-ajax');
 
-        public function enqueue_scripts () {
-            $list = 'enqueued';
-            $enqueueCssList = array("shmac-frontend","mprogress","shmac-custom-scrollbar","nouislider");
-            foreach($enqueueCssList as $css){
-                if (wp_script_is( $css, $list )) {
-                    return;
-                } else {
-                    wp_enqueue_style( $css );
-                }
-            }
-            $enqueueJsList = array("autoNumeric","mui","shmac-custom-scrollbar","mprogress","shmac-frontend-ajax","nouislider");
-            foreach($enqueueJsList as $js){
-                if (wp_script_is( $js, $list )) {
-                    return;
-                } else {
-                    wp_enqueue_script( $js );
-                }
-            }
-		
-			// have to require options in this function for options since it's called by add_action
-			require_once( SHMAC_ROOT_PATH . '/includes/class-shmac-options.php' );
-            $options = new shmac_options();
-            $shmac_options = $options->shmac_settings;	
-			$custom_js = isset($shmac_options['custom_js']) ? $shmac_options['custom_js'] : '';
-			$inline_script = "<script>\n" . $custom_js . "</script>\n";
-            wp_add_inline_script('shmac-frontend-ajax', $inline_script);
-            
-        } // End enqueue_scripts 
+			// have to get options in this function for options since it's called by add_action
+            $shmac_options = get_option('shmac_settings');
+            $custom_js = isset($shmac_options['custom_js']) ? $shmac_options['custom_js'] : '';
+            wp_add_inline_script('shmac-frontend-ajax', $custom_js, 'after');	
+        }
 
         /**
          * Shortcode generation
@@ -165,7 +145,6 @@
 			global $slider_vars; // multiple sliders array for localized slider js
 
             $calc_inc++;
-            do_action('shmac_enqueue_scripts');
 
             $settings = (shortcode_atts(array( 
                 'extraclass'            => '',
@@ -293,8 +272,8 @@
 			$slidermaxterm          = ($settings['slidermaxterm'] != '' ? $settings['slidermaxterm'] : $this->shmac_settings['term_max_value']);
 			$sliderstepsterm        = ($settings['sliderstepsterm'] != '' ? $settings['sliderstepsterm'] : $this->shmac_settings['term_slider_step']);
 			$termtype               = ($settings['termtype'] != '' ? $settings['termtype'] : $this->shmac_settings['term_type']);
-			$year_label             = ($settings['year_label'] != '' ? $settings['year_label'] : $this->shmac_settings['year_label']);
-			$month_label            = ($settings['month_label'] != '' ? $settings['month_label'] : $this->shmac_settings['month_label']);
+			$year_label             = (isset($settings['year_label']) ? $settings['year_label'] : $this->shmac_settings['year_label']);
+			$month_label            = (isset($settings['month_label']) ? $settings['month_label'] : $this->shmac_settings['month_label']);
 			$location               = ($settings['location'] != '' ? $settings['location'] : $this->shmac_settings['location']);
 			$bg_attachment_url      = ($settings['bg_attachment_url'] != '' ? $settings['bg_attachment_url'] : $this->shmac_settings['bg_attachment_url']);
 			$bg_color               = ($settings['bg_color'] != '' ? $settings['bg_color'] : $this->shmac_settings['bg_color']);
@@ -395,7 +374,7 @@ EOT;
 						. " border: 5px solid $pColor;\n"
 						. "}\n"
 						. ".form-$calc_inc .noUi-horizontal {height: 6px;}\n"
-						. ".form-$calc_inc .noUi-handle {left: -8 !important; $top: -8px !important;}\n";
+						. ".form-$calc_inc .noUi-handle {left: -8 !important; top: -8px !important;}\n";
 			} else {
 				$broad = ".form-$calc_inc .sliders .noUi-handle {top: -8px; width: 35px; height: 35px; border: 8px solid $pColor;}\n";
 			}
@@ -719,7 +698,7 @@ EOT;
 					'sliderstepsamount'   => $sliderstepsamount,
 					'slidermaxamount'     => $slidermaxamount,
 					'calc_inc'            => $calc_inc,
-					'calc_slider'         => $calc_slider,
+					//'calc_slider'         => $calc_slider,
 					'slider_vars'         => $slider_vars,
 					'currencyformat'      => $currencyformat,
 					'slidermininterest'   => $slidermininterest,

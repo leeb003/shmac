@@ -130,7 +130,7 @@ final class Elementor_Shmac_Extension {
 
 		// Check if Elementor installed and activated
 		if ( ! did_action( 'elementor/loaded' ) ) {
-			add_action( 'admin_notices', [ $this, 'admin_notice_missing_main_plugin' ] );
+			//add_action( 'admin_notices', [ $this, 'admin_notice_missing_main_plugin' ] );
 			return;
 		}
 

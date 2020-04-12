@@ -82,7 +82,7 @@ class SHMAC_API_Tabs {
             'down_payment_info'        => 'The percent down payment you wish to put towards the home.',
             'down_payment_type'        => 'percent',
             'down_payment'             => '10',
-            'down_payment_show'        => 'no',
+            'down_payment_show'        => 'yes',
             'dwnpay_min_value'         =>'0',
             'dwnpay_max_value'         =>'99',
             'dwnpay_slider_step'       =>'1',
@@ -93,7 +93,7 @@ class SHMAC_API_Tabs {
             'loan_term_info'           => 'The length of time it will take to repay the loan amount (30 years is common).',
             'loan_term'                => '30',
             'term_min_value'           =>'1',
-            'term_max_value'           =>'90',
+            'term_max_value'           =>'30',
             'term_slider_step'         =>'1',
             'term_type'                =>'1',
             'enable_insurance'         => 'yes',
@@ -269,7 +269,7 @@ class SHMAC_API_Tabs {
         
         add_settings_field( 'term_type', __('Term Type', 'shmac'), array( &$this, 'field_term_type' ),  $this->first_tab_key, 'section_general' );
 		add_settings_field( 'year_label', __('Year Label', 'shmac'), array( &$this, 'field_year_label' ),  $this->first_tab_key, 'section_general' );
-		add_settings_field( 'term_type', __('Month Label', 'shmac'), array( &$this, 'field_month_label' ),  $this->first_tab_key, 'section_general' );
+		add_settings_field( 'month_label', __('Month Label', 'shmac'), array( &$this, 'field_month_label' ),  $this->first_tab_key, 'section_general' );
 
         add_settings_field( 'enable_insurance', __('Insurance Cost Estimate', 'shmac'), 
                 array( &$this, 'field_enable_insurance'), $this->first_tab_key, 'section_general' );
