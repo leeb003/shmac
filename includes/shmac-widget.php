@@ -26,7 +26,6 @@ class shmac_widget extends WP_Widget {
             echo $before_title . $title . $after_title;
         }
 		$calculator = '[shmac_calc_sc ' . $shmac_override . ']';
-		print_r($calculator);
 		echo do_shortcode($calculator);
 		echo $args['after_widget'];
 	}

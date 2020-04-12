@@ -113,16 +113,6 @@
                     $location = isset($this->shmac_settings['location']) ? $this->shmac_settings['location'] : 'modal';
 				}
                 
-/*
-                $response['headers']['payment'] = __('Payment', 'shmac');
-                $response['headers']['payment_amount'] = __('Payment Amt', 'shmac');
-                $response['headers']['interest'] = __('Interest', 'shmac');
-                $response['headers']['total_interest'] = __('Total Interest', 'shmac');
-                $response['headers']['principal'] = __('Principal', 'shmac');
-                $response['headers']['balance'] = __('Balance', 'shmac');
-                $response['headers']['loan_text'] = __('Loan Details', 'shmac');
-                $response['headers']['schedule_text'] = __('Amortization Schedule (P & I)', 'shmac');
-*/
 				$response['headers']['payment'] = $this->shmac_email['header_payment'];
                 $response['headers']['payment_amount'] = $this->shmac_email['header_payment_amount'];
                 $response['headers']['interest'] = $this->shmac_email['header_interest'];
@@ -131,16 +121,7 @@
                 $response['headers']['balance'] = $this->shmac_email['header_balance'];
                 $response['headers']['loan_text'] = $this->shmac_email['header_loan_text'];
                 $response['headers']['schedule_text'] = $this->shmac_email['header_schedule_text'];
-/*
-                $response['details']['original'] = __('Original Loan Amount', 'shmac');
-                $response['details']['down_payment'] = __('Down Payment', 'shmac');
-                $response['details']['interest'] = __('Interest', 'shmac');
-                $response['details']['term'] = __('Term', 'shmac');
-                $response['details']['loan_after_down'] = __('Loan After Down Payment', 'shmac');
-                $response['details']['down_payment_amount'] = __('Down Payment Amount', 'shmac');
-                $response['details']['monthly_payment'] = __('Monthly Payment (P & I)', 'shmac');
-                $response['details']['total_payments'] = __('Total Payments', 'shmac');
-*/
+
 				$response['details']['original'] = $this->shmac_email['detail_original'];
                 $response['details']['down_payment'] = $this->shmac_email['detail_down_payment'];
                 $response['details']['interest'] = $this->shmac_email['detail_interest'];
@@ -166,7 +147,8 @@
 
                 /* down payment percent or amount */
                 if (isset($this->shmac_settings['down_payment_type']) 
-                    && $this->shmac_settings['down_payment_type'] == 'amount') { // dollar amount
+                    && $this->shmac_settings['down_payment_type'] == 'amount'
+					&& $price > 0) { // dollar amount
                         if($downpayshow=='yes'){
                             $moneydown  = $this->getAmount($_POST['downpay']);
                         }else{
@@ -175,7 +157,7 @@
                         $down = floatval( ($moneydown / $price) * 100);
                         $down = round($down, 2);
                 } else {// percent
-                    if($downpayshow=='yes'){
+                    if($downpayshow=='yes' && $price > 0) {
                         $down  = $_POST['downpay'];
                     }else{
                         $down  = 0;
@@ -208,19 +190,19 @@
                 if ($price == 0) {
                     $response['error'] = 1;
                     $response['error_field'] = 'amount';
-                    $response['message'] = __('Please Enter a valid amount.', 'shmac');
+                    $response['message'] = $this->shmac_settings['purchase_price_error'];
                 } elseif ($interest == 0) {
                     $response['error'] = 1;
                     $response['error_field'] = 'interest';
-                    $response['message'] = __('Please Enter a valid interest rate.', 'shmac');
+                    $response['message'] = $this->shmac_settings['interest_error'];
                 } elseif (!is_numeric($down)) {
                     $response['error'] = 1;
                     $response['error_field'] = 'down';
-                    $response['message'] = __('Please Enter a down payment (can be 0).', 'shmac');
+                    $response['message'] = $this->shmac_settings['down_error'];
                 } elseif ( $term == 0) {
                     $response['error'] = 1;
                     $response['error_field'] = 'term';
-                    $response['message'] = __('Term cannot be empty.', 'shmac');
+                    $response['message'] = $this->shmac_settings['loan_term_error'];
                 }
 
                 if (!isset($response['error'])) {          // If no errors, continue
@@ -274,7 +256,7 @@
                         $taxes_monthly = 0;
                         $insurance_monthly = 0;
 
-                        $response['vals']['otherfactors'] = __('Since Principal and Interest are not the only factors of a loan we should include an estimate for other costs involved with a loan.', 'shmac');
+                        $response['vals']['otherfactors'] = $this->shmac_email['otherfactors']; 
                     } else {
                         $response['vals']['otherfactors'] = '';
                     }
@@ -299,10 +281,11 @@
                             $thousand_dollars_display = $this->shmac_settings['currency'] . $thousand_dollars;
                         }
 
-                        $response['vals']['tax_text'] = __('An average tax figure for your purchase might be about', 'shmac')
-                            . ' ' . $tax_rate_display . __(' for every', 'shmac') 
-                            . ' ' . $thousand_dollars_display . __(' assessed value per year.', 'shmac');
-                        $response['vals']['tax_text'] .= '  ' . __("If the assessed value of your home is 85%, this would make your home's assessed value", 'shmac') . ' ' . $assessed2_display . __(' and your monthly tax around', 'shmac') . ' ' . $taxes2_display;
+						$texts = array('[tax_rate_display]', '[thousand_dollars_display]', '[assessed_display]','[taxes_display]');
+                        $replacements = array($tax_rate_display, $thousand_dollars_display, $assessed2_display, $taxes2_display);
+                        $tax_text = str_replace($texts, $replacements, $this->shmac_email['tax_factor']);
+                        $response['vals']['tax_text'] = $tax_text;
+
                     } else {
                         $response['vals']['tax_text'] = '';
                     }
@@ -327,15 +310,13 @@
                                 $pmi2_display        = $this->shmac_settings['currency'] . $pmi2;
                             }
 
-                            $response['vals']['pmi_text'] =  __('Your down payment was less than 20% of the loan, which means you will be paying PMI. This averages around', 'shmac') . ' ' . $pmi_display . ' ' .  __('for every', 'shmac') . ' ' 
-                                . $hundredthou_display . __(' borrowed.', 'shmac');
-
-
-                            $response['vals']['pmi_text'] .= '  ' . __('An estimate for PMI will be around', 'shmac') . ' ' 
-                                .  $pmi2_display  . ' ' . __('per month.', 'shmac');
+							$texts = array('[pmi_display]', '[hundredthou]', '[pmi]');
+							$replacements = array($pmi_display, $hundredthou_display, $pmi2_display);
+							$pmi_text = str_replace($texts, $replacements, $this->shmac_email['down_factor_1']);
+                            $response['vals']['pmi_text'] = $pmi_text;
 
                         } else {
-                            $response['vals']['pmi_text'] = __('Since you are putting down 20% or more of the loan, you will not have to pay PMI.', 'shmac');
+                            $response['vals']['pmi_text'] = $this->shmac_email['down_factor_2'];
                         }
                     } else {
                         $response['vals']['pmi_text'] = '';
@@ -357,7 +338,11 @@
                             $insurance_display = $this->shmac_settings['currency'] . $insurance_format;
                         }
 
-                        $response['vals']['insurance_text'] = __('Homeowners Insurance is another factor of a loan.  An average estimate of your monthly insurance could be about', 'shmac') . ' ' . $insurance_display;
+						$texts = array('[insurance_display]');
+                        $replacements = array($insurance_display);
+                        $insurance_text = str_replace($texts, $replacements, $this->shmac_email['insurance_factor']);
+                        $response['vals']['insurance_text'] = $insurance_text;
+
                         $insurance_monthly = floatval($insurance);
 
                     } else {
@@ -377,9 +362,12 @@
                         } else {
                             $total_payment_display = $this->shmac_settings['currency'] . '<b>' . $total_payment_formatted . '</b>';
                         }
+					
+						$texts = array('[total_payment_display]');
+                        $replacements = array($total_payment_display);
+                        $total_monthlies = str_replace($texts, $replacements, $this->shmac_email['factor_summary']);
+                        $response['vals']['total_monthlies'] = $total_monthlies;
                         
-                        $response['vals']['total_monthlies'] = __('With these factors, your total monthly payment estimate would be 
-around', 'shmac') . ' ' . $total_payment_display;
                     } else {
                         $response['vals']['total_monthlies'] = '';
                     }
@@ -439,7 +427,7 @@ around', 'shmac') . ' ' . $total_payment_display;
                             if (!filter_var($_POST['mailaddress'], FILTER_VALIDATE_EMAIL)) {
                                 $response['error'] = 1;
                                 $response['error_field'] = 'email';
-                                $response['message'] = __('Please enter a valid email address.', 'shmac');
+                                $response['message'] = $this->shmac_settings['email_error'];
                             } else {
 
                                 // Generate PDF and mail it
@@ -628,9 +616,8 @@ around', 'shmac') . ' ' . $total_payment_display;
                    . '<h1 style="color:' . $this->shmac_email['pdf_color'] . '";>' 
                    . $this->shmac_email['pdf_header'] . '</h1>';
 
-            $html .= '<h3>' . __('Brought to you by', 'shmac') . ' <a href="' . esc_url(home_url( '/') ) . '" style="color:' . $this->shmac_email['pdf_color'] . ';">' 
-                   . get_bloginfo() . '</a></h3>'
-                   . '</div>';
+            $html .= '<h3>' . $this->shmac_email['brought_by'] . ' <a href="' . esc_url(home_url( '/') ) . '" style="color:' 
+				   . $this->shmac_email['pdf_color'] . ';">' . get_bloginfo() . '</a></h3>' . '</div>';
 
             $html .= '<br />';
             if($downpayshow=='yes'){

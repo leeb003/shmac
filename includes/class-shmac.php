@@ -238,7 +238,6 @@
 			// Convert back to variables and check for overrides with fallbacks to main settings
 			$extraclass             = $settings['extraclass'];
 			$primarycolor           = ($settings['primarycolor'] != '' ? $settings['primarycolor'] : $this->shmac_settings['page_color']);
-			$color                  = $settings['color'];
 			$calctitle              = ($settings['calctitle'] != '' ? $settings['calctitle'] : $this->shmac_settings['calc_title']);
 			$emailtext              = ($settings['emailtext'] != '' ? $settings['emailtext'] : $this->shmac_settings['send_email_text']);
 			$emaillabel             = ($settings['emaillabel'] != '' ? $settings['emaillabel'] : $this->shmac_settings['email_placeholder']);
@@ -665,7 +664,7 @@ EOT;
                     </span>
                 </a>
                 <input type="text" class="term mui-form-control terminput_$calc_inc" value="$defaultterm" data-decimal-places-override="0" $readonlyHTML />
-                <label class="mui-form-floating-label">$termlabel</label>
+                <label class="mui-form-label">$termlabel</label>
                 $termSlider
                 <div class="err-msg"></div>
             </div>

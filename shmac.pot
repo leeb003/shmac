@@ -13,6 +13,382 @@ msgstr ""
 "Language:ru\n"
 "MIME-Version: 1.0\n"
 
+#: [
+#: 'label' => __('Calculator Overrides', 'shmac' ),
+#: 'type' => \Elementor\Controls_Manager::TEXT,
+# wpml-name: 077b0eb35d76ea78718bc563be5cfdaf
+msgctxt "2622bff7deb9f5bf292e4c08a26a2623"
+msgid "Calculator Overrides"
+msgstr ""
+
+#: [
+#: 'label' => __( 'Content', 'shmac' ),
+#: 'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
+# wpml-name: f15c1cae7882448b3fb0404682e17e61
+msgctxt "0e50db588549fb1c8d6f48926a645ea3"
+msgid "Content"
+msgstr ""
+
+#: <p>
+#: <label for="<?php echo $this->get_field_id( 'shmac_override' ); ?>"><?php _e( 'Calculator Overrides:', 'shmac' ); ?></label>
+#: <input class="widefat" id="<?php echo $this->get_field_id( 'shmac_override' ); ?>" name="<?php echo $this->get_field_name( 'shmac_override' ); ?>" type="text" value="<?php echo esc_attr( $instance['shmac_override'] ); ?>" />
+# wpml-name: 07adaf9ff6576810ed1263fd7753cdbf
+msgctxt "22be34e5d931f874cc2e6d50851b435b"
+msgid "Calculator Overrides:"
+msgstr ""
+
+#: </tr>
+#: <tr class="row1"><td><?php echo __('PHP version running', 'shmac');?></td><td><?php echo phpversion(); ?></td></tr>
+#: <tr class="row0"><td>post_max_size</td><td><?php echo ini_get('post_max_size'); ?></td></tr>
+# wpml-name: 6a0d80459a27dcee1fd115397f07574f
+msgctxt "82205ba65187999702a6d1b680bd3bed"
+msgid "PHP version running"
+msgstr ""
+
+#: <th<?php __('Variable', 'shmac'); ?></th>
+#: <th><?php __('Value', 'shmac'); ?></th>
+#: </tr>
+# wpml-name: 689202409e48743b914713f96d93947c
+msgctxt "58fda3d7d5daeee1114699f3977b3731"
+msgid "Value"
+msgstr ""
+
+#: <tr>
+#: <th<?php __('Variable', 'shmac'); ?></th>
+#: <th><?php __('Value', 'shmac'); ?></th>
+# wpml-name: 47c14840d8e15331fa420b9b2f757cd9
+msgctxt "a9d9a193245ad474dd668372087ffd62"
+msgid "Variable"
+msgstr ""
+
+#: function field_section_info() {
+#: echo __('Note that these server settings will affect the size, amount, and time taken allowed for PDF generation and scripts.  <br />These PHP settings may need
+#: to be adjusted on your server according to your requirements.', 'shmac');
+# wpml-name: f9817e7d7fcbaa1b601ac1104f52a926
+msgctxt "05c96f7c8e45e4df41dd2f385329f9cc"
+msgid "Note that these server settings will affect the size, amount, and time taken allowed for PDF generation and scripts.  <br />These PHP settings may need\n to be adjusted on your server according to your requirements."
+msgstr ""
+
+#: <p>
+#: <?php echo __('Bracketted texts are placeholders for values ([total_payment_display]) leave those intact and you can rephrase.', 'shmac'); ?>
+#: </p>
+# wpml-name: 08fe7a14b7ae09471087a362a50055ec
+msgctxt "325690668e766d1d4a65b697c5f5bbea"
+msgid "Bracketted texts are placeholders for values ([total_payment_display]) leave those intact and you can rephrase."
+msgstr ""
+
+#: <p>
+#: <?php echo __('Bracketted texts are placeholders for values ([insurance_display]) leave those intact and you can rephrase.', 'shmac'); ?>
+#: </p>
+# wpml-name: 2c7eee57f04d4490f5708515cead1d1e
+msgctxt "1902e6994899cecfab2b1f1a5a26f94d"
+msgid "Bracketted texts are placeholders for values ([insurance_display]) leave those intact and you can rephrase."
+msgstr ""
+
+#: <p>
+#: <?php echo __('Bracketted texts are placeholders for values ([tax_rate_display], [thousand_dollars_display] and [assessed_display] and [taxes_display]) leave those intact and you can rephrase.', 'shmac'); ?>
+#: </p>
+# wpml-name: ce521a826b5854eb6d977e298f9e007f
+msgctxt "71914f5de24149b51dcae13f811df09f"
+msgid "Bracketted texts are placeholders for values ([tax_rate_display], [thousand_dollars_display] and [assessed_display] and [taxes_display]) leave those intact and you can rephrase."
+msgstr ""
+
+#: <p>
+#: <?php echo __('Not paying PMI since 20% of loan reached.', 'shmac'); ?>
+#: </p>
+# wpml-name: 004c13819be23db7cdea870b2ae3e4ec
+msgctxt "76f35600a52fb32a5bd033c1e14fbbc4"
+msgid "Not paying PMI since 20% of loan reached."
+msgstr ""
+
+#: <p>
+#: <?php echo __('Must pay PMI.  Bracketted texts are placeholders for values ([pmi_display], [hundredthou], and [pmi]) leave those intact and you can rephrase as needed.', 'shmac'); ?>
+#: </p>
+# wpml-name: 691fc42556ced82963484bb688f18a93
+msgctxt "b402da9fdae97fc454ae7c2e9b446fac"
+msgid "Must pay PMI.  Bracketted texts are placeholders for values ([pmi_display], [hundredthou], and [pmi]) leave those intact and you can rephrase as needed."
+msgstr ""
+
+#: <p>
+#: <?php echo __('Other Factors initial text', 'shmac');?>
+#: <p/>
+# wpml-name: 35e165f4d431ea72c5b1d9bcd70669a8
+msgctxt "fe64cf601dbc6500aec2d9a04eccaa20"
+msgid "Other Factors initial text"
+msgstr ""
+
+#: <p>
+#: <?php echo __('Brought to you by greeting', 'shmac');?>
+#: </p>
+# wpml-name: 190236a4d566e9e126be32a21f891649
+msgctxt "8ae568a3ec79e17d8046282716a5e27f"
+msgid "Brought to you by greeting"
+msgstr ""
+
+#: ); ?>" />
+#: <p><?php echo __("Set the Error message for the Loan Term field.", "shmac"); ?></p>
+#: <?php
+# wpml-name: b5e599ad79a1965488bcdd82a5350382
+msgctxt "d5ee170075ed4c70d32c2ad138d8d5e5"
+msgid "Set the Error message for the Loan Term field."
+msgstr ""
+
+#: <input class="shmac-down-error" name="<?php echo $this->first_tab_key; ?>[down_error]" value="<?php echo esc_attr( $this->first_tab['down_error'] ); ?>" />
+#: <p><?php echo __("Set the Error message for the Down Payment field.", "shmac"); ?></p>
+#: <?php
+# wpml-name: 4b2142f96ede699cadb88818a7c3fad5
+msgctxt "af27cc9934f655adc399a8ef0972a959"
+msgid "Set the Error message for the Down Payment field."
+msgstr ""
+
+#: <input class="shmac-interest-error" name="<?php echo $this->first_tab_key; ?>[interest_error]" value="<?php echo esc_attr( $this->first_tab['interest_error'] ); ?>" />
+#: <p><?php echo __("Set the Error message for the Interest field.", "shmac"); ?></p>
+#: <?php
+# wpml-name: 40c476421ae117b3fb9ae07f10a14b4a
+msgctxt "f9853e4b48b369c1bb4ff0f54366e1a1"
+msgid "Set the Error message for the Interest field."
+msgstr ""
+
+#: <input class="shmac-purchase-error" name="<?php echo $this->first_tab_key; ?>[purchase_price_error]" value="<?php echo esc_attr( $this->first_tab['purchase_price_error'] ); ?>" />
+#: <p><?php echo __("Set the Error message for the Amount Field.", "shmac"); ?></p>
+#: <?php
+# wpml-name: dbbb66f7080e5a56d4529aa956d4bc94
+msgctxt "d36267042ef0c598b91cd33193356f40"
+msgid "Set the Error message for the Amount Field."
+msgstr ""
+
+#: <input class="shmac-email-error" name="<?php echo $this->first_tab_key; ?>[email_error]" value="<?php echo esc_attr( $this->first_tab['email_error'] ); ?>" />
+#: <p><?php echo __("Set the error text for invalid or no email entered.", "shmac"); ?></p>
+#: <?php
+# wpml-name: dc47730e4ed70d07c8124f28989a620b
+msgctxt "1f2656de5f1a4901188c45255d2550c6"
+msgid "Set the error text for invalid or no email entered."
+msgstr ""
+
+#: 
+#: echo '<p>' . __('If this calculator is a great tool for you we would really appreciate a quick rating.  Ratings help our product grow and encourage us to improve and add features.', 'shmac') . '<br />' . __('You can give us a rating in your ', 'shmac') . ' <a href="https://codecanyon.net/downloads" target=_blank">' . __(
+#: 'downloads area at codecanyon.net', 'shmac') . '</a></p>';
+# wpml-name: f8c8c7bae52eea8bcf45643937cf0261
+msgctxt "be1416f2473260e63cffea7ac828a9ad"
+msgid "downloads area at codecanyon.net"
+msgstr ""
+
+#: 
+#: echo '<p>' . __('If this calculator is a great tool for you we would really appreciate a quick rating.  Ratings help our product grow and encourage us to improve and add features.', 'shmac') . '<br />' . __('You can give us a rating in your ', 'shmac') . ' <a href="https://codecanyon.net/downloads" target=_blank">' . __(
+#: 'downloads area at codecanyon.net', 'shmac') . '</a></p>';
+# wpml-name: 8ca3a79002ff92cc848cf14475415637
+msgctxt "9d266b6f02b1dad6e3d2b2ff8c228327"
+msgid "You can give us a rating in your "
+msgstr ""
+
+#: 
+#: echo '<p>' . __('If this calculator is a great tool for you we would really appreciate a quick rating.  Ratings help our product grow and encourage us to improve and add features.', 'shmac') . '<br />' . __('You can give us a rating in your ', 'shmac') . ' <a href="https://codecanyon.net/downloads" target=_blank">' . __(
+#: 'downloads area at codecanyon.net', 'shmac') . '</a></p>';
+# wpml-name: 6f30c2e758ac464e289f4f295b3cc3b9
+msgctxt "e4a9adfe4be1561c35a41eb0219c073c"
+msgid "If this calculator is a great tool for you we would really appreciate a quick rating.  Ratings help our product grow and encourage us to improve and add features."
+msgstr ""
+
+#: 
+#: echo '<p>' . __('Need some help? Visit our', 'shmac') . ' <a href="https://scripthat.ticksy.com" target=_blank">' . __('Support System', 'shmac') . '</a></p>
+#: ';
+# wpml-name: 2c1a76fc0a157efa31378aea4656709d
+msgctxt "567a4f04e424b3e1cc579777f9c1124b"
+msgid "Support System"
+msgstr ""
+
+#: 
+#: echo '<p>' . __('Need some help? Visit our', 'shmac') . ' <a href="https://scripthat.ticksy.com" target=_blank">' . __('Support System', 'shmac') . '</a></p>
+#: ';
+# wpml-name: 90a9bfcaad375f346d540b3ecbaaee07
+msgctxt "d14e77c55a92d70b78a04f7815de5d57"
+msgid "Need some help? Visit our"
+msgstr ""
+
+#: 
+#: <p>' . __('Have a question? Take a look at our', 'shmac') . ' <a href="https://www.scripthat.com/support/" target="_blank">' . __('Online Documentation', 'shmac') . '</a></p>';
+#: 
+# wpml-name: 921fd6fe422695fcc720f1eb927d0f10
+msgctxt "9ca085a5831384e5d92ecf2998d81ab1"
+msgid "Online Documentation"
+msgstr ""
+
+#: 
+#: <p>' . __('Have a question? Take a look at our', 'shmac') . ' <a href="https://www.scripthat.com/support/" target="_blank">' . __('Online Documentation', 'shmac') . '</a></p>';
+#: 
+# wpml-name: aa76ce6de66c862fe1291e137d9de19a
+msgctxt "19978a2bee36915dba9ff86ac9764a34"
+msgid "Have a question? Take a look at our"
+msgstr ""
+
+#: function section_site_desc() {
+#: echo '<br /><br /><u>' . __('You are running version', 'shmac') . ' <span class="shmac-version">' . SHMAC_PLUGIN_VERSION . '</span> ' . __('of WP Amortization Calculator', 'shmac') . '</u><br /><p> You can use the <b>[shmac_calc_sc]</b> shortcode, the widget, Visual Composer or Elementor to display the calculator on the front end.</p>
+#: 
+# wpml-name: d9dd98358011025305a70778a6f53065
+msgctxt "5194e6f85142dfc61a1d9804ab354876"
+msgid "of WP Amortization Calculator"
+msgstr ""
+
+#: function section_site_desc() {
+#: echo '<br /><br /><u>' . __('You are running version', 'shmac') . ' <span class="shmac-version">' . SHMAC_PLUGIN_VERSION . '</span> ' . __('of WP Amortization Calculator', 'shmac') . '</u><br /><p> You can use the <b>[shmac_calc_sc]</b> shortcode, the widget, Visual Composer or Elementor to display the calculator on the front end.</p>
+#: 
+# wpml-name: e41fdd9bc739bf0afe0c92cfde202b7c
+msgctxt "2bff031bd6cb65726b415efc901f8862"
+msgid "You are running version"
+msgstr ""
+
+#: */
+#: function section_general_desc() { echo __('Set up WP Amortization Calculator settings.  In this section you can change field labels, info bubble contents, default values, form color, and other settings.  Be sure to save settings on This tab and Email before using the calculator.', 'shmac'); }
+#: function section_email_desc() { echo __('In this section you can change report settings, enable and disable email reports for visitors and send yourself a copy (bcc) of the reports as well.  This is good for lead capture and further contacting the lead.  Set your logo and colors used in the PDF report.', 'shmac');
+# wpml-name: 431f67d76a3affbc4905967c54a91362
+msgctxt "6d77569d7328073cd072f2ee15c60646"
+msgid "Set up WP Amortization Calculator settings.  In this section you can change field labels, info bubble contents, default values, form color, and other settings.  Be sure to save settings on This tab and Email before using the calculator."
+msgstr ""
+
+#: $this->info_tab_key, 'section_info_desc' );
+#: add_settings_field( 'site_info', __('Info', 'shmac'), array( &$this, 'field_section_info'),
+#: $this->info_tab_key, 'section_info' );
+# wpml-name: 4059b0251f66a18cb56f544728796875
+msgctxt "6bafe38a2e7a088d7938357e85279138"
+msgid "Info"
+msgstr ""
+
+#: register_setting( $this->info_tab_key, $this->info_tab_key );
+#: add_settings_section( 'section_info', $banner_img . __('Information', 'shmac'), array( &$this, 'section_site_desc' ),
+#: $this->info_tab_key, 'section_info_desc' );
+# wpml-name: a82be0f551b8708bc08eb33cd9ded0cf
+msgctxt "489714fb27d9bb71a048fea2588206e6"
+msgid "Information"
+msgstr ""
+
+#: 
+#: add_settings_field( 'brought_by', __('PDF Intro Text', 'shmac'), array( &$this, 'field_brought_by'),
+#: $this->second_tab_key, 'section_email' );
+# wpml-name: 4974a05519c2afdd4c46c978e55c7b19
+msgctxt "94e82ba75aa1374225c0a2f24f7f5992"
+msgid "PDF Intro Text"
+msgstr ""
+
+#: 
+#: add_settings_field( 'factor_summary', __('Report - Factors Summary', 'shmac'), array( &$this, 'field_factor_summary'),
+#: $this->second_tab_key, 'section_email' );
+# wpml-name: d4d33e7ba8a7efa34a1acf9693ca5e0e
+msgctxt "54ae4fa6bb3110980e9cf0998da213db"
+msgid "Report - Factors Summary"
+msgstr ""
+
+#: 
+#: add_settings_field( 'insurance_factor', __('Report - Insurance Factors', 'shmac'), array( &$this, 'field_insurance_factor'),
+#: $this->second_tab_key, 'section_email' );
+# wpml-name: db511c557bbd8236f4bdd5f0657706e4
+msgctxt "e405e26f996d4d5671956b165a1bd2f2"
+msgid "Report - Insurance Factors"
+msgstr ""
+
+#: 
+#: add_settings_field( 'tax_factor', __('Report - Tax Factors', 'shmac'), array( &$this, 'field_tax_factor'),
+#: $this->second_tab_key, 'section_email' );
+# wpml-name: e64ff83ef9dbfd4d76959700fad6d66e
+msgctxt "8798ca09ecb9ec8a264c78fa408a0031"
+msgid "Report - Tax Factors"
+msgstr ""
+
+#: 
+#: add_settings_field( 'down_factor', __('Report - Down Payment Factors', 'shmac'), array( &$this, 'field_down_factor'),
+#: $this->second_tab_key, 'section_email' );
+# wpml-name: 016c8fabfe6dd1a7c5c78634277fb034
+msgctxt "df74fcce1438dcd3be1ec2723dd8d834"
+msgid "Report - Down Payment Factors"
+msgstr ""
+
+#: 
+#: add_settings_field( 'report_texts', __('Report - Text Section', 'shmac'), array( &$this, 'field_report_texts'),
+#: $this->second_tab_key, 'section_email' );
+# wpml-name: 161a2897a2f89e9ce9add1f943d0828a
+msgctxt "0dbf4a333260da1047ddb5ed0b082703"
+msgid "Report - Text Section"
+msgstr ""
+
+#: 
+#: add_settings_field( 'loan_term_error', __('Loan Term Error Msg', 'shmac'), array( &$this, 'field_loan_term_error'),
+#: $this->first_tab_key, 'section_general' );
+# wpml-name: b484d1ff84969d33fcf197469895bab8
+msgctxt "2473939d848e90dea66c53ddaa8cc8c0"
+msgid "Loan Term Error Msg"
+msgstr ""
+
+#: 
+#: add_settings_field( 'down_error', __('Down Payment Error Msg', 'shmac'), array( &$this, 'field_down_error'), $this->first_tab_key, 'section_general' );
+#: 
+# wpml-name: d43f9a87e8a7d2adb882f4c43b9b9611
+msgctxt "c7553b267c968f3973951e45f3b28df7"
+msgid "Down Payment Error Msg"
+msgstr ""
+
+#: 
+#: add_settings_field( 'interest_error', __('Interest Error Msg', 'shmac'), array( &$this, 'field_interest_error'),
+#: $this->first_tab_key, 'section_general' );
+# wpml-name: cc533cbbdd76506d8718fd31134f0400
+msgctxt "8ca921463312adb27c2946b9bc63556c"
+msgid "Interest Error Msg"
+msgstr ""
+
+#: 
+#: add_settings_field( 'purchase_price_error', __('Amount Error Msg', 'shmac'), array( &$this, 'field_purchase_price_error'),
+#: $this->first_tab_key, 'section_general' );
+# wpml-name: 16490b4bb4382433306eb151e261221a
+msgctxt "75a5ed5c441a53a3a850157675ca70a5"
+msgid "Amount Error Msg"
+msgstr ""
+
+#: 
+#: add_settings_field( 'email_error', __('Email Error Msg', 'shmac'), array( &$this, 'field_email_error'),
+#: $this->first_tab_key, 'section_general' );
+# wpml-name: 87e118380c84cd91c474d2a4ef0dba40
+msgctxt "aa08b201c2e24690bde6c029db55554e"
+msgid "Email Error Msg"
+msgstr ""
+
+#: '<strong>' . esc_html__( 'Elementor Shmac Extension', 'shmac' ) . '</strong>',
+#: '<strong>' . esc_html__( 'PHP', 'shmac' ) . '</strong>',
+#: self::MINIMUM_PHP_VERSION
+# wpml-name: 2fec392304a5c23ac138da22847f9b7c
+msgctxt "2542a1d167bc7b5239e673de16b8aed1"
+msgid "PHP"
+msgstr ""
+
+#: /* translators: 1: Plugin name 2: PHP 3: Required PHP version */
+#: esc_html__( '"%1$s" requires "%2$s" version %3$s or greater.', 'shmac' ),
+#: '<strong>' . esc_html__( 'Elementor Shmac Extension', 'shmac' ) . '</strong>',
+# wpml-name: dfad890c39d81d273421a3478b628e40
+msgctxt "c987929e21edf410ec06767fe05738ef"
+msgid "\"%1$s\" requires \"%2$s\" version %3$s or greater."
+msgstr ""
+
+#: '<strong>' . esc_html__( 'Elementor Shmac Extension', 'shmac' ) . '</strong>',
+#: '<strong>' . esc_html__( 'Elementor', 'shmac' ) . '</strong>',
+#: self::MINIMUM_ELEMENTOR_VERSION
+# wpml-name: 1d15783218a3137bec4ee8df5353e218
+msgctxt "0889c3718e837da6324e48420ca6148a"
+msgid "Elementor"
+msgstr ""
+
+#: esc_html__( '"%1$s" requires "%2$s" version %3$s or greater.', 'shmac' ),
+#: '<strong>' . esc_html__( 'Elementor Shmac Extension', 'shmac' ) . '</strong>',
+#: '<strong>' . esc_html__( 'PHP', 'shmac' ) . '</strong>',
+# wpml-name: d830afd0ae5bb9b068c6b967ab5fd3f9
+msgctxt "d53641128692af45fe8d5fd693108883"
+msgid "Elementor Shmac Extension"
+msgstr ""
+
+#: /* translators: 1: Plugin name 2: Elementor */
+#: esc_html__( '"%1$s" requires "%2$s" to be installed and activated.', 'shmac' ),
+#: '<strong>' . esc_html__( 'Elementor Shmac Extension', 'shmac' ) . '</strong>',
+# wpml-name: 5f153deaac8ac02c74ab4c3188185157
+msgctxt "18ad02788577cbde9995b57d026ed285"
+msgid "\"%1$s\" requires \"%2$s\" to be installed and activated."
+msgstr ""
+
 #: <input class="shmac-reset-label" name="<?php echo $this->first_tab_key; ?>[calcreset]" value="<?php echo esc_attr( $this->first_tab['calcreset']); ?>" />
 #: <p><?php echo __("The text for the Reset Button.", "shmac"); ?></p>
 #: <?php
@@ -437,11 +813,11 @@ msgctxt "d4083a0ef06013f06cdad26cf6790bcf"
 msgid "Balance"
 msgstr ""
 
-#: <tr>
+#: <tr class="head-row">
 #: <th><?php echo __('Principal', 'shmac');?></th>
 #: <th><?php echo __('Balance', 'shmac');?></th>
 # wpml-name: 8804b01fe5f36aa163269316113bacde
-msgctxt "6862e8c260370ad7ab77d36110013c7f"
+msgctxt "bc4e06ac5ec2a7b3970b32de273a45c8"
 msgid "Principal"
 msgstr ""
 
@@ -461,11 +837,11 @@ msgctxt "71657357e883be5ec104c66f06d0cd76"
 msgid "Payment Amount"
 msgstr ""
 
-#: <tr>
+#: <tr class="head-row">
 #: <th><?php echo __('Payment', 'shmac');?></th>
 #: <th><?php echo __('Payment Amount', 'shmac');?></th>
 # wpml-name: c453a4b8e8d98e82f35b67f433e3b4da
-msgctxt "9179e497ed0bf69b02af4366945319e1"
+msgctxt "18387c3701eb3d7d65c66119971bb216"
 msgid "Payment"
 msgstr ""
 
@@ -501,11 +877,11 @@ msgctxt "fe53abb369dd332b0166b3a753af6bf4"
 msgid "Down Payment Amount"
 msgstr ""
 
-#: <tr>
+#: <tr class="head-row">
 #: <th><?php echo __('Loan After Down', 'shmac');?></th>
 #: <th><?php echo __('Down Payment Amount', 'shmac');?></th>
 # wpml-name: 1b31bf414bc8f79f61f24fea8c133548
-msgctxt "5344962f49c4bac6a13fe3c6c3f5ef4d"
+msgctxt "dfc197f3a90580c1237f91c257e70df6"
 msgid "Loan After Down"
 msgstr ""
 
@@ -533,11 +909,11 @@ msgctxt "526ef6e474137709ee9f68cbc118b1b6"
 msgid "Down Payment"
 msgstr ""
 
-#: <tr>
+#: <tr class="head-row">
 #: <th><?php echo __('Original Loan Amount', 'shmac');?></th>
 #: <th><?php echo __('Down Payment', 'shmac');?></th>
 # wpml-name: 2caa8a94ee1a136aedd99d4a2a2837f9
-msgctxt "a0f499820e7ede6b586dc46c80873235"
+msgctxt "ae44b93ff051eec79189d979d6dbb5e5"
 msgid "Original Loan Amount"
 msgstr ""
 
@@ -741,19 +1117,19 @@ msgctxt "a9560e43584324f748397070b6eb15bc"
 msgid "Set the title to display for the Calculator"
 msgstr ""
 
-#: function section_general_desc() { echo __('Set up WP Amortization Calculator settings.  In this section you can change field labels, info bubble contents, default values, form color, and other settings.  After set up, you can use the shortcode <strong>[shmac_calc_sc]</strong> or the widget to insert it into pages or sidebars.', 'shmac'); }
+#: function section_general_desc() { echo __('Set up WP Amortization Calculator settings.  In this section you can change field labels, info bubble contents, default values, form color, and other settings.  Be sure to save settings on This tab and Email before using the calculator.', 'shmac'); }
 #: function section_email_desc() { echo __('In this section you can change report settings, enable and disable email reports for visitors and send yourself a copy (bcc) of the reports as well.  This is good for lead capture and further contacting the lead.  Set your logo and colors used in the PDF report.', 'shmac');
 #: }
 # wpml-name: 7287a283e08c9f463feba5002dc06763
-msgctxt "0770c625ad037ad46bd8da09e8f00fc9"
+msgctxt "863a9b09f3e8a3b2cf2654df5e06b8e1"
 msgid "In this section you can change report settings, enable and disable email reports for visitors and send yourself a copy (bcc) of the reports as well.  This is good for lead capture and further contacting the lead.  Set your logo and colors used in the PDF report."
 msgstr ""
 
-#: */
-#: function section_general_desc() { echo __('Set up WP Amortization Calculator settings.  In this section you can change field labels, info bubble contents, default values, form color, and other settings.  After set up, you can use the shortcode <strong>[shmac_calc_sc]</strong> or the widget to insert it into pages or sidebars.', 'shmac'); }
+#: function section_general_desc() { echo __('Set up WP Amortization Calculator settings.  In this section you can change field labels, info bubble contents, default values, form color, and other settings.  Be sure to save settings on This tab and Email before using the calculator.', 'shmac'); }
 #: function section_email_desc() { echo __('In this section you can change report settings, enable and disable email reports for visitors and send yourself a copy (bcc) of the reports as well.  This is good for lead capture and further contacting the lead.  Set your logo and colors used in the PDF report.', 'shmac');
+#: }
 # wpml-name: 1690bd77feea8e72f54da69b5ced6610
-msgctxt "cb1d2d0ef86b9a06ac70cee5fd27b927"
+msgctxt "42310227508a0f34a3eb0ccab03c8c27"
 msgid "Set up WP Amortization Calculator settings.  In this section you can change field labels, info bubble contents, default values, form color, and other settings.  After set up, you can use the shortcode <strong>[shmac_calc_sc]</strong> or the widget to insert it into pages or sidebars."
 msgstr ""
 
@@ -1125,11 +1501,11 @@ msgctxt "f67e07b150e8a91bf034d991084f9915"
 msgid "Calculator Global Settings"
 msgstr ""
 
-#: 
-#: $html .= '<h3>' . __('Brought to you by', 'shmac') . ' <a href="' . esc_url(home_url( '/') ) . '" style="color:' . $this->shmac_email['pdf_color'] . ';">'
-#: . get_bloginfo() . '</a></h3>'
+#: register_setting( $this->first_tab_key, $this->first_tab_key );
+#: add_settings_section( 'section_general', __('Calculator Global Settings', 'shmac'), array( &$this, 'section_general_desc' ),
+#: $this->first_tab_key, 'section_general' );
 # wpml-name: 0d28a199950af6ef23caa1e452861253
-msgctxt "58c244051856ac5ef9cf719f2c75af03"
+msgctxt "f6e6d4f2a8028a3fc046309c897d0351"
 msgid "Brought to you by"
 msgstr ""
 
@@ -1141,155 +1517,155 @@ msgctxt "c1e3d89e097cb2b1cb8fba5c09256afa"
 msgid "Not used at this time."
 msgstr ""
 
-#: $response['error_field'] = 'email';
-#: $response['message'] = __('Please enter a valid email address.', 'shmac');
-#: } else {
+#: public function myajax_shmacbackend_callback() {
+#: $response['message'] = __('Not used at this time.', 'shmac');
+#: header( "Content-Type: application/json" );
 # wpml-name: b5bccda6d3a04e1d8f79846355290435
-msgctxt "4d6e630db754b967f1bf12a5ad0463bb"
+msgctxt "fb49fb61b49e02da20d453836f548b02"
 msgid "Please enter a valid email address."
 msgstr ""
 
-#: 
-#: $response['vals']['total_monthlies'] = __('With these factors, your total monthly payment estimate would be
-#: around', 'shmac') . ' ' . $total_payment_display;
+#: public function myajax_shmacbackend_callback() {
+#: $response['message'] = __('Not used at this time.', 'shmac');
+#: header( "Content-Type: application/json" );
 # wpml-name: 1c9aa5df28ed423acbc8028761a0c008
-msgctxt "1ac6cfce5ea8ddb7981e16b18dcccde4"
+msgctxt "cf2ccc78a4acb20c7cad641c155d0d76"
 msgid "With these factors, your total monthly payment estimate would be \naround"
 msgstr ""
 
-#: 
-#: $response['vals']['insurance_text'] = __('Homeowners Insurance is another factor of a loan.  An average estimate of your monthly insurance could be about', 'shmac') . ' ' . $insurance_display;
-#: $insurance_monthly = floatval($insurance);
+#: public function myajax_shmacbackend_callback() {
+#: $response['message'] = __('Not used at this time.', 'shmac');
+#: header( "Content-Type: application/json" );
 # wpml-name: 68a0f1f07568f1189be6dee896171927
-msgctxt "ef4ca884e25881a84be3a7ee6977f02b"
+msgctxt "34eb05e974fa5b2ddafb2180c94c6cf6"
 msgid "Homeowners Insurance is another factor of a loan.  An average estimate of your monthly insurance could be about"
 msgstr ""
 
-#: } else {
-#: $response['vals']['pmi_text'] = __('Since you are putting down 20% or more of the loan, you will not have to pay PMI.', 'shmac');
-#: }
+#: public function myajax_shmacbackend_callback() {
+#: $response['message'] = __('Not used at this time.', 'shmac');
+#: header( "Content-Type: application/json" );
 # wpml-name: dc44a18b789358015113f2ccdca3cbaa
-msgctxt "e243aeefd1ec26edc7ecbc9958b96cc3"
+msgctxt "2f2b3223a12529f226c6238779f6e094"
 msgid "Since you are putting down 20% or more of the loan, you will not have to pay PMI."
 msgstr ""
 
-#: $response['vals']['pmi_text'] .= '  ' . __('An estimate for PMI will be around', 'shmac') . ' '
-#: .  $pmi2_display  . ' ' . __('per month.', 'shmac');
-#: 
+#: public function myajax_shmacbackend_callback() {
+#: $response['message'] = __('Not used at this time.', 'shmac');
+#: header( "Content-Type: application/json" );
 # wpml-name: 45bfc464e5662c7ef2dec4b0104cb83b
-msgctxt "2d2dd77cea11b361ef91b856e582aa92"
+msgctxt "7ba1266e93bbdf7d0f14f8b955039d01"
 msgid "per month."
 msgstr ""
 
-#: 
-#: $response['vals']['pmi_text'] .= '  ' . __('An estimate for PMI will be around', 'shmac') . ' '
-#: .  $pmi2_display  . ' ' . __('per month.', 'shmac');
+#: public function myajax_shmacbackend_callback() {
+#: $response['message'] = __('Not used at this time.', 'shmac');
+#: header( "Content-Type: application/json" );
 # wpml-name: 7ea09a9693a0a191cebb003e1a26ac15
-msgctxt "62a5e1fb1bb52f271feee4a30c1fa6ad"
+msgctxt "181d40472a112b06665575ad389f61e3"
 msgid "An estimate for PMI will be around"
 msgstr ""
 
-#: $response['vals']['pmi_text'] =  __('Your down payment was less than 20% of the loan, which means you will be paying PMI. This averages around', 'shmac') . ' ' . $pmi_display . ' ' .  __('for every', 'shmac') . ' '
-#: . $hundredthou_display . __(' borrowed.', 'shmac');
-#: 
+#: public function myajax_shmacbackend_callback() {
+#: $response['message'] = __('Not used at this time.', 'shmac');
+#: header( "Content-Type: application/json" );
 # wpml-name: e1ec30912d9fa9607b54722de58b6bd6
-msgctxt "2227f009396a44098598832c635b9d7e"
+msgctxt "dbfcde030ffd57acaed115eda12334d1"
 msgid " borrowed."
 msgstr ""
 
-#: 
-#: $response['vals']['pmi_text'] =  __('Your down payment was less than 20% of the loan, which means you will be paying PMI. This averages around', 'shmac') . ' ' . $pmi_display . ' ' .  __('for every', 'shmac') . ' '
-#: . $hundredthou_display . __(' borrowed.', 'shmac');
+#: public function myajax_shmacbackend_callback() {
+#: $response['message'] = __('Not used at this time.', 'shmac');
+#: header( "Content-Type: application/json" );
 # wpml-name: 60e6b08231d4ad33592544e62f98008e
-msgctxt "740128585700978080d9ad10b072a6cd"
+msgctxt "adc1f271968427fa7d7a90bb7224373e"
 msgid "for every"
 msgstr ""
 
-#: 
-#: $response['vals']['pmi_text'] =  __('Your down payment was less than 20% of the loan, which means you will be paying PMI. This averages around', 'shmac') . ' ' . $pmi_display . ' ' .  __('for every', 'shmac') . ' '
-#: . $hundredthou_display . __(' borrowed.', 'shmac');
+#: public function myajax_shmacbackend_callback() {
+#: $response['message'] = __('Not used at this time.', 'shmac');
+#: header( "Content-Type: application/json" );
 # wpml-name: c88daa8db4525620c3a096cfcee45415
-msgctxt "ff17607fc81e085cd4276993002d0cbe"
+msgctxt "dac79bb9b6ee6329e5a1934f2248a72f"
 msgid "Your down payment was less than 20% of the loan, which means you will be paying PMI. This averages around"
 msgstr ""
 
-#: . ' ' . $thousand_dollars_display . __(' assessed value per year.', 'shmac');
-#: $response['vals']['tax_text'] .= '  ' . __("If the assessed value of your home is 85%, this would make your home's assessed value", 'shmac') . ' ' . $assessed2_display . __(' and your monthly tax around', 'shmac') . ' ' . $taxes2_display;
-#: } else {
+#: public function myajax_shmacbackend_callback() {
+#: $response['message'] = __('Not used at this time.', 'shmac');
+#: header( "Content-Type: application/json" );
 # wpml-name: b4c2ded467b9de1a55102ede0722eca9
-msgctxt "dfacabcb5f6541c627f2e593b4afeacf"
+msgctxt "0a170c442d7b671c7795aef917a954ac"
 msgid " and your monthly tax around"
 msgstr ""
 
-#: . ' ' . $thousand_dollars_display . __(' assessed value per year.', 'shmac');
-#: $response['vals']['tax_text'] .= '  ' . __("If the assessed value of your home is 85%, this would make your home's assessed value", 'shmac') . ' ' . $assessed2_display . __(' and your monthly tax around', 'shmac') . ' ' . $taxes2_display;
-#: } else {
+#: public function myajax_shmacbackend_callback() {
+#: $response['message'] = __('Not used at this time.', 'shmac');
+#: header( "Content-Type: application/json" );
 # wpml-name: e9f82db3427923d0a1edb1dfd9c35f1d
-msgctxt "f91cdf6e6136edf941772b6871579389"
+msgctxt "dd4ba2d3ee5b65df9107ff604e27f441"
 msgid "If the assessed value of your home is 85%, this would make your home's assessed value"
 msgstr ""
 
-#: . ' ' . $tax_rate_display . __(' for every', 'shmac')
-#: . ' ' . $thousand_dollars_display . __(' assessed value per year.', 'shmac');
-#: $response['vals']['tax_text'] .= '  ' . __("If the assessed value of your home is 85%, this would make your home's assessed value", 'shmac') . ' ' . $assessed2_display . __(' and your monthly tax around', 'shmac') . ' ' . $taxes2_display;
+#: public function myajax_shmacbackend_callback() {
+#: $response['message'] = __('Not used at this time.', 'shmac');
+#: header( "Content-Type: application/json" );
 # wpml-name: ae41f668bcc728b630b81332282acf4f
-msgctxt "28fb8617ea69bbbb5a1cd11980122dd0"
+msgctxt "36fa6106c7392dd5e838c9fd1e1ce5a0"
 msgid " assessed value per year."
 msgstr ""
 
-#: $response['vals']['tax_text'] = __('An average tax figure for your purchase might be about', 'shmac')
-#: . ' ' . $tax_rate_display . __(' for every', 'shmac')
-#: . ' ' . $thousand_dollars_display . __(' assessed value per year.', 'shmac');
+#: public function myajax_shmacbackend_callback() {
+#: $response['message'] = __('Not used at this time.', 'shmac');
+#: header( "Content-Type: application/json" );
 # wpml-name: c5e4e9934d65064437dc1fef3bdd8478
-msgctxt "cbb809b41a299b006a2acc8302da8c65"
+msgctxt "e86f2a7a081b56b78004a68ba999ef5e"
 msgid " for every"
 msgstr ""
 
-#: 
-#: $response['vals']['tax_text'] = __('An average tax figure for your purchase might be about', 'shmac')
-#: . ' ' . $tax_rate_display . __(' for every', 'shmac')
+#: public function myajax_shmacbackend_callback() {
+#: $response['message'] = __('Not used at this time.', 'shmac');
+#: header( "Content-Type: application/json" );
 # wpml-name: 60fc7ff2735b77766f56da640fbbf59f
-msgctxt "6c951eb2fa81e2237f617c1db52d3193"
+msgctxt "f12d2dad57546ccc4bc7bb66b3e041e6"
 msgid "An average tax figure for your purchase might be about"
 msgstr ""
 
-#: 
-#: $response['vals']['otherfactors'] = __('Since Principal and Interest are not the only factors of a loan we should include an estimate for other costs involved with a loan.', 'shmac');
-#: } else {
+#: public function myajax_shmacbackend_callback() {
+#: $response['message'] = __('Not used at this time.', 'shmac');
+#: header( "Content-Type: application/json" );
 # wpml-name: 6cce9268fc60a57be3cedfb73319ce42
-msgctxt "bf5ca33e14b1e3b966671bf70290824e"
+msgctxt "c2d20b5d35e83f491332d3d746a8ec25"
 msgid "Since Principal and Interest are not the only factors of a loan we should include an estimate for other costs involved with a loan."
 msgstr ""
 
-#: $response['error_field'] = 'term';
-#: $response['message'] = __('Term cannot be empty.', 'shmac');
-#: }
+#: public function myajax_shmacbackend_callback() {
+#: $response['message'] = __('Not used at this time.', 'shmac');
+#: header( "Content-Type: application/json" );
 # wpml-name: f0597590cdf7611969d688028a893285
-msgctxt "1f1bfb6f8e8fd8819df32c52a575ecbc"
+msgctxt "19590a0a96c24dbf24f4be29d8ee7d7c"
 msgid "Term cannot be empty."
 msgstr ""
 
-#: $response['error_field'] = 'down';
-#: $response['message'] = __('Please Enter a down payment (can be 0).', 'shmac');
-#: } elseif ( $term == 0) {
+#: public function myajax_shmacbackend_callback() {
+#: $response['message'] = __('Not used at this time.', 'shmac');
+#: header( "Content-Type: application/json" );
 # wpml-name: 12054f4841946eea3c8b48d76efc97e4
-msgctxt "b3692f870eb437ccc51bf9d70dadae83"
+msgctxt "ab50dae70d767509e800b4c972acb2ed"
 msgid "Please Enter a down payment (can be 0)."
 msgstr ""
 
-#: $response['error_field'] = 'interest';
-#: $response['message'] = __('Please Enter a valid interest rate.', 'shmac');
-#: } elseif (!is_numeric($down)) {
+#: public function myajax_shmacbackend_callback() {
+#: $response['message'] = __('Not used at this time.', 'shmac');
+#: header( "Content-Type: application/json" );
 # wpml-name: 4c2f719e5efd96973d05c57d64333152
-msgctxt "3dc16c21f8f2c7665b301afeea0c0822"
+msgctxt "2af7acb6de16725794b013580586bd13"
 msgid "Please Enter a valid interest rate."
 msgstr ""
 
-#: $response['error_field'] = 'amount';
-#: $response['message'] = __('Please Enter a valid amount.', 'shmac');
-#: } elseif ($interest == 0) {
+#: public function myajax_shmacbackend_callback() {
+#: $response['message'] = __('Not used at this time.', 'shmac');
+#: header( "Content-Type: application/json" );
 # wpml-name: d6587aab051a2f0c4addff53cd229ff3
-msgctxt "65fc4a441afc536d7e0ef6948472dd75"
+msgctxt "c05e77cbfd8d52ee01dde5ceb8a1f98b"
 msgid "Please Enter a valid amount."
 msgstr ""
 
@@ -2437,11 +2813,11 @@ msgctxt "8523acec26c5d81029ca4937de2b2602"
 msgid "Extra Class"
 msgstr ""
 
-#: "description" => __("Mortgage Amortization Calculator", "shmac"),
-#: "category" => __('ScriptHat', 'shmac'),
-#: "params" => array(
+#: [
+#: 'title' => __( 'ScriptHat', 'shmac' ),
+#: 'icon' => 'fa fa-plug',
 # wpml-name: 989769fc37b7536a99dfc6a876a5669a
-msgctxt "3a9b3ba4db142c382ee400037591533f"
+msgctxt "d0ddf061ea63db1e675ef5b6f3db8e51"
 msgid "ScriptHat"
 msgstr ""
 
@@ -2507,7 +2883,7 @@ msgstr ""
 # wpml-name: 7c5fb72b2ab0d57476a8b930a59f0650
 msgctxt "c3fddb0262d0f09af809f03c3e69b347"
 msgid "Hide Details"
-msgstr ""
+msgstr "Скрыть Детали"
 
 #: /* translators: 1: plugin name. */
 #: $this->upgrader->strings['skin_update_successful'] = esc_html__( '%1$s installed successfully.', 'tgmpa' ) . ' <a href="#" class="hide-if-no-js" onclick="%2$s"><span>' . esc_html__( 'Show Details', 'tgmpa' ) . '</span><span class="hidden">' . esc_html__( 'Hide Details', 'tgmpa' ) . '</span>.</a>';
@@ -2515,7 +2891,7 @@ msgstr ""
 # wpml-name: 06c883a79771ecda24de1687ed7915ba
 msgctxt "681b169bf9eebb9cf58fab68fe359687"
 msgid "Show Details"
-msgstr ""
+msgstr "Показать Детали"
 
 #: if ( empty( $plugins_to_activate ) ) {
 #: echo '<div id="message" class="error"><p>', esc_html__( 'No plugins are available to be activated at this time.', 'tgmpa' ), '</p></div>';
@@ -2523,7 +2899,7 @@ msgstr ""
 # wpml-name: 1646015930dff0c9b9af0f7132d25376
 msgctxt "31c33992a2eac6ee768953c51351abbc"
 msgid "No plugins are available to be activated at this time."
-msgstr ""
+msgstr "Сейчас нет плагинов доступных для активации."
 
 #: if ( empty( $_POST['plugin'] ) ) {
 #: echo '<div id="message" class="error"><p>', esc_html__( 'No plugins were selected to be activated. No action taken.', 'tgmpa' ), '</p></div>';
@@ -2531,7 +2907,7 @@ msgstr ""
 # wpml-name: 03b30c31d71dd6e0f601169e5051ce01
 msgctxt "2e0f18f33ebdb060a85294480b39f17b"
 msgid "No plugins were selected to be activated. No action taken."
-msgstr ""
+msgstr "Плагины для активации не выбраны. Никаких действий не принимается."
 
 #: <div class="update-message">',
 #: esc_html__( 'Upgrade message from the plugin author:', 'tgmpa' ),
@@ -2539,7 +2915,7 @@ msgstr ""
 # wpml-name: fe14a1a82858d426bd698bfd336d3d49
 msgctxt "cb7543fe1cd1566df23f5bcb35e741d0"
 msgid "Upgrade message from the plugin author:"
-msgstr ""
+msgstr "Информация об обновлении от автора плагина:"
 
 #: public function no_items() {
 #: echo esc_html__( 'No plugins to install, update or activate.', 'tgmpa' ) . ' <a href="' . esc_url( self_admin_url() ) . '"> ' . esc_html__( 'Return to the Dashboard', 'tgmpa' ) . '</a>';
@@ -2547,7 +2923,7 @@ msgstr ""
 # wpml-name: 6d147e1e4adafa6bf0882450d48e9fec
 msgctxt "5be97c84ec7bed84fe44bc7cfe69a0da"
 msgid "No plugins to install, update or activate."
-msgstr ""
+msgstr "Нет плагинова для установки, обновления или активации."
 
 #: } elseif ( empty( $subdir_name ) ) {
 #: return new WP_Error( 'packaged_wrong', esc_html__( 'The remote plugin package consists of more than one file, but the files are not packaged in a folder.', 'tgmpa' ) . ' ' . esc_html__( 'Please contact the plugin provider and ask them to package their plugin according to the WordPress guidelines.', 'tgmpa' ), array( 'found' => $subdir_name, 'expected' => $desired_slug ) );
@@ -2555,7 +2931,7 @@ msgstr ""
 # wpml-name: 58d5fd7cdf545224a930d7b9d059fad3
 msgctxt "740d6225051d5351aaf21300bd4d229d"
 msgid "The remote plugin package consists of more than one file, but the files are not packaged in a folder."
-msgstr ""
+msgstr "Удаленный модуль пакета состоит из более чем одного файла, но эти файлы не упакованы в папку."
 
 #: } elseif ( empty( $subdir_name ) ) {
 #: return new WP_Error( 'packaged_wrong', esc_html__( 'The remote plugin package consists of more than one file, but the files are not packaged in a folder.', 'tgmpa' ) . ' ' . esc_html__( 'Please contact the plugin provider and ask them to package their plugin according to the WordPress guidelines.', 'tgmpa' ), array( 'found' => $subdir_name, 'expected' => $desired_slug ) );
@@ -2563,7 +2939,7 @@ msgstr ""
 # wpml-name: bb29545b68b66e79e7a5c3573a0fdc7f
 msgctxt "11cda7dd663f3944b5032a598b54a7e3"
 msgid "Please contact the plugin provider and ask them to package their plugin according to the WordPress guidelines."
-msgstr ""
+msgstr "Пожалуйста, обратитесь к поставщику плагинов, и попросить их упаковать свой плагин в соответствии с руководством WordPress."
 
 #: } else {
 #: return new WP_Error( 'rename_failed', esc_html__( 'The remote plugin package does not contain a folder with the desired slug and renaming did not work.', 'tgmpa' ) . ' ' . esc_html__( 'Please contact the plugin provider and ask them to package their plugin according to the WordPress guidelines.', 'tgmpa' ), array( 'found' => $subdir_name, 'expected' => $desired_slug ) );
@@ -2571,7 +2947,7 @@ msgstr ""
 # wpml-name: fca4795f2c2f8a8b496ca5e7419bb54a
 msgctxt "dd5adeceb423f3fa64d808f0c7c96839"
 msgid "The remote plugin package does not contain a folder with the desired slug and renaming did not work."
-msgstr ""
+msgstr "Удаленный пакет плагина не содержит папку с желаемым slug и переименовать его невозможно."
 
 #: if ( has_filter( 'tgmpa_admin_menu_use_add_theme_page' ) ) {
 #: _deprecated_function( 'The "tgmpa_admin_menu_use_add_theme_page" filter', '2.5.0', esc_html__( 'Set the parent_slug config variable instead.', 'tgmpa' ) );
@@ -2579,7 +2955,7 @@ msgstr ""
 # wpml-name: 5acee356f13c6ad44a19f7b8c53713ec
 msgctxt "faa89d94c83939e6189f2a1b61c19772"
 msgid "Set the parent_slug config variable instead."
-msgstr ""
+msgstr "Установите parent_slug переменную конфигурации."
 
 #: esc_attr__( 'This plugin needs to be updated to be compatible with your theme.', 'tgmpa' ),
 #: esc_html__( 'Update Required', 'tgmpa' )
@@ -2587,7 +2963,7 @@ msgstr ""
 # wpml-name: aaf83959b5747c06b5cd53fc22f63390
 msgctxt "05390211e62752c05fe903f4246cfc59"
 msgid "Update Required"
-msgstr ""
+msgstr "Требуется обновление"
 
 #: esc_url( $this->get_tgmpa_status_url( 'update' ) ),
 #: esc_attr__( 'This plugin needs to be updated to be compatible with your theme.', 'tgmpa' ),
@@ -2595,7 +2971,7 @@ msgstr ""
 # wpml-name: 657b74f6fd4ba4f8f694b30c05009c16
 msgctxt "1cd2fda778dfee4409b554fce7119369"
 msgid "This plugin needs to be updated to be compatible with your theme."
-msgstr ""
+msgstr "This plugin needs to be updated to be compatible with your theme.Этот плагин должен быть обновлен, чтобы быть совместимым с вашей темой."
 
 #: /* translators: 1: plugin name, 2: action number 3: total number of actions. */
 #: $this->upgrader->strings['skin_before_update_header'] = __( 'Installing Plugin %1$s (%2$d/%3$d)', 'tgmpa' );
@@ -2611,7 +2987,7 @@ msgstr ""
 # wpml-name: 003b8672b471e60c83cb28552f948625
 msgctxt "8571d179aae38f29922abfda8988f8fe"
 msgid "All installations have been completed."
-msgstr ""
+msgstr "Все плагины установлены успешно."
 
 #: // Default installation strings.
 #: $this->upgrader->strings['skin_upgrade_start'] = __( 'The installation process is starting. This process may take a while on some hosts, so please be patient.', 'tgmpa' );
@@ -2619,7 +2995,7 @@ msgstr ""
 # wpml-name: 071037479108e80816f433d094a06632
 msgctxt "30d0edc0456438455c4e4a4b7168e437"
 msgid "The installation process is starting. This process may take a while on some hosts, so please be patient."
-msgstr ""
+msgstr "Процесс установки начинается. В зависимости от мощности вашего сервера этот процесс может занять некоторое время. Пожалуйста, будьте терпеливы."
 
 #: /* translators: 1: plugin name, 2: action number 3: total number of actions. */
 #: $this->upgrader->strings['skin_before_update_header'] = __( 'Installing and Activating Plugin %1$s (%2$d/%3$d)', 'tgmpa' );
@@ -2635,7 +3011,7 @@ msgstr ""
 # wpml-name: a612d8f63518b69a843a62347bef74f4
 msgctxt "7fbd1462bac07b1e64a341e92e1d2c82"
 msgid "All installations and activations have been completed."
-msgstr ""
+msgstr "Все установки и активации были завершены."
 
 #: /* translators: 1: plugin name. */
 #: $this->upgrader->strings['skin_update_successful'] = __( '%1$s installed and activated successfully.', 'tgmpa' ) . ' <a href="#" class="hide-if-no-js" onclick="%2$s"><span>' . esc_html__( 'Show Details', 'tgmpa' ) . '</span><span class="hidden">' . esc_html__( 'Hide Details', 'tgmpa' ) . '</span>.</a>';
@@ -2651,7 +3027,7 @@ msgstr ""
 # wpml-name: 370eb8fcb15bff522689322a97ab88f7
 msgctxt "22c6e45437796c6f6c4f0df7c928eefd"
 msgid "The installation and activation process is starting. This process may take a while on some hosts, so please be patient."
-msgstr ""
+msgstr "Процесс установки и активации запущен. В зависимости от мощности вашего сервера этот процесс может занять некоторое время. Пожалуйста, будьте терпеливы."
 
 #: /* translators: 1: plugin name. */
 #: $this->upgrader->strings['skin_update_failed'] = __( 'The installation of %1$s failed.', 'tgmpa' );
@@ -2683,7 +3059,7 @@ msgstr ""
 # wpml-name: edc3d85dac34a37710b4a9c2e24b8b75
 msgctxt "45ede22b367e4fd9eef621fc8027a4ba"
 msgid "Plugin activation failed."
-msgstr ""
+msgstr "Активация плагина не удалась."
 
 #: } else {
 #: $message = __( 'No plugins are available to be updated at this time.', 'tgmpa' );
@@ -2691,7 +3067,7 @@ msgstr ""
 # wpml-name: c3fa68f1a18fe25ac48b7b0b3242ddcc
 msgctxt "1cf1b10f8d7633033b8c66bc8c743b43"
 msgid "No plugins are available to be updated at this time."
-msgstr ""
+msgstr "Сейчас нет плагинов доступных для обновления."
 
 #: if ( 'install' === $install_type ) {
 #: $message = __( 'No plugins are available to be installed at this time.', 'tgmpa' );
@@ -2699,7 +3075,7 @@ msgstr ""
 # wpml-name: 31892b3c81fc5642c8080b4a25f429ee
 msgctxt "08f78cbce1dcf1ff8ef8e7ec1976d2a7"
 msgid "No plugins are available to be installed at this time."
-msgstr ""
+msgstr "Сейчас нет плагинов доступных для установки."
 
 #: } else {
 #: $message = __( 'No plugins were selected to be updated. No action taken.', 'tgmpa' );
@@ -2707,7 +3083,7 @@ msgstr ""
 # wpml-name: b8a5a076175d4a807e0bed3caedc2a4b
 msgctxt "20d52c4b9082284f42cc158ca6858ba2"
 msgid "No plugins were selected to be updated. No action taken."
-msgstr ""
+msgstr "Плагины для обновления не выбраны. Никаких действий не принимается."
 
 #: if ( 'install' === $install_type ) {
 #: $message = __( 'No plugins were selected to be installed. No action taken.', 'tgmpa' );
@@ -2715,7 +3091,7 @@ msgstr ""
 # wpml-name: 92dd49659bcab42087fd5ca92ff478c6
 msgctxt "8a3d78dfb9da856b4a60289db7cf826c"
 msgid "No plugins were selected to be installed. No action taken."
-msgstr ""
+msgstr "Плагины для установки не выбраны. Никаких действий не принимается."
 
 #: if ( current_user_can( 'activate_plugins' ) ) {
 #: $actions['tgmpa-bulk-activate'] = __( 'Activate', 'tgmpa' );
@@ -2723,7 +3099,7 @@ msgstr ""
 # wpml-name: a13367a8e2a3f3bf4f3409079e3fdf87
 msgctxt "9e59c1e822b6af9f974e596bd5d300b8"
 msgid "Activate"
-msgstr ""
+msgstr "Активировать"
 
 #: if ( current_user_can( 'update_plugins' ) ) {
 #: $actions['tgmpa-bulk-update'] = __( 'Update', 'tgmpa' );
@@ -2731,7 +3107,7 @@ msgstr ""
 # wpml-name: 06933067aafd48425d67bcb01bba5cb6
 msgctxt "5dd7649bf550bf651e58b6a8a8b6602b"
 msgid "Update"
-msgstr ""
+msgstr "Обновить"
 
 #: if ( current_user_can( 'install_plugins' ) ) {
 #: $actions['tgmpa-bulk-install'] = __( 'Install', 'tgmpa' );
@@ -2739,7 +3115,7 @@ msgstr ""
 # wpml-name: 349838fb1d851d3e2014b9fe39203275
 msgctxt "65a5db8b5261569a55f3b7a0893050dc"
 msgid "Install"
-msgstr ""
+msgstr "Установить"
 
 #: /* translators: %2$s: plugin name in screen reader markup */
 #: $actions['activate'] = __( 'Activate %2$s', 'tgmpa' );
@@ -2771,7 +3147,7 @@ msgstr ""
 # wpml-name: ec53a8c4f07baed5d8825072c89799be
 msgctxt "1cd5ec6df5aa8d0ceb39bffcc6a794ed"
 msgid "Status"
-msgstr ""
+msgstr "Статус"
 
 #: if ( 'all' === $this->view_context || 'update' === $this->view_context ) {
 #: $columns['version'] = __( 'Version', 'tgmpa' );
@@ -2779,7 +3155,7 @@ msgstr ""
 # wpml-name: 34b6cd75171affba6957e308dcbd92be
 msgctxt "3044384cce7e7444e3b30aa560cdfa4b"
 msgid "Version"
-msgstr ""
+msgstr "Версия"
 
 #: 'source' => __( 'Source', 'tgmpa' ),
 #: 'type'   => __( 'Type', 'tgmpa' ),
@@ -2787,7 +3163,7 @@ msgstr ""
 # wpml-name: a1fa27779242b4902f7ae3bdd5c6d508
 msgctxt "531db6534df902429a4977441a472b4a"
 msgid "Type"
-msgstr ""
+msgstr "Тип"
 
 #: 'plugin' => __( 'Plugin', 'tgmpa' ),
 #: 'source' => __( 'Source', 'tgmpa' ),
@@ -2795,7 +3171,7 @@ msgstr ""
 # wpml-name: f31bbdd1b3e85bccd652680e16935819
 msgctxt "710373c190e06ae1b2d497d4e3bff13a"
 msgid "Source"
-msgstr ""
+msgstr "Источник"
 
 #: 'cb'     => '<input type="checkbox" />',
 #: 'plugin' => __( 'Plugin', 'tgmpa' ),
@@ -2803,7 +3179,7 @@ msgstr ""
 # wpml-name: 409c1892b68cb394799262ac57f6d4f1
 msgctxt "17135e5cbb527048c40f50531b2ea2c1"
 msgid "Plugin"
-msgstr ""
+msgstr "Плагин"
 
 #: $output[] = sprintf(
 #: '<p><span style="min-width: 32px; text-align: right; float: right;%1$s">%2$s</span>' . __( 'Available version:', 'tgmpa' ) . '</p>',
@@ -2811,7 +3187,7 @@ msgstr ""
 # wpml-name: d122edb5d91c246aba401b99c20683e2
 msgctxt "a5a3e5db571145e09a4493427f04b7d0"
 msgid "Available version:"
-msgstr ""
+msgstr "Доступная версия:"
 
 #: $output[] = sprintf(
 #: '<p><span style="min-width: 32px; text-align: right; float: right;">%1$s</span>' . __( 'Minimum required version:', 'tgmpa' ) . '</p>',
@@ -2819,7 +3195,7 @@ msgstr ""
 # wpml-name: ef4198d0c49b3b1cc787d79d69e5a8bc
 msgctxt "9a315fff3f018862d876e3ddc37fd373"
 msgid "Minimum required version:"
-msgstr ""
+msgstr "Минимальная требуемая версия:"
 
 #: $output[] = sprintf(
 #: '<p><span style="min-width: 32px; text-align: right; float: right;%1$s">%2$s</span>' . __( 'Installed version:', 'tgmpa' ) . '</p>',
@@ -2827,7 +3203,7 @@ msgstr ""
 # wpml-name: 416faa92dbbbc3b74be0dcb5d6314052
 msgctxt "d8880cbafbe8aacd085af399ca621ff8"
 msgid "Installed version:"
-msgstr ""
+msgstr "Установленная версия:"
 
 #: } elseif ( false !== $this->tgmpa->does_plugin_have_update( $slug ) ) {
 #: $update_status = __( 'Update recommended', 'tgmpa' );
@@ -2835,7 +3211,7 @@ msgstr ""
 # wpml-name: 4aeef8c1b1367ceeabafca62ef3ddaf5
 msgctxt "69bf87d0377fc569ebdf73fde966fe08"
 msgid "Update recommended"
-msgstr ""
+msgstr "Рекомендуется обновление"
 
 #: } elseif ( $this->tgmpa->does_plugin_require_update( $slug ) ) {
 #: $update_status = __( 'Requires Update', 'tgmpa' );
@@ -2843,7 +3219,7 @@ msgstr ""
 # wpml-name: 50541f6698d7220ddb930ccbb050e4ec
 msgctxt "1fe7321df53b6a7168fed6aa75ca63b7"
 msgid "Requires Update"
-msgstr ""
+msgstr "Требуется обновление"
 
 #: if ( $this->tgmpa->does_plugin_require_update( $slug ) && false === $this->tgmpa->does_plugin_have_update( $slug ) ) {
 #: $update_status = __( 'Required Update not Available', 'tgmpa' );
@@ -2851,7 +3227,7 @@ msgstr ""
 # wpml-name: 56f86712ba4f8686c8c5dfe1c8609649
 msgctxt "a146a183d70f31236a8a828203ba14e3"
 msgid "Required Update not Available"
-msgstr ""
+msgstr "Необходимое Обновление не доступно"
 
 #: } else {
 #: $install_status = __( 'Active', 'tgmpa' );
@@ -2859,7 +3235,7 @@ msgstr ""
 # wpml-name: 4d3d769b812b6faa6b76e1a8abaece2d
 msgctxt "d19ab9956f909130043090890ccacb9f"
 msgid "Active"
-msgstr ""
+msgstr "Активирован"
 
 #: if ( ! $this->tgmpa->is_plugin_active( $slug ) ) {
 #: $install_status = __( 'Installed But Not Activated', 'tgmpa' );
@@ -2867,7 +3243,7 @@ msgstr ""
 # wpml-name: 5996488c02e895d82c39733547ede973
 msgctxt "7db1550d0eebf5d9f44943835af92f93"
 msgid "Installed But Not Activated"
-msgstr ""
+msgstr "Установлен, но не Активирован"
 
 #: if ( ! $this->tgmpa->is_plugin_installed( $slug ) ) {
 #: return __( 'Not Installed', 'tgmpa' );
@@ -2875,7 +3251,7 @@ msgstr ""
 # wpml-name: ddd8eef6f86868a07f62b0e3810711f0
 msgctxt "a65ed052c0e41b2066604dbcc2911734"
 msgid "Not Installed"
-msgstr ""
+msgstr "Не установлен"
 
 #: case 'bundled':
 #: $string = __( 'Pre-Packaged', 'tgmpa' );
@@ -2883,7 +3259,7 @@ msgstr ""
 # wpml-name: 0b75c554830973695016efb11cdf1504
 msgctxt "da7d366972f5117406ce15283ae35e61"
 msgid "Pre-Packaged"
-msgstr ""
+msgstr "Упакованный в тему"
 
 #: case 'external':
 #: $string = __( 'External Source', 'tgmpa' );
@@ -2891,7 +3267,7 @@ msgstr ""
 # wpml-name: df6d8ea725c83d85194e03ee5d86cd6c
 msgctxt "a7854780e6ddda65092ad88b11b5d88f"
 msgid "External Source"
-msgstr ""
+msgstr "Внешний ресурс"
 
 #: case 'repo':
 #: $string = __( 'WordPress Repository', 'tgmpa' );
@@ -2899,7 +3275,7 @@ msgstr ""
 # wpml-name: 1f595cbbf20d9305968ef706e97d3105
 msgctxt "ad4c298866b063ab7685a15d3a4b857b"
 msgid "WordPress Repository"
-msgstr ""
+msgstr "Репозиторий WordPress"
 
 #: 
 #: return __( 'Recommended', 'tgmpa' );
@@ -2907,7 +3283,7 @@ msgstr ""
 # wpml-name: 654866693fd91ce8e9764a218f569918
 msgctxt "c13eb0f9d9eba38966e1a5d45e85d800"
 msgid "Recommended"
-msgstr ""
+msgstr "Рекомендуемый"
 
 #: if ( true === $required ) {
 #: return __( 'Required', 'tgmpa' );
@@ -2915,7 +3291,7 @@ msgstr ""
 # wpml-name: b651efdb98a5d6bd2b3935d0c3f4a5e2
 msgctxt "b23c46a15b937364ae4de0bd1cbe6023"
 msgid "Required"
-msgstr ""
+msgstr "Необходимый"
 
 #: /* translators: %s: version number */
 #: __( 'TGMPA v%s', 'tgmpa' ),
@@ -2923,7 +3299,7 @@ msgstr ""
 # wpml-name: 93a14746fccf11d84b17b66d8ede812c
 msgctxt "f5da4249c0bfb828908acdd24a2bdb23"
 msgid "TGMPA v%s"
-msgstr ""
+msgstr "TGMPA v%s"
 
 #: 'notice_cannot_install_activate'  => __( 'There are one or more required or recommended plugins to install, update or activate.', 'tgmpa' ),
 #: 'contact_admin'                   => __( 'Please contact the administrator of this site for help.', 'tgmpa' ),
@@ -2931,7 +3307,7 @@ msgstr ""
 # wpml-name: d5a441c680bd89a8c32768c2caa4fe77
 msgctxt "72b375b26b259ea8a2140508531d8b48"
 msgid "Please contact the administrator of this site for help."
-msgstr ""
+msgstr "Пожалуйста, обратитесь к администратору этого сайта за помощью."
 
 #: 'dismiss'                         => __( 'Dismiss this notice', 'tgmpa' ),
 #: 'notice_cannot_install_activate'  => __( 'There are one or more required or recommended plugins to install, update or activate.', 'tgmpa' ),
@@ -2939,7 +3315,7 @@ msgstr ""
 # wpml-name: d364fb426c947babf1d67df9e36523e1
 msgctxt "e5fa929f3c046febc251a6a56c0697fe"
 msgid "There are one or more required or recommended plugins to install, update or activate."
-msgstr ""
+msgstr "Есть один или несколько обязательных или рекомендуемых плагинов для установки, обновления или активации."
 
 #: 'complete'                        => __( 'All plugins installed and activated successfully. %1$s', 'tgmpa' ),
 #: 'dismiss'                         => __( 'Dismiss this notice', 'tgmpa' ),
@@ -2947,7 +3323,7 @@ msgstr ""
 # wpml-name: 3146b03cfc1c9f2fc7110fb73f7307de
 msgctxt "1282d10d7b8ca282470f49decadffd73"
 msgid "Dismiss this notice"
-msgstr ""
+msgstr "Закрыть это уведомление"
 
 #: /* translators: 1: dashboard link. */
 #: 'complete'                        => __( 'All plugins installed and activated successfully. %1$s', 'tgmpa' ),
@@ -2963,7 +3339,7 @@ msgstr ""
 # wpml-name: b4100ea853d762a3924ca18fa8680ba2
 msgctxt "6835e55e8b7d1d8d572371a92343d730"
 msgid "Plugin not activated. A higher version of %s is needed for this theme. Please update the plugin."
-msgstr ""
+msgstr "Плагин не активирован. Для этой темы необходима более свежая версия %s. Пожалуйста, обновите плагин."
 
 #: /* translators: 1: plugin name. */
 #: 'plugin_already_active'           => __( 'No action taken. Plugin %1$s was already active.', 'tgmpa' ),
@@ -2979,7 +3355,7 @@ msgstr ""
 # wpml-name: 5a088d527373890f64540c7e47a89df5
 msgctxt "5ae89593f9a21ef13362f24abb68b967"
 msgid "The following plugin was activated successfully:"
-msgstr ""
+msgstr "Этот плагин был успешно активирован:Эти плагины были успешно активированы:Эти плагины были успешно активированы:"
 
 #: $this->strings['activation_failed']  = __( 'Plugin activation failed.', 'tgmpa' );
 #: $this->strings['activation_success'] = __( 'Plugin activated successfully.', 'tgmpa' );
@@ -2987,7 +3363,7 @@ msgstr ""
 # wpml-name: 37829e778cf85fe234ef2d80be24527a
 msgctxt "0beb1f31fd696f9e4af4df8eb7252f38"
 msgid "Plugin activated successfully."
-msgstr ""
+msgstr "Плагин авктивирован успешно."
 
 #: esc_html( $this->tgmpa->strings['complete'] ),
 #: '<a href="' . esc_url( self_admin_url() ) . '">' . esc_html__( 'Return to the Dashboard', 'tgmpa' ) . '</a>'
@@ -2995,7 +3371,7 @@ msgstr ""
 # wpml-name: 5ab741fb6675b5c6bb34dc16996a53bd
 msgctxt "98e31de522850b3e7a80ad650cb179c4"
 msgid "Return to the Dashboard"
-msgstr ""
+msgstr "Вернуться в Консоль"
 
 #: ),
 #: 'return'                          => __( 'Return to Required Plugins Installer', 'tgmpa' ),
@@ -3003,7 +3379,7 @@ msgstr ""
 # wpml-name: bb885c3eedde441b8398dbc9586e09b5
 msgctxt "4976b9dfbe110450121670a465646ef8"
 msgid "Return to Required Plugins Installer"
-msgstr ""
+msgstr "Вернуться к установщику необходимым Плагинов"
 
 #: 'updating'                        => __( 'Updating Plugin: %s', 'tgmpa' ),
 #: 'oops'                            => __( 'Something went wrong with the plugin API.', 'tgmpa' ),
@@ -3011,7 +3387,7 @@ msgstr ""
 # wpml-name: a5971f89797a3dc6d0b203dc73e74aeb
 msgctxt "c335e594ba31fc3ba71a25f6c49bd6f4"
 msgid "Something went wrong with the plugin API."
-msgstr ""
+msgstr "Что-то пошло не так с API плагина."
 
 #: /* translators: %s: plugin name. */
 #: 'updating'                        => __( 'Updating Plugin: %s', 'tgmpa' ),
@@ -3019,7 +3395,7 @@ msgstr ""
 # wpml-name: 6775d2cf31e189555413105bc4de5e63
 msgctxt "f3da5338a6d9cec81af22fff0e724927"
 msgid "Updating Plugin: %s"
-msgstr ""
+msgstr "Обновление плагина: %s"
 
 #: /* translators: %s: plugin name. */
 #: 'installing'                      => __( 'Installing Plugin: %s', 'tgmpa' ),
@@ -3027,7 +3403,7 @@ msgstr ""
 # wpml-name: 07867e5fd7b858b877323ffd402ac38e
 msgctxt "a6bc2eade8c274ba6520301ab34d5b02"
 msgid "Installing Plugin: %s"
-msgstr ""
+msgstr "Установить Плагин: %s"
 
 #: 'page_title'                      => __( 'Install Required Plugins', 'tgmpa' ),
 #: 'menu_title'                      => __( 'Install Plugins', 'tgmpa' ),
@@ -3035,7 +3411,7 @@ msgstr ""
 # wpml-name: 4eff3a34f0ddf963f7d0610d3cb79354
 msgctxt "951037b1c2f575f85962dae3f83e5a45"
 msgid "Install Plugins"
-msgstr ""
+msgstr "Установить Плагины"
 
 #: $this->strings = array(
 #: 'page_title'                      => __( 'Install Required Plugins', 'tgmpa' ),
@@ -3043,13 +3419,13 @@ msgstr ""
 # wpml-name: 8d496fe225b423ae91cafb2913fe60fc
 msgctxt "a04a25bf258f01f3a96c1190c50d7208"
 msgid "Install Required Plugins"
-msgstr ""
+msgstr "Установить Необходимыe Плагины"
 
-#: <p>
-#: <label for="<?php echo $this->get_field_id( 'shmac_class' ); ?>"><?php _e( 'Extra class if wanted:', 'shmac' ); ?></label>
-#: <input class="widefat" id="<?php echo $this->get_field_id( 'shmac_class' ); ?>" name="<?php echo $this->get_field_name( 'shmac_class' ); ?>" type="text" value="<?php echo esc_attr( $instance['shmac_class'] ); ?>" />
+#: $this->strings = array(
+#: 'page_title'                      => __( 'Install Required Plugins', 'tgmpa' ),
+#: 'menu_title'                      => __( 'Install Plugins', 'tgmpa' ),
 # wpml-name: e72a220a86b27de7c4d4e3925fabf55f
-msgctxt "6ddf91b4d08ac95d04ffe2466b0882b5"
+msgctxt "acb73a4be38202bc58ccac7de1fca006"
 msgid "Extra class if wanted:"
 msgstr ""
 
@@ -3069,10 +3445,10 @@ msgctxt "90d9fcc7497f703a881a09016488d2a8"
 msgid "WP Mortgage and Amortization Calculator"
 msgstr ""
 
-#: function add_admin_menus() {
-#: $plugin_options = add_menu_page( __('SHMAC', 'shmac'), __('WP Amortization Calculator', 'shmac'),
-#: 'manage_options', $this->plugin_options_key, array($this, 'plugin_options_page'),
+#: public function get_title() {
+#: return __('WP Amortization Calculator', 'shmac');
+#: 
 # wpml-name: 3603d73a8e6091bec52aed7da5c89efb
-msgctxt "b86105c5a090ad6719842460ea3b5dce"
+msgctxt "3e1397c202be467582665408398a6377"
 msgid "WP Amortization Calculator"
 msgstr ""

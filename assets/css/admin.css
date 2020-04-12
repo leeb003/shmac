@@ -6,6 +6,7 @@
 	border: 1px solid #ccc;
 }
 
+
 .row1 {
 	background-color: #fefefe;
 }
@@ -15,17 +16,26 @@
 
 .shmac-license,
 .shmac-email-text,
+.shmac-email-error,
+.shmac-purchase-error,
 .pdf-header {
-	width: 300px;
+	width: 350px;
 	border: 0;
 }
 
 input {
 	padding: 10px;
+	width: 350px;
 }
 
 textarea {
-	min-width: 300px;
+	min-width: 350px;
+	resize: both;
+	padding: 10px;
+	border: 0;
+}
+.shmac_email textarea {
+	width: 100%;
 }
 .disclaimer {
 	min-height: 150px;
@@ -166,7 +176,29 @@ input:checked + .slider:before {
 .shmac_bg_image {
   max-width: 500px;
 }
+.section-schedule-header,
+.section-loan-details {
+  border-collapse: collapse;
+  border-bottom: 1px solid #ddd;
+}
 .section-schedule-header td,
 .section-loan-details td {
-  padding: 10px 0px;
+  padding: 0px;
+  background-color: #ddd;
+}
+.section-schedule-header input,
+.section-loan-details input {
+  width: 100%;
+  border-left: 1px solid #ddd;  
+}
+tr .head-row {
+  border-collapse: collapse;
+  background-color: #ddd;
+}
+.head-row th {
+  padding: 10px;
+  margin-bottom: 0;
+}
+td p {
+  color: #3abc6a;
 }

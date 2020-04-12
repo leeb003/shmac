@@ -186,10 +186,10 @@
 }
 
 .shmac-tip:hover:after{
-    background: #777;
-    background: rgba(119,119,119,.9);
+    background: rgba(255,255,255,.9);
+	color: #333;
+	border: 1px solid #efefef;	
     bottom: 26px;
-    color: #fff;
     content: attr(data-title);
     right: 0px;
     padding: 5px 15px;

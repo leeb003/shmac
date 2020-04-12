@@ -22,6 +22,7 @@ jQuery(function ($) {  // use $ for jQuery
 		checkTaxes();
 		checkDown();
 		checkSlider();
+		removeInfoSubmit();
 	});
 	$(document).on('change', '.shmac-enable-insurance', function() {
 		checkInsurance();
@@ -38,6 +39,14 @@ jQuery(function ($) {  // use $ for jQuery
 	$(document).on('change', '.shmac-down-show', function() {
         checkDown();
     });
+
+	/* Don't show submit button on info page */
+	function removeInfoSubmit() {
+		var current_tab = $("form input[name='option_page']").val();
+		if (current_tab == 'shmac_info') {
+			$('form #submit').hide();
+		}
+	}
 
 	function checkInsurance() {
 		var insurance = $('.shmac-enable-insurance').prop("checked");
@@ -225,23 +234,25 @@ jQuery(function ($) {  // use $ for jQuery
         		$('.shmac_email .shmac-email-from').closest('tr').hide();
         		$('.shmac_email .email-subject').closest('tr').hide();
         		$('.shmac_email .email-text').closest('tr').hide();
-            	$('.shmac_email textarea:not(.disclaimer)').closest('tr').hide();
+            	$('.shmac_email .email-subject').closest('tr').hide();
             	$('.shmac_email .custom_media_url').closest('tr').hide();
 				$('.shmac_email .wp-color-result').closest('tr').hide();
 				$('.shmac_email .pdf-header').closest('tr').hide();
 				$('.shmac_email .shmac-ltr-rtl').closest('tr').hide();
             	$('.shmac_email .shmac-pdf-font').closest('tr').hide();
+				$('.shmac_email .brought-by').closest('tr').hide();
 			} else {
 				$('.shmac_email .shmac-email-bcc').closest('tr').fadeOut();
                 $('.shmac_email .shmac-email-from').closest('tr').fadeOut();
                 $('.shmac_email .email-subject').closest('tr').fadeOut();
                 $('.shmac_email .email-text').closest('tr').fadeOut();
-				$('.shmac_email textarea:not(.disclaimer)').closest('tr').fadeOut();
+				$('.shmac_email .email-subject').closest('tr').fadeOut();
 				$('.shmac_email .custom_media_url').closest('tr').fadeOut();
 				$('.shmac_email .wp-color-result').closest('tr').fadeOut();
                 $('.shmac_email .pdf-header').closest('tr').fadeOut();
                 $('.shmac_email .shmac-ltr-rtl').closest('tr').fadeOut();
 				$('.shmac_email .shmac-pdf-font').closest('tr').fadeOut();
+				$('.shmac_email .brought-by').closest('tr').hide();
 			}
 		} else {
 			if(method == 'quick') {

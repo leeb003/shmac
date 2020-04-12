@@ -12,6 +12,7 @@ class SHMAC_API_Tabs {
      */
     private $first_tab_key = 'shmac_settings';
     private $second_tab_key = 'shmac_email';
+	private $info_tab_key = 'shmac_info';
     private $plugin_options_key = 'shmac_options';
     private $plugin_settings_tabs = array();
 
@@ -26,6 +27,7 @@ class SHMAC_API_Tabs {
         add_action( 'init', array( &$this, 'load_settings' ) );
         add_action( 'admin_init', array( &$this, 'register_first_tab' ) );
         add_action( 'admin_init', array( &$this, 'register_second_tab' ) );
+		add_action( 'admin_init', array( &$this, 'register_info_tab' ) );
         add_action( 'admin_menu', array( &$this, 'add_admin_menus' ) );
 
         // Callback Ajax Backend ajax
@@ -43,6 +45,7 @@ class SHMAC_API_Tabs {
     function load_settings() {
         $this->first_tab = (array) get_option( $this->first_tab_key );
         $this->second_tab = (array) get_option( $this->second_tab_key );
+		$this->info_tab = (array) get_option( $this->info_tab_key );
         
         // Merge with defaults
         $this->first_tab = array_merge( array(
@@ -55,23 +58,27 @@ class SHMAC_API_Tabs {
             'calc_title'               => 'Amortization Calculator',
             'send_email_text'          => 'Send A PDF report to your email?',
             'email_placeholder'        => 'Your Email',
+			'email_error'              => 'Please enter a valid email address.',
             'enable_email'             =>'no',
             'enable_slider'            =>'no',
             'enable_input_readonly'    =>'no',
             'slider_theme'             =>'broad',
             'purchase_price_label'     => 'Mortgage Amount',
+			'purchase_price_error'     => 'Please Enter a valid amount.',
             'purchase_price_info'      => 'The total purchase price of the home you wish to buy.',
             'purchase_price'           => '224,000.00',
             'amount_min_value'         =>'0',
             'amount_max_value'         =>'224000',
             'amount_slider_step'       =>'500',
             'interest_rate_label'      => 'Interest Rate (%)',
+			'interest_error'           => 'Please Enter a valid interest rate.',
             'interest_rate_info'       => 'The expected percent interest rate you will get on your mortgage.',
             'interest_rate'            => '5.5',
             'interest_min_value'       =>'0',
             'interest_max_value'       =>'30',
             'interest_slider_step'     =>'0.1',
             'down_payment_label'       => 'Down Payment (%)',
+			'down_error'			   => 'Please Enter a down payment (can be 0).',
             'down_payment_info'        => 'The percent down payment you wish to put towards the home.',
             'down_payment_type'        => 'percent',
             'down_payment'             => '10',
@@ -80,6 +87,7 @@ class SHMAC_API_Tabs {
             'dwnpay_max_value'         =>'99',
             'dwnpay_slider_step'       =>'1',
             'loan_term_label'          => 'Term',
+			'loan_term_error'          => 'Term cannot be empty.',
 			'year_label'               => 'Years',
 			'month_label'              => 'Months',
             'loan_term_info'           => 'The length of time it will take to repay the loan amount (30 years is common).',
@@ -122,8 +130,15 @@ class SHMAC_API_Tabs {
 			'header_balance'        => 'Balance',
 			'header_loan_text'      => 'Loan Details',
 			'header_schedule_text'  => 'Amortization Schedule (P & I)',
-
+			
+			'otherfactors' => 'Since Principal and Interest are not the only factors of a loan we should include an estimate for other costs involved with a loan.',
+			'down_factor_1' => 'Your down payment was less than 20% of the loan, which means you will be paying PMI. This averages around [pmi_display] for every [hundredthou] borrowed. An estimate for PMI will be around [pmi] per month.',
+			'down_factor_2' => 'Since you are putting down 20% or more of the loan, you will not have to pay PMI.',
+			'tax_factor' => "An average tax figure for your purchase might be about [tax_rate_display] for every [thousand_dollars_display] assessed value per year. If the assessed value of your home is 85%, this would make your home's assessed value [assessed_display] and your monthly tax around [taxes_display].",
+			'insurance_factor' => 'Homeowners Insurance is another factor of a loan.  An average estimate of your monthly insurance could be about [insurance_display].',
+			'factor_summary' => 'With these factors, your total monthly payment estimate would be around [total_payment_display].',
 			'disclaimer' => 'Calculations by this calculator are estimates only. There is no warranty for the accuracy of the results or the relationship to your financial situation.',
+			
             'allow_email'         => 'no',
             'email_bcc'           => '',
             'email_from'          => '',
@@ -132,10 +147,13 @@ class SHMAC_API_Tabs {
             'logo_attachment_url' => SHMAC_ROOT_URL . '/assets/img/wpcontacts.png',
             'logo_attachment_id'  => '',
             'pdf_color'           => '#00bfa5',
+			'brought_by'		  => 'Brought to you by',
             'pdf_header'          => 'Amortization Calculator Results',
             'ltr_rtl'             => 'ltr',
             'pdf_font'            => 'helvetica',
         ), $this->second_tab );
+
+		$this->info_tab = array();
 
     }
     
@@ -158,6 +176,9 @@ class SHMAC_API_Tabs {
 
         add_settings_field( 'email_placeholder', __('Email Label', 'shmac'), array( &$this, 'field_email_placeholder'),
                 $this->first_tab_key, 'section_general' );
+
+		add_settings_field( 'email_error', __('Email Error Msg', 'shmac'), array( &$this, 'field_email_error'),
+                $this->first_tab_key, 'section_general' );	
         
         add_settings_field( 'enable_email', __('Require Email Entry', 'shmac'), array( &$this, 'field_enable_email' ),          $this->first_tab_key, 'section_general' );
         //Slider Settings
@@ -169,6 +190,9 @@ class SHMAC_API_Tabs {
         
         //Amount 
         add_settings_field( 'purchase_price_label', __('Amount Label', 'shmac'), array( &$this, 'field_purchase_price_label'),
+                $this->first_tab_key, 'section_general' );
+
+		add_settings_field( 'purchase_price_error', __('Amount Error Msg', 'shmac'), array( &$this, 'field_purchase_price_error'),
                 $this->first_tab_key, 'section_general' );
 
         add_settings_field( 'purchase_price_info', __('Amount Info Bubble', 'shmac'), array( &$this, 'field_purchase_price_info'), $this->first_tab_key, 'section_general' );
@@ -184,6 +208,9 @@ class SHMAC_API_Tabs {
 
         //Interest Rate     
         add_settings_field( 'interest_rate_label', __('Interest Label', 'shmac'), array( &$this, 'field_interest_rate_label'),
+                $this->first_tab_key, 'section_general' );
+
+		add_settings_field( 'interest_error', __('Interest Error Msg', 'shmac'), array( &$this, 'field_interest_error'),
                 $this->first_tab_key, 'section_general' );
 
         add_settings_field( 'interest_rate_info', __('Interest Info Bubble', 'shmac'), array( &$this, 'field_interest_rate_info'),
@@ -203,6 +230,8 @@ class SHMAC_API_Tabs {
         
         add_settings_field( 'down_payment_label', __('Down Payment Label', 'shmac'), array( &$this, 'field_down_payment_label'), $this->first_tab_key, 'section_general' );
 
+		add_settings_field( 'down_error', __('Down Payment Error Msg', 'shmac'), array( &$this, 'field_down_error'), $this->first_tab_key, 'section_general' );
+
         add_settings_field( 'down_payment_info', __('Down Payment Info Bubble', 'shmac'), array( &$this, 'field_down_payment_info'), $this->first_tab_key, 'section_general' );
 
         add_settings_field( 'down_payment_type', __('Down Payment Type', 'shmac'), array( &$this, 'field_down_payment_type'),
@@ -221,6 +250,9 @@ class SHMAC_API_Tabs {
 
         //Term
         add_settings_field( 'loan_term_label', __('Loan Term Label', 'shmac'), array( &$this, 'field_loan_term_label'),
+                $this->first_tab_key, 'section_general' );
+
+		add_settings_field( 'loan_term_error', __('Loan Term Error Msg', 'shmac'), array( &$this, 'field_loan_term_error'),
                 $this->first_tab_key, 'section_general' );
 
         add_settings_field( 'loan_term_info', __('Loan Term Info Bubble', 'shmac'), array( &$this, 'field_loan_term_info'),
@@ -293,6 +325,21 @@ class SHMAC_API_Tabs {
 		add_settings_field( 'schedule_headers', __('Report - Schedule Headers', 'shmac'), array( &$this, 'section_schedule_headers' ),
                 $this->second_tab_key, 'section_email' );	
 
+		add_settings_field( 'report_texts', __('Report - Text Section', 'shmac'), array( &$this, 'field_report_texts'),
+                $this->second_tab_key, 'section_email' );
+
+		add_settings_field( 'down_factor', __('Report - Down Payment Factors', 'shmac'), array( &$this, 'field_down_factor'),
+                $this->second_tab_key, 'section_email' );
+
+		add_settings_field( 'tax_factor', __('Report - Tax Factors', 'shmac'), array( &$this, 'field_tax_factor'),
+                $this->second_tab_key, 'section_email' );
+
+		add_settings_field( 'insurance_factor', __('Report - Insurance Factors', 'shmac'), array( &$this, 'field_insurance_factor'),
+                $this->second_tab_key, 'section_email' );
+
+		add_settings_field( 'factor_summary', __('Report - Factors Summary', 'shmac'), array( &$this, 'field_factor_summary'),
+                $this->second_tab_key, 'section_email' );
+
 		add_settings_field( 'disclaimer', __('Disclaimer Notice', 'shmac'), array( &$this, 'field_disclaimer'),
                 $this->second_tab_key, 'section_email' );
 
@@ -310,6 +357,9 @@ class SHMAC_API_Tabs {
         add_settings_field( 'pdf_color', __('Primary PDF Color', 'shmac'), array( &$this, 'field_pdf_color'),
                 $this->second_tab_key, 'section_email' );
 
+		add_settings_field( 'brought_by', __('PDF Intro Text', 'shmac'), array( &$this, 'field_brought_by'),
+                $this->second_tab_key, 'section_email' );
+
         add_settings_field( 'logo_attachment_url', __('PDF Logo or Header Image (jpeg or png)', 'shmac'), array( &$this, 'field_logo_image' ),
             $this->second_tab_key, 'section_email' );
         add_settings_field( 'pdf_header', __('PDF Header Large Text', 'shmac'), array( &$this, 'field_pdf_header' ),
@@ -320,16 +370,44 @@ class SHMAC_API_Tabs {
                              $this->second_tab_key, 'section_email' );
     }
 
+	/*
+	 * Informational tab on the plugin
+	 *
+	 */
+	 function register_info_tab() {
+		$this->plugin_settings_tabs[$this->info_tab_key] = __('Information', 'shmac');
+		$banner_img = "<img src='" . SHMAC_ROOT_URL . '/assets/img/logo-350.png' . "' /><br /><br />";
+
+        register_setting( $this->info_tab_key, $this->info_tab_key );
+        add_settings_section( 'section_info', $banner_img . __('Information', 'shmac'), array( &$this, 'section_site_desc' ),
+                $this->info_tab_key, 'section_info_desc' );
+        add_settings_field( 'site_info', __('Info', 'shmac'), array( &$this, 'field_section_info'),
+                $this->info_tab_key, 'section_info' );	
     
+	}
+
     /*
      * The following methods provide descriptions
      * for their respective sections, used as callbacks
      * with add_settings_section
      */
-    function section_general_desc() { echo __('Set up WP Amortization Calculator settings.  In this section you can change field labels, info bubble contents, default values, form color, and other settings.  After set up, you can use the shortcode <strong>[shmac_calc_sc]</strong> or the widget to insert it into pages or sidebars.', 'shmac'); }
+    function section_general_desc() { echo __('Set up WP Amortization Calculator settings.  In this section you can change field labels, info bubble contents, default values, form color, and other settings.  Be sure to save settings on This tab and Email before using the calculator.', 'shmac'); }
     function section_email_desc() { echo __('In this section you can change report settings, enable and disable email reports for visitors and send yourself a copy (bcc) of the reports as well.  This is good for lead capture and further contacting the lead.  Set your logo and colors used in the PDF report.', 'shmac');
     }
-    
+
+	function section_site_desc() { 
+    echo '<br /><br /><u>' . __('You are running version', 'shmac') . ' <span class="shmac-version">' . SHMAC_PLUGIN_VERSION . '</span> ' . __('of WP Amortization Calculator', 'shmac') . '</u><br /><p> You can use the <b>[shmac_calc_sc]</b> shortcode, the widget, Visual Composer or Elementor to display the calculator on the front end.</p>
+
+<p>' . __('Have a question? Take a look at our', 'shmac') . ' <a href="https://www.scripthat.com/support/" target="_blank">' . __('Online Documentation', 'shmac') . '</a></p>';
+
+    echo '<p>' . __('Need some help? Visit our', 'shmac') . ' <a href="https://scripthat.ticksy.com" target=_blank">' . __('Support System', 'shmac') . '</a></p>
+';
+
+    echo '<p>' . __('If this calculator is a great tool for you we would really appreciate a quick rating.  Ratings help our product grow and encourage us to improve and add features.', 'shmac') . '<br />' . __('You can give us a rating in your ', 'shmac') . ' <a href="https://codecanyon.net/downloads" target=_blank">' . __(
+'downloads area at codecanyon.net', 'shmac') . '</a></p>';
+
+    }
+
     /*
      * Main Settings field callback, front page accessibility
      */
@@ -346,7 +424,8 @@ class SHMAC_API_Tabs {
     // Send Email Text
     function field_send_email_text() {
         ?>
-         <input class="shmac-email-text" name="<?php echo $this->first_tab_key; ?>[send_email_text]" value="<?php echo esc_attr( $this->first_tab['send_email_text'] ); ?>" />
+		<hr />
+        <input class="shmac-email-text" name="<?php echo $this->first_tab_key; ?>[send_email_text]" value="<?php echo esc_attr( $this->first_tab['send_email_text'] ); ?>" />
         <p><?php echo __("Set the description for sending an email with PDF report.", "shmac"); ?></p>
         <?php
     }
@@ -359,12 +438,28 @@ class SHMAC_API_Tabs {
         <?php
     }
 
+	// Email Error Message
+	function field_email_error() {
+        ?>
+         <input class="shmac-email-error" name="<?php echo $this->first_tab_key; ?>[email_error]" value="<?php echo esc_attr( $this->first_tab['email_error'] ); ?>" />
+        <p><?php echo __("Set the error text for invalid or no email entered.", "shmac"); ?></p>
+        <?php
+    }
+
     // Purchase Price Label
     function field_purchase_price_label() {
         ?>
 		<hr />
         <input class="shmac-purchase-label" name="<?php echo $this->first_tab_key; ?>[purchase_price_label]" value="<?php echo esc_attr( $this->first_tab['purchase_price_label'] ); ?>" />
         <p><?php echo __("Set the text for the Amount Field.", "shmac"); ?></p>
+        <?php
+    }
+
+	// Purchase Price Error message
+	function field_purchase_price_error() {
+        ?>
+        <input class="shmac-purchase-error" name="<?php echo $this->first_tab_key; ?>[purchase_price_error]" value="<?php echo esc_attr( $this->first_tab['purchase_price_error'] ); ?>" />
+        <p><?php echo __("Set the Error message for the Amount Field.", "shmac"); ?></p>
         <?php
     }
 
@@ -393,6 +488,14 @@ class SHMAC_API_Tabs {
         <?php
     }
 
+	// Interest Error Message
+	function field_interest_error() {
+        ?>
+        <input class="shmac-interest-error" name="<?php echo $this->first_tab_key; ?>[interest_error]" value="<?php echo esc_attr( $this->first_tab['interest_error'] ); ?>" />
+        <p><?php echo __("Set the Error message for the Interest field.", "shmac"); ?></p>
+        <?php
+    }
+
     // Interest Rate bubble
     function field_interest_rate_info() {
         ?>
@@ -413,6 +516,14 @@ class SHMAC_API_Tabs {
         ?>
          <input class="shmac-down-label" name="<?php echo $this->first_tab_key; ?>[down_payment_label]" value="<?php echo esc_attr( $this->first_tab['down_payment_label'] ); ?>" />
         <p><?php echo __("Set the text for the Down Payment Field.", "shmac"); ?></p>
+        <?php
+    }
+
+	// Down Payment Error Message
+	function field_down_error() {
+        ?>
+         <input class="shmac-down-error" name="<?php echo $this->first_tab_key; ?>[down_error]" value="<?php echo esc_attr( $this->first_tab['down_error'] ); ?>" />
+        <p><?php echo __("Set the Error message for the Down Payment field.", "shmac"); ?></p>
         <?php
     }
 
@@ -466,6 +577,15 @@ class SHMAC_API_Tabs {
 		<hr />
         <input class="shmac-term-label" name="<?php echo $this->first_tab_key; ?>[loan_term_label]" value="<?php echo esc_attr( $this->first_tab['loan_term_label'] ); ?>" />
         <p><?php echo __("Set the text for the Loan Term Field.", "shmac"); ?></p>
+        <?php
+    }
+
+	// Term Error Message
+	function field_loan_term_error() {
+        ?>
+        <input class="shmac-term-error" name="<?php echo $this->first_tab_key; ?>[loan_term_error]" value="<?php echo esc_attr( $this->first_tab['loan_term_error']
+); ?>" />
+        <p><?php echo __("Set the Error message for the Loan Term field.", "shmac"); ?></p>
         <?php
     }
 
@@ -600,7 +720,7 @@ class SHMAC_API_Tabs {
 	function section_loan_details() {
 		?>
 		<table class="section-loan-details">
-		<tr>
+		<tr class="head-row">
 			<th><?php echo __('Original Loan Amount', 'shmac');?></th>
 			<th><?php echo __('Down Payment', 'shmac');?></th>
 			<th><?php echo __('Interest', 'shmac');?></th>
@@ -612,7 +732,7 @@ class SHMAC_API_Tabs {
 			<td><input class="shmac-detail-interest" name="<?php echo $this->second_tab_key; ?>[detail_interest]" value="<?php echo esc_attr( $this->second_tab['detail_interest'] ); ?>" /></td>
 			<td><input class="shmac-detail-term" name="<?php echo $this->second_tab_key; ?>[detail_term]" value="<?php echo esc_attr( $this->second_tab['detail_term'] ); ?>" /></td>
 		</tr>
-		<tr>
+		<tr class="head-row">
 			<th><?php echo __('Loan After Down', 'shmac');?></th>
             <th><?php echo __('Down Payment Amount', 'shmac');?></th>
             <th><?php echo __('Monthly Payment (P & I)', 'shmac');?></th>
@@ -633,7 +753,7 @@ class SHMAC_API_Tabs {
 	function section_schedule_headers() {
 		?>
 		        <table class="section-schedule-header">
-        <tr>
+        <tr class="head-row">
             <th><?php echo __('Payment', 'shmac');?></th>
             <th><?php echo __('Payment Amount', 'shmac');?></th>
             <th><?php echo __('Interest', 'shmac');?></th>
@@ -645,7 +765,7 @@ class SHMAC_API_Tabs {
             <td><input class="shmac-header-interest" name="<?php echo $this->second_tab_key; ?>[header_interest]" value="<?php echo esc_attr( $this->second_tab['header_interest'] ); ?>" /></td>
             <td><input class="shmac-header-total-interest" name="<?php echo $this->second_tab_key; ?>[header_total_interest]" value="<?php echo esc_attr( $this->second_tab['header_total_interest'] ); ?>" /></td>
         </tr>
-        <tr>
+        <tr class="head-row">
             <th><?php echo __('Principal', 'shmac');?></th>
             <th><?php echo __('Balance', 'shmac');?></th>
             <th><?php echo __('Loan Details', 'shmac');?></th>
@@ -716,9 +836,73 @@ class SHMAC_API_Tabs {
         <?php
     }
 
+	// Brought To you by
+	function field_brought_by() {
+        ?>
+         <input type="text" name="<?php echo $this->second_tab_key; ?>[brought_by]" class="brought-by" value="<?php echo esc_attr($this->second_tab['brought_by'] ); ?>" />
+        <p>
+            <?php echo __('Brought to you by greeting', 'shmac');?>
+        </p>
+        <?php
+    }
+
     function field_disclaimer() {
         ?>
         <textarea class="disclaimer" name="<?php echo $this->second_tab_key; ?>[disclaimer]"><?php echo esc_attr( $this->second_tab['disclaimer'] ); ?></textarea>
+        <?php
+    }
+
+	function field_report_texts() {
+        ?>
+		<textarea class="shmac-otherfactors" name="<?php echo $this->second_tab_key; ?>[otherfactors]"><?php echo esc_attr( $this->second_tab['otherfactors'] ); ?></textarea>
+		<p>
+			<?php echo __('Other Factors initial text', 'shmac');?>
+		<p/>
+		<?php
+	}
+
+	// Down Payment (PMI) Factor
+	function field_down_factor() {
+		?>
+		<textarea class="shmac-down-factor-1" name="<?php echo $this->second_tab_key; ?>[down_factor_1]"><?php echo esc_attr( $this->second_tab['down_factor_1'] ); ?></textarea>
+		<p>
+			<?php echo __('Must pay PMI.  Bracketted texts are placeholders for values ([pmi_display], [hundredthou], and [pmi]) leave those intact and you can rephrase as needed.', 'shmac'); ?>
+		</p>
+		<p></p><br />
+		<textarea class="shmac-down-factor-2" name="<?php echo $this->second_tab_key; ?>[down_factor_2]"><?php echo esc_attr( $this->second_tab['down_factor_2'] ); ?></textarea>
+        <p>
+            <?php echo __('Not paying PMI since 20% of loan reached.', 'shmac'); ?>
+        </p>
+        <?php
+    }
+
+	// Tax Factor
+	function field_tax_factor() {
+        ?>
+        <textarea class="tax-factor" name="<?php echo $this->second_tab_key; ?>[tax_factor]"><?php echo esc_attr( $this->second_tab['tax_factor'] ); ?></textarea>
+        <p>
+            <?php echo __('Bracketted texts are placeholders for values ([tax_rate_display], [thousand_dollars_display] and [assessed_display] and [taxes_display]) leave those intact and you can rephrase.', 'shmac'); ?>
+        </p>
+        <?php
+    }
+
+	// Insurance Factor
+	function field_insurance_factor() {
+        ?>
+        <textarea class="insurance-factor" name="<?php echo $this->second_tab_key; ?>[insurance_factor]"><?php echo esc_attr( $this->second_tab['insurance_factor'] ); ?></textarea>
+        <p>
+            <?php echo __('Bracketted texts are placeholders for values ([insurance_display]) leave those intact and you can rephrase.', 'shmac'); ?>
+        </p>
+        <?php
+    }
+
+	// Factor Summary
+	function field_factor_summary() {
+        ?>
+        <textarea class="factor-summary" name="<?php echo $this->second_tab_key; ?>[factor_summary]"><?php echo esc_attr( $this->second_tab['factor_summary'] ); ?></textarea>
+        <p>
+            <?php echo __('Bracketted texts are placeholders for values ([total_payment_display]) leave those intact and you can rephrase.', 'shmac'); ?>
+        </p>
         <?php
     }
 
@@ -1100,6 +1284,29 @@ class SHMAC_API_Tabs {
         <p><?php echo __("Choose whether to show year or month or both", "shmac"); ?></p>
         <?php
     }
+
+	/*
+     * Site information field callback
+     */
+    function field_section_info() {
+		echo __('Note that these server settings will affect the size, amount, and time taken allowed for PDF generation and scripts.  <br />These PHP settings may need
+ to be adjusted on your server according to your requirements.', 'shmac');
+        ?>
+        <table class="wcp_site_info">
+            <tr>
+                <th<?php __('Variable', 'shmac'); ?></th>
+                <th><?php __('Value', 'shmac'); ?></th>
+            </tr>
+            <tr class="row1"><td><?php echo __('PHP version running', 'shmac');?></td><td><?php echo phpversion(); ?></td></tr>
+            <tr class="row0"><td>post_max_size</td><td><?php echo ini_get('post_max_size'); ?></td></tr>
+            <tr class="row1"><td>memory_limit</td><td><?php echo ini_get('memory_limit'); ?></td> </tr>
+            <tr class="row0"><td>upload_max_filesize</td><td><?php echo ini_get('upload_max_filesize'); ?></td></tr>
+            <tr class="row1"><td>max_execution_time</td><td><?php echo ini_get('max_execution_time'); ?></td></tr>
+            <tr class="row0"><td>max_file_uploads</td><td><?php echo ini_get('max_file_uploads'); ?></td></tr>
+            <tr class="row1"><td>max_input_vars</td><td><?php echo ini_get('max_input_vars'); ?></td></tr>
+        </table>
+    <?php }
+
     
     /*
      * Called during admin_menu, adds an options

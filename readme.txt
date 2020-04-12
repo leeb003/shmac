@@ -31,6 +31,17 @@ Users can choose to receive a pdf copy of the amortization schedule which you
 can also be bcc'd on as a lead generator.
 
 == Changelog ==
+= 1.5.1 =
+* 2020-04-11
+* Many improvements, style enhancements, fixes
+* Elementor integration
+* WPML integration
+* Indian and Swiss number formats added
+* File size and loading optimization
+* Calculator background images and color added
+* All output text set in backend settings 
+* Be sure to save settings if upgrading from older versions!
+* Output results to Modal and now below calculator
 
 = 1.4.5 = 
 * 2019-12-12

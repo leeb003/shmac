@@ -3,6 +3,17 @@ All notable changes to WP Amortization Calculator will be documented in this fil
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
+## [1.5.1] - 2020-04-11
+- Many improvements, style enhancements and updates, fixes
+- Added Elementor integration
+- Added WPML integration
+- Added Indian and Swiss number formats added
+- Updated File size and loading optimization
+- Added Calculator background images and color added
+- Updated All output text set in backend settings
+- Be sure to save settings if upgrading from older versions!
+- Added Output results to Modal and now below calculator
+
 ## [1.4.5] - 2019-12-12
 _____
 - Updated automatic updates to use Envato Market plugin
