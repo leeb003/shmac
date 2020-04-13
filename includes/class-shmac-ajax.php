@@ -131,7 +131,12 @@
                 $response['details']['monthly_payment'] = $this->shmac_email['detail_monthly_payment'];
                 $response['details']['total_payments'] = $this->shmac_email['detail_total_payments'];
 
-                $response['details']['disclaimer'] = $this->shmac_email['disclaimer'];
+				if (isset($_POST['override']['disclaimer'])) {
+                    $disclaimer = esc_html($_POST['override']['disclaimer']);
+                } else {
+                    $disclaimer = isset($this->shmac_email['disclaimer']);
+                }  
+                $response['details']['disclaimer'] = $disclaimer;	
 
 				$response['location'] = $location;
 
@@ -497,7 +502,8 @@
          * @since 1.1.0
          */
         public function myajax_shmacbackend_callback() {
-            $response['message'] = __('Not used at this time.', 'shmac');
+			// Not used at this time
+            $response['message'] = '1';
             header( "Content-Type: application/json" );
             echo json_encode($response);
             wp_die();

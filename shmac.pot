@@ -1318,16 +1318,16 @@ msgid "Insurance Cost Estimate"
 msgstr ""
 
 #: add_settings_field( 'year_label', __('Year Label', 'shmac'), array( &$this, 'field_year_label' ),  $this->first_tab_key, 'section_general' );
-#: add_settings_field( 'term_type', __('Month Label', 'shmac'), array( &$this, 'field_month_label' ),  $this->first_tab_key, 'section_general' );
+#: add_settings_field( 'month_label', __('Month Label', 'shmac'), array( &$this, 'field_month_label' ),  $this->first_tab_key, 'section_general' );
 #: 
 # wpml-name: 16ee61c75d52bbaa2c4846c1e1ed47c4
-msgctxt "de7702141e8bd036885519ee445a7b37"
+msgctxt "1aa7096c4c392bf95265ee42ddeaf335"
 msgid "Month Label"
 msgstr ""
 
 #: add_settings_field( 'term_type', __('Term Type', 'shmac'), array( &$this, 'field_term_type' ),  $this->first_tab_key, 'section_general' );
 #: add_settings_field( 'year_label', __('Year Label', 'shmac'), array( &$this, 'field_year_label' ),  $this->first_tab_key, 'section_general' );
-#: add_settings_field( 'term_type', __('Month Label', 'shmac'), array( &$this, 'field_month_label' ),  $this->first_tab_key, 'section_general' );
+#: add_settings_field( 'month_label', __('Month Label', 'shmac'), array( &$this, 'field_month_label' ),  $this->first_tab_key, 'section_general' );
 # wpml-name: 367008e88084423bedcdbaff3679b2c9
 msgctxt "d8f40c30cfc476e5e9a3efe320c3b4c6"
 msgid "Year Label"
@@ -1509,163 +1509,163 @@ msgctxt "f6e6d4f2a8028a3fc046309c897d0351"
 msgid "Brought to you by"
 msgstr ""
 
-#: public function myajax_shmacbackend_callback() {
-#: $response['message'] = __('Not used at this time.', 'shmac');
-#: header( "Content-Type: application/json" );
+#: register_setting( $this->first_tab_key, $this->first_tab_key );
+#: add_settings_section( 'section_general', __('Calculator Global Settings', 'shmac'), array( &$this, 'section_general_desc' ),
+#: $this->first_tab_key, 'section_general' );
 # wpml-name: acc0d8375c3c4a8c3c99facb5484f692
-msgctxt "c1e3d89e097cb2b1cb8fba5c09256afa"
+msgctxt "7cebb71ea46a988ae6c6c6155e8b979d"
 msgid "Not used at this time."
 msgstr ""
 
-#: public function myajax_shmacbackend_callback() {
-#: $response['message'] = __('Not used at this time.', 'shmac');
-#: header( "Content-Type: application/json" );
+#: register_setting( $this->first_tab_key, $this->first_tab_key );
+#: add_settings_section( 'section_general', __('Calculator Global Settings', 'shmac'), array( &$this, 'section_general_desc' ),
+#: $this->first_tab_key, 'section_general' );
 # wpml-name: b5bccda6d3a04e1d8f79846355290435
-msgctxt "fb49fb61b49e02da20d453836f548b02"
+msgctxt "f968741f575b124f7f0004476a00099e"
 msgid "Please enter a valid email address."
 msgstr ""
 
-#: public function myajax_shmacbackend_callback() {
-#: $response['message'] = __('Not used at this time.', 'shmac');
-#: header( "Content-Type: application/json" );
+#: register_setting( $this->first_tab_key, $this->first_tab_key );
+#: add_settings_section( 'section_general', __('Calculator Global Settings', 'shmac'), array( &$this, 'section_general_desc' ),
+#: $this->first_tab_key, 'section_general' );
 # wpml-name: 1c9aa5df28ed423acbc8028761a0c008
-msgctxt "cf2ccc78a4acb20c7cad641c155d0d76"
+msgctxt "4fe83e04bf6646d653b71087df8fa9d2"
 msgid "With these factors, your total monthly payment estimate would be \naround"
 msgstr ""
 
-#: public function myajax_shmacbackend_callback() {
-#: $response['message'] = __('Not used at this time.', 'shmac');
-#: header( "Content-Type: application/json" );
+#: register_setting( $this->first_tab_key, $this->first_tab_key );
+#: add_settings_section( 'section_general', __('Calculator Global Settings', 'shmac'), array( &$this, 'section_general_desc' ),
+#: $this->first_tab_key, 'section_general' );
 # wpml-name: 68a0f1f07568f1189be6dee896171927
-msgctxt "34eb05e974fa5b2ddafb2180c94c6cf6"
+msgctxt "667cd8ecb8bcd88052093343607e1f54"
 msgid "Homeowners Insurance is another factor of a loan.  An average estimate of your monthly insurance could be about"
 msgstr ""
 
-#: public function myajax_shmacbackend_callback() {
-#: $response['message'] = __('Not used at this time.', 'shmac');
-#: header( "Content-Type: application/json" );
+#: register_setting( $this->first_tab_key, $this->first_tab_key );
+#: add_settings_section( 'section_general', __('Calculator Global Settings', 'shmac'), array( &$this, 'section_general_desc' ),
+#: $this->first_tab_key, 'section_general' );
 # wpml-name: dc44a18b789358015113f2ccdca3cbaa
-msgctxt "2f2b3223a12529f226c6238779f6e094"
+msgctxt "e6de8ae1afe86e2950569961874d9ea9"
 msgid "Since you are putting down 20% or more of the loan, you will not have to pay PMI."
 msgstr ""
 
-#: public function myajax_shmacbackend_callback() {
-#: $response['message'] = __('Not used at this time.', 'shmac');
-#: header( "Content-Type: application/json" );
+#: register_setting( $this->first_tab_key, $this->first_tab_key );
+#: add_settings_section( 'section_general', __('Calculator Global Settings', 'shmac'), array( &$this, 'section_general_desc' ),
+#: $this->first_tab_key, 'section_general' );
 # wpml-name: 45bfc464e5662c7ef2dec4b0104cb83b
-msgctxt "7ba1266e93bbdf7d0f14f8b955039d01"
+msgctxt "6f1d15b9438b246dcadd73a21a387d89"
 msgid "per month."
 msgstr ""
 
-#: public function myajax_shmacbackend_callback() {
-#: $response['message'] = __('Not used at this time.', 'shmac');
-#: header( "Content-Type: application/json" );
+#: register_setting( $this->first_tab_key, $this->first_tab_key );
+#: add_settings_section( 'section_general', __('Calculator Global Settings', 'shmac'), array( &$this, 'section_general_desc' ),
+#: $this->first_tab_key, 'section_general' );
 # wpml-name: 7ea09a9693a0a191cebb003e1a26ac15
-msgctxt "181d40472a112b06665575ad389f61e3"
+msgctxt "068b3ff9cb61731233630afc284d7c35"
 msgid "An estimate for PMI will be around"
 msgstr ""
 
-#: public function myajax_shmacbackend_callback() {
-#: $response['message'] = __('Not used at this time.', 'shmac');
-#: header( "Content-Type: application/json" );
+#: register_setting( $this->first_tab_key, $this->first_tab_key );
+#: add_settings_section( 'section_general', __('Calculator Global Settings', 'shmac'), array( &$this, 'section_general_desc' ),
+#: $this->first_tab_key, 'section_general' );
 # wpml-name: e1ec30912d9fa9607b54722de58b6bd6
-msgctxt "dbfcde030ffd57acaed115eda12334d1"
+msgctxt "b7a3f48759235a8b20acd191cab47acd"
 msgid " borrowed."
 msgstr ""
 
-#: public function myajax_shmacbackend_callback() {
-#: $response['message'] = __('Not used at this time.', 'shmac');
-#: header( "Content-Type: application/json" );
+#: register_setting( $this->first_tab_key, $this->first_tab_key );
+#: add_settings_section( 'section_general', __('Calculator Global Settings', 'shmac'), array( &$this, 'section_general_desc' ),
+#: $this->first_tab_key, 'section_general' );
 # wpml-name: 60e6b08231d4ad33592544e62f98008e
-msgctxt "adc1f271968427fa7d7a90bb7224373e"
+msgctxt "f15ec765b7abe0721e7fd9fa4cb8c6e9"
 msgid "for every"
 msgstr ""
 
-#: public function myajax_shmacbackend_callback() {
-#: $response['message'] = __('Not used at this time.', 'shmac');
-#: header( "Content-Type: application/json" );
+#: register_setting( $this->first_tab_key, $this->first_tab_key );
+#: add_settings_section( 'section_general', __('Calculator Global Settings', 'shmac'), array( &$this, 'section_general_desc' ),
+#: $this->first_tab_key, 'section_general' );
 # wpml-name: c88daa8db4525620c3a096cfcee45415
-msgctxt "dac79bb9b6ee6329e5a1934f2248a72f"
+msgctxt "d3864b7eaf4f40be5fc3da882dc7a88c"
 msgid "Your down payment was less than 20% of the loan, which means you will be paying PMI. This averages around"
 msgstr ""
 
-#: public function myajax_shmacbackend_callback() {
-#: $response['message'] = __('Not used at this time.', 'shmac');
-#: header( "Content-Type: application/json" );
+#: register_setting( $this->first_tab_key, $this->first_tab_key );
+#: add_settings_section( 'section_general', __('Calculator Global Settings', 'shmac'), array( &$this, 'section_general_desc' ),
+#: $this->first_tab_key, 'section_general' );
 # wpml-name: b4c2ded467b9de1a55102ede0722eca9
-msgctxt "0a170c442d7b671c7795aef917a954ac"
+msgctxt "dac8fd6406593f4b2cca24f433bc2c4c"
 msgid " and your monthly tax around"
 msgstr ""
 
-#: public function myajax_shmacbackend_callback() {
-#: $response['message'] = __('Not used at this time.', 'shmac');
-#: header( "Content-Type: application/json" );
+#: register_setting( $this->first_tab_key, $this->first_tab_key );
+#: add_settings_section( 'section_general', __('Calculator Global Settings', 'shmac'), array( &$this, 'section_general_desc' ),
+#: $this->first_tab_key, 'section_general' );
 # wpml-name: e9f82db3427923d0a1edb1dfd9c35f1d
-msgctxt "dd4ba2d3ee5b65df9107ff604e27f441"
+msgctxt "052ed36fa04e2fe2bcd32fac45b5e478"
 msgid "If the assessed value of your home is 85%, this would make your home's assessed value"
 msgstr ""
 
-#: public function myajax_shmacbackend_callback() {
-#: $response['message'] = __('Not used at this time.', 'shmac');
-#: header( "Content-Type: application/json" );
+#: register_setting( $this->first_tab_key, $this->first_tab_key );
+#: add_settings_section( 'section_general', __('Calculator Global Settings', 'shmac'), array( &$this, 'section_general_desc' ),
+#: $this->first_tab_key, 'section_general' );
 # wpml-name: ae41f668bcc728b630b81332282acf4f
-msgctxt "36fa6106c7392dd5e838c9fd1e1ce5a0"
+msgctxt "eb40ac04a62b0bbeea424a6431cd785f"
 msgid " assessed value per year."
 msgstr ""
 
-#: public function myajax_shmacbackend_callback() {
-#: $response['message'] = __('Not used at this time.', 'shmac');
-#: header( "Content-Type: application/json" );
+#: register_setting( $this->first_tab_key, $this->first_tab_key );
+#: add_settings_section( 'section_general', __('Calculator Global Settings', 'shmac'), array( &$this, 'section_general_desc' ),
+#: $this->first_tab_key, 'section_general' );
 # wpml-name: c5e4e9934d65064437dc1fef3bdd8478
-msgctxt "e86f2a7a081b56b78004a68ba999ef5e"
+msgctxt "9eb44bc157f0c84cf8ac4a77acb67626"
 msgid " for every"
 msgstr ""
 
-#: public function myajax_shmacbackend_callback() {
-#: $response['message'] = __('Not used at this time.', 'shmac');
-#: header( "Content-Type: application/json" );
+#: register_setting( $this->first_tab_key, $this->first_tab_key );
+#: add_settings_section( 'section_general', __('Calculator Global Settings', 'shmac'), array( &$this, 'section_general_desc' ),
+#: $this->first_tab_key, 'section_general' );
 # wpml-name: 60fc7ff2735b77766f56da640fbbf59f
-msgctxt "f12d2dad57546ccc4bc7bb66b3e041e6"
+msgctxt "e6742682a3a8a462586faf831d329ef6"
 msgid "An average tax figure for your purchase might be about"
 msgstr ""
 
-#: public function myajax_shmacbackend_callback() {
-#: $response['message'] = __('Not used at this time.', 'shmac');
-#: header( "Content-Type: application/json" );
+#: register_setting( $this->first_tab_key, $this->first_tab_key );
+#: add_settings_section( 'section_general', __('Calculator Global Settings', 'shmac'), array( &$this, 'section_general_desc' ),
+#: $this->first_tab_key, 'section_general' );
 # wpml-name: 6cce9268fc60a57be3cedfb73319ce42
-msgctxt "c2d20b5d35e83f491332d3d746a8ec25"
+msgctxt "a6acb3cb3d182b200974681f825b234b"
 msgid "Since Principal and Interest are not the only factors of a loan we should include an estimate for other costs involved with a loan."
 msgstr ""
 
-#: public function myajax_shmacbackend_callback() {
-#: $response['message'] = __('Not used at this time.', 'shmac');
-#: header( "Content-Type: application/json" );
+#: register_setting( $this->first_tab_key, $this->first_tab_key );
+#: add_settings_section( 'section_general', __('Calculator Global Settings', 'shmac'), array( &$this, 'section_general_desc' ),
+#: $this->first_tab_key, 'section_general' );
 # wpml-name: f0597590cdf7611969d688028a893285
-msgctxt "19590a0a96c24dbf24f4be29d8ee7d7c"
+msgctxt "116030d4306215121f6659b1ef8d44fb"
 msgid "Term cannot be empty."
 msgstr ""
 
-#: public function myajax_shmacbackend_callback() {
-#: $response['message'] = __('Not used at this time.', 'shmac');
-#: header( "Content-Type: application/json" );
+#: register_setting( $this->first_tab_key, $this->first_tab_key );
+#: add_settings_section( 'section_general', __('Calculator Global Settings', 'shmac'), array( &$this, 'section_general_desc' ),
+#: $this->first_tab_key, 'section_general' );
 # wpml-name: 12054f4841946eea3c8b48d76efc97e4
-msgctxt "ab50dae70d767509e800b4c972acb2ed"
+msgctxt "4fa2ec8e492fe885212fb4a478d03c0e"
 msgid "Please Enter a down payment (can be 0)."
 msgstr ""
 
-#: public function myajax_shmacbackend_callback() {
-#: $response['message'] = __('Not used at this time.', 'shmac');
-#: header( "Content-Type: application/json" );
+#: register_setting( $this->first_tab_key, $this->first_tab_key );
+#: add_settings_section( 'section_general', __('Calculator Global Settings', 'shmac'), array( &$this, 'section_general_desc' ),
+#: $this->first_tab_key, 'section_general' );
 # wpml-name: 4c2f719e5efd96973d05c57d64333152
-msgctxt "2af7acb6de16725794b013580586bd13"
+msgctxt "280720547344808d8a57d25197efebfd"
 msgid "Please Enter a valid interest rate."
 msgstr ""
 
-#: public function myajax_shmacbackend_callback() {
-#: $response['message'] = __('Not used at this time.', 'shmac');
-#: header( "Content-Type: application/json" );
+#: register_setting( $this->first_tab_key, $this->first_tab_key );
+#: add_settings_section( 'section_general', __('Calculator Global Settings', 'shmac'), array( &$this, 'section_general_desc' ),
+#: $this->first_tab_key, 'section_general' );
 # wpml-name: d6587aab051a2f0c4addff53cd229ff3
-msgctxt "c05e77cbfd8d52ee01dde5ceb8a1f98b"
+msgctxt "a9faa0977ff28d7ed2dc726a798596e8"
 msgid "Please Enter a valid amount."
 msgstr ""
 

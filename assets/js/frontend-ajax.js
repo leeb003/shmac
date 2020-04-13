@@ -62,6 +62,7 @@ jQuery(function ($) {  // use $ for jQuery
         override.pdflogo                = $(this).closest('.shmac-form').data('pdflogo');
         override.pdfheader              = $(this).closest('.shmac-form').data('pdfheader');
         override.downpayshow            = $(this).closest('.shmac-form').data('downpayshow');
+		override.disclaimer             = $(this).closest('.shmac-form').data('disclaimer');
 		override.location               = $(this).closest('.shmac-form').data('location');
 
         $.post(SHMAC_Ajax.ajaxurl, {
