@@ -1,12 +1,9 @@
 <?php
 /**
- * Plugin Name: Elementor Shmac Extension
- * Description: Custom Elementor extension for ScriptHat Mortgage Calculator.
- * Plugin URI:  https://elementor.com/
- * Version:     1.0.0
- * Author:      Elementor
- * Author URI:  https://elementor.com/
- * Text Domain: elementor-test-extension
+ * Elementor Shmac Extension
+ * Custom Elementor extension for ScriptHat Mortgage Calculator.
+ * https://elementor.com/
+ * 1.0.0
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
