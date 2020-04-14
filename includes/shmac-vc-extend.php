@@ -322,7 +322,7 @@ class shmacVC {
                         __("No", "shmac") => "no",
                     ),
                     "dependency" => array (
-                        "element" => "slideroverrides",
+                        "element" => "allowoverrides",
                         "value" => array("enable"),
                     ),
                 ),
