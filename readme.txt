@@ -1,9 +1,9 @@
 === WordPress Plugin Template ===
 Contributors: ScriptHat
 Tags: wordpress, plugin, leads, contacts, calculator
-Requires at least: 4.0
-Tested up to: 4.9.8
-Stable tag: 4.9.8
+Requires at least: 5.2
+Tested up to: 5.4
+Stable tag: 5.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Mortgage and Amortization Calculator - WordPress plugin

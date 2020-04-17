@@ -161,10 +161,12 @@ jQuery(function ($) {  // use $ for jQuery
 
         var dpshow1='';
         var dpshow2='';
+		var loanAfterdp='';
         if(vals.downpayshow=='yes'){
             dpshow1 = '<td>' + details.down_payment + ': <br /><strong>' + vals.down + ' %</strong></td>';
             dpshow2 = '<td>' + details.down_payment_amount + ': <br /><strong>' + vals.moneydown2
                     + '</strong></td>';
+			loanAfterdp = '<td>' + details.loan_after_down + ': <br /><strong>' + vals.mortgage2 + '</strong></td>';
         }
         var detailsTable = '<h3 class="shmac-header">' + headers.loan_text + '</h3>'
                     + '<table class="mui-table detail-table" data-mui-borders="true">'
@@ -173,8 +175,8 @@ jQuery(function ($) {  // use $ for jQuery
                     + '<td>' + details.interest + ': <br /><strong>' + vals.interest + ' %</strong></td>'
                     + '<td>' + details.term + ': <br /><strong>' + vals.term + ' ' + vals.cycle_text + '</strong></td>'
                     + '</tr>'
-                    + '<tr><td>' + details.loan_after_down + ': <br /><strong>' + vals.mortgage2
-                    + '</strong></td>'
+                    + '<tr>'
+					+ loanAfterdp
                     + dpshow2
                     + '<td>' + details.monthly_payment + ': <br /><strong>' + vals.monthly_payment2
                     + '</strong></td>'

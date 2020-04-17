@@ -630,8 +630,9 @@
                 $dpshow1 =  '<td>' . $response['details']['down_payment'] . ': <br /><b>' . $response['vals']['down'] . ' %</b></td>';
                 $dpshow2 = '<td>' . $response['details']['down_payment_amount'] . ': <br /><b>' . $response['vals']['moneydown2'] 
                    . '</b></td>';
+				$loanafterdp = '<td>' . $response['details']['loan_after_down'] . ': <br /><b>' . $response['vals']['mortgage2'] . '</b></td>';
             }else{
-                $dpshow1= $dpshow2='';
+                $loanafterdp = $dpshow1 = $dpshow2='';
             }
             // Details
             $html .= '<p></p>';
@@ -643,8 +644,8 @@
                    . '<td>' . $response['details']['term'] . ': <br /><b>' . $response['vals']['term'] . ' ' 
                    . $response['vals']['cycle_text'] . '</b></td>'
                    . '</tr>'
-                   . '<tr><td>' . $response['details']['loan_after_down'] . ': <br /><b>' . $response['vals']['mortgage2'] 
-                   . '</b></td>'
+                   . '<tr>'
+				   . $loanafterdp
                    . $dpshow2
                    . '<td>' . $response['details']['monthly_payment'] . ': <br /><b>' . $response['vals']['monthly_payment2'] 
                    . '</b></td>'

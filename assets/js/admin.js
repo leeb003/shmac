@@ -121,6 +121,7 @@ jQuery(function ($) {  // use $ for jQuery
 			$('.shmac-down-info').closest('tr').show();
 			$('.shmac-down-type').closest('tr').show();
 			$('.shmac-down_payment').closest('tr').show();
+			$('.shmac-down-error').closest('tr').show();
 			if (slider) {
             	$('.shmac-dwnpay-min-rate').closest('tr').show();
 				$('.shmac-dwnpay-max-rate').closest('tr').show();
@@ -134,6 +135,7 @@ jQuery(function ($) {  // use $ for jQuery
           	$('.shmac-dwnpay-min-rate').closest('tr').hide();
            	$('.shmac-dwnpay-max-rate').closest('tr').hide();
            	$('.shmac-dwnpay-slider-step').closest('tr').hide();
+			$('.shmac-down-error').closest('tr').hide();
 		}
 	}
 			
