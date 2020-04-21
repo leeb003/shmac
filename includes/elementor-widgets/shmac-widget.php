@@ -35,8 +35,8 @@ class Elementor_Shmac_Widget extends \Elementor\Widget_Base {
 				'label' => __('Calculator Overrides', 'shmac' ),
 				'type' => \Elementor\Controls_Manager::TEXT,
 				'input_type' => 'text',
-				'placeholder' => 'e.g. calc_title="New"'
-			],
+				'placeholder' => 'e.g. calc_title="New"',
+			]
         );          
                             
         $this->end_controls_section();	

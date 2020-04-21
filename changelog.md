@@ -1,7 +1,9 @@
 # Changelog
 All notable changes to WP Amortization Calculator will be documented in this file.
 
-The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
+## [1.5.2] - 2020-04-20
+- Fix for PHP version 7.1 and comma placement error
+- Fix for PDF reports not showing downpayment summary info when downpayment enabled
 
 ## [1.5.1] - 2020-04-11
 - Many improvements, style enhancements and updates, fixes

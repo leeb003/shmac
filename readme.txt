@@ -31,6 +31,11 @@ Users can choose to receive a pdf copy of the amortization schedule which you
 can also be bcc'd on as a lead generator.
 
 == Changelog ==
+= 1.5.2 = 
+* 2020-04-20
+* Fix for php version 7.1 with Elementor comma placement error
+* Fix for down payment show and pdf report not displaying down payment info
+
 = 1.5.1 =
 * 2020-04-11
 * Many improvements, style enhancements, fixes

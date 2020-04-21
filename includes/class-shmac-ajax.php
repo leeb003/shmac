@@ -626,6 +626,7 @@
 				   . $this->shmac_email['pdf_color'] . ';">' . get_bloginfo() . '</a></h3>' . '</div>';
 
             $html .= '<br />';
+			$downpayshow = $response['vals']['downpayshow'];
             if($downpayshow=='yes'){
                 $dpshow1 =  '<td>' . $response['details']['down_payment'] . ': <br /><b>' . $response['vals']['down'] . ' %</b></td>';
                 $dpshow2 = '<td>' . $response['details']['down_payment_amount'] . ': <br /><b>' . $response['vals']['moneydown2'] 
