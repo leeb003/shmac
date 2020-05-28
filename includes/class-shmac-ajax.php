@@ -122,6 +122,10 @@
                 $response['headers']['loan_text'] = $this->shmac_email['header_loan_text'];
                 $response['headers']['schedule_text'] = $this->shmac_email['header_schedule_text'];
 
+				//For Filter override display of these sections - filter would set them to 'no'
+				$response['headers']['show_schedule'] = 'yes';
+				$response['headers']['show_disclaimer'] = 'yes';
+
 				$response['details']['original'] = $this->shmac_email['detail_original'];
                 $response['details']['down_payment'] = $this->shmac_email['detail_down_payment'];
                 $response['details']['interest'] = $this->shmac_email['detail_interest'];
@@ -478,6 +482,7 @@
             }  // End process results
 
             header( "Content-Type: application/json" );
+			$response = apply_filters('shmac_response_filter', $response);
             echo json_encode($response);
             wp_die();
         }

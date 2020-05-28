@@ -213,7 +213,8 @@ jQuery(function ($) {  // use $ for jQuery
         }   
 
         // Schedule
-        var schedule = '<h3 class="shmac-header">' + headers.schedule_text + '</h3>'
+		if (headers.show_schedule != 'no') {
+        	var schedule = '<h3 class="shmac-header">' + headers.schedule_text + '</h3>'
                      + '<table class="mui-table schedule-table" data-mui-borders="true">'
                      + '<thead>'
                      + '<tr class="schedule-head"><th>' + headers.payment + '</th><th>' + headers.payment_amount 
@@ -221,19 +222,21 @@ jQuery(function ($) {  // use $ for jQuery
                      + '</th><th>' + headers.interest + '</th><th>' + headers.total_interest + '</th><th>'
                      + headers.balance + '</th><th></tr></thead><tbody>';
 
-        $.each( payment, function( k, v) {
-            schedule += '<tr><td data-th="' + headers.payment + '">' + v.value 
+        	$.each( payment, function( k, v) {
+            	schedule += '<tr><td data-th="' + headers.payment + '">' + v.value 
                      + '</td><td data-th="' + headers.payment_amount + '">' + vals.monthly_payment2 
                      + '</td><td data-th="' + headers.principal + '">' + v.principal 
                      + '</td><td data-th="' + headers.interest + '">' + v.interest 
                      + '</td><td data-th="' + headers.total_interest + '">' + v.total_interest 
                      + '</td><td data-th="' + headers.balance + '"><strong>' + v.newMortgage + '</strong></td></tr>';
-        });
-        schedule += '</tbody></table>';
+        	});
+        	schedule += '</tbody></table>';
+		}
 
         // Disclaimer
-        var disclaimerDiv = '<div class="disclaimer">' + details.disclaimer + '</div>';
-
+		if (headers.show_disclaimer != 'no') {
+        	var disclaimerDiv = '<div class="disclaimer">' + details.disclaimer + '</div>';
+		}
 
 		if (location == 'inline') {
 			var inlineDiv = $('#shmac-inline-' + currentForm);

@@ -31,6 +31,11 @@ Users can choose to receive a pdf copy of the amortization schedule which you
 can also be bcc'd on as a lead generator.
 
 == Changelog ==
+= 1.5.3 = 
+* 2020-05-28
+* Fix for some styling issues
+* Added output filtering capability for overrides
+
 = 1.5.2 = 
 * 2020-04-20
 * Fix for php version 7.1 with Elementor comma placement error

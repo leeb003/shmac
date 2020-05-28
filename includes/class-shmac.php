@@ -72,13 +72,12 @@
             //nouislider
             wp_register_style( 'nouislider', SHMAC_ROOT_URL .  '/assets/css/nouislider.min.css',
             array('shmac-frontend'), '920');
-
+			*/
 			// rtl css
 			if (is_rtl() ) {
 				wp_register_style('shmac-rtl', SHMAC_ROOT_URL . '/assets/css/shmac-rtl.css', array('shmac-frontend'), SHMAC_PLUGIN_VERSION);
 				wp_enqueue_style('shmac-rtl');
 			}
-            */
 
 			// dynamic css
             wp_register_style('shmac-frontend',

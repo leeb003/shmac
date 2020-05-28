@@ -3,7 +3,7 @@
  * Plugin Name: WP Amortization Calculator
  * Plugin URI: https://www.scripthat.com
  * Description: Mortgage & Amortization Calculator WordPress Plugin
- * Version: 1.5.2
+ * Version: 1.5.3
  * Author: ScriptHat
  * Author URI: https://www.scripthat.com
  */
@@ -16,7 +16,7 @@ if(defined('SHMAC_PLUGIN_VERSION')) {
     define('SHMAC_ROOT_FILE', __FILE__);
     define('SHMAC_ROOT_PATH', dirname(__FILE__));
     define('SHMAC_ROOT_URL', plugins_url('', __FILE__));
-    define('SHMAC_PLUGIN_VERSION', '1.5.2');
+    define('SHMAC_PLUGIN_VERSION', '1.5.3');
     define('SHMAC_PLUGIN_SLUG', basename(dirname(__FILE__)));
     define('SHMAC_PLUGIN_BASE', plugin_basename(__FILE__));
     define('SHMAC_MARKET', 'envato');
