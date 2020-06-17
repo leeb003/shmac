@@ -489,6 +489,31 @@ class shmacVC {
                         "value" => array("enable"),
                     ),
                 ),
+
+				array(
+                    "type" => "textfield",
+                    "heading"  => __("Year Label", "shmac"),
+                    "param_name" => "year_label",
+                    "description" => __("Set the year label text", "shmac"),
+					"value" => '',
+                    "dependency" => array (
+                        "element" => "allowoverrides",
+                        "value" => array("enable"),
+                    ),
+                ),
+			
+				array(
+                    "type" => "textfield",
+                    "heading"  => __("Month Label", "shmac"),
+                    "param_name" => "month_label",
+                    "description" => __("Set the month label text", "shmac"),
+                    "value" => '',
+                    "dependency" => array (
+                        "element" => "allowoverrides",
+                        "value" => array("enable"),
+                    ),
+                ),
+
                 array(
                     "type" => "dropdown",
                     "heading"  => __("Enable Insurance", "shmac"),
@@ -583,17 +608,6 @@ class shmacVC {
                     ),
                 ),
                 array(
-                    "type" => "textarea",
-                    "heading"  => __("Disclaimer", "shmac"),
-                    "param_name" => "disclaimer",
-                    "description" => __("Set the text for your disclaimer that goes at the bottom of the schedule", "shmac"),
-                    "value" => '',
-                    "dependency" => array (
-                        "element" => "allowoverrides",
-                        "value" => array("enable"),
-                    ),
-                ),
-                array(
                     "type" => "textfield",
                     "heading"  => __("Currency Symbol", "shmac"),
                     "param_name" => "currencysymbol",
@@ -636,7 +650,278 @@ class shmacVC {
                         "element" => "allowoverrides",
                         "value" => array("enable"),
                     ),
-                ),              
+                ),   
+
+				// Report overrides
+				array(
+					"type" => "dropdown",
+					"heading" => __("Report Settings Override", "shmac"),
+					"param_name" => "reportoverride",
+					"description" => __("Override report texts that are output", "shmac"),
+					"value" => array(
+						__('Settings Default', 'shmac') => '',
+						__('Override', 'shmac') => 'override',
+					),
+					'dependency' => array (
+						"element" => "allowoverrides",
+						"value" => array("enable"),
+					),
+				),
+				array(
+                    "type" => "textfield",
+                    "heading"  => __("Original Loan Amount", "shmac"),
+                    "param_name" => "detail_original",
+                    "description" => __("Original Loan Amount Text", "shmac"),
+                    "value" => "",
+                    "dependency" => array (
+                        "element" => "reportoverride",
+                        "value" => array("override"),
+                    ),
+                ),  
+		        array(
+                    "type" => "textfield",
+                    "heading"  => __("Down Payment", "shmac"),
+                    "param_name" => "detail_down_payment",
+                    "description" => __("Down Payment Text", "shmac"),
+                    "value" => "",
+                    "dependency" => array (
+                        "element" => "reportoverride",
+                        "value" => array("override"),
+                    ),
+                ),
+			    array(
+                    "type" => "textfield",
+                    "heading"  => __("Interest", "shmac"),
+                    "param_name" => "detail_interest",
+                    "description" => __("Interest Text", "shmac"),
+                    "value" => "",
+                    "dependency" => array (
+                        "element" => "reportoverride",
+                        "value" => array("override"),
+                    ),
+                ),
+                array(
+                    "type" => "textfield",
+                    "heading"  => __("Term", "shmac"),
+                    "param_name" => "detail_term",
+                    "description" => __("Term Text", "shmac"),
+                    "value" => "",
+                    "dependency" => array (
+                        "element" => "reportoverride",
+                        "value" => array("override"),
+                    ),
+                ),
+                array(
+                    "type" => "textfield",
+                    "heading"  => __("Loan After Down", "shmac"),
+                    "param_name" => "detail_loan_after_down",
+                    "description" => __("Loan after Down text", "shmac"),
+                    "value" => "",
+                    "dependency" => array (
+                        "element" => "reportoverride",
+                        "value" => array("override"),
+                    ),
+                ),
+                array(
+                    "type" => "textfield",
+                    "heading"  => __("Down Payment Amount", "shmac"),
+                    "param_name" => "detail_down_payment_amount",
+                    "description" => __("Down Payment Amount Text", "shmac"),
+                    "value" => "",
+                    "dependency" => array (
+                        "element" => "reportoverride",
+                        "value" => array("override"),
+                    ),
+                ),
+                array(
+                    "type" => "textfield",
+                    "heading"  => __("Monthly Payment", "shmac"),
+                    "param_name" => "detail_monthly_payment",
+                    "description" => __("Monthly Payment Text", "shmac"),
+                    "value" => "",
+                    "dependency" => array (
+                        "element" => "reportoverride",
+                        "value" => array("override"),
+                    ),
+                ),
+	           array(
+                    "type" => "textfield",
+                    "heading"  => __("Total Payments", "shmac"),
+                    "param_name" => "detail_total_payments",
+                    "description" => __("Total Payments Text", "shmac"),
+                    "value" => "",
+                    "dependency" => array (
+                        "element" => "reportoverride",
+                        "value" => array("override"),
+                    ),
+                ),
+                array(
+                    "type" => "textfield",
+                    "heading"  => __("Payment", "shmac"),
+                    "param_name" => "header_payment",
+                    "description" => __("Payment Text", "shmac"),
+                    "value" => "",
+                    "dependency" => array (
+                        "element" => "reportoverride",
+                        "value" => array("override"),
+                    ),
+                ),
+		        array(
+                    "type" => "textfield",
+                    "heading"  => __("Payment Amount", "shmac"),
+                    "param_name" => "header_payment_amount",
+                    "description" => __("Payment Amount Text", "shmac"),
+                    "value" => "",
+                    "dependency" => array (
+                        "element" => "reportoverride",
+                        "value" => array("override"),
+                    ),
+                ),
+			    array(
+                    "type" => "textfield",
+                    "heading"  => __("Interest", "shmac"),
+                    "param_name" => "header_interest",
+                    "description" => __("Interest Text", "shmac"),
+                    "value" => "",
+                    "dependency" => array (
+                        "element" => "reportoverride",
+                        "value" => array("override"),
+                    ),
+                ),
+		        array(
+                    "type" => "textfield",
+                    "heading"  => __("Total Interest", "shmac"),
+                    "param_name" => "header_total_interest",
+                    "description" => __("Total Interest Text", "shmac"),
+                    "value" => "",
+                    "dependency" => array (
+                        "element" => "reportoverride",
+                        "value" => array("override"),
+                    ),
+                ),
+                array(
+                    "type" => "textfield",
+                    "heading"  => __("Principal", "shmac"),
+                    "param_name" => "header_principal",
+                    "description" => __("Principal Text", "shmac"),
+                    "value" => "",
+                    "dependency" => array (
+                        "element" => "reportoverride",
+                        "value" => array("override"),
+                    ),
+                ),
+                array(
+                    "type" => "textfield",
+                    "heading"  => __("Balance", "shmac"),
+                    "param_name" => "header_balance",
+                    "description" => __("Balance Text", "shmac"),
+                    "value" => "",
+                    "dependency" => array (
+                        "element" => "reportoverride",
+                        "value" => array("override"),
+                    ),
+                ),
+                array(
+                    "type" => "textfield",
+                    "heading"  => __("Loan Details", "shmac"),
+                    "param_name" => "header_loan_text",
+                    "description" => __("Loan Details Text", "shmac"),
+                    "value" => "",
+                    "dependency" => array (
+                        "element" => "reportoverride",
+                        "value" => array("override"),
+                    ),
+                ),
+                array(
+                    "type" => "textfield",
+                    "heading"  => __("Schedule Title", "shmac"),
+                    "param_name" => "header_schedule_text",
+                    "description" => __("Schedule Header Text", "shmac"),
+                    "value" => "",
+                    "dependency" => array (
+                        "element" => "reportoverride",
+                        "value" => array("override"),
+                    ),
+                ),
+                array(
+                    "type" => "textarea",
+                    "heading"  => __("Other Factors", "shmac"),
+                    "param_name" => "otherfactors",
+                    "description" => __("Other Factors Initial Text", "shmac"),
+                    "value" => "",
+                    "dependency" => array (
+                        "element" => "reportoverride",
+                        "value" => array("override"),
+                    ),
+                ),
+                array(
+                    "type" => "textarea",
+                    "heading"  => __("Down Payment Factors - Paying Pmi", "shmac"),
+                    "param_name" => "down_factor_1",
+                    "description" => __("Must pay PMI. Bracketted texts are placeholders for values ([pmi_display], [hundredthou], and [pmi]) leave those intact and you can rephrase as needed.", "shmac"),
+                    "value" => "",
+                    "dependency" => array (
+                        "element" => "reportoverride",
+                        "value" => array("override"),
+                    ),
+                ),
+				array(
+                    "type" => "textarea",
+                    "heading"  => __("Down Payment Factors - Not paying PMI", "shmac"),
+                    "param_name" => "down_factor_2",
+                    "description" => __("Not paying PMI since 20% of loan reached.", "shmac"),
+                    "value" => "",
+                    "dependency" => array (
+                        "element" => "reportoverride",
+                        "value" => array("override"),
+                    ),
+                ),
+				array(
+                    "type" => "textarea",
+                    "heading"  => __("Tax Factors", "shmac"),
+                    "param_name" => "tax_factor",
+                    "description" => __("Bracketted texts are placeholders for values ([tax_rate_display], [thousand_dollars_display] and [assessed_display] and [taxes_display]) leave those intact and you can rephrase.", "shmac"),
+                    "value" => "",
+                    "dependency" => array (
+                        "element" => "reportoverride",
+                        "value" => array("override"),
+                    ),
+                ),
+				array(
+                    "type" => "textarea",
+                    "heading"  => __("Insurance Factors", "shmac"),
+                    "param_name" => "insurance_factor",
+                    "description" => __("Bracketted texts are placeholders for values ([insurance_display]) leave those intact and you can rephrase.", "shmac"),
+                    "value" => "",
+                    "dependency" => array (
+                        "element" => "reportoverride",
+                        "value" => array("override"),
+                    ),
+                ),
+				array(
+                    "type" => "textarea",
+                    "heading"  => __("Factors Summary", "shmac"),
+                    "param_name" => "factor_summary",
+                    "description" => __("Bracketted texts are placeholders for values ([total_payment_display]) leave those intact and you can rephrase.", "shmac"),
+                    "value" => "",
+                    "dependency" => array (
+                        "element" => "reportoverride",
+                        "value" => array("override"),
+                    ),
+                ),
+				array(
+                    "type" => "textarea",
+                    "heading"  => __("Disclaimer", "shmac"),
+                    "param_name" => "disclaimer",
+                    "description" => __("Set the text for your disclaimer that goes at the bottom of the schedule", "shmac"),
+                    "value" => '',
+                    "dependency" => array (
+                        "element" => "reportoverride",
+                        "value" => array("override"),
+                    ),
+                ),
+
+				// Email overrides
                 array(
                     "type" => "dropdown",
                     "heading"  => __("Allow Email", "shmac"),
@@ -755,7 +1040,7 @@ class shmacVC {
 					"type" => "dropdown",
                     "heading"  => __("Output Location", "shmac"),
                     "param_name" => "location",
-                    "description" => __("Choose to enable email results or not", "shmac"),
+                    "description" => __("Select where the results output", "shmac"),
                     "value" => array(
                         __('Settings Default', 'shmac') => '',
                         __("In popup (modal)", "shmac") => "modal",

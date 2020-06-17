@@ -165,6 +165,8 @@
                 'downpaytype'            => '',
                 'defaultdown'            => '',
                 'termlabel'              => '',
+				'year_label'             => '',
+                'month_label'            => '',
                 'terminfo'               => '',
                 'defaultterm'            => '',
                 'enableinsurance'        => '',
@@ -174,13 +176,36 @@
                 'monthlypmi'             => '',
                 'enabletaxes'            => '',
                 'taxesperthou'           => '',
-                'disclaimer'             => '',
                 'currencysymbol'         => '',
                 'currencyformat'         => '',
                 'currencyside'           => '',
 				'location'               => '',
 				'bg_attachment_url'      => '',
 				'bg_color'               => '',
+				// Report Overrides
+				'detail_original'        => '',
+				'detail_down_payment'    => '',
+				'detail_interest'        => '',
+				'detail_term'            => '',
+				'detail_loan_after_down' => '',
+				'detail_down_payment_amount' => '',
+				'detail_monthly_payment' => '',
+				'detail_total_payments'  => '',
+				'header_payment'         => '',
+				'header_payment_amount'  => '',
+				'header_interest'        => '',
+				'header_total_interest'  => '',
+				'header_principal'       => '',
+				'header_balance'         => '',
+				'header_loan_text'       => '',
+				'header_schedule_text'   => '',
+				'otherfactors'           => '',
+				'down_factor_1'          => '',
+				'down_factor_2'          => '',
+				'tax_factor'             => '',
+				'insurance_factor'       => '',
+				'factor_summary'         => '',
+				'disclaimer'             => '',
                 // Email Settings Overrides
                 'allowemail'             => '',
                 'bccemail'               => '',
@@ -240,7 +265,33 @@
 			$monthlypmi             = $settings['monthlypmi'];
 			$enabletaxes            = $settings['enabletaxes'];
 			$taxesperthou           = $settings['taxesperthou'];
+
+// Report texts
+			$detail_original        = ($settings['detail_original'] != '' ? $settings['detail_original'] : $this->shmac_email['detail_original']);
+			$detail_down_payment    = ($settings['detail_down_payment'] != '' ? $settings['detail_down_payment'] : $this->shmac_email['detail_down_payment']);
+			$detail_interest        = ($settings['detail_interest'] != '' ? $settings['detail_interest'] : $this->shmac_email['detail_interest']);
+			$detail_term			= ($settings['detail_term'] != '' ? $settings['detail_term'] : $this->shmac_email['detail_term']);
+			$detail_loan_after_down = ($settings['detail_loan_after_down'] != '' ? $settings['detail_loan_after_down'] : $this->shmac_email['detail_loan_after_down']);
+			$detail_down_payment_amount = ($settings['detail_down_payment_amount'] != '' ? $settings['detail_down_payment_amount'] : $this->shmac_email['detail_down_payment_amount']);
+			$detail_monthly_payment = ($settings['detail_monthly_payment'] != '' ? $settings['detail_monthly_payment'] : $this->shmac_email['detail_monthly_payment']);
+			$detail_total_payments  = ($settings['detail_total_payments'] != '' ? $settings['detail_total_payments'] : $this->shmac_email['detail_total_payments']);
+			$header_payment         = ($settings['header_payment'] != '' ? $settings['header_payment'] : $this->shmac_email['header_payment']);
+			$header_payment_amount  = ($settings['header_payment_amount'] != '' ? $settings['header_payment_amount'] : $this->shmac_email['header_payment_amount']);
+			$header_interest		= ($settings['header_interest'] != '' ? $settings['header_interest'] : $this->shmac_email['header_interest']);
+			$header_total_interest  = ($settings['header_total_interest'] != '' ? $settings['header_total_interest'] : $this->shmac_email['header_total_interest']);
+			$header_principal		= ($settings['header_principal'] != '' ? $settings['header_principal'] : $this->shmac_email['header_principal']);
+			$header_balance			= ($settings['header_balance'] != '' ? $settings['header_balance'] : $this->shmac_email['header_balance']);
+			$header_loan_text		= ($settings['header_loan_text'] != '' ? $settings['header_loan_text'] : $this->shmac_email['header_loan_text']);
+			$header_schedule_text	= ($settings['header_schedule_text'] != '' ? $settings['header_schedule_text'] : $this->shmac_email['header_schedule_text']);
+			$otherfactors			= ($settings['otherfactors'] != '' ? $settings['otherfactors'] : $this->shmac_email['otherfactors']);
+			$down_factor_1			= ($settings['down_factor_1'] != '' ? $settings['down_factor_1'] : $this->shmac_email['down_factor_1']);
+			$down_factor_2			= ($settings['down_factor_2'] != '' ? $settings['down_factor_2'] : $this->shmac_email['down_factor_2']);
+			$tax_factor				= ($settings['tax_factor'] != '' ? $settings['tax_factor'] : $this->shmac_email['tax_factor']);
+			$insurance_factor		= ($settings['insurance_factor'] != '' ? $settings['insurance_factor'] : $this->shmac_email['insurance_factor']);
+			$factor_summary			= ($settings['factor_summary'] != '' ? $settings['factor_summary'] : $this->shmac_email['factor_summary']);
 			$disclaimer             = ($settings['disclaimer'] != '' ? $settings['disclaimer'] : $this->shmac_email['disclaimer']);
+			
+
 			$currencysymbol         = ($settings['currencysymbol'] != '' ? $settings['currencysymbol'] : $this->shmac_settings['currency']);
 			$currencyformat         = ($settings['currencyformat'] != '' ? $settings['currencyformat'] : $this->shmac_settings['currency_format']);
 			$currencyside           = ($settings['currencyside'] != '' ? $settings['currencyside'] : $this->shmac_settings['currency_side']);
@@ -271,8 +322,8 @@
 			$slidermaxterm          = ($settings['slidermaxterm'] != '' ? $settings['slidermaxterm'] : $this->shmac_settings['term_max_value']);
 			$sliderstepsterm        = ($settings['sliderstepsterm'] != '' ? $settings['sliderstepsterm'] : $this->shmac_settings['term_slider_step']);
 			$termtype               = ($settings['termtype'] != '' ? $settings['termtype'] : $this->shmac_settings['term_type']);
-			$year_label             = (isset($settings['year_label']) ? $settings['year_label'] : $this->shmac_settings['year_label']);
-			$month_label            = (isset($settings['month_label']) ? $settings['month_label'] : $this->shmac_settings['month_label']);
+			$year_label             = ($settings['year_label'] != '' ? $settings['year_label'] : $this->shmac_settings['year_label']);
+			$month_label            = ($settings['month_label'] !='' ? $settings['month_label'] : $this->shmac_settings['month_label']);
 			$location               = ($settings['location'] != '' ? $settings['location'] : $this->shmac_settings['location']);
 			$bg_attachment_url      = ($settings['bg_attachment_url'] != '' ? $settings['bg_attachment_url'] : $this->shmac_settings['bg_attachment_url']);
 			$bg_color               = ($settings['bg_color'] != '' ? $settings['bg_color'] : $this->shmac_settings['bg_color']);
@@ -395,8 +446,11 @@ $broad
 EOT;
             // Individual Form Overrides set initial empty
             $o_enableinsurance = $o_insuranceamountpercent = $o_monthlyinsurance = $o_enablepmi = $o_monthlypmi = $o_enabletaxes 
-            = $o_taxesperthou = $o_disclaimer = $o_currencysymbol = $o_currencyformat = $o_currencyside  = $o_downpaytype
+            = $o_taxesperthou = $o_currencysymbol = $o_currencyformat = $o_currencyside  = $o_downpaytype
             = $o_bccemail = $o_fromemail = $o_emailsubject = $o_emailcontent = $o_pdfcolor = $o_pdflogo = $o_pdfheader = $o_location = '';
+
+			// report overrides set to empty too
+			$o_detail_original = $o_detail_down_payment = $o_detail_interest = $o_detail_term = $o_detail_loan_after_down = $o_detail_down_payment_amount = $o_detail_monthly_payment = $o_detail_total_payments = $o_header_payment = $o_header_payment_amount = $o_header_interest = $o_header_total_interest = $o_header_principal = $o_header_balance = $o_header_loan_text = $o_header_schedule_text = $o_otherfactors = $o_down_factor_1 = $o_down_factor_2 = $o_tax_factor = $o_insurance_factor = $o_factor_summary = $o_disclaimer = '';
 
             // Individual Form Overrides
             if ($enableinsurance != '') {
@@ -419,9 +473,6 @@ EOT;
             }
             if ($taxesperthou != '') {
                 $o_taxesperthou = 'data-taxesperthou=' . $taxesperthou . '" ';
-            }
-            if ($disclaimer != '') {
-                $o_disclaimer = 'data-disclaimer="' . $disclaimer . '" ';
             }
             if ($currencysymbol != '') {
                 $o_currencysymbol = 'data-currencysymbol="' . $currencysymbol . '" ';
@@ -468,12 +519,86 @@ EOT;
 			if ($location != '') {
 				$o_location = 'data-location="' . $location . '" ';
 			}
+			// Report overrides
+		    if ($detail_original != '') {
+                $o_detail_original = 'data-detail_original="' . $detail_original . '" ';
+            }
+            if ($detail_down_payment != '') {
+                $o_detail_down_payment = 'data-detail_down_payment="' . $detail_down_payment . '" ';
+            }
+            if ($detail_interest != '') {
+                $o_detail_interest = 'data-detail_interest="' . $detail_interest . '" ';
+            }
+            if ($detail_term != '') {
+                $o_detail_term = 'data-detail_term="' . $detail_term . '" ';
+            }
+            if ($detail_loan_after_down != '') {
+                $o_detail_loan_after_down = 'data-detail_loan_after_down="' . $detail_loan_after_down . '" ';
+            }
+            if ($detail_down_payment_amount != '') {
+                $o_detail_down_payment_amount = 'data-detail_down_payment_amount="' . $detail_down_payment_amount . '" ';
+            }
+            if ($detail_monthly_payment != '') {
+                $o_detail_monthly_payment = 'data-detail_monthly_payment="' . $detail_monthly_payment . '" ';
+            }
+            if ($detail_total_payments != '') {
+                $o_detail_total_payments = 'data-detail_total_payments="' . $detail_total_payments . '" ';
+            }
+		    if ($header_payment != '') {
+                $o_header_payment = 'data-header_payment="' . $header_payment . '" ';
+            }
+            if ($header_payment_amount != '') {
+                $o_header_payment_amount = 'data-header_payment_amount="' . $header_payment_amount . '" ';
+            }
+            if ($header_interest != '') {
+                $o_header_interest = 'data-header_interest="' . $header_interest . '" ';
+            }
+            if ($header_total_interest != '') {
+                $o_header_total_interest = 'data-header_total_interest="' . $header_total_interest . '" ';
+            }
+            if ($header_principal != '') {
+                $o_header_principal = 'data-header_principal="' . $header_principal . '" ';
+            }
+            if ($header_balance != '') {
+                $o_header_balance = 'data-header_balance="' . $header_balance . '" ';
+            }
+			if ($header_loan_text != '') {
+				$o_header_loan_text = 'data-header_loan_text="' . $header_loan_text . '" ';
+			}
+			if ($header_schedule_text != '') {
+                $o_header_schedule_text = 'data-header_schedule_text="' . $header_schedule_text . '" ';
+            }			
+			if ($otherfactors != '') {
+                $o_otherfactors = 'data-otherfactors="' . $otherfactors . '" ';
+            }
+			if ($down_factor_1 != '') {
+                $o_down_factor_1 = 'data-down_factor_1="' . $down_factor_1 . '" ';
+            }
+			if ($down_factor_2 != '') {
+                $o_down_factor_2 = 'data-down_factor_2="' . $down_factor_2 . '" ';
+            }
+			if ($tax_factor != '') {
+                $o_tax_factor = 'data-tax_factor="' . $tax_factor . '" ';
+            }
+			if ($insurance_factor != '') {
+                $o_insurance_factor = 'data-insurance_factor="' . $insurance_factor . '" ';
+            }
+			if ($factor_summary != '') {
+                $o_factor_summary = 'data-factor_summary="' . $factor_summary . '" ';
+            }
+            if ($disclaimer != '') {
+                $o_disclaimer = 'data-disclaimer="' . $disclaimer . '" ';
+            }
 
             // Form data attributes
             $data_atts = $o_enableinsurance . $o_insuranceamountpercent . $o_monthlyinsurance . $o_enablepmi . $o_monthlypmi 
-                . $o_enabletaxes . $o_taxesperthou . $o_disclaimer . $o_currencysymbol . $o_currencyformat . $o_currencyside 
+                . $o_enabletaxes . $o_taxesperthou . $o_currencysymbol . $o_currencyformat . $o_currencyside 
                 . $o_downpaytype . $o_bccemail . $o_fromemail . $o_emailsubject . $o_emailcontent . $o_pdfcolor . $o_pdflogo 
-                . $o_pdfheader . $o_downpay . $o_location;
+                . $o_pdfheader . $o_downpay . $o_location 
+				. $o_detail_original . $o_detail_interest . $o_detail_term . $o_detail_loan_after_down . $o_detail_down_payment . $o_detail_down_payment_amount 
+				. $o_detail_monthly_payment . $o_detail_total_payments . $o_header_payment . $o_header_payment_amount . $o_header_interest 
+				. $o_header_total_interest . $o_header_principal . $o_header_balance . $o_header_loan_text . $o_header_schedule_text 
+				. $o_otherfactors . $o_down_factor_1 . $o_down_factor_2 . $o_tax_factor . $o_insurance_factor . $o_factor_summary . $o_disclaimer;
 
             $info_src = SHMAC_ROOT_URL . '/assets/img/info_outline.png'; 
             $symbol_side = '';

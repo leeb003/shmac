@@ -1,6 +1,9 @@
 # Changelog
 All notable changes to WP Amortization Calculator will be documented in this file.
 
+## [1.5.4] - 2020-06-17
+- Added overrides for Visual Composer element to override all text per calculator
+
 ## [1.5.3] - 2020-05-28
 - Added filtering capabilities for output
 - Fixed some styling

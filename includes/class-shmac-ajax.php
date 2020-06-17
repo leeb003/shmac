@@ -65,9 +65,6 @@
                 if (isset($_POST['override']['taxesperthou'])) {
                     $this->shmac_settings['tax_rate'] = floatval($_POST['override']['taxesperthou']);
                 }
-                if (isset($_POST['override']['disclaimer'])) {
-                    $this->shmac_settings['disclaimer'] = wp_kses_post($_POST['override']['disclaimer']);
-                }
                 if (isset($_POST['override']['currencysymbol'])) {
                     $this->shmac_settings['currency'] = esc_html($_POST['override']['currencysymbol']);
                 }
@@ -80,6 +77,77 @@
                 if (isset($_POST['override']['downpaytype'])) {
                     $this->shmac_settings['down_payment_type'] = esc_html($_POST['override']['downpaytype']);
                 }
+				// report settings overrides
+				if (isset($_POST['override']['detail_original'])) {
+                    $this->shmac_email['detail_original'] = wp_kses_post($_POST['override']['detail_original']);
+                }
+				if (isset($_POST['override']['detail_down_payment'])) {
+                    $this->shmac_email['detail_down_payment'] = wp_kses_post($_POST['override']['detail_down_payment']);
+                }
+				if (isset($_POST['override']['detail_interest'])) {
+                    $this->shmac_email['detail_interest'] = wp_kses_post($_POST['override']['detail_interest']);
+                }
+				if (isset($_POST['override']['detail_term'])) {
+                    $this->shmac_email['detail_term'] = wp_kses_post($_POST['override']['detail_term']);
+                }
+				if (isset($_POST['override']['detail_loan_after_down'])) {
+                    $this->shmac_email['detail_loan_after_down'] = wp_kses_post($_POST['override']['detail_loan_after_down']);
+                }
+				if (isset($_POST['override']['detail_down_payment_amount'])) {
+                    $this->shmac_email['detail_down_payment_amount'] = wp_kses_post($_POST['override']['detail_down_payment_amount']);
+                }
+				if (isset($_POST['override']['detail_monthly_payment'])) {
+                    $this->shmac_email['detail_monthly_payment'] = wp_kses_post($_POST['override']['detail_monthly_payment']);
+                }
+				if (isset($_POST['override']['detail_total_payments'])) {
+                    $this->shmac_email['detail_total_payments'] = wp_kses_post($_POST['override']['detail_total_payments']);
+                }
+				if (isset($_POST['override']['header_payment'])) {
+                    $this->shmac_email['header_payment'] = wp_kses_post($_POST['override']['header_payment']);
+                }
+				if (isset($_POST['override']['header_payment_amount'])) {
+                    $this->shmac_email['header_payment_amount'] = wp_kses_post($_POST['override']['header_payment_amount']);
+                }
+				if (isset($_POST['override']['header_interest'])) {
+                    $this->shmac_email['header_interest'] = wp_kses_post($_POST['override']['header_interest']);
+                }
+				if (isset($_POST['override']['header_total_interest'])) {
+                    $this->shmac_email['header_total_interest'] = wp_kses_post($_POST['override']['header_total_interest']);
+                }
+				if (isset($_POST['override']['header_principal'])) {
+                    $this->shmac_email['header_principal'] = wp_kses_post($_POST['override']['header_principal']);
+                }
+				if (isset($_POST['override']['header_balance'])) {
+                    $this->shmac_email['header_balance'] = wp_kses_post($_POST['override']['header_balance']);
+                }
+				if (isset($_POST['override']['header_loan_text'])) {
+                    $this->shmac_email['header_loan_text'] = wp_kses_post($_POST['override']['header_loan_text']);
+                }
+				if (isset($_POST['override']['header_schedule_text'])) {
+                    $this->shmac_email['header_schedule_text'] = wp_kses_post($_POST['override']['header_schedule_text']);
+                }
+				if (isset($_POST['override']['otherfactors'])) {
+                    $this->shmac_email['otherfactors'] = wp_kses_post($_POST['override']['otherfactors']);
+                }
+				if (isset($_POST['override']['down_factor_1'])) {
+                    $this->shmac_email['down_factor_1'] = wp_kses_post($_POST['override']['down_factor_1']);
+                }
+				if (isset($_POST['override']['down_factor_2'])) {
+                    $this->shmac_email['down_factor_2'] = wp_kses_post($_POST['override']['down_factor_2']);
+                }
+				if (isset($_POST['override']['tax_factor'])) {
+                    $this->shmac_email['tax_factor'] = wp_kses_post($_POST['override']['tax_factor']);
+                }
+				if (isset($_POST['override']['insurance_factor'])) {
+                    $this->shmac_email['insurance_factor'] = wp_kses_post($_POST['override']['insurance_factor']);
+                }
+				if (isset($_POST['override']['factor_summary'])) {
+                    $this->shmac_email['factor_summary'] = wp_kses_post($_POST['override']['factor_summary']);
+                }
+				if (isset($_POST['override']['disclaimer'])) {
+                    $this->shmac_email['disclaimer'] = wp_kses_post($_POST['override']['disclaimer']);
+                }		
+
                 // mail settings overrides  
                 if (isset($_POST['override']['bccemail'])) {
                     $this->shmac_email['email_bcc'] = sanitize_email($_POST['override']['bccemail']);
@@ -289,9 +357,12 @@
                             $tax_rate_display      = $this->shmac_settings['currency'] . $this->format_amount($tax_rate);
                             $thousand_dollars_display = $this->shmac_settings['currency'] . $thousand_dollars;
                         }
-
-						$texts = array('[tax_rate_display]', '[thousand_dollars_display]', '[assessed_display]','[taxes_display]');
-                        $replacements = array($tax_rate_display, $thousand_dollars_display, $assessed2_display, $taxes2_display);
+					
+						// Have to add check for `{` as well since Visual Composer seems to convert brackets to this format
+						$texts = array('[tax_rate_display]', '[thousand_dollars_display]', '[assessed_display]','[taxes_display]',
+								"`{`tax_rate_display`}`", "`{`thousand_dollars_display`}`", "`{`assessed_display`}`", "`{`taxes_display`}`");
+                        $replacements = array($tax_rate_display, $thousand_dollars_display, $assessed2_display, $taxes2_display,
+								$tax_rate_display, $thousand_dollars_display, $assessed2_display, $taxes2_display);
                         $tax_text = str_replace($texts, $replacements, $this->shmac_email['tax_factor']);
                         $response['vals']['tax_text'] = $tax_text;
 
@@ -319,8 +390,10 @@
                                 $pmi2_display        = $this->shmac_settings['currency'] . $pmi2;
                             }
 
-							$texts = array('[pmi_display]', '[hundredthou]', '[pmi]');
-							$replacements = array($pmi_display, $hundredthou_display, $pmi2_display);
+							$texts = array('[pmi_display]', '[hundredthou]', '[pmi]'
+										, "`{`pmi_display`}`","`{`hundredthou`}`", "`{`pmi`}`");
+							$replacements = array($pmi_display, $hundredthou_display, $pmi2_display,
+										$pmi_display, $hundredthou_display, $pmi2_display);
 							$pmi_text = str_replace($texts, $replacements, $this->shmac_email['down_factor_1']);
                             $response['vals']['pmi_text'] = $pmi_text;
 
@@ -347,8 +420,8 @@
                             $insurance_display = $this->shmac_settings['currency'] . $insurance_format;
                         }
 
-						$texts = array('[insurance_display]');
-                        $replacements = array($insurance_display);
+						$texts = array('[insurance_display]', "`{`insurance_display`}`");
+                        $replacements = array($insurance_display, $insurance_display);
                         $insurance_text = str_replace($texts, $replacements, $this->shmac_email['insurance_factor']);
                         $response['vals']['insurance_text'] = $insurance_text;
 
@@ -372,8 +445,8 @@
                             $total_payment_display = $this->shmac_settings['currency'] . '<b>' . $total_payment_formatted . '</b>';
                         }
 					
-						$texts = array('[total_payment_display]');
-                        $replacements = array($total_payment_display);
+						$texts = array('[total_payment_display]', "`{`total_payment_display`}`");
+                        $replacements = array($total_payment_display, $total_payment_display);
                         $total_monthlies = str_replace($texts, $replacements, $this->shmac_email['factor_summary']);
                         $response['vals']['total_monthlies'] = $total_monthlies;
                         

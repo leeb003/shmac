@@ -62,8 +62,33 @@ jQuery(function ($) {  // use $ for jQuery
         override.pdflogo                = $(this).closest('.shmac-form').data('pdflogo');
         override.pdfheader              = $(this).closest('.shmac-form').data('pdfheader');
         override.downpayshow            = $(this).closest('.shmac-form').data('downpayshow');
-		override.disclaimer             = $(this).closest('.shmac-form').data('disclaimer');
 		override.location               = $(this).closest('.shmac-form').data('location');
+		// schedule overrides
+		override.detail_original        = $(this).closest('.shmac-form').data('detail_original');
+		override.detail_down_payment    = $(this).closest('.shmac-form').data('detail_down_payment');
+		override.detail_interest        = $(this).closest('.shmac-form').data('detail_interest');
+		override.detail_term            = $(this).closest('.shmac-form').data('detail_term');
+		override.detail_loan_after_down = $(this).closest('.shmac-form').data('detail_loan_after_down');
+		override.detail_down_payment_amount = $(this).closest('.shmac-form').data('detail_down_payment_amount');
+		override.detail_monthly_payment = $(this).closest('.shmac-form').data('detail_monthly_payment');
+		override.detail_total_payments  = $(this).closest('.shmac-form').data('detail_total_payments');
+		override.header_payment         = $(this).closest('.shmac-form').data('header_payment');
+		override.header_payment_amount  = $(this).closest('.shmac-form').data('header_payment_amount');
+		override.header_interest        = $(this).closest('.shmac-form').data('header_interest');
+		override.header_total_interest  = $(this).closest('.shmac-form').data('header_total_interest');
+		override.header_principal       = $(this).closest('.shmac-form').data('header_principal');
+		override.header_balance         = $(this).closest('.shmac-form').data('header_balance');
+		override.header_loan_text       = $(this).closest('.shmac-form').data('header_loan_text');
+		override.header_schedule_text   = $(this).closest('.shmac-form').data('header_schedule_text');
+		override.otherfactors           = $(this).closest('.shmac-form').data('otherfactors');
+		override.down_factor_1          = $(this).closest('.shmac-form').data('down_factor_1');
+		override.down_factor_2          = $(this).closest('.shmac-form').data('down_factor_2');
+		override.tax_factor             = $(this).closest('.shmac-form').data('tax_factor');
+		override.insurance_factor       = $(this).closest('.shmac-form').data('insurance_factor');
+		override.factor_summary         = $(this).closest('.shmac-form').data('factor_summary');
+		override.disclaimer             = $(this).closest('.shmac-form').data('disclaimer');
+
+		
 
         $.post(SHMAC_Ajax.ajaxurl, {
             action: 'ajax-shmacfrontend',
