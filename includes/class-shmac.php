@@ -450,7 +450,7 @@ EOT;
             = $o_bccemail = $o_fromemail = $o_emailsubject = $o_emailcontent = $o_pdfcolor = $o_pdflogo = $o_pdfheader = $o_location = '';
 
 			// report overrides set to empty too
-			$o_detail_original = $o_detail_down_payment = $o_detail_interest = $o_detail_term = $o_detail_loan_after_down = $o_detail_down_payment_amount = $o_detail_monthly_payment = $o_detail_total_payments = $o_header_payment = $o_header_payment_amount = $o_header_interest = $o_header_total_interest = $o_header_principal = $o_header_balance = $o_header_loan_text = $o_header_schedule_text = $o_otherfactors = $o_down_factor_1 = $o_down_factor_2 = $o_tax_factor = $o_insurance_factor = $o_factor_summary = $o_disclaimer = '';
+			$o_detail_original = $o_detail_down_payment = $o_detail_interest = $o_detail_term = $o_detail_loan_after_down = $o_detail_down_payment_amount = $o_detail_monthly_payment = $o_detail_total_payments = $o_header_payment = $o_header_payment_amount = $o_header_interest = $o_header_total_interest = $o_header_principal = $o_header_balance = $o_header_loan_text = $o_header_schedule_text = $o_otherfactors = $o_down_factor_1 = $o_down_factor_2 = $o_tax_factor = $o_insurance_factor = $o_factor_summary = $o_year_label = $o_month_label = $o_disclaimer = '';
 
             // Individual Form Overrides
             if ($enableinsurance != '') {
@@ -586,6 +586,12 @@ EOT;
 			if ($factor_summary != '') {
                 $o_factor_summary = 'data-factor_summary="' . $factor_summary . '" ';
             }
+			if ($year_label != '') {
+				$o_year_label = 'data-year_label="' . $year_label . '" ';
+			}
+			if ($month_label != '') {
+                $o_month_label = 'data-month_label="' . $month_label . '" ';
+            }	
             if ($disclaimer != '') {
                 $o_disclaimer = 'data-disclaimer="' . $disclaimer . '" ';
             }
@@ -598,7 +604,8 @@ EOT;
 				. $o_detail_original . $o_detail_interest . $o_detail_term . $o_detail_loan_after_down . $o_detail_down_payment . $o_detail_down_payment_amount 
 				. $o_detail_monthly_payment . $o_detail_total_payments . $o_header_payment . $o_header_payment_amount . $o_header_interest 
 				. $o_header_total_interest . $o_header_principal . $o_header_balance . $o_header_loan_text . $o_header_schedule_text 
-				. $o_otherfactors . $o_down_factor_1 . $o_down_factor_2 . $o_tax_factor . $o_insurance_factor . $o_factor_summary . $o_disclaimer;
+				. $o_otherfactors . $o_down_factor_1 . $o_down_factor_2 . $o_tax_factor . $o_insurance_factor . $o_factor_summary 
+				. $o_year_label . $o_month_label . $o_disclaimer;
 
             $info_src = SHMAC_ROOT_URL . '/assets/img/info_outline.png'; 
             $symbol_side = '';

@@ -31,6 +31,10 @@ Users can choose to receive a pdf copy of the amortization schedule which you
 can also be bcc'd on as a lead generator.
 
 == Changelog ==
+= 1.5.5 = 
+* 2020-06-18
+* Fix for Term output not being overriden by Visual Composer element
+
 = 1.5.4 =
 * 2020-06-17
 * Added overrides for Visual Composer element to override all text per calculator

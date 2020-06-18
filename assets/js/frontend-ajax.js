@@ -31,9 +31,11 @@ jQuery(function ($) {  // use $ for jQuery
         } else {
             var sendemail = 'false';
         }
-        var termcycle = 'years';
+        var termcycle = $(this).closest('.shmac-form').data('year_label');
+		var termType = 'years';
         if ( $(this).closest('.shmac-form').find('.term-months').is(':checked')) {
-            termcycle = 'months';
+            termcycle = $(this).closest('.shmac-form').data('month_label');
+			termType = 'months';
         }
         var amount   = $(this).closest('.shmac-form').find('.mort-amount').val();
         var interest = $(this).closest('.shmac-form').find('.interest').val();
@@ -101,6 +103,7 @@ jQuery(function ($) {  // use $ for jQuery
             interest   : interest,
             downpay    : downpay,
             termcycle  : termcycle,
+			termtype   : termType,
             term       : term,
             override   : override
         }, function(response) {

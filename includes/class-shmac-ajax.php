@@ -243,19 +243,14 @@
                 }
 
                 $term             = intval($_POST['term']);
-                $termcycle        = $_POST['termcycle'];
-                $years_text       = $this->shmac_settings['year_label'];
-                $months_text      = $this->shmac_settings['month_label'];
-                if ($termcycle == 'months') {
-                    $cycle_text = $months_text;
-                } else {
-                    $cycle_text = $years_text;
+				$termtype 		  = $_POST['termtype'];
+				$cycle_text       = $_POST['termcycle'];
+                if ($termtype == 'years') {
                     if ($term > 50) {  // limit years to 50 max
                         $term = 50;
                     }
                 }
                 $response['vals']['cycle_text'] = $cycle_text;
-                // $response['vals']['years_text'] = $years_text;
 
                 $response['vals']['price'] = $price;
                 // $response['vals']['price2'] = $this->format_amount($price);
@@ -298,7 +293,7 @@
                     $month_interest = ($interest / (12 * 100));
 
                     //echo "Monthly Interest is (interest / (12 * 100)) = $month_interest<br>";
-                    if ($termcycle == 'months') {
+                    if ($termtype == 'months') {
                         $months = $term;
                     } else {
                         $months = $term * 12;
@@ -459,7 +454,7 @@
                     $i = 0;
                     $total_interest = 0;
                     $new_mortgage = $mortgage;
-                    if ($termcycle == 'months') {   // if this is monthly 
+                    if ($termtype == 'months') {   // if this is monthly 
                         $month_range = $term;
                     } else {                        // if this is yearly
                         $years = $term;
