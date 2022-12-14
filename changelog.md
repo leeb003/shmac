@@ -1,6 +1,9 @@
 # Changelog
 All notable changes to WP Amortization Calculator will be documented in this file.
 
+## [1.5.6] - 2022-12-12
+- Update codebase to support php 8.1
+
 ## [1.5.5] - 2020-06-18
 - Fix for Term output not being overriden by Visual Composer element
 

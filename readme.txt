@@ -32,6 +32,11 @@ can also be bcc'd on as a lead generator.
 Full Documentation is located at https://www.scripthat.com/kbt/amortization-calculator/
 
 == Changelog ==
+
+= 1.5.6 =
+* 2022-12-13
+* Updates to code for php v8.1
+
 = 1.5.5 = 
 * 2020-06-18
 * Fix for Term output not being overriden by Visual Composer element
