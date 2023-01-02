@@ -1,4 +1,4 @@
-=== WordPress Plugin Template ===
+=== WordPress Mortgage Calculator Plugin ===
 Contributors: ScriptHat
 Tags: wordpress, plugin, leads, contacts, calculator
 Requires at least: 5.2
