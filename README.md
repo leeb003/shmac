@@ -47,7 +47,7 @@ This plugin generates mortgage amortization schedules and details for visitors
 to your WordPress website and can be used as a widget or as a shortcode.
 Users can choose to receive a pdf copy of the amortization schedule which you 
 can also be bcc'd on as a lead generator. 
-Full Documentation is located at https://www.scripthat.com/kbt/amortization-calculator/
+Full Documentation is located at https://www.scripthat.com/wpamortize
 
 #### I'm not receiving an email report when running the amortization calculator.
 
