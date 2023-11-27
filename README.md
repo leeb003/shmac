@@ -49,6 +49,32 @@ Users can choose to receive a pdf copy of the amortization schedule which you
 can also be bcc'd on as a lead generator. 
 Full Documentation is located at https://www.scripthat.com/kbt/amortization-calculator/
 
+#### I'm not receiving an email report when running the amortization calculator.
+
+
+Probably the biggest issue we hear…this can be for all sorts of reasons like your WordPress email functionality working correctly, your server being configured to deliver mail all the way to the client rejecting your domain’s email address.  Here are some things to help you troubleshoot:
+
+Email can be a tricky thing as the receiving end can also be blocking or putting it in a spam folder…As long as WordPress can send mail, the calculator should be able to also, here’s a few things to try:
+
+1.  Is your site able to send email through WordPress, since the
+amortization calculator uses WordPress mail functions that needs to be
+operational. There are plugins that let you test if you aren’t sure
+here’s one https://wordpress.org/support/plugin/check-email
+2.  The ‘from’ email address needs to be allowed by your server. A lot
+of times hosting companies will block from addresses that are not the
+same origin as the domain so you should test with an email address from
+your domain.
+
+3.  Check the receiving end’s junk / spam folder to make sure you haven’t already received it.
+
+4.  Mail from your domain might be blocked by the receiving end email.  Try testing with a different receiving email to test.
+
+#### PDF Email works with smaller loan terms but not larger ones (e.g. works with 15 years but not 30)
+
+This problem is indicative of PHP memory limits affecting the ability to dynamically generate the pdf.  The PDF is dynamically generated and needs memory to do so. the more amount of entries the more memory it needs.  You will need to increase the PHP memory limit set by your server or have your hosting company help you do so to correct this.  The PHP setting to change for this is:
+
+`memory_limit = 128M`
+
 ---
 
 ### Changelog
